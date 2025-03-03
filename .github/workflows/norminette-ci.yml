@@ -9,34 +9,35 @@ on:
     branches:
             - main
 
-jobs :
-  name: Norminette Check
-  runs-on: ubuntu_latest
+jobs:
+  norminette_ci:
+    name: Norminette Check
+    runs-on: ubuntu-latest
 
-  steps:
-    name: Clone Repo to Github
-    uses: actions/checkout@v2
+    steps:
+      - name: Clone Repo to Github
+        uses: actions/checkout@v2
 
-    name: Set up Python for Norminett
-    uses: actions/setup-python@v2
-    with:
-      python-version: '3.8'
+      - name: Set up Python for Norminette
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
 
-    name: Set up Norminette
-    runs: |
-        python3 -m pip install --upgrade pip
-        pip install norminette
+      - name: Set up Norminette
+        runs: |
+            python3 -m pip install --upgrade pip
+            pip install norminette
 
-    name: Run Norminette
-    runs: |
-        norminette $(find . -type f -name '*.c' -o '*.h') > result.log || true
-        grep  'ERROR' result.log || true
+      - name: Run Norminette
+        runs: |
+            norminette $(find . -type f -name '*.c' -o '*.h') > result.log || true
+            grep 'Error' result.log || true
 
-    name: Error Check
-    runs: |
-        if grep -q 'Error' result.log; then
-          echo "❌ Norminette check failed!"
-          exit 1
-        else
-          echo "✅ Norminette check passed!"
-        fi
+      - name: Error Check
+        runs: |
+            if grep -q 'Error' result.log; then
+              echo "❌ Norminette check failed!"
+              exit 1
+            else
+              echo "✅ Norminette check passed!"
+            fi
