@@ -11,14 +11,14 @@ on:
 
 jobs :
   name: Norminette Check
-  runs_on: ubuntu_latest
+  runs-on: ubuntu_latest
 
   steps:
     name: Clone Repo to Github
-    uses: action/checkout@v2
+    uses: actions/checkout@v2
 
-    name: Set up Python for Norminette
-    uses: action/setup-python@v2
+    name: Set up Python for Norminett
+    uses: actions/setup-python@v2
     with:
       python-version: '3.8'
 
