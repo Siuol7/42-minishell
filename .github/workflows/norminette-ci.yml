@@ -24,17 +24,17 @@ jobs:
           python-version: '3.8'
 
       - name: Set up Norminette
-        runs: |
+        run: |
             python3 -m pip install --upgrade pip
             pip install norminette
 
       - name: Run Norminette
-        runs: |
+        run: |
             norminette $(find . -type f -name '*.c' -o '*.h') > result.log || true
             grep 'Error' result.log || true
 
       - name: Error Check
-        runs: |
+        run: |
             if grep -q 'Error' result.log; then
               echo "❌ Norminette check failed!"
               exit 1
