@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   token.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/07 10:56:24 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/07 10:54:31 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/07 11:28:33 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
+#ifndef TOKEN_H
 
-# define MINISHELL_H
+# define TOKEN_H
 
-# include "system-lib.h"
+# include "system_lib.h"
 
 #endif
