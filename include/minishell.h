@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/07 10:56:24 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/07 11:33:53 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 # define MINISHELL_H
 
-# include "system-lib.h"
+# include "system_lib.h"
+# include "parsing/token.h"
 
 #endif
