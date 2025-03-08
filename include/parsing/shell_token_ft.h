@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   token.h                                            :+:      :+:    :+:   */
+/*   shell_token_ft.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 10:54:31 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/07 11:28:33 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/08 13:55:24 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/08 13:55:54 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TOKEN_H
+#ifndef SHELL_TOKEN_FT_H
 
-# define TOKEN_H
-
-# include "system_lib.h"
+# define SHELL_TOKEN_FT_H
 
 #endif
