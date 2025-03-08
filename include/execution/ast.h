@@ -6,9 +6,9 @@
 
 typedef struct	s_ast
 {
-	t_token_type		token;
-	struct s_ast		*left;
-	struct s_ast		*left;
+	t_token			token;
+	struct s_ast	*right;
+	struct s_ast	*left;
 }	t_ast;
 
 
