@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_token_type.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:54:31 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/08 14:51:55 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/08 15:20:57 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ typedef struct s_token
 {
 	char	**cmd;
 	t_oprt	**oprt;
-	t_rd	**rd;
+	t_rd	**rd; 
 }	t_token;
 
 #endif
