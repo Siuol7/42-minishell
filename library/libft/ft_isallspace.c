@@ -1,23 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_token_ft.h                                   :+:      :+:    :+:   */
+/*   ft_isallspace.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/08 13:55:24 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/11 23:52:31 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/10 10:33:28 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/10 10:35:13 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHELL_TOKEN_FT_H
+#include "libft.h"
 
-# define SHELL_TOKEN_FT_H
-
-int		ft_skip_space(char *input, int index);
-int		ft_skip_dquote(char *input, int index);
-int		ft_skip_word(char *input, int index);
-int		ft_split_word(char *in, char **res, int *start, int *i);
-int		ft_split_dquote(char *in, char **res, int *start, int *i);
-
-#endif
+int	ft_isallspace(char c)
+{
+	if (c == ' ' || (c >= 9 && c <= 13))
+		return (1);
+	return (0);
+}
