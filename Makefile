@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/10 14:25:18 by caonguye         ###   ########.fr        #
+#    Updated: 2025/03/11 12:26:24 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,10 @@ INCLUDE			:= -I $(LIBFT_DIR) -I ./include
 #MAIN
 MAIN_SRC		:=	./srcs/main
 
-MAIN_C			:=	main.c			\
-					implement.c		\
-					shell_init.c
+MAIN_C			:=	main.c					\
+					shell_implement.c		\
+					shell_init.c			\
+					shell_clean.c
 
 # PARSING
 PARSING_SRC		:=	./srcs/parsing
