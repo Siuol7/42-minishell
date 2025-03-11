@@ -1,0 +1,97 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
+#    Updated: 2025/03/10 14:25:18 by caonguye         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
+NAME	:= minishell
+CC		:= gcc
+FLAG	:= -Wall -Werror -Wextra -g -O3
+LFLAG	:=	-lreadline
+
+
+# Additional libft paths
+LIBFT_DIR		:= ./library/libft
+LIBFT			:= $(LIBFT_DIR)/libft.a
+
+INCLUDE			:= -I $(LIBFT_DIR) -I ./include
+
+#MAIN
+MAIN_SRC		:=	./srcs/main
+
+MAIN_C			:=	main.c			\
+					implement.c		\
+					shell_init.c
+
+# PARSING
+PARSING_SRC		:=	./srcs/parsing
+
+LEXER_DIR		:=	$(PARSING_SRC)/Lexer
+
+LEXER_C			:=	shell_input.c		\
+					shell_token_gen.c	\
+					ft_token_split.c	\
+					split_utils.c
+
+SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
+					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})
+
+OBJS           :=	${SRCS:.c=.o}
+
+all:    ${LIBFT} ${NAME}
+
+%.o:%.c
+		@${CC} ${FLAG} ${INCLUDE} -o $@ -c $<
+
+${NAME}	:	${OBJS} ${LIBFT}
+		@printf "\033[1;32m💻Launching"
+		@for i in 1 2 3; do \
+			printf "\033[0;32m."; sleep 0.3; \
+		done; \
+		for i in 1 2 3; do \
+			printf "\b \b"; sleep 0.3; \
+		done; \
+		for i in 1 2 3; do \
+			printf "\033[0;32m."; sleep 0.3; \
+		done; \
+		for i in 1 2 3; do \
+			printf "\b \b"; sleep 0.3; \
+		done; \
+		printf "\033[0m\n"
+		@${CC} ${OBJS} ${LIBFT} ${FLAG} ${LFLAG} -o ${NAME}
+
+${LIBFT}	:
+		@$(MAKE) -s -C ${LIBFT_DIR}
+
+clean    :
+		@rm -f ${OBJS}
+		@$(MAKE) -s -C ${LIBFT_DIR} clean
+
+fclean   : clean
+		@printf "\033[1;32m🧹️Cleaning"
+		@for i in 1 2 3; do \
+			printf "\033[0;32m."; sleep 0.3; \
+		done; \
+		for i in 1 2 3; do \
+			printf "\b \b"; sleep 0.3; \
+		done; \
+		for i in 1 2 3; do \
+			printf "\033[0;32m."; sleep 0.3; \
+		done; \
+		for i in 1 2 3; do \
+			printf "\b \b"; sleep 0.3; \
+		done; \
+		printf "\033[0m\n"
+		@echo "\033[1;32mDone🎉"
+		@rm -rf ${NAME}
+		@$(MAKE) -s -C ${LIBFT_DIR} fclean
+
+re    : fclean all
+
+.PHONY: all clean fclean re
