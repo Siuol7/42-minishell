@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/11 12:26:24 by caonguye         ###   ########.fr        #
+#    Updated: 2025/03/12 10:13:17 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,7 +38,8 @@ LEXER_DIR		:=	$(PARSING_SRC)/Lexer
 LEXER_C			:=	shell_input.c		\
 					shell_token_gen.c	\
 					ft_token_split.c	\
-					split_utils.c
+					split_utils.c		\
+					classify_utils.c
 
 SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})
