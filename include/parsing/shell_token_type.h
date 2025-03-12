@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:54:31 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/11 19:18:49 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/12 11:05:16 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,6 @@
 
 # define SHELL_TOKEN_TYPE_H
 # include "minishell.h"
-
-typedef enum s_token_type
-{
-	CMD,
-	OPRT,
-	RD
-}	t_token_type;
 
 typedef enum s_oprt_type
 {
@@ -37,6 +30,12 @@ typedef enum s_rd_type
 	HEREDOC
 }	t_rd_type;
 
+typedef struct s_cmd
+{
+	char	*cmd;
+	char	**full;
+}	t_cmd;
+
 typedef struct s_oprt
 {
 	char		*val;
@@ -52,14 +51,12 @@ typedef struct s_rd
 
 typedef struct s_token
 {
-	int		size;
 	int		cmd_size;
 	int		oprt_size;
 	int		rd_size;
-	char	**cmd;
+	t_cmd	**cmd;
 	t_oprt	**oprt;
 	t_rd	**rd;
-
 }	t_token;
 
 #endif
