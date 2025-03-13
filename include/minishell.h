@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/11 19:17:43 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/13 18:07:42 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,8 @@
 # include "../library/libft/libft.h"
 # include "parsing/shell_token_type.h"
 # include "parsing/shell_token_ft.h"
-
+# include "execution/execution.h"
+# include "execution/ast.h"
 typedef struct s_shell
 {
 	int		token_size;
