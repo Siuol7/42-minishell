@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 01:01:11 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/10 11:22:00 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/14 10:50:41 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		ft_is_dquote(char c);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 
-int		ft_2d_size(char **arr);
+int		ft_2d_len(char **arr);
 int		ft_char_cnt_2d(char *src, char c);
 int		ft_memcmp(const void *s1, const void *s2, size_t n);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
@@ -45,9 +45,9 @@ int		ft_free_process_2d(char **arr, size_t cur);
 int		ft_free_process_3d(char ***arr, size_t cur);
 void	ft_free_2d(void **arr);
 void	ft_free_3d(void ***arr);
-void	ft_free_2d_int(int **arr, int size);
-void	ft_free_3d_int(int ***arr, int size);
-void	*ft_calloc(size_t nmemb, size_t size);
+void	ft_free_2d_int(int **arr, int len);
+void	ft_free_3d_int(int ***arr, int len);
+void	*ft_calloc(size_t nmemb, size_t len);
 void	*ft_memset(void *s, int c, size_t n);
 void	*ft_memcpy(void *dest, const void *src, size_t n);
 void	*ft_memmove(void *dest, const void *src, size_t n);
@@ -67,15 +67,15 @@ char	*ft_strtrim(char const *s1, char const *set);
 char	*ft_itoa(int n);
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
 char	*ft_char_eli(char *string, char c);
-size_t	ft_strlcpy(char *dst, const char *src, size_t size);
-size_t	ft_strlcat(char *dst, const char *src, size_t size);
+size_t	ft_strlcpy(char *dst, const char *src, size_t len);
+size_t	ft_strlcat(char *dst, const char *src, size_t len);
 size_t	ft_strlen(const char *s);
 char	**ft_split(char const *s, char c);
 
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);
 void	ft_lstadd_back(t_list **lst, t_list *new);
-int		ft_lstsize(t_list *lst);
+int		ft_lstlen(t_list *lst);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstdelone(t_list *lst, void (*del)(void*));
 void	ft_lstclear(t_list **lst, void (*del)(void*));
