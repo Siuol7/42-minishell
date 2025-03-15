@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:40:48 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/14 20:04:31 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/15 13:58:12 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,14 +31,14 @@ typedef enum s_type
 
 typedef struct s_token
 {
-	t_type		type;
-	char		*value; 
-}  t_token;
+	t_type	type;
+	char	*value;
+}	t_token;
 
-int	token_size_export(t_token *token);
+int		token_size_export(t_token *token);
 t_token	*token_extraction(t_token *tokens, int begin, int last);
 void	free_token(t_token **token);
 t_ast	*ast_init(t_token *token);
-int	oprt_location(t_token *token, int token_size);
+int		oprt_location(t_token *token, int token_size);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/14 18:50:18 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/15 13:56:35 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "parsing/shell_token_ft.h"
 # include "execution/ast.h"
 # include "execution/execution.h"
+
 typedef struct s_shell
 {
 	int		token_size;

@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:54:31 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/14 16:29:55 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/15 13:57:21 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_token
 	int		rd_size;
 	t_cmd	**cmd;
 	t_oprt	**oprt;
-	t_rd	**rd; 
+	t_rd	**rd;
 }	t_token;
 
 #endif

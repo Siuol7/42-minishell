@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:58:02 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/14 19:56:57 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/15 13:58:35 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_ast	*ast_init(t_token *token)
 	ast = (t_ast *)malloc(sizeof(t_ast));
 	if (!ast)
 	{
-		ft_printt_fd(STDERR_FILENO, "minishell: Malloc failed!\n"); // add printf_fd
+		ft_printt_fd(STDERR_FILENO, "minishell: Malloc failed!\n");
 		return (NULL);
 	}
 }
