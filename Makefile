@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/12 10:13:17 by caonguye         ###   ########.fr        #
+#    Updated: 2025/03/15 11:06:54 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,12 @@ LFLAG	:=	-lreadline
 # Additional libft paths
 LIBFT_DIR		:= ./library/libft
 LIBFT			:= $(LIBFT_DIR)/libft.a
+FT_PRINTF_DIR	:= ./library/ft_printf_fd
+PRINTF			:= $(FT_PRINTF_DIR)/libftprintf.a
 
-INCLUDE			:= -I $(LIBFT_DIR) -I ./include
+HEADER			:= ./include/main
+
+INCLUDE			:= -I $(LIBFT_DIR) -I $(FT_PRINTF_DIR) -I $(HEADER)
 
 #MAIN
 MAIN_SRC		:=	./srcs/main
@@ -46,12 +50,12 @@ SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 
 OBJS           :=	${SRCS:.c=.o}
 
-all:    ${LIBFT} ${NAME}
+all:    ${LIBFT} ${PRINTF} ${NAME}
 
 %.o:%.c
 		@${CC} ${FLAG} ${INCLUDE} -o $@ -c $<
 
-${NAME}	:	${OBJS} ${LIBFT}
+${NAME}	:	${OBJS} ${LIBFT} ${PRINTF}
 		@printf "\033[1;32m💻Launching"
 		@for i in 1 2 3; do \
 			printf "\033[0;32m."; sleep 0.3; \
@@ -66,14 +70,18 @@ ${NAME}	:	${OBJS} ${LIBFT}
 			printf "\b \b"; sleep 0.3; \
 		done; \
 		printf "\033[0m\n"
-		@${CC} ${OBJS} ${LIBFT} ${FLAG} ${LFLAG} -o ${NAME}
+		@${CC} ${OBJS} ${LIBFT} ${PRINTF} ${FLAG} ${LFLAG} -o ${NAME}
 
 ${LIBFT}	:
 		@$(MAKE) -s -C ${LIBFT_DIR}
 
+${PRINTF}	:
+		@$(MAKE) -s -C ${FT_PRINTF_DIR}
+
 clean    :
 		@rm -f ${OBJS}
 		@$(MAKE) -s -C ${LIBFT_DIR} clean
+		@$(MAKE) -s -C ${FT_PRINTF_DIR} clean
 
 fclean   : clean
 		@printf "\033[1;32m🧹️Cleaning"
@@ -93,6 +101,7 @@ fclean   : clean
 		@echo "\033[1;32mDone🎉"
 		@rm -rf ${NAME}
 		@$(MAKE) -s -C ${LIBFT_DIR} fclean
+		@$(MAKE) -s -C ${FT_PRINTF_DIR} fclean
 
 re    : fclean all
 

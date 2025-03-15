@@ -6,13 +6,13 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/05 01:34:47 by caonguye          #+#    #+#             */
-/*   Updated: 2025/01/05 01:48:04 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/14 10:52:08 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <libft.h>
 
-int	ft_2d_size(char **arr)
+int	ft_2d_len(char **arr)
 {
 	int	i;
 

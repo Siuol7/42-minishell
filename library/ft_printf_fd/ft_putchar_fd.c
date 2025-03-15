@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 01:30:39 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/14 10:17:42 by caonguye         ###   ########.fr       */
+/*   Created: 2024/11/06 02:34:07 by caonguye          #+#    #+#             */
+/*   Updated: 2024/12/18 19:42:10 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "ft_printf.h"
 
-int	shell_init(t_shell *mns, char **env)
+char	*ft_putchar_fd(int c)
 {
-	ft_memset(mns, 0, sizeof(t_shell));
-	(void)env;
-	return (1);
+	return (ft_strdup((char *)&c));
 }

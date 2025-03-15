@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/12 10:59:42 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/13 01:46:29 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	shell_clean(t_shell *mns)
 		return ;
 	if (mns->full_cmd_line)
 		free(mns->full_cmd_line);
-	if (mns->token_list)
-		free(mns->token_list);
+	if (mns->list)
+		free(mns->list);
 	free(mns);
 }

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/11 19:17:43 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/14 10:54:50 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,18 @@
 # define MINISHELL_H
 
 # include "system_lib.h"
+# include "error.h"
 # include "../library/libft/libft.h"
 # include "parsing/shell_token_type.h"
 # include "parsing/shell_token_ft.h"
 
 typedef struct s_shell
 {
-	int		token_size;
+	int		token_len;
 	char	*full_cmd_line;
-	t_token	*token_list;
+	char	**splitted_cmd;
+	t_error	shell_err;
+	t_token	*list;
 }	t_shell;
 
 //OPERATION

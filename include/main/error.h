@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 01:30:39 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/14 10:17:42 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/14 10:07:13 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/14 10:09:13 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef ERROR_H
 
-int	shell_init(t_shell *mns, char **env)
+# define ERROR_H
+
+typedef enum s_error
 {
-	ft_memset(mns, 0, sizeof(t_shell));
-	(void)env;
-	return (1);
-}
+	ERR_ALLOC
+}	t_error;
+#endif
