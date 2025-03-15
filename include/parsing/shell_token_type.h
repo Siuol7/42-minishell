@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:54:31 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/14 02:27:22 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/15 11:37:16 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,5 +32,11 @@ typedef struct s_token
 	t_token_type	type;
 	char			*val;
 }	t_token;
+
+typedef struct s_cmd
+{
+	char	*cmd;
+	char	**cmd_gr;
+}	t_cmd;
 
 #endif
