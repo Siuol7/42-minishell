@@ -1,20 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   ft_print_address_fd.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 01:30:39 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/14 10:17:42 by caonguye         ###   ########.fr       */
+/*   Created: 2024/11/07 05:52:33 by caonguye          #+#    #+#             */
+/*   Updated: 2024/12/18 19:41:59 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "ft_printf.h"
 
-int	shell_init(t_shell *mns, char **env)
+char	*ft_print_address_fd(uintptr_t nbr, int baselen, int low_up)
 {
-	ft_memset(mns, 0, sizeof(t_shell));
-	(void)env;
-	return (1);
+	char	*first;
+	char	*second;
+	char	*wrote;
+
+	if (nbr == 0)
+		wrote = ft_strdup("(nil)");
+	else
+	{
+		first = ft_strdup("0x");
+		second = ft_putnbr_base_fd(nbr, baselen, low_up);
+		wrote = ft_strjoin_printf(first, second);
+		free(first);
+		free(second);
+	}
+	return (wrote);
 }

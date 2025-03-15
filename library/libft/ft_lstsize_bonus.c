@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize_bonus.c                                 :+:      :+:    :+:   */
+/*   ft_lstlen_bonus.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,17 +12,17 @@
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+int	ft_lstlen(t_list *lst)
 {
-	int	size;
+	int	len;
 
-	size = 0;
+	len = 0;
 	while (lst)
 	{
-		size++;
+		len++;
 		lst = lst->next;
 	}
-	return (size);
+	return (len);
 }
 // #include <stdio.h>
 
@@ -36,6 +36,6 @@ int	ft_lstsize(t_list *lst)
 
 // 	ft_lstadd_front(&head, node1);
 // 	ft_lstadd_front(&head,node2);
-// 	printf("%d\n", ft_lstsize(head));
+// 	printf("%d\n", ft_lstlen(head));
 // 	return(0);
 // }

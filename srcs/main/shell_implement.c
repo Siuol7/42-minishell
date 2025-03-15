@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   implement.c                                        :+:      :+:    :+:   */
+/*   shell_implement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:35:45 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/11 12:23:17 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/14 10:53:33 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/minishell.h"
+#include "minishell.h"
 
 int	shell_implement(char **env)
 {
