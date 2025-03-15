@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/14 10:54:50 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/15 11:29:18 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,16 @@
 
 # include "system_lib.h"
 # include "error.h"
-# include "../library/libft/libft.h"
-# include "parsing/shell_token_type.h"
-# include "parsing/shell_token_ft.h"
+# include "../../library/libft/libft.h"
+# include "../parsing/shell_token_type.h"
+# include "../parsing/shell_token_ft.h"
 
 typedef struct s_shell
 {
 	int		token_len;
 	char	*full_cmd_line;
 	char	**splitted_cmd;
+	t_cmd	*cmd;
 	t_error	shell_err;
 	t_token	*list;
 }	t_shell;
