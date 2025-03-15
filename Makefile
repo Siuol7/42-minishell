@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/15 10:45:12 by caonguye         ###   ########.fr        #
+#    Updated: 2025/03/15 10:58:58 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,6 +74,9 @@ ${NAME}	:	${OBJS} ${LIBFT}
 
 ${LIBFT}	:
 		@$(MAKE) -s -C ${LIBFT_DIR}
+
+${PRINTF}	:
+		@$(MAKE) -s -C ${FT_PRINTF_DIR}
 
 clean    :
 		@rm -f ${OBJS}
