@@ -6,13 +6,14 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:58:02 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/15 13:58:35 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/15 14:04:49 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	ast_intit_root(t_ast *ast, t_token *token, int token_size, int index)
+static int	ast_intit_root(t_ast *ast, t_token *token,
+						int token_size, int index)
 {
 	t_token	*ast_left;
 	t_token	*ast_right;

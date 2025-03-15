@@ -6,30 +6,29 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:56:17 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/14 20:05:19 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/15 14:06:09 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 void	free_token(t_token **token)
-{	
+{
 	if (!token || !*token)
-		return ;	
+		return ;
 	if ((*token)->value)
 		free((*token)->value);
 	free(*token);
 	*token = NULL;
 }
 
-t_token *token_extraction(t_token *token, int begin, int last)
+t_token	*token_extraction(t_token *token, int begin, int last)
 {
 	t_token	*new_token;
 	int		index;
 
 	if (last - begin <= 0)
 		return (NULL);
-	
 	new_token = (t_token *)malloc(sizeof(t_token) * (last - begin + 1));
 	if (!new_token)
 	{
@@ -49,7 +48,7 @@ t_token *token_extraction(t_token *token, int begin, int last)
 
 int	token_size_export(t_token *token)
 {
-	int size;
+	int	size;
 
 	size = 0;
 	if (!token)
