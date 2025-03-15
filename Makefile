@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/12 10:13:17 by caonguye         ###   ########.fr        #
+#    Updated: 2025/03/15 10:45:12 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,8 +19,12 @@ LFLAG	:=	-lreadline
 # Additional libft paths
 LIBFT_DIR		:= ./library/libft
 LIBFT			:= $(LIBFT_DIR)/libft.a
+FT_PRINTF_DIR	:= ./library/ft_printf_fd
+PRINTF			:= $(FT_PRINTF_DIR)/libftprintf.a
 
-INCLUDE			:= -I $(LIBFT_DIR) -I ./include
+HEADER			:= ./include/main
+
+INCLUDE			:= -I $(LIBFT_DIR) -I $(HEADER)
 
 #MAIN
 MAIN_SRC		:=	./srcs/main
