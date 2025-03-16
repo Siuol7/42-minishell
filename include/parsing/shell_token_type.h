@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:54:31 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/15 11:37:16 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/16 04:38:43 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ typedef enum s_token_type
 	RD_IN,
 	RD_OUT,
 	RD_APPEND,
-	RD_HEREDOC
+	RD_HEREDOC,
+	FD
 }	t_token_type;
 
 typedef struct s_token
@@ -35,6 +36,7 @@ typedef struct s_token
 
 typedef struct s_cmd
 {
+	int		size;
 	char	*cmd;
 	char	**cmd_gr;
 }	t_cmd;

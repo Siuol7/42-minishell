@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/15 16:02:41 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/16 03:04:09 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 typedef struct s_shell
 {
-	int		token_len;
+	int		token_cnt;
 	int		cmd_cnt;
 	char	*full_cmd_line;
 	char	**splitted_cmd;
@@ -40,5 +40,8 @@ void	shell_clean(t_shell *mns);
 void	shell_input(t_shell	*mns);
 void	shell_token_gen(t_shell *mns, char *input);
 char	**ft_token_split(t_shell *mns, char *input);
+
+//ERROR HANDLING
+void	ft_bad_alloc(t_shell *mns);
 
 #endif

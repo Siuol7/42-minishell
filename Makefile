@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/15 11:06:54 by caonguye         ###   ########.fr        #
+#    Updated: 2025/03/16 03:09:00 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,6 +32,7 @@ MAIN_SRC		:=	./srcs/main
 MAIN_C			:=	main.c					\
 					shell_implement.c		\
 					shell_init.c			\
+					bad_allocation.c		\
 					shell_clean.c
 
 # PARSING
@@ -43,6 +44,7 @@ LEXER_C			:=	shell_input.c		\
 					shell_token_gen.c	\
 					ft_token_split.c	\
 					split_utils.c		\
+					cmd_group_utils.c	\
 					classify_utils.c
 
 SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
