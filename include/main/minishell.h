@@ -24,7 +24,8 @@
 
 typedef struct s_shell
 {
-	int		token_len;
+	int		token_cnt;
+	int		cmd_cnt;
 	char	*full_cmd_line;
 	char	**splitted_cmd;
 	t_cmd	*cmd;
@@ -41,5 +42,8 @@ void	shell_clean(t_shell *mns);
 void	shell_input(t_shell	*mns);
 void	shell_token_gen(t_shell *mns, char *input);
 char	**ft_token_split(t_shell *mns, char *input);
+
+//ERROR HANDLING
+void	ft_bad_alloc(t_shell *mns);
 
 #endif

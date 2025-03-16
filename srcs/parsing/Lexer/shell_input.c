@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   shell_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 00:21:45 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/14 11:07:43 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/16 15:56:21 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **env)
+void	shell_input(t_shell	*mns)
 {
-	(void)av;
-	if (ac != 1)
-		return (EXIT_FAILURE);
-	return (shell_implement(env));
+	while (1)
+	{
+		mns->full_cmd_line = readline("minishell$ ");
+		if (!ft_strcmp(mns->full_cmd_line, "exit"))
+			return ;
+		shell_token_gen(mns, mns->full_cmd_line);
+		free(mns->full_cmd_line);
+		ft_free_2d((void **)mns->splitted_cmd);
+		free(mns->list);
+	}
 }

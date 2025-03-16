@@ -1,21 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   bad_allocation.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 00:21:45 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/14 11:07:43 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/15 16:30:41 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/15 16:31:42 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **env)
+void	ft_bad_alloc(t_shell *mns)
 {
-	(void)av;
-	if (ac != 1)
-		return (EXIT_FAILURE);
-	return (shell_implement(env));
+	shell_clean(mns);
+	exit(EXIT_FAILURE);
 }

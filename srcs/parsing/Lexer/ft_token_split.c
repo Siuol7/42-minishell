@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 10:38:56 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/16 23:05:52 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/16 02:57:41 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,14 +24,14 @@ static int	ft_wordcnt(char	*input)
 		if (ft_is_dquote(input[i]))
 		{
 			cnt++;
-			i = ft_skip_dquote(input, ++i);
+			i = lx_skip_dquote(input, ++i);
 		}
 		else if (ft_isallspace(input[i]))
-			i = ft_skip_space(input, i);
+			i = lx_skip_space(input, i);
 		else
 		{
 			cnt++;
-			i = ft_skip_word(input, i);
+			i = lx_skip_word(input, i);
 		}
 	}
 	return (cnt);
@@ -46,14 +46,14 @@ char	**ft_splitting(char *in, char **res, int i, int lim)
 	{
 		if (ft_is_dquote(in[start]))
 		{
-			if (!ft_split_dquote(in, res, &start, &i))
+			if (!lx_split_dquote(in, res, &start, &i))
 				return (NULL);
 		}
 		else if (ft_isallspace(in[start]))
-			start = ft_skip_space(in, start);
+			start = lx_skip_space(in, start);
 		else
 		{
-			if (!ft_split_word(in, res, &start, &i))
+			if (!lx_split_word(in, res, &start, &i))
 				return (NULL);
 		}
 	}
@@ -77,6 +77,6 @@ char	**ft_token_split(t_shell *mns, char *input)
 		return (NULL);
 	}
 	final[wordcnt] = NULL;
-	mns->token_size = wordcnt;
+	mns->token_cnt = wordcnt;
 	return (final);
 }
