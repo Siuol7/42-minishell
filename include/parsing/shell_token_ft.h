@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:55:24 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/16 02:51:55 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/16 02:54:00 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ int				lx_split_dquote(char *in, char **res, int *start, int *i);
 void			lx_cmd_grouping(t_shell *mns);
 t_token_type	lx_oprt_type(char *str);
 t_token_type	lx_rd_type(char *str);
-void		lx_cmd_grouping(t_shell *mns);
+void			lx_cmd_grouping(t_shell *mns);
 #endif
