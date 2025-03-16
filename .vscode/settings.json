@@ -1,0 +1,9 @@
+{
+	"files.associations": {
+		"*.embeddedhtml": "html",
+		"shell_token_ft.h": "c",
+		"ast.h": "c",
+		"execution.h": "c",
+		"ft_printf.h": "c"
+	}
+}
