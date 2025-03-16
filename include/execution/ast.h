@@ -1,44 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_token_type.h                                 :+:      :+:    :+:   */
+/*   ast.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 10:54:31 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/15 14:15:44 by tripham          ###   ########.fr       */
+/*   Created: 2025/03/12 17:40:48 by tripham           #+#    #+#             */
+/*   Updated: 2025/03/15 13:58:12 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHELL_TOKEN_TYPE_H
+#ifndef AST_H
+# define AST_H
 
-# define SHELL_TOKEN_TYPE_H
 # include "minishell.h"
 
-typedef enum s_token_type
+typedef struct s_ast
 {
+	t_token			token;
+	struct s_ast	*right;
+	struct s_ast	*left;
+}	t_ast;
+
+typedef enum s_type
+{
+	NONE,
 	CMD,
-	OP_PIPE,
-	OP_AND,
-	OP_OR,
-	RD_IN,
-	RD_OUT,
-	RD_APPEND,
-	RD_HEREDOC,
-	FD
-}	t_token_type;
+	PIPE
+}	t_type;
 
 typedef struct s_token
 {
-	t_token_type	type;
-	char			*val;
+	t_type	type;
+	char	*value;
 }	t_token;
 
-typedef struct s_cmd
-{
-	int		size;
-	char	*cmd;
-	char	**cmd_gr;
-}	t_cmd;
+int		token_size_export(t_token *token);
+t_token	*token_extraction(t_token *tokens, int begin, int last);
+void	free_token(t_token **token);
+t_ast	*ast_init(t_token *token);
+int		oprt_location(t_token *token, int token_size);
 
 #endif
