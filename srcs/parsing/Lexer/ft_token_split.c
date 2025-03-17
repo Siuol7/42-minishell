@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   ft_token_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 10:38:56 by caonguye          #+#    #+#             */
 /*   Updated: 2025/03/16 02:57:41 by caonguye         ###   ########.fr       */

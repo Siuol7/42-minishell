@@ -6,68 +6,45 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:56:17 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/15 14:06:09 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/16 23:30:51 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	free_token(t_token **token)
+void	ast_free_node(t_ast *node)
 {
-	if (!token || !*token)
+	if (!node)
 		return ;
-	if ((*token)->value)
-		free((*token)->value);
-	free(*token);
-	*token = NULL;
+	if (node->left)
+		ast_free_node(node->left);
+	if (node->right)
+		ast_free_node(node->right);
+	if (node->token.val)
+		free(node->token.val);
+	free(node);
 }
 
-t_token	*token_extraction(t_token *token, int begin, int last)
-{
-	t_token	*new_token;
-	int		index;
-
-	if (last - begin <= 0)
-		return (NULL);
-	new_token = (t_token *)malloc(sizeof(t_token) * (last - begin + 1));
-	if (!new_token)
-	{
-		ft_printt_fd(STDERR_FILENO, "minishell: Malloc failed!\n");
-		return (NULL);
-	}
-	index = 0;
-	while (begin < last)
-	{
-		ft_memcpy(&new_token[index], &token[begin], sizeof(t_token));
-		begin++;
-		index++;
-	}
-	ft_memset(&new_token[index], 0, sizeof(t_token));
-	return (new_token);
-}
-
-int	token_size_export(t_token *token)
-{
-	int	size;
-
-	size = 0;
-	if (!token)
-		return (0);
-	while (token[size].value)
-		size++;
-	return (size);
-}
-
-int	oprt_location(t_token *token, int token_size)
+int	find_priority(t_token *token, int size)
 {
 	int	index;
+	int	index_pipe;
+	int	index_rd;
 
-	index = -1;
-	while (index < token_size)
+	index = 0;
+	index_pipe = -1;
+	index_rd = -1;
+	while (index < size)
 	{
-		if (token[index].type == PIPE)
-			return (index);
+		if (token[index].type == OP_PIPE)
+			index_pipe = index;
+		else if (token[index].type == RD_IN || token[index].type == RD_OUT
+			|| token[index].type == RD_APPEND
+			|| token[index].type == RD_HEREDOC)
+			index_rd = index;
 		index++;
 	}
-	return (-1);
+	if (index_pipe != -1)
+		return (index_pipe);
+	return (index_rd);
 }
