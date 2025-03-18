@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/18 11:55:22 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/18 13:43:22 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_shell
 
 //OPERATION
 int		shell_init(t_shell *mns, char **env);
+void	shell_pre_input(t_shell *mns);
 int		shell_implement(char **env);
 void	shell_clean(t_shell *mns);
 

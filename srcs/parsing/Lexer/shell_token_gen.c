@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lx_token_gen.c                                     :+:      :+:    :+:   */
+/*   shell_token_gen.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/18 11:51:21 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/18 14:32:31 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,9 @@ static int	lx_qmarks_cnt(char *str)
 	return (cnt);
 }
 
-static char	*lx_qmarks_eli(char *str, int i, int j)
+static char	*lx_qmarks_eli(t_shell *mns, char *str, int i, int j)
 {
-	int 	size;
+	int		size;
 	char	sign;
 	char	*res;
 
@@ -44,7 +44,7 @@ static char	*lx_qmarks_eli(char *str, int i, int j)
 	size = lx_qmarks_cnt(str);
 	res = malloc(size + 1);
 	if (!res)
-		return (NULL); //add error handling;
+		ft_bad_alloc(mns);
 	while (str[i] && j < size)
 	{
 		if (ft_is_dquote(str[i]) && sign == 'e')
@@ -61,6 +61,7 @@ static char	*lx_qmarks_eli(char *str, int i, int j)
 	res[size] = '\0';
 	return (res);
 }
+
 static void	lx_token_listing(t_shell *mns, char **str)
 {
 	int	i;
@@ -71,20 +72,20 @@ static void	lx_token_listing(t_shell *mns, char **str)
 		if (lx_is_oprt(str[i]))
 		{
 			mns->list[i].type = lx_oprt_type(str[i]);
-			mns->list[i].val = lx_qmarks_eli(str[i], 0, 0);
+			mns->list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
 		}
 		else if (lx_is_rd(str[i]))
 		{
 			mns->list[i].type = lx_rd_type(str[i]);
-			mns->list[i].val = lx_qmarks_eli(str[i], 0, 0);
+			mns->list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
 			i++;
 			mns->list[i].type = FD;
-			mns->list[i].val = lx_qmarks_eli(str[i], 0, 0);
+			mns->list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
 		}
 		else
 		{
 			mns->list[i].type = CMD;
-			mns->list[i].val = lx_qmarks_eli(str[i], 0, 0);
+			mns->list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
 		}
 		i++;
 	}
