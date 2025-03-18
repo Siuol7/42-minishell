@@ -1,17 +1,66 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_token_gen.c                                  :+:      :+:    :+:   */
+/*   lx_token_gen.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/16 03:53:44 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/18 01:06:24 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+static int	lx_qmarks_cnt(char *str)
+{
+	int		i;
+	int		cnt;
+	char	sign;
+
+	sign = 'e';
+	i = 0;
+	cnt = 0;
+	while (str[i])
+	{
+		if (ft_is_dquote(str[i]) && sign == 'e')
+			sign = str[i];
+		else if (str[i] == sign && sign != 'e')
+			sign = 'e';
+		else
+			cnt++;
+		i++;
+	}
+	return (cnt);
+}
+
+static char	*lx_qmarks_eli(char *str, int i, int j)
+{
+	int 	size;
+	char	sign;
+	char	*res;
+
+	sign = 'e';
+	size = lx_qmarks_cnt(str);
+	res = malloc(size + 1);
+	if (!res)
+		return (NULL); //add error handling;
+	while (str[i] && j < size)
+	{
+		if (ft_is_dquote(str[i]) && sign == 'e')
+			sign = str[i];
+		else if (str[i] == sign && sign != 'e')
+			sign = 'e';
+		else
+		{
+			res[j] = str[i];
+			j++;
+		}
+		i++;
+	}
+	res[size] = '\0';
+	return (res);
+}
 static void	lx_token_listing(t_shell *mns, char **str)
 {
 	int	i;
@@ -22,20 +71,20 @@ static void	lx_token_listing(t_shell *mns, char **str)
 		if (lx_is_oprt(str[i]))
 		{
 			mns->list[i].type = lx_oprt_type(str[i]);
-			mns->list[i].val = str[i];
+			mns->list[i].val = lx_qmarks_eli(str[i], 0, 0);
 		}
 		else if (lx_is_rd(str[i]))
 		{
 			mns->list[i].type = lx_rd_type(str[i]);
-			mns->list[i].val = str[i];
+			mns->list[i].val = lx_qmarks_eli(str[i], 0, 0);
 			i++;
 			mns->list[i].type = FD;
-			mns->list[i].val = str[i];
+			mns->list[i].val = lx_qmarks_eli(str[i], 0, 0);
 		}
 		else
 		{
 			mns->list[i].type = CMD;
-			mns->list[i].val = str[i];
+			mns->list[i].val = lx_qmarks_eli(str[i], 0, 0);
 		}
 		i++;
 	}
@@ -43,7 +92,7 @@ static void	lx_token_listing(t_shell *mns, char **str)
 
 void	shell_token_gen(t_shell *mns, char *input)
 {
-	mns->splitted_cmd = ft_token_split(mns, input);
+	mns->splitted_cmd = lx_token_split(mns, input);
 	if (!mns->splitted_cmd)
 		ft_bad_alloc(mns);
 	mns->list = malloc(mns->token_cnt * sizeof(t_token));

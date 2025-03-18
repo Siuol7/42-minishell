@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/16 15:56:21 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/17 19:18:14 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@ void	shell_input(t_shell	*mns)
 		if (!ft_strcmp(mns->full_cmd_line, "exit"))
 			return ;
 		shell_token_gen(mns, mns->full_cmd_line);
+		printf("Total : %d\n", mns->token_cnt);
+		for (int i = 0; i < mns->token_cnt; i++)
+			printf("Token %d : %s size %ld\n", i, mns->list[i].val, ft_strlen(mns->list[i].val));
 		free(mns->full_cmd_line);
 		ft_free_2d((void **)mns->splitted_cmd);
 		free(mns->list);
