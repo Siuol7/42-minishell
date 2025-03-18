@@ -1,20 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   env_gen.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 01:30:39 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/19 01:14:13 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/19 00:05:14 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/19 01:02:45 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	shell_init(t_shell *mns, char **env)
+char	**env_dup(char **env)
 {
-	ft_memset(mns, 0, sizeof(t_shell));
-	shell_env_gen(mns, env);
-	return (1);
+	int		i;
+	int		size;
+	char	**final;
+
+	i = 0;
+	size = ft_2d_len(env);
+	final = (char **)malloc((size + 1) * sizeof(char *));
+	if (!final)
+		return (NULL);
+	while (i < size && env[i])
+	{
+		final[i] = ft_strdup(env[i]);
+		i++;
+	}
+	final[size] = NULL;
+	return (final);
+}
+
+void	shell_env_gen(t_shell *mns, char **env)
+{
+	mns->env = env_dup(env);
+	if (!mns->env)
+		ft_bad_alloc(mns);
 }

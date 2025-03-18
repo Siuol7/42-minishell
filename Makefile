@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/18 11:52:10 by caonguye         ###   ########.fr        #
+#    Updated: 2025/03/19 01:20:56 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,8 +47,13 @@ LEXER_C			:=	shell_token_gen.c	\
 					lx_cmd_group_utils.c	\
 					lx_classify_utils.c
 
-SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
-					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})
+ENV_DIR			:= $(PARSING_SRC)/Environment
+
+ENV_C			:= env_gen.c
+
+SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})		\
+					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})		\
+					$(addprefix ${ENV_DIR}/,		${ENV_C})
 
 OBJS           :=	${SRCS:.c=.o}
 
