@@ -1,32 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_free_2d.c                                       :+:      :+:    :+:   */
+/*   ft_substr_eli.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/29 08:05:24 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/18 12:04:54 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/17 04:05:40 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/17 12:28:44 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_free_2d(void **arr)
+char	*ft_substr_eli(char *s, int start, int len, char c)
 {
-	int	i;
+	char	*res;
+	int		i;
+	int		lens;
 
 	i = 0;
-	if (!arr)
-		return ;
-	while (arr[i] != NULL)
+	lens = ft_strlen(s);
+	if (!s)
+		return (NULL);
+	if (start >= lens)
+		return (ft_strdup(""));
+	if (len > lens - start)
+		len = lens - start;
+	res = malloc(len + 1);
+	if (res == NULL)
+		return (NULL);
+	while (i < len && s[start])
 	{
-		if (arr[i])
-		{
-			free(arr[i]);
-			arr[i] = NULL;
-		}
-		i++;
+		while (s[start] == c)
+			start++;
+		res[i++] = s[start++];
 	}
-	free(arr);
+	res[i] = '\0';
+	return (res);
 }

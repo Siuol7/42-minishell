@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/15 14:32:37 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/18 13:43:22 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,20 +28,20 @@ typedef struct s_shell
 	int		cmd_cnt;
 	char	*full_cmd_line;
 	char	**splitted_cmd;
+	t_token	*list;
 	t_cmd	*cmd;
 	t_error	shell_err;
-	t_token	*list;
 }	t_shell;
 
 //OPERATION
 int		shell_init(t_shell *mns, char **env);
+void	shell_pre_input(t_shell *mns);
 int		shell_implement(char **env);
 void	shell_clean(t_shell *mns);
 
 //PARSING
 void	shell_input(t_shell	*mns);
 void	shell_token_gen(t_shell *mns, char *input);
-char	**ft_token_split(t_shell *mns, char *input);
 
 //ERROR HANDLING
 void	ft_bad_alloc(t_shell *mns);
