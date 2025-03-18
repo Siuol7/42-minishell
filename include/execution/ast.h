@@ -6,14 +6,14 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:40:48 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/16 23:28:49 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/17 18:18:19 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef AST_H
 # define AST_H
 
-# include "minishell.h"
+typedef struct s_shell	t_shell;
 
 typedef struct s_ast
 {

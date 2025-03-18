@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
+#    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/16 03:09:00 by caonguye         ###   ########.fr        #
+#    Updated: 2025/03/17 18:22:11 by tripham          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,8 @@ MAIN_C			:=	main.c					\
 
 # PARSING
 PARSING_SRC		:=	./srcs/parsing
+# AST
+AST_DIR			:=	./srcs/ast
 
 LEXER_DIR		:=	$(PARSING_SRC)/Lexer
 
@@ -47,8 +49,13 @@ LEXER_C			:=	shell_input.c		\
 					cmd_group_utils.c	\
 					classify_utils.c
 
+AST_C			:=	ast_init.c			\
+					ast_utils.c	\
+					ast_root_init.c
+
 SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
-					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})
+					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})				\
+					$(addprefix ${AST_DIR}/,		${AST_C})
 
 OBJS           :=	${SRCS:.c=.o}
 

@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/15 14:32:37 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/18 18:04:58 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "system_lib.h"
 # include "error.h"
 # include "../../library/libft/libft.h"
+# include "../../library/ft_printf_fd/ft_printf.h"
 # include "../parsing/shell_token_type.h"
 # include "../parsing/shell_token_ft.h"
 # include "../execution/ast.h"
@@ -31,6 +32,7 @@ typedef struct s_shell
 	t_cmd	*cmd;
 	t_error	shell_err;
 	t_token	*list;
+	t_ast	*ast;
 }	t_shell;
 
 //OPERATION
