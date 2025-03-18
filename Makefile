@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/17 03:32:22 by caonguye         ###   ########.fr        #
+#    Updated: 2025/03/18 11:52:10 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,7 +41,7 @@ PARSING_SRC		:=	./srcs/parsing
 
 LEXER_DIR		:=	$(PARSING_SRC)/Lexer
 
-LEXER_C			:=	lx_token_gen.c	\
+LEXER_C			:=	shell_token_gen.c	\
 					lx_token_split.c	\
 					lx_split_utils.c		\
 					lx_cmd_group_utils.c	\
