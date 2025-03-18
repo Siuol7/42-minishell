@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 08:05:24 by caonguye          #+#    #+#             */
-/*   Updated: 2025/01/12 13:30:53 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/18 12:04:54 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,13 @@ void	ft_free_2d(void **arr)
 	i = 0;
 	if (!arr)
 		return ;
-	while (arr[i])
+	while (arr[i] != NULL)
 	{
-		free(arr[i]);
-		arr[i] = NULL;
+		if (arr[i])
+		{
+			free(arr[i]);
+			arr[i] = NULL;
+		}
 		i++;
 	}
 	free(arr);
