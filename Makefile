@@ -6,7 +6,7 @@
 #    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/17 18:22:11 by tripham          ###   ########.fr        #
+#    Updated: 2025/03/18 19:59:45 by tripham          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ MAIN_SRC		:=	./srcs/main
 
 MAIN_C			:=	main.c					\
 					shell_implement.c		\
+					shell_input.c			\
 					shell_init.c			\
 					bad_allocation.c		\
 					shell_clean.c
@@ -42,12 +43,11 @@ AST_DIR			:=	./srcs/ast
 
 LEXER_DIR		:=	$(PARSING_SRC)/Lexer
 
-LEXER_C			:=	shell_input.c		\
-					shell_token_gen.c	\
-					ft_token_split.c	\
-					split_utils.c		\
-					cmd_group_utils.c	\
-					classify_utils.c
+LEXER_C			:=	shell_token_gen.c	\
+					lx_token_split.c	\
+					lx_split_utils.c		\
+					lx_cmd_group_utils.c	\
+					lx_classify_utils.c
 
 AST_C			:=	ast_init.c			\
 					ast_utils.c	\
