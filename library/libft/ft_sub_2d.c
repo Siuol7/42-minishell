@@ -1,31 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_env_ft.h                                     :+:      :+:    :+:   */
+/*   ft_sub_2d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/19 01:22:16 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/20 11:08:00 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/20 01:27:13 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/20 11:20:04 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHELL_ENV_FT_H
+#include "libft.h"
 
-# define SHELL_ENV_FT_H
-
-//STRUCT FORWARD DECLARATION
-typedef struct	s_shell	t_shell;
-
-typedef struct	s_sort
+void	ft_sub_2d(char **org, char **des, int start, int len)
 {
 	int	i;
-	int	j;
-	int	k;
-	int	ls;
-	int	rs;
-}	t_sort;
 
-char	**env_sorting(t_shell *mns);
-
-#endif
+	i = 0;
+	if (!org || !des)
+		return ;
+	while (des[start] && i < len)
+	{
+		org[i] = ft_strdup(des[start]);
+		i++;
+		start++;
+	}
+	org[len] = NULL;
+}
