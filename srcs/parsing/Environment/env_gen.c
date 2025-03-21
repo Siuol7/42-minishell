@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 00:05:14 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/20 11:20:13 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/21 20:31:18 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	**env_sorting(t_shell *mns)
 		ft_bad_alloc(mns);
 		ft_free_2d((void **)sorted_env);
 	}
+	return (sorted_env);
 }
 
 void	shell_env_gen(t_shell *mns, char **env)
