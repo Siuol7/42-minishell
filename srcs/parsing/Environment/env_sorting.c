@@ -6,13 +6,13 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:53:29 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/21 11:32:34 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/21 20:29:31 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	right(char **env, char **left
+static void	fill_right(char **env, char **left
 		, char **right, t_sort *id)
 {
 	while (id->j < id-> rs)
@@ -23,7 +23,7 @@ static void	right(char **env, char **left
 	}
 }
 
-static void	left(char **env, char **left
+static void	fill_left(char **env, char **left
 		, char **right, t_sort *id)
 {
 	while (id->i < id->ls)
@@ -52,8 +52,8 @@ static void	merge(char **env, char **left,
 			id->k++;
 		}
 	}
-	left(env, left, right, id);
-	right(env, left, right, id);
+	fill_left(env, left, right, id);
+	fill_right(env, left, right, id);
 }
 
 static int	merge_set_up(char **env, int l, int mid, int r)
