@@ -6,13 +6,33 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:53:29 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/21 10:58:11 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/21 11:23:09 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void merge(char ** env, char **L, char **R, t_sort *id)
+static void	right(char **env, char **L, char **R, t_sort *id)
+{
+	while (id->j < id-> rs)
+	{
+		env[id->k] = R[id->j];
+		id->k++;
+		id->j++;
+	}
+}
+
+static void	left(char **env, char **L, char **R, t_sort *id)
+{
+	while (id->i < id->ls)
+	{
+		env[id->k] = L[id->i];
+		id->i++;
+		id->k++;
+	}
+}
+
+static void merge(char **env, char **L, char **R, t_sort *id)
 {
 	while (id->i < id->ls && id->j < id->rs)
 	{
@@ -29,6 +49,8 @@ static void merge(char ** env, char **L, char **R, t_sort *id)
 			id->k++;
 		}
 	}
+	left(env, L, R, id);
+	right(env, L, R, id);
 }
 
 static int	merge_set_up(char **env, int l, int mid, int r)
@@ -52,6 +74,10 @@ static int	merge_set_up(char **env, int l, int mid, int r)
 	id.ls = mid - l + 1;
 	id.rs = r - mid;
 	merge(env, L, R, &id);
+	ft_free_2d((void **)L);
+	ft_free_2d((void **)R);
+	L = NULL;
+	R = NULL;
 	return (1);
 }
 
