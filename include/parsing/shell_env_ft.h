@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 01:22:16 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/20 11:08:00 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/21 11:26:05 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,9 @@
 # define SHELL_ENV_FT_H
 
 //STRUCT FORWARD DECLARATION
-typedef struct	s_shell	t_shell;
+typedef struct s_shell	t_shell;
 
-typedef struct	s_sort
+typedef struct s_sort
 {
 	int	i;
 	int	j;

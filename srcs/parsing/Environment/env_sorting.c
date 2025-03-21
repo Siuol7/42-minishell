@@ -6,78 +6,81 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:53:29 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/21 11:23:09 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/21 11:32:34 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	right(char **env, char **L, char **R, t_sort *id)
+static void	right(char **env, char **left
+		, char **right, t_sort *id)
 {
 	while (id->j < id-> rs)
 	{
-		env[id->k] = R[id->j];
+		env[id->k] = right[id->j];
 		id->k++;
 		id->j++;
 	}
 }
 
-static void	left(char **env, char **L, char **R, t_sort *id)
+static void	left(char **env, char **left
+		, char **right, t_sort *id)
 {
 	while (id->i < id->ls)
 	{
-		env[id->k] = L[id->i];
+		env[id->k] = left[id->i];
 		id->i++;
 		id->k++;
 	}
 }
 
-static void merge(char **env, char **L, char **R, t_sort *id)
+static void	merge(char **env, char **left,
+	char **right, t_sort *id)
 {
 	while (id->i < id->ls && id->j < id->rs)
 	{
-		if (ft_strcmp(L[id->i], R[id->j]) <= 0)
+		if (ft_strcmp(left[id->i], right[id->j]) <= 0)
 		{
-			env[id->k] = L[id->i];
+			env[id->k] = left[id->i];
 			id->i++;
 			id->k++;
 		}
 		else
 		{
-			env[id->k] = R[id->j];
+			env[id->k] = right[id->j];
 			id->j++;
 			id->k++;
 		}
 	}
-	left(env, L, R, id);
-	right(env, L, R, id);
+	left(env, left, right, id);
+	right(env, left, right, id);
 }
 
 static int	merge_set_up(char **env, int l, int mid, int r)
 {
 	t_sort	id;
-	char	**L;
-	char	**R;
+	char	**left;
+	char	**right;
 
 	ft_bzero(&id, sizeof(id));
-	L = (char **)malloc((mid - l + 2) * sizeof(char *));
-	if (!L)
+	left = (char **)malloc((mid - l + 2) * sizeof(char *));
+	if (!left)
 		return (0);
-	R = (char **)malloc((r - mid + 1) * sizeof(char *));
-	if (!R)
+	right = (char **)malloc((r - mid + 1) * sizeof(char *));
+	if (!right)
 	{
-		ft_free_2d(L);
+		ft_free_2d(left);
 		return (0);
 	}
-	ft_sub_2d(env, L, l, mid - l + 1);
-	ft_sub_2d(env, R, r, r - mid);
+	ft_sub_2d(env, left, l, mid - l + 1);
+	ft_sub_2d(env, right, r, r - mid);
 	id.ls = mid - l + 1;
 	id.rs = r - mid;
-	merge(env, L, R, &id);
-	ft_free_2d((void **)L);
-	ft_free_2d((void **)R);
-	L = NULL;
-	R = NULL;
+	merge(env, left, right, &id);
+	ft_free_2d((void **)left);
+	ft_free_2d((void **)right);
+	left = NULL;
+	right = NULL;
 	return (1);
 }
 
