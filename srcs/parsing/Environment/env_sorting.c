@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:53:29 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/21 03:22:24 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/21 10:58:11 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,18 @@ static void merge(char ** env, char **L, char **R, t_sort *id)
 {
 	while (id->i < id->ls && id->j < id->rs)
 	{
-		
+		if (ft_strcmp(L[id->i], R[id->j]) <= 0)
+		{
+			env[id->k] = L[id->i];
+			id->i++;
+			id->k++;
+		}
+		else
+		{
+			env[id->k] = R[id->j];
+			id->j++;
+			id->k++;
+		}
 	}
 }
 
