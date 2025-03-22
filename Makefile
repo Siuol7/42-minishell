@@ -3,14 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
+#    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-<<<<<<< HEAD
-#    Updated: 2025/03/22 15:40:36 by tripham          ###   ########.fr        #
-=======
-#    Updated: 2025/03/19 01:20:56 by caonguye         ###   ########.fr        #
->>>>>>> main
+#    Updated: 2025/03/23 01:47:55 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,17 +17,17 @@ LFLAG	:=	-lreadline
 
 
 # Additional libft paths
-LIBFT_DIR		:= ./library/libft
+LIBFT_DIR		:= ./Library/libft
 LIBFT			:= $(LIBFT_DIR)/libft.a
-FT_PRINTF_DIR	:= ./library/ft_printf_fd
+FT_PRINTF_DIR	:= ./Library/ft_printf_fd
 PRINTF			:= $(FT_PRINTF_DIR)/libftprintf.a
 
-HEADER			:= ./include/main
+HEADER			:= ./Include/Main
 
 INCLUDE			:= -I $(LIBFT_DIR) -I $(FT_PRINTF_DIR) -I $(HEADER)
 
 #MAIN
-MAIN_SRC		:=	./srcs/main
+MAIN_SRC		:=	./Srcs/Main
 
 MAIN_C			:=	main.c					\
 					shell_implement.c		\
@@ -41,14 +37,8 @@ MAIN_C			:=	main.c					\
 					shell_clean.c
 
 # PARSING
-PARSING_SRC		:=	./srcs/parsing
-# AST
-AST_DIR			:=	./srcs/ast
+PARSING_SRC		:=	./Srcs/Parsing
 
-# Execution
-EXECUTION_DIR	:=	./srcs/execution
-# Signals
-SIGNAL_DIR		:= ./srcs/signals
 # Lexer
 LEXER_DIR		:=	$(PARSING_SRC)/Lexer
 
@@ -58,19 +48,27 @@ LEXER_C			:=	shell_token_gen.c	\
 					lx_cmd_group_utils.c	\
 					lx_classify_utils.c
 
-<<<<<<< HEAD
-AST_C			:=	ast_init.c			\
-					ast_utils.c			\
-					ast_root_init.c
-=======
+#	Env
 ENV_DIR			:= $(PARSING_SRC)/Environment
 
 ENV_C			:= env_gen.c
 
+# Execution
+EXECUTION_DIR	:=	./Srcs/execution
+
+# AST
+AST_DIR			:=	./Srcs/ast
+
+# Signals
+SIGNAL_DIR		:= ./Srcs/signals
+
+AST_C			:=	ast_init.c			\
+					ast_utils.c			\
+					ast_root_init.c
+
 SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})		\
 					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})		\
 					$(addprefix ${ENV_DIR}/,		${ENV_C})
->>>>>>> main
 
 EXECUTION_C		:=	execution_ast.c		\
 					execution_utils.c
@@ -83,7 +81,7 @@ SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${AST_DIR}/,		${AST_C})				\
 					$(addprefix ${EXECUTION_DIR}/,	${EXECUTION_C})			\
 					$(addprefix ${SIGNAL_DIR}/,		${SIGNAL_C})
-					
+
 OBJS           :=	${SRCS:.c=.o}
 
 all:    ${LIBFT} ${PRINTF} ${NAME}

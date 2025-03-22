@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 23:13:23 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/22 14:45:19 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/23 01:35:19 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 typedef struct s_shell	t_shell;
 
 void	redirect_fd(int from_fd, int to_fd);
-void	execute_ast(t_shell *mns, t_ast *ast);
+void	exec_ast(t_shell *mns, t_ast *ast);
 
 int		handle_signals_default(void);
 void	handle_sigint(int signal_val);
