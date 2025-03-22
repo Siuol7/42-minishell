@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 01:01:11 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/17 12:29:35 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/20 10:35:00 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ char	*ft_substr_eli(char *s, int start, int len, char c);
 size_t	ft_strlcpy(char *dst, const char *src, size_t len);
 size_t	ft_strlcat(char *dst, const char *src, size_t len);
 size_t	ft_strlen(const char *s);
+void	ft_sub_2d(char **org, char **des, int start, int len);
 char	**ft_split(char const *s, char c);
 
 t_list	*ft_lstnew(void *content);

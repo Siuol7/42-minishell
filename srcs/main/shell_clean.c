@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/18 14:28:45 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/19 01:18:32 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +96,7 @@ void	shell_clean(t_shell *mns)
 		free_cmd(mns);
 		mns->cmd = NULL;
 	}
+	if (mns->env)
+		ft_free_2d((void **)mns->env);
 	free(mns);
 }

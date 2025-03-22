@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/18 13:43:22 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/19 01:24:20 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "../../library/libft/libft.h"
 # include "../parsing/shell_token_type.h"
 # include "../parsing/shell_token_ft.h"
+# include "../parsing/shell_env_ft.h"
 # include "../execution/ast.h"
 # include "../execution/execution.h"
 
@@ -27,6 +28,7 @@ typedef struct s_shell
 	int		token_cnt;
 	int		cmd_cnt;
 	char	*full_cmd_line;
+	char	**env;
 	char	**splitted_cmd;
 	t_token	*list;
 	t_cmd	*cmd;
@@ -38,6 +40,7 @@ int		shell_init(t_shell *mns, char **env);
 void	shell_pre_input(t_shell *mns);
 int		shell_implement(char **env);
 void	shell_clean(t_shell *mns);
+void	shell_env_gen(t_shell *mns, char **env);
 
 //PARSING
 void	shell_input(t_shell	*mns);
