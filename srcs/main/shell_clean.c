@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_clean.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/18 14:28:45 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/21 06:21:20 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	shell_pre_input(t_shell *mns)
 		free_cmd(mns);
 		mns->cmd = NULL;
 	}
-}
+}  
 
 void	shell_clean(t_shell *mns)
 {
@@ -88,6 +88,7 @@ void	shell_clean(t_shell *mns)
 	}
 	if (mns->list)
 	{
+		      
 		free_list(mns);
 		mns->list = NULL;
 	}

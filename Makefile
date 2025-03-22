@@ -6,7 +6,7 @@
 #    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/18 19:59:45 by tripham          ###   ########.fr        #
+#    Updated: 2025/03/22 15:40:36 by tripham          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,11 @@ PARSING_SRC		:=	./srcs/parsing
 # AST
 AST_DIR			:=	./srcs/ast
 
+# Execution
+EXECUTION_DIR	:=	./srcs/execution
+# Signals
+SIGNAL_DIR		:= ./srcs/signals
+# Lexer
 LEXER_DIR		:=	$(PARSING_SRC)/Lexer
 
 LEXER_C			:=	shell_token_gen.c	\
@@ -50,13 +55,21 @@ LEXER_C			:=	shell_token_gen.c	\
 					lx_classify_utils.c
 
 AST_C			:=	ast_init.c			\
-					ast_utils.c	\
+					ast_utils.c			\
 					ast_root_init.c
+
+EXECUTION_C		:=	execution_ast.c		\
+					execution_utils.c
+
+SIGNAL_C		:=	handle_signals_default.c		\
+					signals_initialize.c
 
 SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})				\
-					$(addprefix ${AST_DIR}/,		${AST_C})
-
+					$(addprefix ${AST_DIR}/,		${AST_C})				\
+					$(addprefix ${EXECUTION_DIR}/,	${EXECUTION_C})			\
+					$(addprefix ${SIGNAL_DIR}/,		${SIGNAL_C})
+					
 OBJS           :=	${SRCS:.c=.o}
 
 all:    ${LIBFT} ${PRINTF} ${NAME}

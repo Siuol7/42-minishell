@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:56:17 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/16 23:30:51 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/21 06:33:30 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,3 +48,15 @@ int	find_priority(t_token *token, int size)
 		return (index_pipe);
 	return (index_rd);
 }
+
+// void	ast_clean_all(t_ast **ast)
+// {
+// 	if (!ast || !*ast)
+// 		return ;
+// 	if ((*ast)->left)
+// 		ast_clean_all(&(*ast)->left);
+// 	if ((*ast)->right)
+// 		ast_clean_all(&(*ast)->right);
+// 	free(*ast);
+// 	*ast = NULL;
+// }
