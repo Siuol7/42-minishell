@@ -1,5 +1,0 @@
-INFO Disk space warning high usage
-ERROR Something went wrong
-NOTICE System warning temperature
-DEBUG warning: check configuration
-INFO normal operation

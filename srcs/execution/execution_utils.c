@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:06:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/22 15:21:41 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/23 01:12:20 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	free_all(t_ast **ast, t_shell **mns)
 	}
 }
 
-int update_status(t_shell *mns, int new_status)
+int	update_status(t_shell *mns, int new_status)
 {
 	if (new_status >= 0)
 		mns->exitcode = new_status;
@@ -61,4 +61,3 @@ void	wait_update(t_shell *mns, pid_t pid)
 	}
 	signals_initialize();
 }
-

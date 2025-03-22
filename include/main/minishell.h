@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/21 03:35:58 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/23 01:10:43 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,13 @@ typedef struct s_shell
 {
 	int		token_cnt;
 	int		cmd_cnt;
+	int		exitcode;
 	char	*full_cmd_line;
 	char	**splitted_cmd;
 	t_token	*list;
 	t_cmd	*cmd;
 	t_error	shell_err;
 	t_ast	*ast;
-	int 	exitcode;
 }	t_shell;
 
 //OPERATION

@@ -6,41 +6,11 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 01:03:58 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/23 01:09:13 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-
-void print_ast(t_ast *root, int level)
-{
-    int i;
-
-    if (!root)
-        return;
-    
-    for (i = 0; i < level; i++)
-        printf("  ");
-    printf("[Type: %d, Value: %s]\n", root->token.type, 
-           root->token.val ? root->token.val : "NULL");
-    
-    if (root->left)
-    {
-        for (i = 0; i < level; i++)
-            printf("  ");
-        printf("Left:\n");
-        print_ast(root->left, level + 1);
-    }
-    
-    if (root->right)
-    {
-        for (i = 0; i < level; i++)
-            printf("  ");
-        printf("Right:\n");
-        print_ast(root->right, level + 1);
-    }
-}
 
 void	shell_input(t_shell	*mns)
 {

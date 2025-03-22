@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:27:56 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/22 15:47:47 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/23 01:13:52 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ static void	execute_child(t_shell *mns, t_ast *ast, int *pipe_fd, int left)
 
 static void	execute_pipe(t_shell *mns, t_ast *ast)
 {
-	int pipe_fd[2];
-	pid_t pid[2];
+	int		pipe_fd[2];
+	pid_t	pid[2];
 
 	if (pipe(pipe_fd) == -1)
 	{
@@ -66,10 +66,11 @@ static void	execute_pipe(t_shell *mns, t_ast *ast)
 	close(pipe_fd[1]);
 	wait_update(mns, pid[1]);
 }
+
 static void	execute_cmd(t_shell *mns, t_token token)
 {
 	(void)mns;
-    (void)token;
+	(void)token;
 	printf("command execute\n");
 }
 
