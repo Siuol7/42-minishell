@@ -6,7 +6,11 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/03/23 01:11:47 by tripham          ###   ########.fr       */
+=======
+/*   Updated: 2025/03/19 01:18:32 by caonguye         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,5 +100,7 @@ void	shell_clean(t_shell *mns)
 		free_cmd(mns);
 		mns->cmd = NULL;
 	}
+	if (mns->env)
+		ft_free_2d((void **)mns->env);
 	free(mns);
 }

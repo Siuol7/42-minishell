@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   shell_env_ft.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 01:30:39 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/19 01:14:13 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/19 01:22:16 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/21 11:26:05 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef SHELL_ENV_FT_H
 
-int	shell_init(t_shell *mns, char **env)
+# define SHELL_ENV_FT_H
+
+//STRUCT FORWARD DECLARATION
+typedef struct s_shell	t_shell;
+
+typedef struct s_sort
 {
-	ft_memset(mns, 0, sizeof(t_shell));
-	shell_env_gen(mns, env);
-	return (1);
-}
+	int	i;
+	int	j;
+	int	k;
+	int	ls;
+	int	rs;
+}	t_sort;
+
+char	**env_sorting(t_shell *mns);
+
+#endif

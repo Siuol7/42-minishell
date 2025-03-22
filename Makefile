@@ -6,7 +6,11 @@
 #    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
+<<<<<<< HEAD
 #    Updated: 2025/03/22 15:40:36 by tripham          ###   ########.fr        #
+=======
+#    Updated: 2025/03/19 01:20:56 by caonguye         ###   ########.fr        #
+>>>>>>> main
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,9 +58,19 @@ LEXER_C			:=	shell_token_gen.c	\
 					lx_cmd_group_utils.c	\
 					lx_classify_utils.c
 
+<<<<<<< HEAD
 AST_C			:=	ast_init.c			\
 					ast_utils.c			\
 					ast_root_init.c
+=======
+ENV_DIR			:= $(PARSING_SRC)/Environment
+
+ENV_C			:= env_gen.c
+
+SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})		\
+					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})		\
+					$(addprefix ${ENV_DIR}/,		${ENV_C})
+>>>>>>> main
 
 EXECUTION_C		:=	execution_ast.c		\
 					execution_utils.c

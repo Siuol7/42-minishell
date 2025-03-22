@@ -6,7 +6,11 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/03/23 01:10:43 by tripham          ###   ########.fr       */
+=======
+/*   Updated: 2025/03/19 01:24:20 by caonguye         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +24,7 @@
 # include "../../library/ft_printf_fd/ft_printf.h"
 # include "../parsing/shell_token_type.h"
 # include "../parsing/shell_token_ft.h"
+# include "../parsing/shell_env_ft.h"
 # include "../execution/ast.h"
 # include "../execution/execution.h"
 
@@ -29,6 +34,7 @@ typedef struct s_shell
 	int		cmd_cnt;
 	int		exitcode;
 	char	*full_cmd_line;
+	char	**env;
 	char	**splitted_cmd;
 	t_token	*list;
 	t_cmd	*cmd;
@@ -41,6 +47,7 @@ int		shell_init(t_shell *mns, char **env);
 void	shell_pre_input(t_shell *mns);
 int		shell_implement(char **env);
 void	shell_clean(t_shell *mns);
+void	shell_env_gen(t_shell *mns, char **env);
 
 //PARSING
 void	shell_input(t_shell	*mns);
