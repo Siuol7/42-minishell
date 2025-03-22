@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 22:28:33 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/16 23:31:36 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/23 01:12:02 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,8 @@ int	ast_build_tree(t_ast *root, t_token *token, int size, int op_index)
 t_ast	*ast_handle_rd_build(t_ast *node, t_token *token,
 		int size, int op_index)
 {
-	if (op_index + 1 >= size || token[op_index + 1].type != CMD)
+	if (op_index + 1 >= size || (token[op_index + 1].type != CMD
+			&& token[op_index + 1].type != FD))
 	{
 		ft_printf_fd(STDERR_FILENO, "minishell: Redirect error\n");
 		ast_free_node(node);

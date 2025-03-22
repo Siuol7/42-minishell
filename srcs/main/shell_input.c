@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 01:12:28 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/23 01:18:17 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,12 @@ void	shell_input(t_shell	*mns)
 		if (!ft_strcmp(mns->full_cmd_line, "exit"))
 			return ;
 		shell_token_gen(mns, mns->full_cmd_line);
+		mns->ast = ast_root_init(mns->list, mns->token_cnt);
+		if (mns->ast)
+		{
+			execute_ast(mns, mns->ast);
+			print_ast(mns->ast, 0);
+		}
 		shell_pre_input(mns);
 	}
 }

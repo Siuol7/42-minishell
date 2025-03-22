@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/19 01:24:20 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/23 01:18:29 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include "system_lib.h"
 # include "error.h"
 # include "../../library/libft/libft.h"
+# include "../../library/ft_printf_fd/ft_printf.h"
 # include "../parsing/shell_token_type.h"
 # include "../parsing/shell_token_ft.h"
 # include "../parsing/shell_env_ft.h"
@@ -27,12 +28,14 @@ typedef struct s_shell
 {
 	int		token_cnt;
 	int		cmd_cnt;
+	int		exitcode;
 	char	*full_cmd_line;
 	char	**env;
 	char	**splitted_cmd;
 	t_token	*list;
 	t_cmd	*cmd;
 	t_error	shell_err;
+	t_ast	*ast;
 }	t_shell;
 
 //OPERATION

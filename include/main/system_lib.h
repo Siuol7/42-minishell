@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   system_lib.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:55:25 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/07 11:26:49 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/21 03:38:18 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,5 @@
 # include <termios.h>
 # include <fcntl.h>
 # include <errno.h>
-
+# include <signal.h>
 #endif

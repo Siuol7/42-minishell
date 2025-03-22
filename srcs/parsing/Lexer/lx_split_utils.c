@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lx_split_utils.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:17:55 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/18 14:32:50 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/18 20:33:28 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ int	lx_skip_space(char *input, int index)
 
 int	lx_skip_dquote(char *input, int *index)
 {
-	printf("Start char : %c\n", input[*index]);
 	(*index)++;
 	while (input[*index])
 	{
