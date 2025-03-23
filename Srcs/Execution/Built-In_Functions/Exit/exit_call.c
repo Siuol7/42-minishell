@@ -6,17 +6,24 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:34:33 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 04:10:47 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/24 01:01:05 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void	exit_standalone(t_shell *mns)
+{
+	printf("exit\n");
+	shell_clean(mns);
+	exit(0);
+}
 
 void	bi_exit(t_shell *mns, t_token token)
 {
 	int	id;
 
 	id = token.id;
-	(void)id;
-	(void)mns;
+	if (mns->cmd[id].size == 1)
+		exit_standalone(mns);
 }
