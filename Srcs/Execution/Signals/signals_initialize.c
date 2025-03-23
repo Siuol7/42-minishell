@@ -6,11 +6,11 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 06:51:24 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/21 08:00:16 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/23 02:51:17 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../Include/Main/minishell.h"
 
 int	signals_configure(int signal_val, void (*handler)(int))
 {

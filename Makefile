@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
+#    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/23 01:47:55 by caonguye         ###   ########.fr        #
+#    Updated: 2025/03/23 02:49:32 by tripham          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,13 +54,16 @@ ENV_DIR			:= $(PARSING_SRC)/Environment
 ENV_C			:= env_gen.c
 
 # Execution
-EXECUTION_DIR	:=	./Srcs/execution
+EXECUTION_SRC	:=	./Srcs/Execution
 
 # AST
-AST_DIR			:=	./Srcs/ast
+AST_DIR			:=	$(EXECUTION_SRC)/Ast
 
 # Signals
-SIGNAL_DIR		:= ./Srcs/signals
+SIGNAL_DIR		:=	$(EXECUTION_SRC)/Signals
+
+# Execute
+EXECUTE_DIR		:=	$(EXECUTION_SRC)/Execute
 
 AST_C			:=	ast_init.c			\
 					ast_utils.c			\
@@ -70,8 +73,9 @@ SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})		\
 					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})		\
 					$(addprefix ${ENV_DIR}/,		${ENV_C})
 
-EXECUTION_C		:=	execution_ast.c		\
-					execution_utils.c
+EXECUTE_C		:=	exec_ast.c		\
+					exec_utils.c	\
+					exec_cmd_check.c
 
 SIGNAL_C		:=	handle_signals_default.c		\
 					signals_initialize.c
@@ -79,7 +83,7 @@ SIGNAL_C		:=	handle_signals_default.c		\
 SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})				\
 					$(addprefix ${AST_DIR}/,		${AST_C})				\
-					$(addprefix ${EXECUTION_DIR}/,	${EXECUTION_C})			\
+					$(addprefix ${EXECUTE_DIR}/,	${EXECUTE_C})			\
 					$(addprefix ${SIGNAL_DIR}/,		${SIGNAL_C})
 
 OBJS           :=	${SRCS:.c=.o}
