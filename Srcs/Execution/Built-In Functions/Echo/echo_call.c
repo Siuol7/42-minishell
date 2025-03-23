@@ -5,14 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/23 03:00:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 03:10:46 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/23 03:33:58 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/23 03:34:22 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	echo_call(t_shell *mns, t_token token)
+void	bi_echo(t_shell *mns, t_token token)
 {
-	
+	int	id;
+
+	id = token.id;
 }
