@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_env_ft.h                                     :+:      :+:    :+:   */
+/*   echo_call.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/19 01:22:16 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 04:20:34 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/23 03:33:58 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/23 04:10:52 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHELL_ENV_FT_H
+#include "minishell.h"
 
-# define SHELL_ENV_FT_H
-
-//STRUCT FORWARD DECLARATION
-typedef struct s_shell	t_shell;
-
-typedef struct s_sort
+void	bi_echo(t_shell *mns, t_token token)
 {
-	int	i;
-	int	j;
-	int	k;
-	int	ls;
-	int	rs;
-}	t_sort;
+	int	id;
 
-char	**env_sorting(t_shell *mns);
-int	merge_sort(char **env, int left, int right);
-
-#endif
+	id = token.id;
+	(void)id;
+	(void)mns;
+}

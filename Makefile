@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/23 03:57:20 by caonguye         ###   ########.fr        #
+#    Updated: 2025/03/23 04:19:52 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,9 +49,9 @@ LEXER_C			:=	shell_token_gen.c	\
 					lx_classify_utils.c
 
 #	Env
-ENV_DIR			:= $(PARSING_SRC)/Environment
+ENVIR_DIR		:= $(PARSING_SRC)/Environment
 
-ENV_C			:= 	env_gen.c	\
+ENVIR_C			:= 	env_gen.c	\
 					env_sorting.c
 
 # Execution
@@ -78,7 +78,7 @@ EXECUTE_C		:=	exec_ast.c		\
 					exec_cmd_check.c
 
 # Built In Functions
-BUILT_IN_DIR	:= $(EXECUTION_SRC)/Built-In Functions
+BUILT_IN_DIR	:= $(EXECUTION_SRC)/Built-In_Functions
 
 #Cd
 CD_DIR			:= 	$(BUILT_IN_DIR)/Cd
@@ -93,7 +93,8 @@ ECHO_C			:=	echo_call.c
 #Env
 ENV_DIR			:= 	$(BUILT_IN_DIR)/Env
 
-ENV_C			:=	env_call.c
+ENV_C			:=	env_call.c		\
+					env_standalone.c
 
 #Exit
 EXIT_DIR		:= 	$(BUILT_IN_DIR)/Exit
@@ -118,6 +119,7 @@ UNSET_C			:=	unset_call.c
 
 SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})				\
+					$(addprefix ${ENVIR_DIR}/,		${ENVIR_C})				\
 					$(addprefix ${AST_DIR}/,		${AST_C})				\
 					$(addprefix ${EXECUTE_DIR}/,	${EXECUTE_C})			\
 					$(addprefix ${SIGNAL_DIR}/,		${SIGNAL_C})			\

@@ -1,30 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ep_standalone.c                                    :+:      :+:    :+:   */
+/*   env_call.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/23 03:22:21 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 03:59:27 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/23 03:23:09 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/23 04:42:48 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ep_standalone(t_shell *mns)
+void	bi_env(t_shell *mns, t_token token)
 {
-	int		size;
-	int		i;
-	char	**sorted_env;
+	int	id;
 
-	i = 0;
-	size = ft_2d_len(mns->env);
-	sorted_env = env_sorting(mns);
-	while (i < size)
-	{
-		printf("declare -x %s\n", sorted_env[i]);
-		i++;
-	}
-	ft_free_2d(sorted_env);
+	id = token.id;
+	if (mns->cmd[id].size == 1)
+		env_standalone(mns);
 }

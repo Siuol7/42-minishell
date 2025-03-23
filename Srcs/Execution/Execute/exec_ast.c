@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:27:56 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/23 04:01:38 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/23 05:35:00 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,12 @@ static void	exec_pipe(t_shell *mns, t_ast *ast)
 	wait_update(mns, pid[1]);
 }
 
-static void	exec_cmd(t_shell *mns, t_token token)
+static void	exec_cmd(t_shell *mns, t_token node)
 {
-	(void)mns;
-	(void)token;
-	if (exec_cmd_check(token))
-		exec_builtin(mns, token);
+	if (exec_cmd_check(node))
+		exec_builtin(mns, node);
 	// else
 	// 	exec_pipex();
-	printf("command execute\n");
 }
 
 void	exec_ast(t_shell *mns, t_ast *ast)

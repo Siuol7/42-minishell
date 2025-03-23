@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   unset_call.c                                       :+:      :+:    :+:   */
+/*   export_call.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/23 03:36:23 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 04:04:56 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/23 03:00:53 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/23 05:12:07 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	bi_unset(t_shell *mns, t_token token)
+void	bi_export(t_shell *mns, t_token token)
 {
 	int	id;
 
 	id = token.id;
+	if (mns->cmd[id].size == 1)
+		ep_standalone(mns);
 }

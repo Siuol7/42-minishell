@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 03:18:41 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/23 05:34:45 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ static void	lx_typize_token(t_shell *mns, char **str, int i, int *cmd)
 	}
 	else
 	{
-		mns->list[i].id = ++cmd;
+		mns->list[i].id = (*cmd)++;
 		mns->list[i].type = CMD;
 		mns->list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
 	}
@@ -97,7 +97,7 @@ static void	lx_token_listing(t_shell *mns, char **str)
 	cmd = 0;
 	while (str[i] && i < mns->token_cnt)
 	{
-		lx_typize_toke(mns, str, i, &cmd);
+		lx_typize_token(mns, str, i, &cmd);
 		i++;
 	}
 }

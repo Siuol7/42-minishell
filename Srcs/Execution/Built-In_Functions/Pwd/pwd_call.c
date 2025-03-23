@@ -1,20 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cd_call.c                                          :+:      :+:    :+:   */
+/*   pwd_call.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/23 03:33:28 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 03:59:20 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/23 03:36:00 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/23 04:10:43 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	bi_cd(t_shell *mns, t_token token)
+void	bi_pwd(t_shell *mns, t_token token)
 {
 	int	id;
 
 	id = token.id;
+	(void)id;
+	(void)mns;
 }

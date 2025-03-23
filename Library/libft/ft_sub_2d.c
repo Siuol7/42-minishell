@@ -6,24 +6,32 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 01:27:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 03:42:10 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/23 06:02:03 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_sub_2d(char **org, char **des, int start, int len)
+int	ft_sub_2d(char **org, char **des, int start, int len)
 {
 	int	i;
 
 	i = 0;
 	if (!org || !des)
-		return ;
-	while (org[start] && i < len)
+		return (0);
+	while (i < len && org[start + i])
 	{
-		des[i] = ft_strdup(org[start]);
+		des[i] = ft_strdup(org[start + i]);
+		if (!des[i])
+		{
+			ft_free_process_2d(des, i);
+			return (0);
+		}
 		i++;
 		start++;
 	}
-	des[len] = NULL;
+	while (i < len)
+		des[i++] = NULL;
+	des[i] = NULL;
+	return (1);
 }
