@@ -6,11 +6,11 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 22:28:33 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/23 02:32:37 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/23 02:51:35 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../Include/Main/minishell.h"
 
 t_ast	*ast_handle_pipe_build(t_ast *root, t_token *token,
 		int size, int op_index)

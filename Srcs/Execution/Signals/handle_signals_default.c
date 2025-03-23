@@ -6,11 +6,11 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 21:09:32 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/21 07:57:56 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/23 02:51:14 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../../Include/Main/minishell.h"
 
 int	handle_signals_default(void)
 {

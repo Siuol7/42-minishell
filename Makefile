@@ -6,7 +6,7 @@
 #    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/23 02:00:06 by tripham          ###   ########.fr        #
+#    Updated: 2025/03/23 02:49:32 by tripham          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,17 +17,17 @@ LFLAG	:=	-lreadline
 
 
 # Additional libft paths
-LIBFT_DIR		:= ./library/libft
+LIBFT_DIR		:= ./Library/libft
 LIBFT			:= $(LIBFT_DIR)/libft.a
-FT_PRINTF_DIR	:= ./library/ft_printf_fd
+FT_PRINTF_DIR	:= ./Library/ft_printf_fd
 PRINTF			:= $(FT_PRINTF_DIR)/libftprintf.a
 
-HEADER			:= ./include/main
+HEADER			:= ./Include/Main
 
 INCLUDE			:= -I $(LIBFT_DIR) -I $(FT_PRINTF_DIR) -I $(HEADER)
 
 #MAIN
-MAIN_SRC		:=	./srcs/main
+MAIN_SRC		:=	./Srcs/Main
 
 MAIN_C			:=	main.c					\
 					shell_implement.c		\
@@ -37,17 +37,8 @@ MAIN_C			:=	main.c					\
 					shell_clean.c
 
 # PARSING
-PARSING_SRC		:=	./srcs/parsing
+PARSING_SRC		:=	./Srcs/Parsing
 
-# Execution
-EXECUTION_SRC	:=	./srcs/execution
-
-# AST
-AST_DIR			:=	$(EXECUTION_SRC)/Ast
-# Signals
-SIGNAL_DIR		:=	$(EXECUTION_SRC)/Signals
-# Excecute
-EXECUTE_DIR		:=	$(EXECUTION_SRC)/Execute
 # Lexer
 LEXER_DIR		:=	$(PARSING_SRC)/Lexer
 
@@ -57,12 +48,34 @@ LEXER_C			:=	shell_token_gen.c	\
 					lx_cmd_group_utils.c	\
 					lx_classify_utils.c
 
+#	Env
+ENV_DIR			:= $(PARSING_SRC)/Environment
+
+ENV_C			:= env_gen.c
+
+# Execution
+EXECUTION_SRC	:=	./Srcs/Execution
+
+# AST
+AST_DIR			:=	$(EXECUTION_SRC)/Ast
+
+# Signals
+SIGNAL_DIR		:=	$(EXECUTION_SRC)/Signals
+
+# Execute
+EXECUTE_DIR		:=	$(EXECUTION_SRC)/Execute
+
 AST_C			:=	ast_init.c			\
 					ast_utils.c			\
 					ast_root_init.c
 
-EXECUTE_C		:=	execute_ast.c		\
-					execute_utils.c
+SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})		\
+					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})		\
+					$(addprefix ${ENV_DIR}/,		${ENV_C})
+
+EXECUTE_C		:=	exec_ast.c		\
+					exec_utils.c	\
+					exec_cmd_check.c
 
 SIGNAL_C		:=	handle_signals_default.c		\
 					signals_initialize.c
@@ -72,7 +85,7 @@ SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${AST_DIR}/,		${AST_C})				\
 					$(addprefix ${EXECUTE_DIR}/,	${EXECUTE_C})			\
 					$(addprefix ${SIGNAL_DIR}/,		${SIGNAL_C})
-					
+
 OBJS           :=	${SRCS:.c=.o}
 
 all:    ${LIBFT} ${PRINTF} ${NAME}
