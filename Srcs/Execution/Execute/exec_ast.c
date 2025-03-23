@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_ast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:27:56 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/23 02:51:00 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/23 23:19:04 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,15 +67,10 @@ static void	exec_pipe(t_shell *mns, t_ast *ast)
 	wait_update(mns, pid[1]);
 }
 
-static void	exec_cmd(t_shell *mns, t_token token)
+static void	exec_cmd(t_shell *mns, t_token node)
 {
-	(void)mns;
-	(void)token;
-	if (exec_cmd_check(token))
-		exec_builtin(mns, token);
-	else
-		exec_pipex();
-	printf("command execute\n");
+	if (exec_cmd_check(node))
+		exec_builtin(mns, node);
 }
 
 void	exec_ast(t_shell *mns, t_ast *ast)

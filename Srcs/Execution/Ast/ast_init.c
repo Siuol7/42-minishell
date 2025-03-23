@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast_init.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:58:02 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/23 02:51:32 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/24 00:28:21 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ t_ast	*ast_init(t_token *token)
 		ft_printf_fd(STDERR_FILENO, "minishell: Malloc failed!\n");
 		return (NULL);
 	}
+	node->token.id = token->id;
 	node->token.type = token->type;
 	node->token.val = init_token_val(token->val);
 	if (token->val && !node->token.val)
@@ -47,8 +48,7 @@ t_ast	*ast_init(t_token *token)
 	node->right = NULL;
 	if (token->type == OP_PIPE)
 		return (ast_handle_pipe(node));
-	if (token->type == RD_IN || token->type == RD_OUT
-		|| token->type == RD_APPEND || token->type == RD_HEREDOC)
+	if (!ft_strncmp(token->type, "RD", 2))
 		return (ast_handle_rd(node, token));
 	return (node);
 }

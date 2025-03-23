@@ -1,29 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   exit_call.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 02:23:32 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/24 00:22:55 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/23 03:34:33 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/23 04:10:47 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void	bi_exit(t_shell *mns, t_token token)
 {
-	unsigned char	*str1;
-	unsigned char	*str2;
-	size_t			i;
+	int	id;
 
-	i = 0;
-	str1 = (unsigned char *)s1;
-	str2 = (unsigned char *)s2;
-	if (n == 0)
-		return (0);
-	while (str1[i] && str2[i] && i < n - 1 && str1[i] == str2[i])
-		i++;
-	return (str1[i] - str2[i]);
+	id = token.id;
+	(void)id;
+	(void)mns;
 }
