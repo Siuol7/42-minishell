@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 01:18:29 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/23 01:55:55 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,13 @@
 
 # include "system_lib.h"
 # include "error.h"
-# include "../../library/libft/libft.h"
-# include "../../library/ft_printf_fd/ft_printf.h"
-# include "../parsing/shell_token_type.h"
-# include "../parsing/shell_token_ft.h"
-# include "../parsing/shell_env_ft.h"
-# include "../execution/ast.h"
-# include "../execution/execution.h"
+# include "../../Library/libft/libft.h"
+# include "../../Library/ft_printf_fd/ft_printf.h"
+# include "../Parsing/shell_token_type.h"
+# include "../Parsing/shell_token_ft.h"
+# include "../Parsing/shell_env_ft.h"
+# include "../Execution/ast.h"
+# include "../Execution/execution.h"
 
 typedef struct s_shell
 {

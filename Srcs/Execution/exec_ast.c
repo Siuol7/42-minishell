@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   execution_ast.c                                    :+:      :+:    :+:   */
+/*   exec_ast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:27:56 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/23 01:39:46 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/23 02:33:13 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,9 @@ static void	exec_cmd(t_shell *mns, t_token token)
 	(void)mns;
 	(void)token;
 	if (exec_cmd_check(token))
-		exec_builtin(token);
-	//else
-		//exec_pipex();
+		exec_builtin(mns, token);
+	else
+		exec_pipex();
 	printf("command execute\n");
 }
 
