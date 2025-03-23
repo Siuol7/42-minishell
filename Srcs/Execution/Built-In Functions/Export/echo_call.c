@@ -1,45 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_token_type.h                                 :+:      :+:    :+:   */
+/*   echo_call.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/07 10:54:31 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 03:11:06 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/23 03:00:53 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/23 03:10:46 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SHELL_TOKEN_TYPE_H
+#include "minishell.h"
 
-# define SHELL_TOKEN_TYPE_H
-# include "../Main/minishell.h"
-
-typedef enum s_token_type
+void	echo_call(t_shell *mns, t_token token)
 {
-	CMD,
-	OP_PIPE,
-	OP_AND,
-	OP_OR,
-	RD_IN,
-	RD_OUT,
-	RD_APPEND,
-	RD_HEREDOC,
-	FD
-}	t_token_type;
-
-typedef struct s_token
-{
-	t_token_type	type;
-	char			*val;
-	int				id;
-}	t_token;
-
-typedef struct s_cmd
-{
-	int		size;
-	char	*cmd;
-	char	**cmd_gr;
-}	t_cmd;
-
-#endif
+	
+}
