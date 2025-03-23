@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:58:02 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/24 00:28:21 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/24 00:58:36 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ t_ast	*ast_init(t_token *token)
 	node->right = NULL;
 	if (token->type == OP_PIPE)
 		return (ast_handle_pipe(node));
-	if (!ft_strncmp(token->type, "RD", 2))
+	if (RD_IN <= token->type && token->type <= RD_HEREDOC)
 		return (ast_handle_rd(node, token));
 	return (node);
 }
