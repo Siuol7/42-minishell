@@ -6,11 +6,11 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:27:56 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/23 02:51:00 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/23 03:12:03 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Include/Main/minishell.h"
+#include "minishell.h"
 
 static int	init_child(int *pipe_fd, pid_t *pid)
 {

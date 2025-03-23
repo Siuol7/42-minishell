@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:40:48 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/22 15:43:32 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/23 03:04:20 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define AST_H
 
 typedef struct s_shell	t_shell;
+typedef struct s_token	t_token;
 
 typedef struct s_ast
 {

@@ -6,11 +6,11 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:58:02 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/23 02:51:32 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/23 03:12:03 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Include/Main/minishell.h"
+#include "minishell.h"
 
 static char	*init_token_val(char *src)
 {
