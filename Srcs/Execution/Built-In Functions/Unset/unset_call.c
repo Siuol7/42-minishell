@@ -6,13 +6,13 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:36:23 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 03:58:57 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/23 04:04:56 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	bi_call(t_shell *mns, t_token token)
+void	bi_unset(t_shell *mns, t_token token)
 {
 	int	id;
 

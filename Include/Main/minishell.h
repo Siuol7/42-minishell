@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 01:55:55 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/23 04:06:05 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include "../Parsing/shell_env_ft.h"
 # include "../Execution/ast.h"
 # include "../Execution/execution.h"
+# include "../Execution/builtin_functions.h"
 
 typedef struct s_shell
 {
