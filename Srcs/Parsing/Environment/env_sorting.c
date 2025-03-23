@@ -6,21 +6,23 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:53:29 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 06:13:00 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/23 23:21:19 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	fill_right(char **env , char **right, t_sort *id)
+static int	fill_right(char **env, char **right, t_sort *id)
 {
 	while (id->j < id-> rs)
 	{
 		if (right[id->j])
 		{
+			if (env[id->k])
+				free(env[id->k]);
 			env[id->k] = ft_strdup(right[id->j]);
 			if (!env[id->k])
-				return(ft_free_process_2d(env, id->k));
+				return (ft_free_process_2d(env, id->k));
 		}
 		else
 			env[id->k] = NULL;
@@ -36,9 +38,11 @@ static int	fill_left(char **env, char **left, t_sort *id)
 	{
 		if (left[id->i])
 		{
+			if (env[id->k])
+				free(env[id->k]);
 			env[id->k] = ft_strdup(left[id->i]);
 			if (!env[id->k])
-				return(ft_free_process_2d(env, id->k));
+				return (ft_free_process_2d(env, id->k));
 		}
 		else
 			env[id->k] = NULL;
@@ -48,27 +52,28 @@ static int	fill_left(char **env, char **left, t_sort *id)
 	return (1);
 }
 
-static int	merge(char **env, char **left,
-	char **right, t_sort *id)
+static int	merge(char **env, char **left, char **right, t_sort *id)
 {
-	while (left[id->i] && right[id->j]
+	id->i = 0;
+	id->j = 0;
+	while (right[id->j] && left[id->i]
 		&& id->i < id->ls && id->j < id->rs)
 	{
 		if (ft_strcmp(left[id->i], right[id->j]) <= 0)
 		{
-			env[id->k] = ft_strdup(left[id->i]);
+			if (env[id->k])
+				free(env[id->k]);
+			env[id->k++] = ft_strdup(left[id->i++]);
 			if (!env[id->k])
-				return(ft_free_process_2d(env, id->k));
-			id->i++;
-			id->k++;
+				return (ft_free_process_2d(env, id->k));
 		}
 		else
 		{
-			env[id->k] = ft_strdup(right[id->j]);
-			if (!env[id->k])
-				return(ft_free_process_2d(env, id->k));
-			id->j++;
-			id->k++;
+			if (env[id->k])
+				free(env[id->k]);
+			env[id->k++] = ft_strdup(right[id->j++]);
+			if (!env[id->k - 1])
+				return (ft_free_process_2d(env, --id->k));
 		}
 	}
 	fill_left(env, left, id);
@@ -93,10 +98,11 @@ static int	merge_set_up(char **env, int l, int mid, int r)
 		return (0);
 	}
 	if (!ft_sub_2d(env, left, l, mid - l + 1)
-		|| !ft_sub_2d(env, right, mid + 1 , r - mid))
+		|| !ft_sub_2d(env, right, mid + 1, r - mid))
 		return (0);
 	id.ls = mid - l + 1;
 	id.rs = r - mid;
+	id.k = l;
 	if (!merge(env, left, right, &id))
 		return (0);
 	ft_free_2d((void **)left);

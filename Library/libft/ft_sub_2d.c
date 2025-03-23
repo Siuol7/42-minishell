@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 01:27:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 06:02:03 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/23 22:45:18 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ int	ft_sub_2d(char **org, char **des, int start, int len)
 			return (0);
 		}
 		i++;
-		start++;
 	}
 	while (i < len)
 		des[i++] = NULL;

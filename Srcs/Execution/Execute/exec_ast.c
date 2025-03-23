@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:27:56 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/23 05:35:00 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/23 23:19:04 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,6 @@ static void	exec_cmd(t_shell *mns, t_token node)
 {
 	if (exec_cmd_check(node))
 		exec_builtin(mns, node);
-	// else
-	// 	exec_pipex();
 }
 
 void	exec_ast(t_shell *mns, t_ast *ast)
