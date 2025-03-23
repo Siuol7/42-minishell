@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   shell_token_type.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:54:31 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/15 14:15:44 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/23 01:57:23 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SHELL_TOKEN_TYPE_H
 
 # define SHELL_TOKEN_TYPE_H
-# include "minishell.h"
+# include "../Main/minishell.h"
 
 typedef enum s_token_type
 {
