@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/20 01:27:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/20 11:20:04 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/23 03:42:10 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void	ft_sub_2d(char **org, char **des, int start, int len)
 	i = 0;
 	if (!org || !des)
 		return ;
-	while (des[start] && i < len)
+	while (org[start] && i < len)
 	{
-		org[i] = ft_strdup(des[start]);
+		des[i] = ft_strdup(org[start]);
 		i++;
 		start++;
 	}
-	org[len] = NULL;
+	des[len] = NULL;
 }

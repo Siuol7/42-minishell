@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 00:05:14 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/21 20:31:18 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/23 03:40:48 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ char	**env_sorting(t_shell *mns)
 	sorted_env = (char **)malloc((size + 1) * sizeof(char *));
 	if (!sorted_env)
 		ft_bad_alloc(mns);
-	sorted_env = env_dup(mns->env);
+	ft_sub_2d(mns->env, sorted_env, 0, size);
 	if (!merge_sort(sorted_env, 0, size - 1))
 	{
 		ft_bad_alloc(mns);

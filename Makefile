@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
+#    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/23 02:49:32 by tripham          ###   ########.fr        #
+#    Updated: 2025/03/23 03:57:20 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,8 @@ LEXER_C			:=	shell_token_gen.c	\
 #	Env
 ENV_DIR			:= $(PARSING_SRC)/Environment
 
-ENV_C			:= env_gen.c
+ENV_C			:= 	env_gen.c	\
+					env_sorting.c
 
 # Execution
 EXECUTION_SRC	:=	./Srcs/Execution
@@ -59,32 +60,75 @@ EXECUTION_SRC	:=	./Srcs/Execution
 # AST
 AST_DIR			:=	$(EXECUTION_SRC)/Ast
 
-# Signals
-SIGNAL_DIR		:=	$(EXECUTION_SRC)/Signals
-
-# Execute
-EXECUTE_DIR		:=	$(EXECUTION_SRC)/Execute
-
 AST_C			:=	ast_init.c			\
 					ast_utils.c			\
 					ast_root_init.c
 
-SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})		\
-					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})		\
-					$(addprefix ${ENV_DIR}/,		${ENV_C})
+# Signals
+SIGNAL_DIR		:=	$(EXECUTION_SRC)/Signals
+
+SIGNAL_C		:=	handle_signals_default.c		\
+					signals_initialize.c
+
+# Execute
+EXECUTE_DIR		:=	$(EXECUTION_SRC)/Execute
 
 EXECUTE_C		:=	exec_ast.c		\
 					exec_utils.c	\
 					exec_cmd_check.c
 
-SIGNAL_C		:=	handle_signals_default.c		\
-					signals_initialize.c
+# Built In Functions
+BUILT_IN_DIR	:= $(EXECUTION_SRC)/Built-In Functions
+
+#Cd
+CD_DIR			:= 	$(BUILT_IN_DIR)/Cd
+
+CD_C			:=	cd_call.c
+
+#Echo
+ECHO_DIR		:= 	$(BUILT_IN_DIR)/Echo
+
+ECHO_C			:=	echo_call.c
+
+#Env
+ENV_DIR			:= 	$(BUILT_IN_DIR)/Env
+
+ENV_C			:=	env_call.c
+
+#Exit
+EXIT_DIR		:= 	$(BUILT_IN_DIR)/Exit
+
+EXIT_C			:=	exit_call.c
+
+#Export
+EXPORT_DIR		:= 	$(BUILT_IN_DIR)/Export
+
+EXPORT_C		:=	export_call.c	\
+					ep_standalone.c
+
+#Pwd
+PWD_DIR			:= 	$(BUILT_IN_DIR)/Pwd
+
+PWD_C			:=	pwd_call.c
+
+#Unset
+UNSET_DIR		:= 	$(BUILT_IN_DIR)/Unset
+
+UNSET_C			:=	unset_call.c
 
 SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})				\
 					$(addprefix ${AST_DIR}/,		${AST_C})				\
 					$(addprefix ${EXECUTE_DIR}/,	${EXECUTE_C})			\
-					$(addprefix ${SIGNAL_DIR}/,		${SIGNAL_C})
+					$(addprefix ${SIGNAL_DIR}/,		${SIGNAL_C})			\
+					$(addprefix ${CD_DIR}/,			${CD_C})				\
+					$(addprefix ${ECHO_DIR}/,		${ECHO_C})				\
+					$(addprefix ${ENV_DIR}/,		${ENV_C})				\
+					$(addprefix ${EXPORT_DIR}/,		${EXPORT_C})			\
+					$(addprefix ${EXIT_DIR}/,		${EXIT_C})				\
+					$(addprefix ${UNSET_DIR}/,		${UNSET_C})				\
+					$(addprefix ${PWD_DIR}/,		${PWD_C})
+
 
 OBJS           :=	${SRCS:.c=.o}
 
