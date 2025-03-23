@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 02:23:32 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/14 10:50:41 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/24 00:22:55 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_strncmp(const char *s1, const char *s2, size_t n)
 	str2 = (unsigned char *)s2;
 	if (n == 0)
 		return (0);
-	while (i < n - 1 && str1[i] == str2[i] && str1[i] && str2[i])
+	while (str1[i] && str2[i] && i < n - 1 && str1[i] == str2[i])
 		i++;
 	return (str1[i] - str2[i]);
 }
