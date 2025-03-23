@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 10:53:29 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 06:06:52 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/23 06:13:00 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@ static int	fill_right(char **env , char **right, t_sort *id)
 			env[id->k] = ft_strdup(right[id->j]);
 			if (!env[id->k])
 				return(ft_free_process_2d(env, id->k));
-			id->k++;
-			id->j++;
 		}
 		else
 			env[id->k] = NULL;
+		id->k++;
+		id->j++;
 	}
 	return (1);
 }
@@ -34,9 +34,14 @@ static int	fill_left(char **env, char **left, t_sort *id)
 {
 	while (id->i < id->ls)
 	{
-		env[id->k] = ft_strdup(left[id->i]);
-		if (!env[id->k])
-			return(ft_free_process_2d(env, id->k));
+		if (left[id->i])
+		{
+			env[id->k] = ft_strdup(left[id->i]);
+			if (!env[id->k])
+				return(ft_free_process_2d(env, id->k));
+		}
+		else
+			env[id->k] = NULL;
 		id->i++;
 		id->k++;
 	}
@@ -46,7 +51,8 @@ static int	fill_left(char **env, char **left, t_sort *id)
 static int	merge(char **env, char **left,
 	char **right, t_sort *id)
 {
-	while (id->i < id->ls && id->j < id->rs)
+	while (left[id->i] && right[id->j]
+		&& id->i < id->ls && id->j < id->rs)
 	{
 		if (ft_strcmp(left[id->i], right[id->j]) <= 0)
 		{
