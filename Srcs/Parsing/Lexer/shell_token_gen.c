@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/18 14:32:31 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/23 05:34:45 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,31 +62,42 @@ static char	*lx_qmarks_eli(t_shell *mns, char *str, int i, int j)
 	return (res);
 }
 
+static void	lx_typize_token(t_shell *mns, char **str, int i, int *cmd)
+{
+	if (lx_is_oprt(str[i]))
+	{
+		mns->list[i].id = 0;
+		mns->list[i].type = lx_oprt_type(str[i]);
+		mns->list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
+	}
+	else if (lx_is_rd(str[i]))
+	{
+		mns->list[i].id = 0;
+		mns->list[i].type = lx_rd_type(str[i]);
+		mns->list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
+		i++;
+		mns->list[i].id = 0;
+		mns->list[i].type = FD;
+		mns->list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
+	}
+	else
+	{
+		mns->list[i].id = (*cmd)++;
+		mns->list[i].type = CMD;
+		mns->list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
+	}
+}
+
 static void	lx_token_listing(t_shell *mns, char **str)
 {
 	int	i;
+	int	cmd;
 
 	i = 0;
+	cmd = 0;
 	while (str[i] && i < mns->token_cnt)
 	{
-		if (lx_is_oprt(str[i]))
-		{
-			mns->list[i].type = lx_oprt_type(str[i]);
-			mns->list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
-		}
-		else if (lx_is_rd(str[i]))
-		{
-			mns->list[i].type = lx_rd_type(str[i]);
-			mns->list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
-			i++;
-			mns->list[i].type = FD;
-			mns->list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
-		}
-		else
-		{
-			mns->list[i].type = CMD;
-			mns->list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
-		}
+		lx_typize_token(mns, str, i, &cmd);
 		i++;
 	}
 }

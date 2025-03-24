@@ -6,31 +6,11 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 00:05:14 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/21 20:31:18 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/23 22:57:42 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// char	**env_dup(char **env)
-// {
-// 	int		i;
-// 	int		size;
-// 	char	**final;
-
-// 	i = 0;
-// 	size = ft_2d_len(env);
-// 	final = (char **)malloc((size + 1) * sizeof(char *));
-// 	if (!final)
-// 		return (NULL);
-// 	while (env[i] && i < size)
-// 	{
-// 		final[i] = ft_strdup(env[i]);
-// 		i++;
-// 	}
-// 	final[size] = NULL;
-// 	return (final);
-// }
 
 char	**env_sorting(t_shell *mns)
 {
@@ -41,11 +21,12 @@ char	**env_sorting(t_shell *mns)
 	sorted_env = (char **)malloc((size + 1) * sizeof(char *));
 	if (!sorted_env)
 		ft_bad_alloc(mns);
-	sorted_env = env_dup(mns->env);
+	ft_sub_2d(mns->env, sorted_env, 0, size);
+	sorted_env[size] = NULL;
 	if (!merge_sort(sorted_env, 0, size - 1))
 	{
-		ft_bad_alloc(mns);
 		ft_free_2d((void **)sorted_env);
+		ft_bad_alloc(mns);
 	}
 	return (sorted_env);
 }

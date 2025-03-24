@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 01:44:07 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 03:12:03 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/24 20:22:11 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,19 @@
 void	exec_builtin(t_shell *mns, t_token token)
 {
 	if (!ft_strcmp(token.val, "echo"))
-		exec_echo(mns, token);
+		bi_echo(mns, token);
 	else if (!ft_strcmp(token.val, "cd"))
-		exec_cd(mns, token);
+		bi_cd(mns, token);
 	else if (!ft_strcmp(token.val, "pwd"))
-		exec_pwd(mns, token);
+		bi_pwd(mns, token);
 	else if (!ft_strcmp(token.val, "export"))
-		exec_export(mns, token);
+		bi_export(mns, token);
 	else if (!ft_strcmp(token.val, "unset"))
-		exec_unset(mns, token);
+		bi_unset(mns, token);
 	else if (!ft_strcmp(token.val, "env"))
-		exec_env(mns, token);
+		bi_env(mns, token);
 	else if (!ft_strcmp(token.val, "exit"))
-		exec_exit(mns, token);
+		bi_exit(mns, token);
 }
 
 int	exec_cmd_check(t_token token)
