@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 10:38:56 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/24 10:55:13 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:11:19 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ static int	lx_wordcnt(char	*input)
 	{
 		if (ft_isallspace(input[i]))
 			i = lx_skip_space(input, i);
-		else if (ft_rd_op(input, i))
-			i = lx_skip_rd_op(input, i);
 		else
 		{
 			cnt++;

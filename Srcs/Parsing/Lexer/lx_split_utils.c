@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:17:55 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/25 13:40:12 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/25 14:33:17 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,7 @@ int	lx_skip_word(char *input, int index)
 	{
 		if (ft_is_dquote(input[index]))
 			lx_skip_dquote(input, &index);
+		if (ft_rd_op(input[index])
 		else
 			index++;
 	}
