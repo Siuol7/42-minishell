@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:13:21 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/23 19:15:16 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/25 18:04:34 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ void	exec_non_builtin(t_shell *mns, t_token token)
 	pid_t	pid;
 	char	*command_path;
 
+	(void)token;
 	pid = fork();
 	if (pid == -1)
 	{
@@ -33,7 +34,7 @@ void	exec_non_builtin(t_shell *mns, t_token token)
 			exit(127);
 		}
 		execve(command_path, mns->splitted_cmd, mns->env);
-		handle_exec_error(command_path, mns->splitted_cmd);
+		handle_execution_error(command_path, mns->splitted_cmd);
 	}
 	wait_update(mns, pid);
 }

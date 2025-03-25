@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:44:37 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/23 03:53:10 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/25 17:32:13 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,6 @@ char	*found_command_path(char **splitted_command, char **envp)
 		ft_free_2d((void **)envp_paths);
 		handle_command_error(splitted_command, "command not found");
 	}
-	ft_free_double_p((void **)envp_paths);
+	ft_free_2d((void **)envp_paths);
 	return (command_path);
 }
