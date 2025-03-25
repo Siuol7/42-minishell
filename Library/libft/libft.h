@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 01:01:11 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 05:30:12 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/24 10:40:49 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ int		ft_isprint(int c);
 int		ft_isascii(int c);
 int		ft_isallspace(char c);
 int		ft_is_dquote(char c);
+int		ft_rd_op(char *str, int id);
 int		ft_toupper(int c);
 int		ft_tolower(int c);
 
