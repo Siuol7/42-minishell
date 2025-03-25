@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:40:48 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/23 04:50:22 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/24 20:22:34 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 # define AST_H
 
 typedef struct s_shell	t_shell;
+typedef struct s_token	t_token;
 
 typedef struct s_ast
 {

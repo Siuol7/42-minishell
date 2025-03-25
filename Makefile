@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
+#    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/23 04:19:52 by caonguye         ###   ########.fr        #
+#    Updated: 2025/03/25 17:40:27 by tripham          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -73,9 +73,12 @@ SIGNAL_C		:=	handle_signals_default.c		\
 # Execute
 EXECUTE_DIR		:=	$(EXECUTION_SRC)/Execute
 
-EXECUTE_C		:=	exec_ast.c		\
-					exec_utils.c	\
-					exec_cmd_check.c
+EXECUTE_C		:=	exec_ast.c			\
+					exec_utils.c		\
+					exec_cmd_check.c	\
+					found_cmd_path.c	\
+					exec_handle_error.c	\
+					exec_cmd.c
 
 # Built In Functions
 BUILT_IN_DIR	:= $(EXECUTION_SRC)/Built-In_Functions

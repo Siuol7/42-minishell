@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   exec_ast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:27:56 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/23 23:19:04 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/25 18:04:41 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Include/Main/minishell.h"
+#include "minishell.h"
 
 static int	init_child(int *pipe_fd, pid_t *pid)
 {
@@ -65,12 +65,6 @@ static void	exec_pipe(t_shell *mns, t_ast *ast)
 	close(pipe_fd[0]);
 	close(pipe_fd[1]);
 	wait_update(mns, pid[1]);
-}
-
-static void	exec_cmd(t_shell *mns, t_token node)
-{
-	if (exec_cmd_check(node))
-		exec_builtin(mns, node);
 }
 
 void	exec_ast(t_shell *mns, t_ast *ast)

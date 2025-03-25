@@ -6,11 +6,11 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:06:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/23 02:51:10 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/23 03:12:03 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../Include/Main/minishell.h"
+#include "minishell.h"
 
 void	redirect_fd(int from_fd, int to_fd)
 {
