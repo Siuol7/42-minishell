@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
+#    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/25 17:40:27 by tripham          ###   ########.fr        #
+#    Updated: 2025/03/26 03:05:46 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,10 @@ LEXER_C			:=	shell_token_gen.c	\
 					lx_cmd_group_utils.c	\
 					lx_classify_utils.c
 
+#Parser
+PARSER_DIR		:= $(PARSING_SRC)/Parser
+
+PARSER_C		:= prs_cmd_check.c
 #	Env
 ENVIR_DIR		:= $(PARSING_SRC)/Environment
 
@@ -122,6 +126,7 @@ UNSET_C			:=	unset_call.c
 
 SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})				\
+					$(addprefix ${PARSER_DIR}/,		${PARSER_C})			\
 					$(addprefix ${ENVIR_DIR}/,		${ENVIR_C})				\
 					$(addprefix ${AST_DIR}/,		${AST_C})				\
 					$(addprefix ${EXECUTE_DIR}/,	${EXECUTE_C})			\
