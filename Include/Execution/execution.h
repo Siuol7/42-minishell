@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 23:13:23 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/25 17:26:44 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/26 20:59:05 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,4 +51,8 @@ void	handle_fork_error(int *pipe);
 // Execution
 void	exec_non_builtin(t_shell *mns, t_token token);
 void	exec_cmd(t_shell *mns, t_token token);
+
+// Redirect
+int		exec_rd_process(t_ast *token);
+int		exec_rd_io(t_shell *mns, t_ast *rd_ast);
 #endif

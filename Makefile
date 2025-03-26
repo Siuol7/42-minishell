@@ -6,7 +6,7 @@
 #    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/25 17:40:27 by tripham          ###   ########.fr        #
+#    Updated: 2025/03/26 21:17:07 by tripham          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -78,7 +78,8 @@ EXECUTE_C		:=	exec_ast.c			\
 					exec_cmd_check.c	\
 					found_cmd_path.c	\
 					exec_handle_error.c	\
-					exec_cmd.c
+					exec_cmd.c			\
+					exec_rd.c
 
 # Built In Functions
 BUILT_IN_DIR	:= $(EXECUTION_SRC)/Built-In_Functions
