@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 01:59:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/27 11:06:39 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/27 11:25:10 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,9 @@ static void	prs_extra_arg(t_shell *mns, char c)
 				c_cnt++;
 			i++;
 		}
-		ft_strjoin_free('\n', new);
-		mns->full_cmd_line = ft_strjoin_free(mns->full_cmd_line, new);
+		new = ft_strjoin_free("\n", new);
+		mns->full_cmd_line = ft_strjoin_free(new, mns->full_cmd_line);
+		free(new);
 		if (c_cnt % 2 == 0)
 			break ;
 	}
@@ -41,8 +42,9 @@ static void	prs_extra_cmd(t_shell *mns)
 	char	*new;
 
 	new = readline("> ");
-	ft_strjoin_free(" ", new);
-	mns->full_cmd_line = ft_strjoin_free(mns->full_cmd_line, new);
+	new = ft_strjoin_free(" ", new);
+	mns->full_cmd_line = ft_strjoin_free(new, mns->full_cmd_line);
+	free(new);
 }
 
 void	prs_extra_check(t_shell *mns)
@@ -52,7 +54,7 @@ void	prs_extra_check(t_shell *mns)
 
 	i = 0;
 	open = 'e';
-	while (ms && mns->full_cmd_line[i])
+	while (mns && mns->full_cmd_line[i])
 	{
 		if ((mns->full_cmd_line[i] == '\''
 				|| mns->full_cmd_line[i] == '\"') && open == 'e')
