@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/26 03:00:50 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/27 02:08:07 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,14 @@ void	shell_input(t_shell	*mns)
 			printf("exit");
 			shell_clean(mns);
 		}
+		prs_extra_check(mns);
 		add_history(mns->full_cmd_line);
 		shell_token_gen(mns, mns->full_cmd_line);
 		if (prs_cmd_check(mns))
 		{
 			mns->ast = ast_root_init(mns->list, mns->token_cnt);
-			if (!mns->ast)
-				shell_clean(mns);
+			// if (!mns->ast)
+			// 	shell_clean(mns);
 			//exec_ast(mns, mns->ast);
 		}
 		shell_pre_input(mns);

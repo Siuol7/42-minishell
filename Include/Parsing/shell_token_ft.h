@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:55:24 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/26 02:41:02 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/27 02:06:04 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ void			lx_cmd_grouping(t_shell *mns);
 t_token_type	lx_oprt_type(char *str);
 t_token_type	lx_rd_type(char *str);
 void			lx_cmd_grouping(t_shell *mns);
+void			prs_extra_check(t_shell *mns);
 char			**lx_token_split(t_shell *mns, char *input);
 #endif
