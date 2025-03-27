@@ -6,13 +6,13 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 10:16:51 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/27 10:26:53 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/27 11:08:44 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	ft_strjoin_free(char *s1, char *s2)
+char	*ft_strjoin_free(char *s1, char *s2)
 {
 	char	*res;
 	size_t	lens1;
