@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 01:59:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/27 11:25:10 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/27 11:34:50 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ static void	prs_extra_arg(t_shell *mns, char c)
 				c_cnt++;
 			i++;
 		}
-		new = ft_strjoin_free("\n", new);
-		mns->full_cmd_line = ft_strjoin_free(new, mns->full_cmd_line);
+		new = ft_strjoin("\n", new);
+		mns->full_cmd_line = ft_strjoin_free(mns->full_cmd_line, new);
 		free(new);
 		if (c_cnt % 2 == 0)
 			break ;
@@ -42,8 +42,8 @@ static void	prs_extra_cmd(t_shell *mns)
 	char	*new;
 
 	new = readline("> ");
-	new = ft_strjoin_free(" ", new);
-	mns->full_cmd_line = ft_strjoin_free(new, mns->full_cmd_line);
+	new = ft_strjoin(" ", new);
+	mns->full_cmd_line = ft_strjoin_free(mns->full_cmd_line, new);
 	free(new);
 }
 

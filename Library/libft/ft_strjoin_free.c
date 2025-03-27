@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 10:16:51 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/27 11:23:58 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/27 11:34:36 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,6 @@ char	*ft_strjoin_free(char *s1, char *s2)
 	ft_memcpy(res, s1, lens1);
 	ft_memcpy(res + lens1, s2, lens2);
 	res[lens1 + lens2] = '\0';
-	free(s2);
+	free(s1);
 	return (res);
 }
