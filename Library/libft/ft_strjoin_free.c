@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin_free.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/11/03 10:20:49 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/27 10:27:15 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/27 10:16:51 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/27 11:34:36 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strjoin_free(char *s1, char *s2)
 {
 	char	*res;
 	size_t	lens1;
@@ -32,5 +32,6 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	ft_memcpy(res, s1, lens1);
 	ft_memcpy(res + lens1, s2, lens2);
 	res[lens1 + lens2] = '\0';
+	free(s1);
 	return (res);
 }

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
+#    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/25 17:40:27 by tripham          ###   ########.fr        #
+#    Updated: 2025/03/27 02:06:54 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,16 +42,21 @@ PARSING_SRC		:=	./Srcs/Parsing
 # Lexer
 LEXER_DIR		:=	$(PARSING_SRC)/Lexer
 
-LEXER_C			:=	shell_token_gen.c	\
-					lx_token_split.c	\
+LEXER_C			:=	shell_token_gen.c		\
+					lx_token_split.c		\
 					lx_split_utils.c		\
 					lx_cmd_group_utils.c	\
 					lx_classify_utils.c
 
+#Parser
+PARSER_DIR		:= $(PARSING_SRC)/Parser
+
+PARSER_C		:=  prs_cmd_check.c			\
+					prs_extension.c
 #	Env
 ENVIR_DIR		:= $(PARSING_SRC)/Environment
 
-ENVIR_C			:= 	env_gen.c	\
+ENVIR_C			:= 	env_gen.c				\
 					env_sorting.c
 
 # Execution
@@ -60,14 +65,14 @@ EXECUTION_SRC	:=	./Srcs/Execution
 # AST
 AST_DIR			:=	$(EXECUTION_SRC)/Ast
 
-AST_C			:=	ast_init.c			\
-					ast_utils.c			\
+AST_C			:=	ast_init.c				\
+					ast_utils.c				\
 					ast_root_init.c
 
 # Signals
 SIGNAL_DIR		:=	$(EXECUTION_SRC)/Signals
 
-SIGNAL_C		:=	handle_signals_default.c		\
+SIGNAL_C		:=	handle_signals_default.c	\
 					signals_initialize.c
 
 # Execute
@@ -122,6 +127,7 @@ UNSET_C			:=	unset_call.c
 
 SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})				\
+					$(addprefix ${PARSER_DIR}/,		${PARSER_C})			\
 					$(addprefix ${ENVIR_DIR}/,		${ENVIR_C})				\
 					$(addprefix ${AST_DIR}/,		${AST_C})				\
 					$(addprefix ${EXECUTE_DIR}/,	${EXECUTE_C})			\
