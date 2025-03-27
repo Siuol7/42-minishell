@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/25 18:03:08 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/27 11:36:03 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,17 @@ void	shell_input(t_shell	*mns)
 			printf("exit");
 			shell_clean(mns);
 		}
+		prs_extra_check(mns);
+		add_history(mns->full_cmd_line);
 		shell_token_gen(mns, mns->full_cmd_line);
-		mns->ast = ast_root_init(mns->list, mns->token_cnt);
-		if (!mns->ast)
-			shell_clean(mns);
-		exec_ast(mns, mns->ast);
+		if (prs_cmd_check(mns))
+		{
+			printf("%s\n", mns->full_cmd_line);
+			mns->ast = ast_root_init(mns->list, mns->token_cnt);
+			if (!mns->ast)
+				shell_clean(mns);
+			exec_ast(mns, mns->ast);
+		}
 		shell_pre_input(mns);
 	}
 }
