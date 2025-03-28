@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:56:17 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/23 03:12:03 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/28 03:41:10 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ int	find_priority(t_token *token, int size)
 	while (index < size)
 	{
 		if (token[index].type == OP_PIPE)
+		{
 			index_pipe = index;
+		}
 		else if (token[index].type == RD_IN || token[index].type == RD_OUT
 			|| token[index].type == RD_APPEND
 			|| token[index].type == RD_HEREDOC)

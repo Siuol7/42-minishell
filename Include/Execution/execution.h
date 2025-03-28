@@ -6,12 +6,14 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 23:13:23 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/26 20:59:05 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/27 20:12:44 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTION_H
 # define EXECUTION_H
+
+# include <sys/stat.h> 
 
 typedef struct s_shell	t_shell;
 
@@ -30,7 +32,7 @@ int		signals_configure(int signal_val, void (*handler)(int));
 
 int		update_status(t_shell *mns, int new_status);
 void	wait_update(t_shell *mns, pid_t pid);
-char	*found_command_path(char **splitted_command, char **envp);
+char	*found_command_path(t_shell *mns, char *cmd);
 //Builtin functions
 int		exec_cmd_check(t_token token);
 void	exec_builtin(t_shell *mns, t_token token);
@@ -47,6 +49,10 @@ void	handle_execution_error(char *command_path, char **splitted_command);
 void	handle_command_error(char **command, char *message);
 void	handle_open_error(char *file_name, int which_pipe_end);
 void	handle_fork_error(int *pipe);
+int		check_error(char *command);
+void	exec_error(t_shell *mns, char *cmd_path, char *ms1, char *ms2);
+
+
 
 // Execution
 void	exec_non_builtin(t_shell *mns, t_token token);

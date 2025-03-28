@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/16 22:28:33 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/23 03:09:09 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/28 03:40:22 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ t_ast	*ast_root_init(t_token *token, int size)
 		return (NULL);
 	op_index = find_priority(token, size);
 	if (op_index == -1)
+	{
 		return (ast_init(token));
+	}
 	root = ast_init(&token[op_index]);
 	if (!root)
 		return (NULL);

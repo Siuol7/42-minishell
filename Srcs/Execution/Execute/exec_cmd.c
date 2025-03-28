@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:13:21 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/26 21:20:39 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/28 02:39:25 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,16 @@ void	exec_non_builtin(t_shell *mns, t_token token)
 	if (pid == 0)
 	{
 		handle_signals_default();
-		command_path = found_command_path(mns->splitted_cmd, mns->env);
+		command_path = found_command_path(mns, mns->cmd[0].cmd_gr[0]);
 		if (!command_path)
 		{
 			free_all(&mns->ast, &mns);
 			exit(127);
 		}
 		execve(command_path, mns->splitted_cmd, mns->env);
-		handle_execution_error(command_path, mns->splitted_cmd);
+		handle_execution_error(command_path, mns->cmd[0].cmd_gr);
 	}
+
 	wait_update(mns, pid);
 }
 
@@ -69,8 +70,9 @@ static int	is_rd(t_token_type type)
 
 void	exec_cmd(t_shell *mns, t_token token)
 {
+	(void)token;
 	const int	tmp[2] = {dup(STDIN_FILENO), dup(STDOUT_FILENO)};
-
+	
 	if (mns->ast)
 	{
 		if (mns->ast->left && is_rd(mns->ast->left->token.type))
@@ -92,12 +94,19 @@ void	exec_cmd(t_shell *mns, t_token token)
 			}
 		}
 	}
-	if (token.val)
+	
+	if (mns->splitted_cmd && mns->splitted_cmd[0])
 	{
-		if (exec_cmd_check(token))
-			exec_builtin(mns, token);
+		t_token tmp_token;
+		tmp_token.val = mns->splitted_cmd[0];
+		if (exec_cmd_check(tmp_token))
+		{
+			exec_builtin(mns, tmp_token);
+		}
 		else
-			exec_non_builtin(mns, token);
+		{
+			exec_non_builtin(mns, tmp_token);
+		}
 	}
 	redirect_fd(tmp[0], STDIN_FILENO);
 	redirect_fd(tmp[1], STDOUT_FILENO);

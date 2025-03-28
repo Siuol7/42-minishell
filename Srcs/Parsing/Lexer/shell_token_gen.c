@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_token_gen.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/26 10:59:20 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/27 19:35:21 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ static void	lx_typize_token(t_shell *mns, char **str, int i, int *cmd)
 	}
 }
 
-static void	lx_token_listing(t_shell *mns, char **str)
+static void	 lx_token_listing(t_shell *mns, char **str)
 {
 	int	i;
 	int	cmd;
