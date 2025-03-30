@@ -3,48 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   shell_clean.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 01:18:05 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/31 01:26:29 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static void	free_cmd(t_shell *mns)
-{
-	int	i;
-
-	i = 0;
-	while (i < mns->cmd_cnt)
-	{
-		if (mns->cmd[i].cmd_gr)
-		{
-			free(mns->cmd[i].cmd_gr);
-			mns->cmd[i].cmd_gr = NULL;
-		}
-		i++;
-	}
-	free(mns->cmd);
-}
-
-static void	free_list(t_shell *mns)
-{
-	int	i;
-
-	i = 0;
-	while (i < mns->token_cnt)
-	{
-		if (mns->list[i].val)
-		{
-			free(mns->list[i].val);
-			mns->list[i].val = NULL;
-		}
-		i++;
-	}
-	free(mns->list);
-}
 
 void	shell_pre_input(t_shell *mns)
 {
@@ -55,20 +21,14 @@ void	shell_pre_input(t_shell *mns)
 		free(mns->full_cmd_line);
 		mns->full_cmd_line = NULL;
 	}
-	if (mns->splitted_cmd)
+	if (mns->cmd_str)
 	{
-		ft_free_2d((void **)mns->splitted_cmd);
-		mns->splitted_cmd = NULL;
+		ft_free_2d((void **)mns->cmd_str);
+		mns->cmd_str = NULL;
 	}
-	if (mns->list)
+	if (mns->cmd_group)
 	{
-		free_list(mns);
-		mns->list = NULL;
-	}
-	if (mns->cmd)
-	{
-		free_cmd(mns);
-		mns->cmd = NULL;
+		mns->cmd_group = NULL;
 	}
 }
 
@@ -81,20 +41,14 @@ void	shell_clean(t_shell *mns)
 		free(mns->full_cmd_line);
 		mns->full_cmd_line = NULL;
 	}
-	if (mns->splitted_cmd)
+	if (mns->cmd_str)
 	{
-		ft_free_2d((void **)mns->splitted_cmd);
-		mns->splitted_cmd = NULL;
+		ft_free_2d((void **)mns->cmd_str);
+		mns->cmd_str = NULL;
 	}
-	if (mns->list)
+	if (mns->cmd_group)
 	{
-		free_list(mns);
-		mns->list = NULL;
-	}
-	if (mns->cmd)
-	{
-		free_cmd(mns);
-		mns->cmd = NULL;
+		mns->cmd_group = NULL;
 	}
 	if (mns->env)
 		ft_free_2d((void **)mns->env);

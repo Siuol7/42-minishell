@@ -24,6 +24,12 @@ typedef enum s_rd_type
 	RD_RNW
 }	t_rd_type;
 
+typedef struct s_rd
+{
+	t_rd_type	type;
+	char		*val;
+}	t_rd;
+
 typedef struct s_cmd
 {
 	int		out_cnt;
@@ -35,10 +41,5 @@ typedef struct s_cmd
 	char	**heredoc;
 }	t_cmd;
 
-typedef struct s_rd
-{
-	t_rd_type	type;
-	char		*val;
-}	t_rd;
 
 #endif

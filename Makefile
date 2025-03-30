@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/27 02:06:54 by caonguye         ###   ########.fr        #
+#    Updated: 2025/03/31 01:33:48 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,6 +43,8 @@ PARSING_SRC		:=	./Srcs/Parsing
 LEXER_DIR		:=	$(PARSING_SRC)/Lexer
 
 LEXER_C			:=	shell_token_gen.c		\
+					lx_group_split.c		\
+					lx_group_utils.c		\
 					lx_token_split.c		\
 					lx_split_utils.c		\
 					lx_cmd_group_utils.c	\
@@ -63,9 +65,9 @@ ENVIR_C			:= 	env_gen.c				\
 EXECUTION_SRC	:=	./Srcs/Execution
 
 # AST
-AST_DIR			:=	$(EXECUTION_SRC)/Ast
+#AST_DIR			:=	$(EXECUTION_SRC)/Ast
 
-AST_C			:=	ast_init.c				\
+#AST_C			:=	ast_init.c				\
 					ast_utils.c				\
 					ast_root_init.c
 
@@ -76,9 +78,9 @@ SIGNAL_C		:=	handle_signals_default.c	\
 					signals_initialize.c
 
 # Execute
-EXECUTE_DIR		:=	$(EXECUTION_SRC)/Execute
+#EXECUTE_DIR		:=	$(EXECUTION_SRC)/Execute
 
-EXECUTE_C		:=	exec_ast.c			\
+#EXECUTE_C		:=	exec_ast.c			\
 					exec_utils.c		\
 					exec_cmd_check.c	\
 					found_cmd_path.c	\
@@ -89,41 +91,41 @@ EXECUTE_C		:=	exec_ast.c			\
 BUILT_IN_DIR	:= $(EXECUTION_SRC)/Built-In_Functions
 
 #Cd
-CD_DIR			:= 	$(BUILT_IN_DIR)/Cd
+#CD_DIR			:= 	$(BUILT_IN_DIR)/Cd
 
-CD_C			:=	cd_call.c
+#CD_C			:=	cd_call.c
 
 #Echo
-ECHO_DIR		:= 	$(BUILT_IN_DIR)/Echo
+#ECHO_DIR		:= 	$(BUILT_IN_DIR)/Echo
 
-ECHO_C			:=	echo_call.c
+#ECHO_C			:=	echo_call.c
 
 #Env
-ENV_DIR			:= 	$(BUILT_IN_DIR)/Env
+#ENV_DIR			:= 	$(BUILT_IN_DIR)/Env
 
-ENV_C			:=	env_call.c		\
+#ENV_C			:=	env_call.c		\
 					env_standalone.c
 
 #Exit
-EXIT_DIR		:= 	$(BUILT_IN_DIR)/Exit
+#EXIT_DIR		:= 	$(BUILT_IN_DIR)/Exit
 
-EXIT_C			:=	exit_call.c
+#EXIT_C			:=	exit_call.c
 
 #Export
-EXPORT_DIR		:= 	$(BUILT_IN_DIR)/Export
+#EXPORT_DIR		:= 	$(BUILT_IN_DIR)/Export
 
-EXPORT_C		:=	export_call.c	\
+#EXPORT_C		:=	export_call.c	\
 					ep_standalone.c
 
 #Pwd
-PWD_DIR			:= 	$(BUILT_IN_DIR)/Pwd
+#PWD_DIR			:= 	$(BUILT_IN_DIR)/Pwd
 
-PWD_C			:=	pwd_call.c
+#PWD_C			:=	pwd_call.c
 
 #Unset
-UNSET_DIR		:= 	$(BUILT_IN_DIR)/Unset
+#UNSET_DIR		:= 	$(BUILT_IN_DIR)/Unset
 
-UNSET_C			:=	unset_call.c
+#UNSET_C			:=	unset_call.c
 
 SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})				\

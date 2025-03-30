@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/30 23:09:44 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/31 01:28:48 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 
 typedef struct s_shell
 {
-	int		cmd_cnt;
+	int		group_cnt;
 	int		exitcode;
 	int		SHLVL;
 	char	*full_cmd_line;
@@ -51,5 +51,6 @@ void	shell_token_gen(t_shell *mns, char *input);
 
 //ERROR HANDLING
 void	ft_bad_alloc(t_shell *mns);
+void	ft_not_support(t_shell *mns, char *str);
 
 #endif

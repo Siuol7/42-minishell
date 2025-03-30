@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/28 11:05:39 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/31 01:36:43 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 static void	shell_input_operate(t_shell *mns)
 {
-	prs_extra_check(mns);
+	//prs_extra_check(mns);
 	add_history(mns->full_cmd_line);
 	shell_token_gen(mns, mns->full_cmd_line);
-	if (prs_cmd_check(mns))
-	{
-		mns->ast = ast_root_init(mns->list, mns->token_cnt);
-		if (!mns->ast)
-			shell_clean(mns);
-		exec_ast(mns, mns->ast);
-	}
+	// if (prs_cmd_check(mns))
+	// {
+	// 	mns->ast = ast_root_init(mns->list, mns->token_cnt);
+	// 	if (!mns->ast)
+	// 		shell_clean(mns);
+	// 	exec_ast(mns, mns->ast);
+	// }
+	for (int i = 0; i < mns->group_cnt; i++)
+		printf("Group %d : %s\n", i, mns->cmd_str[i]);
 }
 
 void	shell_input(t_shell	*mns)
