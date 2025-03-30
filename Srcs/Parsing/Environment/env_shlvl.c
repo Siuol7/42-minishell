@@ -1,29 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_call.c                                        :+:      :+:    :+:   */
+/*   env_shlvl.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/23 03:34:33 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/28 11:06:17 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/29 14:45:20 by caonguye          #+#    #+#             */
+/*   Updated: 2025/03/30 00:15:49 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	exit_standalone(t_shell *mns)
+check SHLVL exist -> initalize SHLVL -> join SHLVL=*value* -> strdup -> add to env
+
+
+
+static void	env_shlvl_check(t_shell *mns)
 {
-	printf("exit\n");
-	shell_clean(mns);
-	exit(0);
+	char	*shlvl;
+
+	shlvl = getenv("SHLVL");
+	if (!shlvl)
+		mns->shlvl = 2;
+	mns->shlvl = ft_atoi(shlvl) + 1;
 }
 
-void	bi_exit(t_shell *mns, t_token token)
+void	env_shlvl(t_shell *mns)
 {
-	int	id;
-
-	id = token.id;
-	if (mns->cmd[id].size == 1)
-		exit_standalone(mns);
+	env_shlvl_check(mns);
+	env_shlvl_gen(mns);
 }

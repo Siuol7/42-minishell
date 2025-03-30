@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 04:06:05 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/30 23:09:44 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,14 +27,13 @@
 
 typedef struct s_shell
 {
-	int		token_cnt;
 	int		cmd_cnt;
 	int		exitcode;
+	int		SHLVL;
 	char	*full_cmd_line;
+	char	**cmd_str;
 	char	**env;
-	char	**splitted_cmd;
-	t_token	*list;
-	t_cmd	*cmd;
+	t_cmd	*cmd_group;
 	t_error	shell_err;
 	t_ast	*ast;
 }	t_shell;

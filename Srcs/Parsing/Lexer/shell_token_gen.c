@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/26 10:59:20 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/30 21:47:02 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,8 +106,8 @@ static void	lx_token_listing(t_shell *mns, char **str)
 
 void	shell_token_gen(t_shell *mns, char *input)
 {
-	mns->splitted_cmd = lx_token_split(mns, input);
-	if (!mns->splitted_cmd)
+	mns->cmd_str = lx_group_split(mns, input);
+	if (!mns->cmd_str)
 		ft_bad_alloc(mns);
 	mns->list = malloc(mns->token_cnt * sizeof(t_token));
 	if (!mns->list)

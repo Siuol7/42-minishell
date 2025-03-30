@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/28 10:42:45 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/28 11:05:39 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static void	shell_input_operate(t_shell *mns)
 	shell_token_gen(mns, mns->full_cmd_line);
 	if (prs_cmd_check(mns))
 	{
-		printf("%s\n", mns->full_cmd_line);
 		mns->ast = ast_root_init(mns->list, mns->token_cnt);
 		if (!mns->ast)
 			shell_clean(mns);
@@ -34,7 +33,7 @@ void	shell_input(t_shell	*mns)
 		mns->full_cmd_line = readline("minishell$ ");
 		if (!mns->full_cmd_line)
 		{
-			printf("exit");
+			printf("exit\n");
 			shell_clean(mns);
 		}
 		if (mns->full_cmd_line[0])
