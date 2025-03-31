@@ -6,13 +6,13 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 23:27:08 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/31 02:35:26 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/31 15:46:57 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	lx_groupcnt(t_shell *mns, char *input)
+static int	lx_groupcnt(char *input)
 {
 	int	i;
 	int	cnt;
@@ -23,11 +23,15 @@ static int	lx_groupcnt(t_shell *mns, char *input)
 	size = ft_strlen(input);
 	while (i < size)
 	{
-		if (i < size && input[i] == '|' && input[i + 1] == '|')
-			ft_not_support(mns, "||");
-		if (input[i] == '|')
+		if (ft_is_dquote(input[i]))
+			lx_skip_dquote(input, &i);
+		else if (input[i] == '|')
+		{
 			cnt++;
-		i++;
+			i++;
+		}
+		else
+			i++;
 	}
 	return (cnt + 1);
 }
@@ -48,7 +52,7 @@ char	**lx_group_split(t_shell *mns, char *input)
 	char	**final;
 	char	**res;
 
-	groupcnt = lx_groupcnt(mns, input);
+	groupcnt = lx_groupcnt(input);
 	final = (char **)malloc((groupcnt + 1) * sizeof (char *));
 	if (!final)
 		return (NULL);

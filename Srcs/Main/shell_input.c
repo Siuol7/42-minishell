@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/31 01:36:43 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/31 15:31:36 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,13 @@ static void	shell_input_operate(t_shell *mns)
 	// 		shell_clean(mns);
 	// 	exec_ast(mns, mns->ast);
 	// }
+	printf("Group cnt %d\n", mns->group_cnt);
 	for (int i = 0; i < mns->group_cnt; i++)
+	{
 		printf("Group %d : %s\n", i, mns->cmd_str[i]);
+		for (int j = 0; j < mns->cmd_group[i].token_cnt; j++)
+			printf("Token : %s\n", mns->cmd_group[i].token[j]);
+	}
 }
 
 void	shell_input(t_shell	*mns)
