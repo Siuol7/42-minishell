@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:47:55 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/01 19:00:28 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/01 20:31:49 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ static void	lx_group_copy(t_token *list, t_cmd *group, t_sort *id)
 		{
 			if (group->in.val)
 				free(group->in.val);
-			group->in.val = list[id->id].val;
+			group->in.val = ft_strdup(list[id->id].val);
 			group->in.type = list[id->id].type;
 			if (list[id->id].type == RD_HEREDOC)
-				group->heredoc[id->k++] = list[id->id].val;
+				group->heredoc[id->k++] = ft_strdup(list[id->id].val);
 		}
 		else if (list[id->id].type == RD_OUT || list[id->id].type == RD_APPEND)
 		{
@@ -67,13 +67,15 @@ static void	lx_cmd_group_gen(t_shell *mns, t_token *list, t_cmd *group)
 	group->out = malloc(group->out_cnt * sizeof(t_token));
 	if (!group->out)
 		ft_bad_alloc(mns);
-	group->heredoc = malloc(group->heredoc_cnt * sizeof(t_token));
+	group->heredoc = malloc((group->heredoc_cnt + 1) * sizeof(char *));
 	if (!group->heredoc)
 		ft_bad_alloc(mns);
-	group->cmd_arg = malloc(group->arg_cnt * sizeof(char *));
+	group->cmd_arg = malloc((group->arg_cnt + 1) * sizeof(char *));
 	if (!group->cmd_arg)
 		ft_bad_alloc(mns);
 	lx_group_copy(list, group, &id);
+	group->heredoc[group->heredoc_cnt] = NULL;
+	group->cmd_arg[group->arg_cnt] = NULL;
 }
 
 void	lx_cmd_group(t_shell *mns)
