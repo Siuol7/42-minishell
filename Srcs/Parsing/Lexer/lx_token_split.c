@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 10:38:56 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/26 01:55:15 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/01 15:58:34 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static char	**lx_splitting(char *in, char **res, int i, int lim)
 	return (res);
 }
 
-char	**lx_token_split(t_shell *mns, char *input)
+char	**lx_token_split(t_shell *mns, char *input, int i)
 {
 	int		wordcnt;
 	char	**final;
@@ -77,6 +77,6 @@ char	**lx_token_split(t_shell *mns, char *input)
 		return (NULL);
 	}
 	final[wordcnt] = NULL;
-	mns->token_cnt = wordcnt;
+	mns->cmd_group[i].token_cnt = wordcnt;
 	return (final);
 }

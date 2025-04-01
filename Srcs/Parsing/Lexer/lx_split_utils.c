@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:17:55 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/27 01:29:53 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/03/31 12:22:27 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ int	lx_split_word(char *in, char **res, int *start, int *i)
 	int	end;
 
 	end = lx_skip_word(in, *start);
-	if (*start == end)
-		return (1);
 	res[*i] = ft_substr(in, *start, end - *start);
 	if (!res[*i])
 	{
