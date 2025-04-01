@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ast.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:40:48 by tripham           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2025/03/31 22:14:14 by tripham          ###   ########.fr       */
-=======
-/*   Updated: 2025/03/31 01:22:34 by caonguye         ###   ########.fr       */
->>>>>>> main
+/*   Updated: 2025/04/01 20:25:05 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +21,14 @@ typedef enum e_ast_type
 	NODE_CMD,
 	NODE_PIPE
 }	t_ast_type;
+
 typedef struct s_ast
 {
-<<<<<<< HEAD
-	t_ast_type		type;       // CMD hoặc PIPE
-	t_token			*cmd_tokens; // trỏ tới t_cmd.list
-=======
-	int				id;
-	//t_token			token;
->>>>>>> main
-	struct s_ast	*right;
+	t_ast_type		type;         // NODE_CMD hoặc NODE_PIPE
+	t_token			*cmd_tokens;  // Chứa list từ t_cmd
+	int				cmd_index;    // Index của group (ví dụ: 0, 1, 2)
 	struct s_ast	*left;
+	struct s_ast	*right;
 }	t_ast;
 
 // AST

@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/01 19:48:50 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/01 20:13:52 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ typedef struct s_shell
 	int		exitcode;
 	int		shlvl;
 	char	*full_cmd_line;
-	char	**cmd_str;
+	char	**cmd_str; // 'ls-la'
 	char	**env;
-	t_list	**list;
+	t_list	**list; // 'la -la' 
 	t_cmd	*cmd_group;
 	int		shell_err;
 	t_ast	*ast;
