@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/01 19:23:29 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/01 20:32:06 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ static void	shell_input_operate(t_shell *mns)
 		for (int m = 0; m < mns->cmd_group[i].out_cnt; m++)
 			printf("File out %s type %d\n", mns->cmd_group[i].out[m].val, mns->cmd_group[i].out[m].type);
 		for (int n = 0; n < mns->cmd_group[i].heredoc_cnt; n++)
-			printf("HEREDOC %s\n", mns->cmd_group[i].heredoc[n]);
+			printf("HEREDOC %d is  %s\n", n, mns->cmd_group[i].heredoc[n]);
 	}
 }
 
