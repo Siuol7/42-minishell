@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 01:59:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/01 19:02:32 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/02 02:16:27 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,12 @@ static void	prs_extra_arg(t_shell *mns, char c)
 static void	prs_extra_cmd(t_shell *mns)
 {
 	char	*new;
+	char	*temp;
 
 	new = readline("> ");
+	temp = new;
 	new = ft_strjoin(" ", new);
+	free(temp);
 	mns->full_cmd_line = ft_strjoin_free(mns->full_cmd_line, new);
 	free(new);
 }
@@ -67,6 +70,7 @@ void	prs_extra_check(t_shell *mns)
 	}
 	if (open != 'e')
 		prs_extra_arg(mns, open);
-	else if (mns->full_cmd_line[i - 1] == '|')
+	else if (mns->full_cmd_line[i - 1] == '|'
+			&& mns->full_cmd_line[i - 2] != '|')
 		prs_extra_cmd(mns);
 }
