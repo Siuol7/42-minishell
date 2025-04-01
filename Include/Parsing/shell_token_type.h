@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 01:28:19 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/01 14:23:15 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/01 18:32:51 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,6 @@ typedef enum s_type
 	RD_RNW
 }	t_type;
 
-typedef struct s_rd
-{
-	t_type	type;
-	char	*val;
-}	t_rd;
-
 typedef struct s_token
 {
 	t_type	type;
@@ -49,8 +43,8 @@ typedef struct s_cmd
 	int		heredoc_cnt;
 	char	*cmd;
 	char	**cmd_arg;
-	t_rd	in;
-	t_rd	*out;
+	t_token	in;
+	t_token	*out;
 	char	**heredoc;
 }	t_cmd;
 

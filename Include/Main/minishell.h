@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/01 03:59:32 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/01 18:37:17 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,5 @@ void	shell_token_gen(t_shell *mns, char *input);
 
 //ERROR HANDLING
 void	ft_bad_alloc(t_shell *mns);
-void	ft_not_support(t_shell *mns, char *str);
 
 #endif
