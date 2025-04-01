@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/03/31 01:33:48 by caonguye         ###   ########.fr        #
+#    Updated: 2025/04/01 13:37:08 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ LEXER_C			:=	shell_token_gen.c		\
 					lx_group_utils.c		\
 					lx_token_split.c		\
 					lx_split_utils.c		\
-					lx_cmd_group_utils.c	\
+					lx_cmd_group.c	\
 					lx_classify_utils.c
 
 #Parser

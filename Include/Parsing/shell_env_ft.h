@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 01:22:16 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 23:19:30 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/01 14:57:08 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ typedef struct s_sort
 	int	i;
 	int	j;
 	int	k;
+	int	id;
 	int	ls;
 	int	rs;
 }	t_sort;

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/01 12:29:03 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/01 15:38:57 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ static void	lx_token_listing(t_shell *mns)
 	while (i < mns->group_cnt)
 	{
 		mns->cmd_group[i].list = malloc(mns->cmd_group[i].token_cnt
-			* sizeof(t_token));
+				* sizeof(t_token));
 		if (!mns->cmd_group[i].list)
 			ft_bad_alloc(mns);
 		i++;
@@ -107,11 +107,8 @@ static void	lx_token_listing(t_shell *mns)
 	i = 0;
 	while (i < mns->group_cnt)
 	{
-		printf("Group %d\n", i);
-		for (int j = 0; j < mns->cmd_group[i].token_cnt; j++)
-			printf("Token :%s\n", mns->cmd_group[i].token[j]);
-		lx_typize_token(mns, mns->cmd_group[i].list, mns->cmd_group[i].token
-			, mns->cmd_group[i].token_cnt);
+		lx_typize_token(mns, mns->cmd_group[i].list, mns->cmd_group[i].token,
+			mns->cmd_group[i].token_cnt);
 		i++;
 	}
 }
@@ -134,9 +131,13 @@ void	shell_token_gen(t_shell *mns, char *input)
 	while (i < mns->group_cnt)
 	{
 		mns->cmd_group[i].token = lx_token_split(mns, mns->cmd_str[i], i);
-		if(!mns->cmd_group[i].token)
+		if (!mns->cmd_group[i].token)
 			ft_bad_alloc(mns);
 		i++;
 	}
+	i = 0;
+	while (i < mns->group_cnt)
+		ft_memset(&mns->cmd_group[i++], 0, sizeof(t_cmd));
 	lx_token_listing(mns);
+	lx_cmd_group(mns);
 }

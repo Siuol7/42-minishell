@@ -6,15 +6,11 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 14:45:20 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/31 15:59:27 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/01 15:09:29 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-check shlvl exist -> initalize shlvl -> join shlvl=*value* -> strdup -> add to env
-
-
 
 static void	env_shlvl_check(t_shell *mns)
 {
