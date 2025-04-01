@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/01 18:15:04 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/01 19:02:09 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,18 @@
 
 static void	shell_input_operate(t_shell *mns)
 {
-	//prs_extra_check(mns);
+	prs_extra_check(mns);
 	add_history(mns->full_cmd_line);
 	shell_token_gen(mns, mns->full_cmd_line);
-	// if (prs_cmd_check(mns) && mns->shell_err != -2)
-	// {
-	// 	mns->ast = ast_root_init(mns->list, mns->token_cnt);
-	// 	if (!mns->ast)
-	// 		shell_clean(mns);
-	// 	exec_ast(mns, mns->ast);
-	// }
-	//else
-	//	printf("bash: Not supporting '||' type");
+	if (prs_cmd_check(mns) && mns->shell_err != -2)
+	{
+		mns->ast = ast_root_init(mns->list, mns->token_cnt);
+		if (!mns->ast)
+			shell_clean(mns);
+		exec_ast(mns, mns->ast);
+	}
+	else
+		printf("bash: Not supporting '||' type");
 	printf("Group cnt %d\n", mns->group_cnt);
 	for (int i = 0; i < mns->group_cnt; i++)
 	{

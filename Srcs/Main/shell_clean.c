@@ -6,11 +6,11 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/01 18:35:39 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/01 18:42:11 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "minishell.h"
+#include "minishell.h"
 
 // static void	free_list(t_token *list, int size)
 // {

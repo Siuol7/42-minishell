@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:47:55 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/01 18:28:03 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/01 19:00:28 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ static void	lx_out_hd_cnt(t_token *list, t_cmd *group)
 	i = 0;
 	while (i < group->token_cnt)
 	{
-		if (list[i].type == RD_OUT)
+		if (list[i].type == RD_OUT || list[i].type == RD_APPEND)
 			group->out_cnt++;
 		else if (list[i].type == RD_HEREDOC)
 			group->heredoc_cnt++;

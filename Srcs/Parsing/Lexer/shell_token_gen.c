@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/01 16:43:59 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/01 19:01:12 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	lx_typize_token(t_shell *mns, t_token *list, char **str, int size)
 		if (lx_is_rd(str[i]))
 		{
 			list[i].type = SIGN;
-			if (i++ < size)
+			if (++i < size)
 			{
 				list[i].val = str[i];
 				list[i].type = lx_rd_type(str[i - 1]);
