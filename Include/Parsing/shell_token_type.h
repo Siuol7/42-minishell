@@ -39,32 +39,12 @@ typedef struct s_rd
 }	t_rd;
 typedef struct s_token
 {
-<<<<<<< HEAD
-	t_token_type	type;
-	char			*val;
-=======
 	t_type	type;
 	char	*val;
->>>>>>> main
 }	t_token;
 
 typedef struct s_cmd
 {
-<<<<<<< HEAD
-	int			token_cnt;
-	char		**token;
-	t_token		*list;
-
-	int			out_cnt;
-	int			heredoc_cnt;
-
-	char		*cmd;
-	char		**cmd_arg;
-
-	t_rd		in;
-	t_rd		*out;
-	char		**heredoc;
-=======
 	int		token_cnt;
 	char	**token;
 	t_token	*list;
@@ -76,7 +56,6 @@ typedef struct s_cmd
 	t_token	in;
 	t_token	*out;
 	char	**heredoc;
->>>>>>> main
 }	t_cmd;
 
 #endif

@@ -95,11 +95,7 @@ static void	lx_typize_token(t_shell *mns, t_token *list, char **str, int size)
 	}
 }
 
-<<<<<<< HEAD
-static void	 lx_token_listing(t_shell *mns, char **str)
-=======
 static void	lx_token_listing(t_shell *mns)
->>>>>>> main
 {
 	int	i;
 
