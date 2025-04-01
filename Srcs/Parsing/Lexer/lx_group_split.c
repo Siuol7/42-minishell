@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 23:27:08 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/31 15:46:57 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/01 12:30:53 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,13 @@ static int	lx_groupcnt(char *input)
 	{
 		if (ft_is_dquote(input[i]))
 			lx_skip_dquote(input, &i);
-		else if (input[i] == '|')
+		else if (i + 1 < size && input[i] == '|' && input[i] != input[i + 1])
 		{
 			cnt++;
 			i++;
 		}
+		else if (i + 1 < size && input[i] == '|' && input[i] == input[i + 1])
+			return (-1);
 		else
 			i++;
 	}
@@ -53,6 +55,11 @@ char	**lx_group_split(t_shell *mns, char *input)
 	char	**res;
 
 	groupcnt = lx_groupcnt(input);
+	if (groupcnt == -1)
+	{
+		mns->shell_err = -2;
+		return (NULL);
+	}
 	final = (char **)malloc((groupcnt + 1) * sizeof (char *));
 	if (!final)
 		return (NULL);

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 09:41:54 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/31 16:08:45 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/01 02:36:02 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,6 @@ t_type	lx_rd_type(char *str)
 		return (RD_APPEND);
 	else if (!ft_strcmp(str, "<<"))
 		return (RD_HEREDOC);
-	else if (!ft_strcmp(str, "<>"))
+	else
 		return (RD_RNW);
 }
