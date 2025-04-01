@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:40:48 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/24 20:22:34 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/31 22:14:14 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,15 @@
 typedef struct s_shell	t_shell;
 typedef struct s_token	t_token;
 
+typedef enum e_ast_type
+{
+	NODE_CMD,
+	NODE_PIPE
+}	t_ast_type;
 typedef struct s_ast
 {
-	int				id;
-	t_token			token;
+	t_ast_type		type;       // CMD hoặc PIPE
+	t_token			*cmd_tokens; // trỏ tới t_cmd.list
 	struct s_ast	*right;
 	struct s_ast	*left;
 }	t_ast;

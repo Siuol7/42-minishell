@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:56:17 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/28 03:41:10 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/29 16:26:35 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,11 @@ int	find_priority(t_token *token, int size)
 		else if (token[index].type == RD_IN || token[index].type == RD_OUT
 			|| token[index].type == RD_APPEND
 			|| token[index].type == RD_HEREDOC)
+		{
 			index_rd = index;
+			printf("val = %d\n", token[index].type);
+			printf("Reach here priority\n");
+		}
 		index++;
 	}
 	if (index_pipe != -1)

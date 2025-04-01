@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:13:21 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/28 02:39:25 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/29 22:08:42 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,14 +33,14 @@ void	exec_non_builtin(t_shell *mns, t_token token)
 			free_all(&mns->ast, &mns);
 			exit(127);
 		}
-		execve(command_path, mns->splitted_cmd, mns->env);
+		execve(command_path, mns->cmd[0].cmd_gr, mns->env); // check
 		handle_execution_error(command_path, mns->cmd[0].cmd_gr);
 	}
 
 	wait_update(mns, pid);
 }
 
-int exec_rd_io(t_shell *mns, t_ast *rd_ast)
+int exec_rd_io(t_shell *mns, t_ast *rd_ast, int *fd)
 {
 	int	res;
 
@@ -70,43 +70,62 @@ static int	is_rd(t_token_type type)
 
 void	exec_cmd(t_shell *mns, t_token token)
 {
-	(void)token;
+
+	// const int	tmp[2] = {dup(STDIN_FILENO), dup(STDOUT_FILENO)};
+	
+	// if (mns->ast)
+	// {
+	// 	if (mns->ast->left && is_rd(mns->ast->left->token.type))
+	// 	{
+	// 		if (exec_rd_io(mns, mns->ast->left) == EXIT_FAILURE)
+	// 		{
+	// 			redirect_fd(tmp[0], STDIN_FILENO);
+	// 			redirect_fd(tmp[1], STDOUT_FILENO);
+	// 			return ;	
+	// 		}
+	// 	}
+	// 	if (mns->ast->right && is_rd(mns->ast->right->token.type))
+	// 	{
+	// 		if (exec_rd_io(mns, mns->ast->right) == EXIT_FAILURE)
+	// 		{
+	// 			redirect_fd(tmp[0], STDIN_FILENO);
+	// 			redirect_fd(tmp[1], STDOUT_FILENO);
+	// 			return ;	
+	// 		}
+	// 	}
+	// }
+	
+	// if (mns->splitted_cmd && mns->splitted_cmd[0])
+	// {
+	// 	t_token tmp_token;
+	// 	tmp_token.val = mns->splitted_cmd[0];
+	// 	if (exec_cmd_check(tmp_token))
+	// 	{
+	// 		exec_builtin(mns, tmp_token);
+	// 	}
+	// 	else
+	// 	{
+	// 		exec_non_builtin(mns, tmp_token);
+	// 	}
+	// }
+	// redirect_fd(tmp[0], STDIN_FILENO);
+	// redirect_fd(tmp[1], STDOUT_FILENO);
+	int			fd[2];
 	const int	tmp[2] = {dup(STDIN_FILENO), dup(STDOUT_FILENO)};
-	
-	if (mns->ast)
+
+	fd[0] = -2;
+	fd[1] = -2;
+	if (redirect_io(shell, token.redirect, fd) == EXIT_FAILURE)
 	{
-		if (mns->ast->left && is_rd(mns->ast->left->token.type))
-		{
-			if (exec_rd_io(mns, mns->ast->left) == EXIT_FAILURE)
-			{
-				redirect_fd(tmp[0], STDIN_FILENO);
-				redirect_fd(tmp[1], STDOUT_FILENO);
-				return ;	
-			}
-		}
-		if (mns->ast->right && is_rd(mns->ast->right->token.type))
-		{
-			if (exec_rd_io(mns, mns->ast->right) == EXIT_FAILURE)
-			{
-				redirect_fd(tmp[0], STDIN_FILENO);
-				redirect_fd(tmp[1], STDOUT_FILENO);
-				return ;	
-			}
-		}
+		redirect_fd(tmp[0], STDIN_FILENO);
+		redirect_fd(tmp[1], STDOUT_FILENO);
+		return ;
 	}
-	
-	if (mns->splitted_cmd && mns->splitted_cmd[0])
+	//env_underscore(shell, token.split_cmd);
+	if (token.cmd && token.split_cmd && token.split_cmd[0])
 	{
-		t_token tmp_token;
-		tmp_token.val = mns->splitted_cmd[0];
-		if (exec_cmd_check(tmp_token))
-		{
-			exec_builtin(mns, tmp_token);
-		}
-		else
-		{
-			exec_non_builtin(mns, tmp_token);
-		}
+		if (execute_builtin(shell, token.split_cmd) == EXIT_FAILURE)
+			execute_non_builtin(shell, token);
 	}
 	redirect_fd(tmp[0], STDIN_FILENO);
 	redirect_fd(tmp[1], STDOUT_FILENO);

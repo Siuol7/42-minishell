@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:39:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/26 23:54:11 by tripham          ###   ########.fr       */
+/*   Updated: 2025/03/29 21:54:58 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,16 +28,16 @@ static int	exec_rd_in(t_ast *token)
 
 static int exec_rd_out(t_ast *token)
 {
-	int	fd;
+    int fd;
 
-	fd = open(token->token.val, O_CREAT | O_RDWR | O_TRUNC, 0644);
-	if (fd == -1)
-	{
-		ft_printf_fd(2, "minishell: %s: %s\n", token->token.val, strerror(errno));
-		return (-1);
-	}
-	redirect_fd(fd, STDOUT_FILENO);
-	return (0);
+    fd = open(token->token.val, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+    if (fd < 0)
+    {
+        perror("open failed");
+        return (-1);
+    }
+    redirect_fd(fd, STDOUT_FILENO);
+    return (0);
 }
 
 static void	my_putstr_fd(char *s, int fd)
@@ -62,6 +62,7 @@ static int	exec_open_hd(char *heredoc)
 	close(pipe_fd[1]);
 	return (pipe_fd[0]);
 }
+
 
 static int	exec_rd_heredoc(t_ast *token)
 {
