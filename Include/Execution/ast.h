@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ast.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:40:48 by tripham           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/03/31 22:14:14 by tripham          ###   ########.fr       */
+=======
+/*   Updated: 2025/03/31 01:22:34 by caonguye         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +27,13 @@ typedef enum e_ast_type
 }	t_ast_type;
 typedef struct s_ast
 {
+<<<<<<< HEAD
 	t_ast_type		type;       // CMD hoặc PIPE
 	t_token			*cmd_tokens; // trỏ tới t_cmd.list
+=======
+	int				id;
+	//t_token			token;
+>>>>>>> main
 	struct s_ast	*right;
 	struct s_ast	*left;
 }	t_ast;

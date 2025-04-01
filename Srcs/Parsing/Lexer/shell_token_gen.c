@@ -6,7 +6,11 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2025/03/27 19:35:21 by tripham          ###   ########.fr       */
+=======
+/*   Updated: 2025/04/01 19:01:12 by caonguye         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,60 +66,86 @@ static char	*lx_qmarks_eli(t_shell *mns, char *str, int i, int j)
 	return (res);
 }
 
-static void	lx_typize_token(t_shell *mns, char **str, int i, int *cmd)
+static void	lx_typize_token(t_shell *mns, t_token *list, char **str, int size)
 {
-	if (lx_is_oprt(str[i]))
+	int	i;
+
+	i = -1;
+	while (++i < size)
 	{
-		mns->list[i].type = lx_oprt_type(str[i]);
-		mns->list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
-	}
-	else if (lx_is_rd(str[i]))
-	{
-		mns->list[i].type = lx_rd_type(str[i]);
-		mns->list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
-		if (i + 1 < mns->token_cnt)
+		if (lx_is_rd(str[i]))
 		{
-			i++;
-			mns->list[i].type = FD;
-			if (mns->list[i - 1].type == RD_HEREDOC && i + 1 != mns->token_cnt)
-				mns->list[i].type = LIM;
-			mns->list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
+			list[i].type = SIGN;
+			if (++i < size)
+			{
+				list[i].val = str[i];
+				list[i].type = lx_rd_type(str[i - 1]);
+			}
 		}
-	}
-	else
-	{
-		mns->list[i].id = (*cmd)++;
-		mns->list[i].type = CMD;
-		mns->list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
+		else if (i == 0)
+		{
+			list[i].type = CMD;
+			list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
+		}
+		else
+		{
+			list[i].type = ARG;
+			list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
+		}
 	}
 }
 
+<<<<<<< HEAD
 static void	 lx_token_listing(t_shell *mns, char **str)
+=======
+static void	lx_token_listing(t_shell *mns)
+>>>>>>> main
 {
 	int	i;
-	int	cmd;
 
 	i = 0;
-	cmd = 0;
-	while (str[i] && i < mns->token_cnt)
+	while (i < mns->group_cnt)
 	{
-		lx_typize_token(mns, str, i, &cmd);
+		mns->cmd_group[i].list = malloc(mns->cmd_group[i].token_cnt
+				* sizeof(t_token));
+		if (!mns->cmd_group[i].list)
+			ft_bad_alloc(mns);
+		i++;
+	}
+	i = 0;
+	while (i < mns->group_cnt)
+	{
+		lx_typize_token(mns, mns->cmd_group[i].list, mns->cmd_group[i].token,
+			mns->cmd_group[i].token_cnt);
 		i++;
 	}
 }
 
 void	shell_token_gen(t_shell *mns, char *input)
 {
-	mns->splitted_cmd = lx_token_split(mns, input);
-	if (!mns->splitted_cmd)
+	int	i;
+
+	i = 0;
+	mns->cmd_str = lx_group_split(mns, input);
+	if (!mns->cmd_str)
+	{
+		if (mns->shell_err == -2)
+			return ;
 		ft_bad_alloc(mns);
-	mns->list = malloc(mns->token_cnt * sizeof(t_token));
-	if (!mns->list)
+	}
+	mns->cmd_group = malloc(mns->group_cnt * sizeof(t_cmd));
+	while (i < mns->group_cnt)
+		ft_memset(&mns->cmd_group[i++], 0, sizeof(t_cmd));
+	if (!mns->cmd_group)
 		ft_bad_alloc(mns);
-	lx_token_listing(mns, mns->splitted_cmd);
-	mns->cmd_cnt = lx_cmd_group_cnt(mns);
-	mns->cmd = malloc(mns->cmd_cnt * sizeof(t_cmd));
-	if (!mns->cmd)
-		ft_bad_alloc(mns);
-	lx_cmd_grouping(mns);
+	i = 0;
+	while (i < mns->group_cnt)
+	{
+		mns->cmd_group[i].token = lx_token_split(mns, mns->cmd_str[i], i);
+		if (!mns->cmd_group[i].token)
+			ft_bad_alloc(mns);
+		i++;
+	}
+	lx_token_listing(mns);
+	lx_cmd_group(mns);
 }
