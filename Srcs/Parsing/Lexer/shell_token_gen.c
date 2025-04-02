@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/01 19:53:35 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/03 02:04:21 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ static void	lx_typize_token(t_shell *mns, t_token *list, char **str, int size)
 			list[i].type = SIGN;
 			if (++i < size)
 			{
-				list[i].val = str[i];
+				list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
 				list[i].type = lx_rd_type(str[i - 1]);
 			}
 		}

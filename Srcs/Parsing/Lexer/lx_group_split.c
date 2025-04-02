@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 23:27:08 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/01 12:30:53 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/03 02:09:08 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,12 @@ static int	lx_groupcnt(char *input)
 	return (cnt + 1);
 }
 
-static char	**lx_splitting(char *in, char **res, int i, int lim)
+static char	**lx_splitting(char *in, char **res, int lim)
 {
+	int	i;
 	int	start;
 
+	i = 0;
 	start = 0;
 	while (i < lim && in[start])
 		lx_split_group(in, res, &start, &i);
@@ -61,10 +63,8 @@ char	**lx_group_split(t_shell *mns, char *input)
 		return (NULL);
 	}
 	final = (char **)malloc((groupcnt + 1) * sizeof (char *));
-	if (!final)
-		return (NULL);
 	res = final;
-	if (!lx_splitting(input, res, 0, groupcnt))
+	if (!lx_splitting(input, res, groupcnt))
 	{
 		free(final);
 		return (NULL);
