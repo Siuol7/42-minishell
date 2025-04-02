@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/02 10:38:40 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/02 10:41:05 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/03 02:19:38 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_wholespace(char *str)
 {
-	int i;
-	int size;
+	int	i;
+	int	size;
 
 	i = 0;
 	size = ft_strlen(str);

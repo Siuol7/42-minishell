@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/03 02:01:39 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/03 02:18:45 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ static void	free_cmd_group(t_cmd *group, int id)
 {
 	if (group[id].list)
 		free_list(group[id].list, group[id].token_cnt);
-	// if (group[id].cmd)
-	// 	free(group[id].cmd);
 	if (group[id].cmd_arg)
 		free(group[id].cmd_arg);
 	if (group[id].token)

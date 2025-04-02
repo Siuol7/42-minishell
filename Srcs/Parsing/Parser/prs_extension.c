@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 01:59:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/03 02:16:07 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/03 02:18:30 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ static int	prs_extra_cmd(t_shell *mns)
 	{
 		new = readline("> ");
 		if (new[0])
-			break;
+			break ;
 	}
 	temp = new;
 	new = ft_strjoin(" ", new);
@@ -115,6 +115,6 @@ void	prs_extra_check(t_shell *mns)
 	while (1)
 	{
 		if (!prs_check(mns, 0, 0, 0))
-			break;
+			break ;
 	}
 }

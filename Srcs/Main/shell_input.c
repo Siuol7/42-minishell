@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/03 02:13:03 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/03 02:19:54 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,23 +22,6 @@ static void	shell_input_operate(t_shell *mns)
 	else if (prs_cmd_check(mns))
 	{
 		printf("OK to work\n");
-		// mns->ast = ast_root_init(mns->list, mns->token_cnt);
-		// if (!mns->ast)
-		// 	shell_clean(mns);
-		// exec_ast(mns, mns->ast);
-	}
-	printf("Group cnt %d\n", mns->group_cnt);
-	for (int i = 0; i < mns->group_cnt; i++)
-	{
-		printf("Group %d : %s\n", i, mns->cmd_str[i]);
-		printf("CMD %s\n", mns->cmd_group[i].cmd);
-		for (int j = 0; j < mns->cmd_group[i].arg_cnt; j++)
-			printf("CMD ARG %d : %s\n", j, mns->cmd_group[i].cmd_arg[j]);
-		printf("File in %s type %d\n", mns->cmd_group[i].in.val, mns->cmd_group[i].in.type);
-		for (int m = 0; m < mns->cmd_group[i].out_cnt; m++)
-			printf("File out %s type %d\n", mns->cmd_group[i].out[m].val, mns->cmd_group[i].out[m].type);
-		for (int n = 0; n < mns->cmd_group[i].heredoc_cnt; n++)
-			printf("HEREDOC %d is  %s\n", n, mns->cmd_group[i].heredoc[n]);
 	}
 }
 
