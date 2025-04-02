@@ -1,21 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   ft_wholespace.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/14 10:07:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/03 01:13:55 by caonguye         ###   ########.fr       */
+/*   Created: 2025/04/02 10:38:40 by caonguye          #+#    #+#             */
+/*   Updated: 2025/04/02 10:41:05 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
+#include "libft.h"
 
-# define ERROR_H
-
-typedef enum s_error
+int	ft_wholespace(char *str)
 {
-	ERR_ALLOC
-}	t_error;
-#endif
+	int i;
+	int size;
+
+	i = 0;
+	size = ft_strlen(str);
+	if (i == size)
+		return (1);
+	while (i < size)
+	{
+		if (ft_isallspace(str[i]))
+			i++;
+		else
+			return (0);
+	}
+	return (1);
+}
