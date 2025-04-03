@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/02 21:01:41 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/03 20:17:11 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,9 @@ static void	shell_input_operate(t_shell *mns)
 	prs_extra_check(mns);
 	add_history(mns->full_cmd_line);
 	shell_token_gen(mns, mns->full_cmd_line);
-
-	if (prs_cmd_check(mns) && mns->shell_err != -2)
+	if (mns->shell_err == -2)
+		printf("bash: Not supporting '||' type\n");
+	else if (prs_cmd_check(mns))
 	{
 		printf("OK to work\n");
 		mns->ast = ast_init(mns->cmd_group, mns->group_cnt, 0);

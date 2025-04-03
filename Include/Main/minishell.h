@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/01 20:13:52 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/03 20:15:47 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,6 @@ void	shell_token_gen(t_shell *mns, char *input);
 
 //ERROR HANDLING
 void	ft_bad_alloc(t_shell *mns);
+void	shell_err(t_shell *mns);
 
 #endif

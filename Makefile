@@ -6,7 +6,7 @@
 #    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/02 20:46:02 by tripham          ###   ########.fr        #
+#    Updated: 2025/04/03 20:15:44 by tripham          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,7 +47,7 @@ LEXER_C			:=	shell_token_gen.c		\
 					lx_group_utils.c		\
 					lx_token_split.c		\
 					lx_split_utils.c		\
-					lx_cmd_group.c	\
+					lx_cmd_group.c			\
 					lx_classify_utils.c
 
 #Parser
