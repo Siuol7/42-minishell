@@ -6,54 +6,54 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:56:17 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/29 16:26:35 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/02 20:24:18 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+// #include "minishell.h"
 
-void	ast_free_node(t_ast *node)
-{
-	if (!node)
-		return ;
-	if (node->left)
-		ast_free_node(node->left);
-	if (node->right)
-		ast_free_node(node->right);
-	if (node->token.val)
-		free(node->token.val);
-	free(node);
-}
+// void	ast_free_node(t_ast *node)
+// {
+// 	if (!node)
+// 		return ;
+// 	if (node->left)
+// 		ast_free_node(node->left);
+// 	if (node->right)
+// 		ast_free_node(node->right);
+// 	if (node->token.val)
+// 		free(node->token.val);
+// 	free(node);
+// }
 
-int	find_priority(t_token *token, int size)
-{
-	int	index;
-	int	index_pipe;
-	int	index_rd;
+// int	find_priority(t_token *token, int size)
+// {
+// 	int	index;
+// 	int	index_pipe;
+// 	int	index_rd;
 
-	index = 0;
-	index_pipe = -1;
-	index_rd = -1;
-	while (index < size)
-	{
-		if (token[index].type == OP_PIPE)
-		{
-			index_pipe = index;
-		}
-		else if (token[index].type == RD_IN || token[index].type == RD_OUT
-			|| token[index].type == RD_APPEND
-			|| token[index].type == RD_HEREDOC)
-		{
-			index_rd = index;
-			printf("val = %d\n", token[index].type);
-			printf("Reach here priority\n");
-		}
-		index++;
-	}
-	if (index_pipe != -1)
-		return (index_pipe);
-	return (index_rd);
-}
+// 	index = 0;
+// 	index_pipe = -1;
+// 	index_rd = -1;
+// 	while (index < size)
+// 	{
+// 		if (token[index].type == OP_PIPE)
+// 		{
+// 			index_pipe = index;
+// 		}
+// 		else if (token[index].type == RD_IN || token[index].type == RD_OUT
+// 			|| token[index].type == RD_APPEND
+// 			|| token[index].type == RD_HEREDOC)
+// 		{
+// 			index_rd = index;
+// 			printf("val = %d\n", token[index].type);
+// 			printf("Reach here priority\n");
+// 		}
+// 		index++;
+// 	}
+// 	if (index_pipe != -1)
+// 		return (index_pipe);
+// 	return (index_rd);
+// }
 
 // void	ast_clean_all(t_ast **ast)
 // {

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 02:39:14 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/01 19:39:44 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/01 20:21:16 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	prs_cmd_check(t_shell *mns)
 				&& j == mns->cmd_group[i].token_cnt -1)
 			{
 				ft_printf_fd(2,
-					"minishell: syntax error: unexpected token `newline'\n");
+					"bash: syntax error: unexpected token `newline'\n");
 				return (0);
 			}
 			j++;

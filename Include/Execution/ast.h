@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:40:48 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/01 20:25:05 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/02 20:12:50 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,7 @@ typedef struct s_ast
 void	ast_free_node(t_ast *node);
 int		find_priority(t_token *token, int size);
 
-t_ast	*ast_handle_pipe(t_ast *node);
-t_ast	*ast_handle_rd(t_ast *node, t_token *token);
-
-t_ast	*ast_handle_pipe_build(t_ast *root, t_token *token,
-			int size, int op_index);
-int		ast_build_tree(t_ast *root, t_token *token, int size, int op_index);
-t_ast	*ast_handle_rd_build(t_ast *node, t_token *token,
-			int size, int op_index);
-t_ast	*ast_root_init(t_token *token, int size);
-t_ast	*ast_init(t_token *token);
+t_ast	*create_ast_node_cmd(t_token *tokens, int index);
+t_ast	*create_ast_node_pipe(void);
+t_ast	*ast_init(t_cmd *cmd_group, int group_cnt, int base_index);
 #endif

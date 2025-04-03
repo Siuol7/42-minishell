@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:46:16 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/27 20:18:53 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/02 20:17:10 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	check_error(char *cmd)
 void	exec_error(t_shell *mns, char *cmd_path, char *ms1, char *ms2)
 {
 	if (ms1 && ms2)
-		ft_printf_fd(STDERR_FILENO, "%s : %s\n", ms1, ms2);
+		ft_printf_fd(STDERR_FILENO, "%s: %s\n", ms1, ms2);
 	if (cmd_path)
 		free(cmd_path);
 	shell_clean(mns);

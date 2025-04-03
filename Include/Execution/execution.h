@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 23:13:23 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/27 20:12:44 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/02 20:38:41 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 typedef struct s_shell	t_shell;
 
 void	redirect_fd(int from_fd, int to_fd);
-void	exec_ast(t_shell *mns, t_ast *ast);
+void	exec_ast(t_ast *node, t_shell *mns);
 
 int		handle_signals_default(void);
 void	handle_sigint(int signal_val);
@@ -34,8 +34,9 @@ int		update_status(t_shell *mns, int new_status);
 void	wait_update(t_shell *mns, pid_t pid);
 char	*found_command_path(t_shell *mns, char *cmd);
 //Builtin functions
-int		exec_cmd_check(t_token token);
+int		exec_cmd_check(char *cmd_name);
 void	exec_builtin(t_shell *mns, t_token token);
+
 void	exec_echo(t_shell *mns, t_token token);
 void	exec_cd(t_shell *mns, t_token token);
 void	exec_pwd(t_shell *mns, t_token token);
@@ -55,10 +56,10 @@ void	exec_error(t_shell *mns, char *cmd_path, char *ms1, char *ms2);
 
 
 // Execution
-void	exec_non_builtin(t_shell *mns, t_token token);
-void	exec_cmd(t_shell *mns, t_token token);
+void	exec_non_builtin(t_shell *mns, t_cmd *cmd);
+void	exec_cmd(t_shell *mns, t_cmd *cmd);
 
 // Redirect
-int		exec_rd_process(t_ast *token);
-int		exec_rd_io(t_shell *mns, t_ast *rd_ast);
+int		handle_redirection(t_cmd *cmd);
+
 #endif

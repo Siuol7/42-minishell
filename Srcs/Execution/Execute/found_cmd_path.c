@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:44:37 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/28 02:08:53 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/03 19:58:26 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ static char	**found_envp_path(char **envp)
 		if (!cwd[0])
 		{
 			ft_free_2d((void **)cwd);
+			return (NULL);
 		}
 		return (cwd);
 	}
@@ -73,11 +74,13 @@ static int	cmd_check(t_shell *mns, char *cmd)
 	{
 		if (stat(cmd, &sb) == 0 && S_ISDIR(sb.st_mode))
 			exec_error(mns, NULL, cmd, "Is a directory");
-		if (stat(cmd, &sb) == 0 && access(cmd, X_OK) != 0)
-			exec_error(mns, NULL, cmd, "Permission denied");
+		if (stat(cmd, &sb) == 0 && S_ISDIR(sb.st_mode))
+			exec_error(mns, NULL, cmd, "Is a directory");
 		if (access(cmd, F_OK) != 0)
 			return (check_error(cmd));
-		return (EXIT_SUCCESS);
+		if (access(cmd, X_OK) != 0)
+			exec_error(mns, NULL, cmd, "Permission denied");
+				return (EXIT_SUCCESS);
 	}
 	return (EXIT_SUCCESS);
 }

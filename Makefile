@@ -6,7 +6,7 @@
 #    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/01 19:46:10 by tripham          ###   ########.fr        #
+#    Updated: 2025/04/02 20:46:02 by tripham          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,9 +65,9 @@ ENVIR_C			:= 	env_gen.c				\
 EXECUTION_SRC	:=	./Srcs/Execution
 
 # AST
-#AST_DIR			:=	$(EXECUTION_SRC)/Ast
+AST_DIR			:=	$(EXECUTION_SRC)/Ast
 
-#AST_C			:=	ast_init.c				\
+AST_C			:=	ast_init.c				\
 					ast_utils.c				\
 					ast_root_init.c
 
@@ -78,9 +78,9 @@ SIGNAL_C		:=	handle_signals_default.c	\
 					signals_initialize.c
 
 # Execute
-#EXECUTE_DIR		:=	$(EXECUTION_SRC)/Execute
+EXECUTE_DIR		:=	$(EXECUTION_SRC)/Execute
 
-#EXECUTE_C		:=	exec_ast.c			\
+EXECUTE_C		:=	exec_ast.c			\
 					exec_utils.c		\
 					exec_cmd_check.c	\
 					found_cmd_path.c	\

@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:06:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/23 03:12:03 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/02 20:41:15 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	free_all(t_ast **ast, t_shell **mns)
 {
 	if (ast && *ast)
 	{
-		ast_free_node(*ast);
+		//ast_free_node(*ast);
 		*ast = NULL;
 	}
 	if (mns && *mns)
