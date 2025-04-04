@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 23:13:23 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/02 20:38:41 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:55:24 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	handle_sigint(int signal_val);
 void	handle_sigint_heredoc(int signal_val);
 
 void	free_all(t_ast **ast, t_shell **mns);
+void	ast_clean_all(t_ast *ast);
 
 void	signals_exit_configure(t_shell *mns);
 int		signals_initialize(void);
@@ -61,5 +62,9 @@ void	exec_cmd(t_shell *mns, t_cmd *cmd);
 
 // Redirect
 int		handle_redirection(t_cmd *cmd);
+
+// handle_heredoc
+char	*heredoc_tmp(char *limiter);
+void	heredoc_expand_all(t_shell *mns);
 
 #endif

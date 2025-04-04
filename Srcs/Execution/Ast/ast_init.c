@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:58:02 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/02 20:07:31 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/04 16:34:04 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 t_ast	*create_ast_node_cmd(t_token *tokens, int index)
 {
-	t_ast	*node = malloc(sizeof(t_ast));
+	t_ast	*node;
+
+	node = malloc(sizeof(t_ast));
 	if (!node)
 		return (NULL);
 	node->type = NODE_CMD;
@@ -27,7 +29,9 @@ t_ast	*create_ast_node_cmd(t_token *tokens, int index)
 
 t_ast	*create_ast_node_pipe(void)
 {
-	t_ast	*node = malloc(sizeof(t_ast));
+	t_ast	*node;
+
+	node = malloc(sizeof(t_ast));
 	if (!node)
 		return (NULL);
 	node->type = NODE_PIPE;
@@ -46,7 +50,6 @@ t_ast	*ast_init(t_cmd *cmd_group, int group_cnt, int base_index)
 		return (NULL);
 	if (group_cnt == 1)
 		return (create_ast_node_cmd(cmd_group[0].list, base_index));
-	
 	pipe_node = create_ast_node_pipe();
 	pipe_node->left = create_ast_node_cmd(cmd_group[0].list, base_index);
 	pipe_node->right = ast_init(cmd_group + 1, group_cnt - 1, base_index + 1);

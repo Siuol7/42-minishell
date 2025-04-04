@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:13:21 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/03 20:02:08 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/04 17:01:55 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	exec_non_builtin(t_shell *mns, t_cmd *cmd)
 {
 	pid_t	pid;
 	char	*command_path;
-	int		status;
 
 	pid = fork();
 	if (pid == -1)
@@ -30,15 +29,13 @@ void	exec_non_builtin(t_shell *mns, t_cmd *cmd)
 		command_path = found_command_path(mns, cmd->cmd_arg[0]);
 		if (!command_path)
 			exit(127);
-		printf("[debug] execve: %s\n", cmd->cmd_arg[0]);
 		execve(command_path, cmd->cmd_arg, mns->env);
-		perror("execve failed");
+		handle_execution_error(command_path, cmd->cmd_arg);
 		exit (1);
 	}
 	else
 	{
-		waitpid(pid, &status, 0);
-		mns->exitcode = WEXITSTATUS(status);
+		wait_update(mns, pid);
 	}
 }
 
@@ -54,14 +51,18 @@ void	exec_cmd(t_shell *mns, t_cmd *cmd)
 		close(tmp[1]);
 		return ;
 	}
-	// if (cmd->cmd_arg && exec_cmd_check(cmd->cmd_arg[0]))
-	// 	exec_builtin(mns, cmd->cmd_arg);
-	// else
-	//{
-		exec_non_builtin(mns, cmd);
-	//}
+	exec_non_builtin(mns, cmd);
+	if (cmd->in.type == RD_HEREDOC)
+		unlink(cmd->in.val);
 	dup2(tmp[0], STDIN_FILENO);
 	dup2(tmp[1], STDOUT_FILENO);
 	close(tmp[0]);
 	close(tmp[1]);
 }
+
+	// if (cmd->cmd_arg && exec_cmd_check(cmd->cmd_arg[0]))
+	// 	exec_builtin(mns, cmd->cmd_arg);
+	// else
+	//{
+		//exec_non_builtin(mns, cmd);
+	//}

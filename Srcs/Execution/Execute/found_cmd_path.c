@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:44:37 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/03 19:58:26 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/04 17:18:26 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,21 @@ static char	*get_command_path(char **envp_paths, char *command)
 	}
 	return (NULL);
 }
+
 static int	cmd_check(t_shell *mns, char *cmd)
 {
-	struct stat sb;
+	struct stat	sb;
+
 	if (!cmd || !cmd[0] || !ft_strcmp(cmd, ".") || !ft_strcmp(cmd, ".."))
 		return (check_error(cmd));
 	else if (ft_strchr(cmd, '/'))
 	{
 		if (stat(cmd, &sb) == 0 && S_ISDIR(sb.st_mode))
 			exec_error(mns, NULL, cmd, "Is a directory");
-		if (stat(cmd, &sb) == 0 && S_ISDIR(sb.st_mode))
-			exec_error(mns, NULL, cmd, "Is a directory");
 		if (access(cmd, F_OK) != 0)
 			return (check_error(cmd));
 		if (access(cmd, X_OK) != 0)
 			exec_error(mns, NULL, cmd, "Permission denied");
-				return (EXIT_SUCCESS);
 	}
 	return (EXIT_SUCCESS);
 }

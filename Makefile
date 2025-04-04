@@ -6,7 +6,7 @@
 #    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/03 20:15:44 by tripham          ###   ########.fr        #
+#    Updated: 2025/04/04 16:17:38 by tripham          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,8 +68,7 @@ EXECUTION_SRC	:=	./Srcs/Execution
 AST_DIR			:=	$(EXECUTION_SRC)/Ast
 
 AST_C			:=	ast_init.c				\
-					ast_utils.c				\
-					ast_root_init.c
+					ast_utils.c				
 
 # Signals
 SIGNAL_DIR		:=	$(EXECUTION_SRC)/Signals

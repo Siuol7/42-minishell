@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_clean.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/03 02:18:45 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/04 15:56:44 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,11 @@ void	shell_clean(t_shell *mns)
 	{
 		free_group(mns->cmd_group, mns->group_cnt);
 		mns->cmd_group = NULL;
+	}
+	if (mns->ast)
+	{
+		ast_clean_all(mns->ast);
+		mns->ast = NULL;
 	}
 	if (mns->env)
 		ft_free_2d((void **)mns->env);
