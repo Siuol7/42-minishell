@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:46:16 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/25 18:03:35 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/04 17:15:32 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,20 @@ void	handle_fork_error(int *pipe)
 	close(pipe[1]);
 	perror("minishell: fork\n");
 	exit (1);
+}
+
+int	check_error(char *cmd)
+{
+	if (!cmd)
+		return (EXIT_FAILURE);
+	if (cmd && !cmd[0])
+		ft_printf_fd(STDERR_FILENO, "command '%s' not found\n", cmd);
+	else if (!ft_strcmp(cmd, "."))
+		ft_printf_fd(STDERR_FILENO, "minishell: .: filename argument requi"
+			"red\n.: usage: . filename [arguments]\n");
+	else if (!ft_strcmp(cmd, ".."))
+		ft_printf_fd(STDERR_FILENO, "%s: command not found\n", cmd);
+	else if (access(cmd, F_OK) != 0)
+		ft_printf_fd(STDERR_FILENO, "%s: No such file or directory\n", cmd);
+	return (EXIT_FAILURE);
 }

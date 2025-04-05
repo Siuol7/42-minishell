@@ -6,25 +6,32 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:44:37 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/25 17:32:13 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/04 17:18:26 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	**found_envp_path(char **envp, char **command)
+static char	**found_envp_path(char **envp)
 {
-	int	i;
+	char	**cwd;
 
-	i = 0;
-	while (envp[i])
+	while (*envp && !ft_strnstr(*envp, "PATH=", 5))
+		envp++;
+	if (!*envp ||!ft_strcmp(*envp, "PATH="))
 	{
-		if (ft_strncmp(envp[i], "PATH=", 5) == 0)
-			return (ft_split(envp[i] + 5, ':'));
-		i++;
+		cwd = (char **)ft_calloc(2, sizeof(char *));
+		if (!cwd)
+			return (NULL);
+		cwd[0] = getcwd(NULL, 0);
+		if (!cwd[0])
+		{
+			ft_free_2d((void **)cwd);
+			return (NULL);
+		}
+		return (cwd);
 	}
-	handle_command_error(command, "No such file or directory");
-	return (NULL);
+	return (ft_split(*envp + 5, ':'));
 }
 
 static char	*join_command_path(char *envp_path, char *command)
@@ -59,27 +66,41 @@ static char	*get_command_path(char **envp_paths, char *command)
 	return (NULL);
 }
 
-char	*found_command_path(char **splitted_command, char **envp)
+static int	cmd_check(t_shell *mns, char *cmd)
+{
+	struct stat	sb;
+
+	if (!cmd || !cmd[0] || !ft_strcmp(cmd, ".") || !ft_strcmp(cmd, ".."))
+		return (check_error(cmd));
+	else if (ft_strchr(cmd, '/'))
+	{
+		if (stat(cmd, &sb) == 0 && S_ISDIR(sb.st_mode))
+			exec_error(mns, NULL, cmd, "Is a directory");
+		if (access(cmd, F_OK) != 0)
+			return (check_error(cmd));
+		if (access(cmd, X_OK) != 0)
+			exec_error(mns, NULL, cmd, "Permission denied");
+	}
+	return (EXIT_SUCCESS);
+}
+
+char	*found_command_path(t_shell *mns, char *cmd)
 {
 	char	**envp_paths;
 	char	*command_path;
 
-	if (ft_strchr(*splitted_command, '/'))
-	{
-		if (access(*splitted_command, F_OK) == 0)
-			return (ft_strdup(*splitted_command));
-		else
-			handle_command_error(splitted_command, "No such file or directory");
-	}
-	envp_paths = found_envp_path(envp, splitted_command);
+	if (cmd_check(mns, cmd) == EXIT_FAILURE)
+		return (NULL);
+	if (ft_strchr(cmd, '/') && access(cmd, F_OK) == 0)
+		return (ft_strdup(cmd));
+	envp_paths = found_envp_path(mns->env);
 	if (!envp_paths)
 		return (NULL);
-	command_path = get_command_path(envp_paths, *splitted_command);
+	command_path = get_command_path(envp_paths, cmd);
+	ft_free_3d((void ***)&envp_paths);
 	if (!command_path)
-	{
-		ft_free_2d((void **)envp_paths);
-		handle_command_error(splitted_command, "command not found");
-	}
-	ft_free_2d((void **)envp_paths);
+		ft_printf_fd(STDERR_FILENO, "%s: command not found\n", cmd);
+	else if (access(command_path, X_OK) != 0)
+		exec_error(mns, NULL, cmd, "Permission denied");
 	return (command_path);
 }
