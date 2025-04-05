@@ -6,18 +6,17 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:13:21 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/25 18:04:34 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/04 17:01:55 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	exec_non_builtin(t_shell *mns, t_token token)
+void	exec_non_builtin(t_shell *mns, t_cmd *cmd)
 {
 	pid_t	pid;
 	char	*command_path;
 
-	(void)token;
 	pid = fork();
 	if (pid == -1)
 	{
@@ -27,24 +26,43 @@ void	exec_non_builtin(t_shell *mns, t_token token)
 	if (pid == 0)
 	{
 		handle_signals_default();
-		command_path = found_command_path(mns->splitted_cmd, mns->env);
+		command_path = found_command_path(mns, cmd->cmd_arg[0]);
 		if (!command_path)
-		{
-			free_all(&mns->ast, &mns);
 			exit(127);
-		}
-		execve(command_path, mns->splitted_cmd, mns->env);
-		handle_execution_error(command_path, mns->splitted_cmd);
+		execve(command_path, cmd->cmd_arg, mns->env);
+		handle_execution_error(command_path, cmd->cmd_arg);
+		exit (1);
 	}
-	wait_update(mns, pid);
-}
-
-void	exec_cmd(t_shell *mns, t_token token)
-{
-	if (exec_cmd_check(token))
-		exec_builtin(mns, token);
 	else
 	{
-		exec_non_builtin(mns, token);
+		wait_update(mns, pid);
 	}
 }
+
+void	exec_cmd(t_shell *mns, t_cmd *cmd)
+{
+	const int	tmp[2] = {dup(STDIN_FILENO), dup(STDOUT_FILENO)};
+
+	if (handle_redirection(cmd) == EXIT_FAILURE)
+	{
+		dup2(tmp[0], STDIN_FILENO);
+		dup2(tmp[1], STDOUT_FILENO);
+		close(tmp[0]);
+		close(tmp[1]);
+		return ;
+	}
+	exec_non_builtin(mns, cmd);
+	if (cmd->in.type == RD_HEREDOC)
+		unlink(cmd->in.val);
+	dup2(tmp[0], STDIN_FILENO);
+	dup2(tmp[1], STDOUT_FILENO);
+	close(tmp[0]);
+	close(tmp[1]);
+}
+
+	// if (cmd->cmd_arg && exec_cmd_check(cmd->cmd_arg[0]))
+	// 	exec_builtin(mns, cmd->cmd_arg);
+	// else
+	//{
+		//exec_non_builtin(mns, cmd);
+	//}

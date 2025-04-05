@@ -1,21 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   prs_cmd_check.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/14 10:07:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/03 01:13:55 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/26 02:39:14 by caonguye          #+#    #+#             */
+/*   Updated: 2025/04/01 20:21:16 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
+#include "minishell.h"
 
-# define ERROR_H
-
-typedef enum s_error
+int	prs_cmd_check(t_shell *mns)
 {
-	ERR_ALLOC
-}	t_error;
-#endif
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < mns->group_cnt)
+	{
+		j = 0;
+		while (j < mns->cmd_group[i].token_cnt)
+		{
+			if (mns->cmd_group[i].list[j].type == SIGN
+				&& j == mns->cmd_group[i].token_cnt -1)
+			{
+				ft_printf_fd(2,
+					"bash: syntax error: unexpected token `newline'\n");
+				return (0);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}

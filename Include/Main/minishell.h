@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 04:06:05 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/03 20:15:47 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,15 +27,15 @@
 
 typedef struct s_shell
 {
-	int		token_cnt;
-	int		cmd_cnt;
+	int		group_cnt;
 	int		exitcode;
+	int		shlvl;
 	char	*full_cmd_line;
+	char	**cmd_str; // 'ls-la'
 	char	**env;
-	char	**splitted_cmd;
-	t_token	*list;
-	t_cmd	*cmd;
-	t_error	shell_err;
+	t_list	**list; // 'la -la' 
+	t_cmd	*cmd_group;
+	int		shell_err;
 	t_ast	*ast;
 }	t_shell;
 
@@ -52,5 +52,6 @@ void	shell_token_gen(t_shell *mns, char *input);
 
 //ERROR HANDLING
 void	ft_bad_alloc(t_shell *mns);
+void	shell_err(t_shell *mns);
 
 #endif

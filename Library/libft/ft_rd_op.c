@@ -1,21 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   ft_rd_op.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/14 10:07:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/03 01:13:55 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/24 10:32:58 by caonguye          #+#    #+#             */
+/*   Updated: 2025/04/01 12:26:00 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
+#include "libft.h"
 
-# define ERROR_H
-
-typedef enum s_error
+int	ft_rd_op(char *str, int id)
 {
-	ERR_ALLOC
-}	t_error;
-#endif
+	if (!str[id])
+		return (0);
+	if (str[id] == '|' || str[id] == '&' || str[id] == '<' || str[id] == '>')
+	{
+		if ((str[id + 1] && str[id + 1] == str[id])
+			|| (str[id + 1] && str[id] == '<' && str[id + 1] == '>'))
+			return (2);
+		return (1);
+	}
+	return (0);
+}

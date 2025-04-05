@@ -6,44 +6,53 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 01:18:05 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/04 15:56:44 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	free_cmd(t_shell *mns)
+static void	free_list(t_token *list, int size)
 {
 	int	i;
 
 	i = 0;
-	while (i < mns->cmd_cnt)
+	while (i < size)
 	{
-		if (mns->cmd[i].cmd_gr)
-		{
-			free(mns->cmd[i].cmd_gr);
-			mns->cmd[i].cmd_gr = NULL;
-		}
+		if (list[i].type != SIGN && list[i].val)
+			free(list[i].val);
 		i++;
 	}
-	free(mns->cmd);
+	free(list);
 }
 
-static void	free_list(t_shell *mns)
+static void	free_cmd_group(t_cmd *group, int id)
+{
+	if (group[id].list)
+		free_list(group[id].list, group[id].token_cnt);
+	if (group[id].cmd_arg)
+		free(group[id].cmd_arg);
+	if (group[id].token)
+		ft_free_2d((void **)group[id].token);
+	if (group[id].heredoc)
+		ft_free_2d((void **)group[id].heredoc);
+	if (group[id].out)
+		free(group[id].out);
+	if (group[id].in.val)
+		free(group[id].in.val);
+}
+
+static void	free_group(t_cmd *group, int size)
 {
 	int	i;
 
 	i = 0;
-	while (i < mns->token_cnt)
+	while (i < size)
 	{
-		if (mns->list[i].val)
-		{
-			free(mns->list[i].val);
-			mns->list[i].val = NULL;
-		}
+		free_cmd_group(group, i);
 		i++;
 	}
-	free(mns->list);
+	free(group);
 }
 
 void	shell_pre_input(t_shell *mns)
@@ -55,20 +64,15 @@ void	shell_pre_input(t_shell *mns)
 		free(mns->full_cmd_line);
 		mns->full_cmd_line = NULL;
 	}
-	if (mns->splitted_cmd)
+	if (mns->cmd_str)
 	{
-		ft_free_2d((void **)mns->splitted_cmd);
-		mns->splitted_cmd = NULL;
+		ft_free_2d((void **)mns->cmd_str);
+		mns->cmd_str = NULL;
 	}
-	if (mns->list)
+	if (mns->cmd_group)
 	{
-		free_list(mns);
-		mns->list = NULL;
-	}
-	if (mns->cmd)
-	{
-		free_cmd(mns);
-		mns->cmd = NULL;
+		free_group(mns->cmd_group, mns->group_cnt);
+		mns->cmd_group = NULL;
 	}
 }
 
@@ -81,20 +85,20 @@ void	shell_clean(t_shell *mns)
 		free(mns->full_cmd_line);
 		mns->full_cmd_line = NULL;
 	}
-	if (mns->splitted_cmd)
+	if (mns->cmd_str)
 	{
-		ft_free_2d((void **)mns->splitted_cmd);
-		mns->splitted_cmd = NULL;
+		ft_free_2d((void **)mns->cmd_str);
+		mns->cmd_str = NULL;
 	}
-	if (mns->list)
+	if (mns->cmd_group)
 	{
-		free_list(mns);
-		mns->list = NULL;
+		free_group(mns->cmd_group, mns->group_cnt);
+		mns->cmd_group = NULL;
 	}
-	if (mns->cmd)
+	if (mns->ast)
 	{
-		free_cmd(mns);
-		mns->cmd = NULL;
+		ast_clean_all(mns->ast);
+		mns->ast = NULL;
 	}
 	if (mns->env)
 		ft_free_2d((void **)mns->env);

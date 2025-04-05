@@ -6,78 +6,52 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:58:02 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/24 20:19:46 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/04 16:34:04 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*init_token_val(char *src)
-{
-	char	*dup;
-
-	if (!src)
-		return (NULL);
-	dup = ft_strdup(src);
-	if (!dup)
-		ft_printf_fd(STDERR_FILENO, "minishell: Malloc failed!\n");
-	return (dup);
-}
-
-t_ast	*ast_init(t_token *token)
+t_ast	*create_ast_node_cmd(t_token *tokens, int index)
 {
 	t_ast	*node;
 
-	if (!token)
-		return (NULL);
-	node = (t_ast *)malloc(sizeof(t_ast));
-	if (!node)
-	{
-		ft_printf_fd(STDERR_FILENO, "minishell: Malloc failed!\n");
-		return (NULL);
-	}
-	node->token.id = token->id;
-	node->token.type = token->type;
-	node->token.val = init_token_val(token->val);
-	if (token->val && !node->token.val)
-	{
-		free(node);
-		return (NULL);
-	}
-	node->left = NULL;
-	node->right = NULL;
-	if (token->type == OP_PIPE)
-		return (ast_handle_pipe(node));
-	if (RD_IN <= token->type && token->type <= RD_HEREDOC)
-		return (ast_handle_rd(node, token));
-	return (node);
-}
-
-t_ast	*ast_handle_rd(t_ast *node, t_token *token)
-{
-	if (!token[1].val)
-	{
-		ft_printf_fd(STDERR_FILENO,
-			"minishell: syntax error near unexpected token `newline'\n");
-		free(node->token.val);
-		free(node);
-		return (NULL);
-	}
-	node->right = ast_init(token + 1);
-	if (!node->right)
-	{
-		free(node->token.val);
-		free(node);
-		return (NULL);
-	}
-	return (node);
-}
-
-t_ast	*ast_handle_pipe(t_ast *node)
-{
+	node = malloc(sizeof(t_ast));
 	if (!node)
 		return (NULL);
+	node->type = NODE_CMD;
+	node->cmd_tokens = tokens;
+	node->cmd_index = index;
 	node->left = NULL;
 	node->right = NULL;
 	return (node);
+}
+
+t_ast	*create_ast_node_pipe(void)
+{
+	t_ast	*node;
+
+	node = malloc(sizeof(t_ast));
+	if (!node)
+		return (NULL);
+	node->type = NODE_PIPE;
+	node->cmd_tokens = NULL;
+	node->cmd_index = -1;
+	node->left = NULL;
+	node->right = NULL;
+	return (node);
+}
+
+t_ast	*ast_init(t_cmd *cmd_group, int group_cnt, int base_index)
+{
+	t_ast	*pipe_node;
+
+	if (group_cnt == 0)
+		return (NULL);
+	if (group_cnt == 1)
+		return (create_ast_node_cmd(cmd_group[0].list, base_index));
+	pipe_node = create_ast_node_pipe();
+	pipe_node->left = create_ast_node_cmd(cmd_group[0].list, base_index);
+	pipe_node->right = ast_init(cmd_group + 1, group_cnt - 1, base_index + 1);
+	return (pipe_node);
 }
