@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 23:13:23 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/04 15:55:24 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/05 20:07:46 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ void	handle_open_error(char *file_name, int which_pipe_end);
 void	handle_fork_error(int *pipe);
 int		check_error(char *command);
 void	exec_error(t_shell *mns, char *cmd_path, char *ms1, char *ms2);
-
-
 
 // Execution
 void	exec_non_builtin(t_shell *mns, t_cmd *cmd);
