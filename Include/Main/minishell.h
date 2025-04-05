@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/03 01:22:06 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/03 20:15:47 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ typedef struct s_shell
 	int		exitcode;
 	int		shlvl;
 	char	*full_cmd_line;
-	char	**cmd_str;
+	char	**cmd_str; // 'ls-la'
 	char	**env;
-	t_list	**list;
+	t_list	**list; // 'la -la' 
 	t_cmd	*cmd_group;
 	int		shell_err;
 	t_ast	*ast;
