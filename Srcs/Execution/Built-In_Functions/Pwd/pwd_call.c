@@ -3,20 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_call.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:36:00 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 04:10:43 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/07 02:05:43 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	bi_pwd(t_shell *mns, t_token token)
+void	bi_pwd(t_shell *mns, t_cmd *cmd)
 {
-	int	id;
+	char	cwd[PATH_MAX];
 
-	id = token.id;
-	(void)id;
 	(void)mns;
+	(void)cmd;
+	if (getcwd(cwd, sizeof(cwd)) != NULL)
+		ft_printf_fd(STDOUT_FILENO, "%s\n", cwd);
+	else
+		perror("pwd");
 }
