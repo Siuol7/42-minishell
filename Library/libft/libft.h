@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 01:01:11 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/08 00:52:14 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/08 11:07:14 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int		ft_strcmp(const char *s1, const char *s2);
 int		ft_strnstr_2d(char **big, const char *little, int len);
 int		ft_atoi(const char *nptr);
 int		ft_append(char **s1, char **s2);
+int		ft_append_2d(char ***s1, char *s2);
 int		ft_free_process_2d(char **arr, size_t cur);
 int		ft_free_process_3d(char ***arr, size_t cur);
 void	ft_free_2d(void **arr);
