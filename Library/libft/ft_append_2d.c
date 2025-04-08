@@ -1,35 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   export_call.c                                      :+:      :+:    :+:   */
+/*   ft_append_2d.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/23 03:00:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/07 11:12:52 by caonguye         ###   ########.fr       */
+/*   Created: 2025/04/08 00:56:11 by caonguye          #+#    #+#             */
+/*   Updated: 2025/04/08 00:57:30 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-static void	ep_variable(t_shell *mns, t_cmd *cmd)
+int	ft_append_2d(char ***s1, char **s2)
 {
-	int	i;
-
-	i = 1;
-	while (i < cmd->arg_cnt)
-	{
-		if (!ep_validation(cmd->cmd_arg[i]))
-			return ;
-		env_append(mns, cmd->cmd_arg[i]);
-		i++;
-	}
-}
-
-void	bi_export(t_shell *mns, t_cmd *cmd)
-{
-	if (cmd->arg_cnt == 1)
-		ep_standalone(mns);
-	else if (cmd->arg_cnt > 1)
-		ep_variable(mns, cmd);
+	
 }
