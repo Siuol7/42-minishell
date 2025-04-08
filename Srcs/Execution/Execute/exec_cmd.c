@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:13:21 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/07 01:44:13 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/08 23:54:31 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,3 @@ void	exec_cmd(t_shell *mns, t_cmd *cmd)
 	close(tmp[0]);
 	close(tmp[1]);
 }
-

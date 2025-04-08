@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:28 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/07 02:08:44 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/07 15:43:17 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	bi_cd(t_shell *mns, t_cmd *cmd)
 	char	*target;
 	char	cwd[PATH_MAX];
 	char	**args;
+	char	*logic_pwd;
 
 	args = cmd->cmd_arg;
 	oldpwd = getcwd(NULL, 0);
@@ -43,5 +44,14 @@ int	bi_cd(t_shell *mns, t_cmd *cmd)
 	set_env_val(&mns->env, "OLDPWD", oldpwd);
 	if (getcwd(cwd, sizeof(cwd)))
 		set_env_val(&mns->env, "PWD", cwd);
+	else
+	{
+		logic_pwd = resolve_logic_pwd(get_env_val(mns, "PWD"), target);
+		if (logic_pwd)
+		{
+			set_env_val(&mns->env, "PWD", logic_pwd);
+			free(logic_pwd);
+		}
+	}
 	return (free(oldpwd), 0);
 }

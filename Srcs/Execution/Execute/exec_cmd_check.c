@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 01:44:07 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/07 01:22:21 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/09 00:02:13 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,24 +76,36 @@
 // 	return (0);
 // }
 
+// void	exec_builtin(t_shell *mns, t_cmd *cmd)
+// {
+// 	char *name = cmd->cmd_arg[0];
+
+// 	// if (!ft_strcmp(name, "echo"))
+// 	// 	bi_echo(mns, cmd);
+// 	if (!ft_strcmp(name, "cd"))
+// 		bi_cd(mns, cmd);
+// 	else if (!ft_strcmp(name, "pwd"))
+// 		bi_pwd(mns, cmd);
+// 	// else if (!ft_strcmp(name, "export"))
+// 	// 	bi_export(mns, cmd);
+// 	// else if (!ft_strcmp(name, "unset"))
+// 	// 	bi_unset(mns, cmd);
+// 	// else if (!ft_strcmp(name, "env"))
+// 	// 	bi_env(mns, cmd);
+// 	// else if (!ft_strcmp(name, "exit"))
+// 	// 	bi_exit(mns, cmd);
+// }
 void	exec_builtin(t_shell *mns, t_cmd *cmd)
 {
-	char *name = cmd->cmd_arg[0];
+	char	*name;
 
-	// if (!ft_strcmp(name, "echo"))
-	// 	bi_echo(mns, cmd);
-	if (!ft_strcmp(name, "cd"))
+	name = cmd->cmd_arg[0];
+	if (!ft_strcmp(name, "echo"))
+		bi_echo(mns, cmd);
+	else if (!ft_strcmp(name, "cd"))
 		bi_cd(mns, cmd);
-	// else if (!ft_strcmp(name, "pwd"))
-	// 	bi_pwd(mns, cmd);
-	// else if (!ft_strcmp(name, "export"))
-	// 	bi_export(mns, cmd);
-	// else if (!ft_strcmp(name, "unset"))
-	// 	bi_unset(mns, cmd);
-	// else if (!ft_strcmp(name, "env"))
-	// 	bi_env(mns, cmd);
-	// else if (!ft_strcmp(name, "exit"))
-	// 	bi_exit(mns, cmd);
+	else if (!ft_strcmp(name, "pwd"))
+		bi_pwd(mns, cmd);
 }
 
 int	exec_cmd_check(char *cmd)

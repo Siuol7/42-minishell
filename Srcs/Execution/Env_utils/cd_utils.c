@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 04:39:28 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/07 02:03:34 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/08 23:53:49 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static char	*create_env_var(const char *env, const char *key)
 	val_len = ft_strlen(env);
 	key_len = ft_strlen(key);
 	env_var = malloc(sizeof(char) * (val_len + key_len + 2));
-	
 	if (!env_var)
 		return (NULL);
 	ft_memcpy(env_var, key, key_len);
@@ -77,7 +76,7 @@ int	set_env_val(char ***env, const char *key, const char *value)
 
 char	*get_env_val(t_shell *mns, char *key)
 {
-	int	i;
+	int		i;
 	size_t	key_len;
 
 	i = 0;

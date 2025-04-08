@@ -6,7 +6,7 @@
 #    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/07 02:06:14 by tripham          ###   ########.fr        #
+#    Updated: 2025/04/09 00:02:20 by tripham          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,9 +96,9 @@ CD_DIR			:= 	$(BUILT_IN_DIR)/Cd
 CD_C			:=	cd_call.c
 
 #Echo
-#ECHO_DIR		:= 	$(BUILT_IN_DIR)/Echo
+ECHO_DIR		:= 	$(BUILT_IN_DIR)/Echo
 
-#ECHO_C			:=	echo_call.c
+ECHO_C			:=	echo_call.c
 
 #Env
 #ENV_DIR			:= 	$(BUILT_IN_DIR)/Env

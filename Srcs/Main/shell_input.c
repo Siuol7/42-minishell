@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/04 16:32:40 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/08 23:52:57 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ static void	shell_input_operate(t_shell *mns)
 		printf("bash: Not supporting '||' type\n");
 	else if (prs_cmd_check(mns))
 	{
-		printf("OK to work\n");
 		heredoc_expand_all(mns);
 		mns->ast = ast_init(mns->cmd_group, mns->group_cnt, 0);
 		exec_ast(mns->ast, mns);
