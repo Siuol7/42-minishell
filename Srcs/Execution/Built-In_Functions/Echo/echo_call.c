@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:58 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 00:09:28 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/09 18:21:59 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,22 @@ int	bi_echo(t_shell *mns, t_cmd *cmd)
 				i++;
 				continue ;
 			}
+		}
+		else if (cmd->cmd_arg[i][0] == '$' && cmd->cmd_arg[i][1] == '?')
+		{
+			ft_printf_fd(1, "%d", mns->exitcode);
+			i++;
+			continue ;
+		}
+		else if (cmd->cmd_arg[i][0] == '$')
+		{
+			ft_printf_fd(1, "%s", cmd->cmd_arg[i]);
+			i++;
+			continue ;
+		}
+		else
+		{
+			break ;
 		}
 		break ;
 	}

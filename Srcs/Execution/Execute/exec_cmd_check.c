@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 01:44:07 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 00:02:13 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/09 21:10:24 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,6 +106,16 @@ void	exec_builtin(t_shell *mns, t_cmd *cmd)
 		bi_cd(mns, cmd);
 	else if (!ft_strcmp(name, "pwd"))
 		bi_pwd(mns, cmd);
+	else if (!ft_strcmp(name, "env"))
+	{
+		printf("env\n");
+		bi_env(mns, cmd);
+	}
+	else if (!ft_strcmp(name, "unset"))
+	{
+		printf("unset\n");
+		bi_unset(cmd->cmd_arg, &mns->env);
+	}	
 }
 
 int	exec_cmd_check(char *cmd)

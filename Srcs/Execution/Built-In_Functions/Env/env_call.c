@@ -3,20 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   env_call.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:23:09 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 04:42:48 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:44:01 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	bi_env(t_shell *mns, t_token token)
+void	env_append(t_shell *mns, char *str)
 {
-	int	id;
+	if (!ft_append_2d(&mns->env, str))
+		ft_bad_alloc(mns);
+}
 
-	id = token.id;
-	if (mns->cmd[id].size == 1)
+void	bi_env(t_shell *mns, t_cmd *cmd)
+{
+	if (cmd->arg_cnt == 1)
 		env_standalone(mns);
 }
