@@ -6,11 +6,17 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 00:05:14 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 22:57:42 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/09 11:11:27 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	env_append(t_shell *mns, char *str)
+{
+	if (!ft_append_2d(&mns->env, str))
+		ft_bad_alloc(mns);
+}
 
 char	**env_sorting(t_shell *mns)
 {
