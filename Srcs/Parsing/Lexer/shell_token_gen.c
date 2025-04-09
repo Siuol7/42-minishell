@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_token_gen.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/03 20:18:06 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/09 16:18:01 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,23 +70,16 @@ static void	lx_typize_token(t_shell *mns, t_token *list, char **str, int size)
 	while (++i < size)
 	{
 		if (lx_is_rd(str[i]))
-		{
-			list[i].type = SIGN;
-			if (++i < size)
-			{
-				list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
-				list[i].type = lx_rd_type(str[i - 1]);
-			}
-		}
+			lx_rd_typize(list, str, &i, size);
 		else if (i == 0)
 		{
 			list[i].type = CMD;
-			list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
+			list[i].val = str[i];
 		}
 		else
 		{
 			list[i].type = ARG;
-			list[i].val = lx_qmarks_eli(mns, str[i], 0, 0);
+			list[i].val = str[i];
 		}
 	}
 }
@@ -117,7 +110,7 @@ void	shell_token_gen(t_shell *mns, char *input)
 {
 	int	i;
 
-	i = 0;
+	i = -1;
 	mns->cmd_str = lx_group_split(mns, input);
 	if (!mns->cmd_str)
 	{
@@ -126,17 +119,16 @@ void	shell_token_gen(t_shell *mns, char *input)
 		ft_bad_alloc(mns);
 	}
 	mns->cmd_group = malloc(mns->group_cnt * sizeof(t_cmd));
-	while (i < mns->group_cnt)
-		ft_memset(&mns->cmd_group[i++], 0, sizeof(t_cmd));
+	while (++i < mns->group_cnt)
+		ft_memset(&mns->cmd_group[i], 0, sizeof(t_cmd));
 	if (!mns->cmd_group)
 		ft_bad_alloc(mns);
-	i = 0;
-	while (i < mns->group_cnt)
+	i = -1;
+	while (++i < mns->group_cnt)
 	{
 		mns->cmd_group[i].token = lx_token_split(mns, mns->cmd_str[i], i);
 		if (!mns->cmd_group[i].token)
 			ft_bad_alloc(mns);
-		i++;
 	}
 	lx_token_listing(mns);
 	lx_cmd_group(mns);

@@ -1,31 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_rd_op.c                                         :+:      :+:    :+:   */
+/*   prs_list_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/24 10:32:58 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 13:10:59 by caonguye         ###   ########.fr       */
+/*   Created: 2025/04/09 15:39:01 by caonguye          #+#    #+#             */
+/*   Updated: 2025/04/09 16:23:14 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-int	ft_rd_op(char *str, int id)
+int	prs_list_check(t_shell *mns)
 {
-	int	size;
+	int	i;
+	int	j;
 
-	size = ft_strlen(str);
-	if (!str[id])
-		return (0);
-	if (id < size && (str[id] == '|' || str[id] == '&'
-			|| str[id] == '<' || str[id] == '>'))
+	i = 0;
+	while (i < mns->group_cnt)
 	{
-		if (id + 1 < size && (((str[id + 1] && str[id + 1] == str[id])
-			|| (str[id + 1] && str[id] == '<' && str[id + 1] == '>'))))
-			return (2);
-		return (1);
+		j = 0;
+		while (j < mns->cmd_group[i].token_cnt)
+		{
+			if (mns->cmd_group[i].list[j].type == SIGN_ERR)
+			{
+				printf("bash: syntax error near unexpected token '%s'",
+					mns->cmd_group[i].list[j].val);
+				return (0);
+			}
+			j++;
+		}
+		i++;
 	}
-	return (0);
+	return (1);
 }

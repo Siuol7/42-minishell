@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 01:28:19 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 03:05:52 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:03:53 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ typedef enum s_type
 	CMD,
 	ARG,
 	SIGN,
+	SIGN_ERR,
 	RD_IN,
 	RD_OUT,
 	RD_APPEND,

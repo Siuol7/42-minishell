@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 11:07:24 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/09 15:42:25 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ static void	shell_input_operate(t_shell *mns)
 	shell_token_gen(mns, mns->full_cmd_line);
 	if (mns->shell_err == -2)
 		printf("bash: Not supporting '||' type\n");
+	else if (!prs_list_check(mns))
+		return ;
 	else if (prs_cmd_check(mns))
 	{
 		heredoc_expand_all(mns);
