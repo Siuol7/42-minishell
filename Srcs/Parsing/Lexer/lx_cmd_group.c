@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:47:55 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 20:38:21 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:32:57 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static void	lx_out_hd_cnt(t_token *list, t_cmd *group)
 
 static void	lx_group_copy(t_token *list, t_cmd *group, t_sort *id)
 {
-	while (id->id < group->token_cnt)
+	while (++id->id < group->token_cnt)
 	{
 		if (list[id->id].type == CMD)
 		{
@@ -40,7 +40,8 @@ static void	lx_group_copy(t_token *list, t_cmd *group, t_sort *id)
 		}
 		else if (list[id->id].type == ARG)
 			group->cmd_arg[id->i++] = list[id->id].val;
-		else if (list[id->id].type == RD_IN || list[id->id].type == RD_HEREDOC)
+		else if (list[id->id].type == RD_IN || list[id->id].type == RD_HERESTR
+			|| list[id->id].type == RD_HEREDOC)
 		{
 			if (group->in.val)
 				free(group->in.val);
@@ -54,7 +55,6 @@ static void	lx_group_copy(t_token *list, t_cmd *group, t_sort *id)
 			group->out[id->j].val = list[id->id].val;
 			group->out[id->j++].type = list[id->id].type;
 		}
-		id->id++;
 	}
 }
 
@@ -63,6 +63,7 @@ static void	lx_cmd_group_gen(t_shell *mns, t_token *list, t_cmd *group)
 	t_sort	id;
 
 	ft_bzero(&id, sizeof(id));
+	id.id = -1;
 	lx_out_hd_cnt(list, group);
 	group->out = malloc(group->out_cnt * sizeof(t_token));
 	if (!group->out)

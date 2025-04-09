@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 00:56:11 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/08 11:06:43 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:33:40 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,6 @@ int	ft_append_2d(char ***s1, char *s2)
 		return (0);
 	temp[i + 1] = NULL;
 	free(*s1);
-	*s1 =	temp;
+	*s1 = temp;
 	return (1);
 }

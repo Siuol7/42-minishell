@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/24 10:32:58 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 13:10:59 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:34:24 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ft_rd_op(char *str, int id)
 			|| str[id] == '<' || str[id] == '>'))
 	{
 		if (id + 1 < size && (((str[id + 1] && str[id + 1] == str[id])
-			|| (str[id + 1] && str[id] == '<' && str[id + 1] == '>'))))
+					|| (str[id + 1] && str[id] == '<' && str[id + 1] == '>'))))
 			return (2);
 		return (1);
 	}

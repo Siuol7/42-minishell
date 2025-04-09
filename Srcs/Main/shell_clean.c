@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 20:59:22 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:34:41 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static void	free_list(t_token *list, int size)
 		{
 			free(list[i].val);
 			if (list[i].type == SIGN_ERR)
-				break;
+				break ;
 		}
 		i++;
 	}
