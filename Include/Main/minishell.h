@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 16:37:03 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/09 18:13:57 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	shell_env_gen(t_shell *mns, char **env);
 
 //PARSING
 void	shell_input(t_shell	*mns);
-void	shell_token_gen(t_shell *mns, char *input);
+void	shell_token_gen(t_shell *mns, char *input, int i);
 
 //ERROR HANDLING
 void	ft_bad_alloc(t_shell *mns);

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 09:41:54 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 16:33:05 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/09 19:51:06 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	lx_rd_typize(t_token *list, char **str, int *id, int size)
 		list[*id].type = SIGN;
 		*id += 1;
 		list[*id].type = lx_rd_type(str[*id - 1]);
-		list[*id].val = str[*id];
+		list[*id].val = ft_strdup(str[*id]);
 	}
 	else if (*id + 2 < size && !ft_strcmp(str[*id], "<<")
 		&& !ft_strcmp(str[*id + 1], "<") && str[*id + 2])
@@ -58,14 +58,14 @@ void	lx_rd_typize(t_token *list, char **str, int *id, int size)
 		list[*id].type = SIGN;
 		list[*id + 1].type = SIGN;
 		list[*id + 2].type = RD_HERESTR;
-		list[*id + 2].val = str[*id + 2];
+		list[*id + 2].val = ft_strdup(str[*id + 2]);
 		*id += 2;
 	}
 	else if (*id + 2 < size && lx_is_rd(str[*id]) && lx_is_rd(str[*id + 1]))
 	{
 		list[*id].type = SIGN;
 		list[*id + 1].type = SIGN_ERR;
-		list[*id + 1].val = str[*id + 1];
+		list[*id + 1].val = ft_strdup(str[*id + 1]);
 		*id += 2;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 17:51:11 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/09 20:38:13 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ static void	lx_typize_token(t_shell *mns, t_token *list, char **str, int size)
 		else if (i == 0)
 		{
 			list[i].type = CMD;
-			list[i].val = str[i];
+			list[i].val = ft_strdup(str[i]);
 		}
 		else
 		{
 			list[i].type = ARG;
-			list[i].val = str[i];
+			list[i].val = ft_strdup(str[i]);
 		}
 	}
 	(void)mns;
@@ -105,6 +105,7 @@ static void	lx_token_listing(t_shell *mns)
 			mns->cmd_group[i].token_cnt);
 		i++;
 	}
+	prs_list_check(mns);
 }
 
 void	shell_token_gen(t_shell *mns, char *input, int i)
@@ -117,10 +118,10 @@ void	shell_token_gen(t_shell *mns, char *input, int i)
 		ft_bad_alloc(mns);
 	}
 	mns->cmd_group = malloc(mns->group_cnt * sizeof(t_cmd));
-	while (++i < mns->group_cnt)
-		ft_memset(&mns->cmd_group[i], 0, sizeof(t_cmd));
 	if (!mns->cmd_group)
 		ft_bad_alloc(mns);
+	while (++i < mns->group_cnt)
+		ft_bzero(&mns->cmd_group[i], sizeof(t_cmd));
 	i = -1;
 	while (++i < mns->group_cnt)
 	{
@@ -129,7 +130,7 @@ void	shell_token_gen(t_shell *mns, char *input, int i)
 			ft_bad_alloc(mns);
 	}
 	lx_token_listing(mns);
-	if (!prs_list_check()
-	)
+	if (mns->shell_err == -3)
+		return ;
 	lx_cmd_group(mns);
 }

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:39:01 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 17:54:04 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/09 20:39:57 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,10 @@ int	prs_list_check(t_shell *mns)
 		{
 			if (mns->cmd_group[i].list[j].type == SIGN_ERR)
 			{
-				printf("bash: syntax error near unexpected token '%s'",
+				printf("bash: syntax error near unexpected token '%s'\n",
 					mns->cmd_group[i].list[j].val);
+				mns->exitcode = 2;
+				mns->shell_err = -3;
 				return (0);
 			}
 			j++;
