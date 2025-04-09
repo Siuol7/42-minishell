@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/08 11:23:06 by caonguye         ###   ########.fr        #
+#    Updated: 2025/04/09 11:07:09 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -107,7 +107,7 @@ ENV_C			:=	env_call.c		\
 					env_standalone.c
 
 #Exit
-EXIT_DIR		:= 	$(BUILT_IN_DIR)/Exit
+#ExXIT_DIR		:= 	$(BUILT_IN_DIR)/Exit
 
 EXIT_C			:=	exit_call.c
 
@@ -126,8 +126,11 @@ PWD_C			:=	pwd_call.c
 #Unset
 UNSET_DIR		:= 	$(BUILT_IN_DIR)/Unset
 
-UNSET_C			:=	unset_call.c
+#UNSET_C			:=	unset_call.c
+#utils
+UTILS_DIR		:= 	Srcs/Execution/Env_utils
 
+UTILS_C			:=	cd_utils.c
 SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})				\
 					$(addprefix ${PARSER_DIR}/,		${PARSER_C})			\
@@ -141,8 +144,8 @@ SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${EXPORT_DIR}/,		${EXPORT_C})			\
 					$(addprefix ${EXIT_DIR}/,		${EXIT_C})				\
 					$(addprefix ${UNSET_DIR}/,		${UNSET_C})				\
-					$(addprefix ${PWD_DIR}/,		${PWD_C})
-
+					$(addprefix ${PWD_DIR}/,		${PWD_C})			\
+					$(addprefix ${UTILS_DIR}/,		${UTILS_C})
 
 OBJS           :=	${SRCS:.c=.o}
 

@@ -3,20 +3,55 @@
 /*                                                        :::      ::::::::   */
 /*   pwd_call.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:36:00 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 04:10:43 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/08 23:54:20 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	bi_pwd(t_shell *mns, t_token token)
+char	*resolve_logic_pwd(const char *old, const char *target)
 {
-	int	id;
+	char	*tmp;
+	char	*joined;
 
-	id = token.id;
-	(void)id;
-	(void)mns;
+	tmp = ft_strjoin(old, "/");
+	if (!tmp)
+		return (NULL);
+	joined = ft_strjoin(tmp, target);
+	free(tmp);
+	if (!joined)
+		return (NULL);
+	return (joined);
+}
+
+static char	*safe_getcwd_pwd(t_shell *mns)
+{
+	char	*cwd;
+	char	*fallback;
+
+	cwd = getcwd(NULL, 0);
+	if (cwd)
+		return (cwd);
+	fallback = get_env_val(mns, "PWD");
+	if (fallback)
+		return (ft_strdup(fallback));
+	return (NULL);
+}
+
+void	bi_pwd(t_shell *mns, t_cmd *cmd)
+{
+	char	*path;
+
+	(void)cmd;
+	path = safe_getcwd_pwd(mns);
+	if (path)
+	{
+		ft_printf_fd(1, "%s\n", path);
+		free(path);
+	}
+	else
+		perror("pwd");
 }

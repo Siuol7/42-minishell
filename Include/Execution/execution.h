@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 23:13:23 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/05 20:07:46 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/07 01:50:47 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ int		update_status(t_shell *mns, int new_status);
 void	wait_update(t_shell *mns, pid_t pid);
 char	*found_command_path(t_shell *mns, char *cmd);
 //Builtin functions
-int		exec_cmd_check(char *cmd_name);
-void	exec_builtin(t_shell *mns, t_token token);
+//int		exec_cmd_check(char *cmd_name);
+//void	exec_builtin(t_shell *mns, t_token token);
+void	exec_builtin(t_shell *mns, t_cmd *cmd);
+int		exec_cmd_check(char *cmd);
 
 void	exec_echo(t_shell *mns, t_token token);
 void	exec_cd(t_shell *mns, t_token token);
@@ -64,5 +66,9 @@ int		handle_redirection(t_cmd *cmd);
 // handle_heredoc
 char	*heredoc_tmp(char *limiter);
 void	heredoc_expand_all(t_shell *mns);
+
+// builtin utils
+char	*get_env_val(t_shell *mns, char *key);
+int		set_env_val(char ***env, const char *key, const char *value);
 
 #endif
