@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:55:25 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/27 19:52:14 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/09 00:09:40 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,4 +24,6 @@
 # include <fcntl.h>
 # include <errno.h>
 # include <signal.h>
+# include <stdbool.h>
+
 #endif
