@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:00:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/07 11:12:52 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/08 11:16:20 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ static void	ep_variable(t_shell *mns, t_cmd *cmd)
 	while (i < cmd->arg_cnt)
 	{
 		if (!ep_validation(cmd->cmd_arg[i]))
+		{
+			mns->exitcode = 1;
 			return ;
+		}
 		env_append(mns, cmd->cmd_arg[i]);
 		i++;
 	}

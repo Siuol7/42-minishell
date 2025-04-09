@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
+#    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/04 16:17:38 by tripham          ###   ########.fr        #
+#    Updated: 2025/04/08 11:23:06 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -68,7 +68,7 @@ EXECUTION_SRC	:=	./Srcs/Execution
 AST_DIR			:=	$(EXECUTION_SRC)/Ast
 
 AST_C			:=	ast_init.c				\
-					ast_utils.c				
+					ast_utils.c
 
 # Signals
 SIGNAL_DIR		:=	$(EXECUTION_SRC)/Signals
@@ -91,41 +91,42 @@ EXECUTE_C		:=	exec_ast.c			\
 BUILT_IN_DIR	:= $(EXECUTION_SRC)/Built-In_Functions
 
 #Cd
-#CD_DIR			:= 	$(BUILT_IN_DIR)/Cd
+CD_DIR			:= 	$(BUILT_IN_DIR)/Cd
 
-#CD_C			:=	cd_call.c
+CD_C			:=	cd_call.c
 
 #Echo
-#ECHO_DIR		:= 	$(BUILT_IN_DIR)/Echo
+ECHO_DIR		:= 	$(BUILT_IN_DIR)/Echo
 
-#ECHO_C			:=	echo_call.c
+ECHO_C			:=	echo_call.c
 
 #Env
-#ENV_DIR			:= 	$(BUILT_IN_DIR)/Env
+ENV_DIR			:= 	$(BUILT_IN_DIR)/Env
 
-#ENV_C			:=	env_call.c		\
+ENV_C			:=	env_call.c		\
 					env_standalone.c
 
 #Exit
-#EXIT_DIR		:= 	$(BUILT_IN_DIR)/Exit
+EXIT_DIR		:= 	$(BUILT_IN_DIR)/Exit
 
-#EXIT_C			:=	exit_call.c
+EXIT_C			:=	exit_call.c
 
 #Export
-#EXPORT_DIR		:= 	$(BUILT_IN_DIR)/Export
+EXPORT_DIR		:= 	$(BUILT_IN_DIR)/Export
 
-#EXPORT_C		:=	export_call.c	\
-					ep_standalone.c
+EXPORT_C		:=	export_call.c	\
+					ep_standalone.c	\
+					ep_validation.c
 
 #Pwd
-#PWD_DIR			:= 	$(BUILT_IN_DIR)/Pwd
+PWD_DIR			:= 	$(BUILT_IN_DIR)/Pwd
 
-#PWD_C			:=	pwd_call.c
+PWD_C			:=	pwd_call.c
 
 #Unset
-#UNSET_DIR		:= 	$(BUILT_IN_DIR)/Unset
+UNSET_DIR		:= 	$(BUILT_IN_DIR)/Unset
 
-#UNSET_C			:=	unset_call.c
+UNSET_C			:=	unset_call.c
 
 SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})				\
