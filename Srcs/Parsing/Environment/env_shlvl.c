@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 14:45:20 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 16:37:32 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/09 20:57:20 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static void	env_shlvl_check(t_shell *mns)
 {
 	char	*shlvl;
 
-	shlvl = getenv("shlvl");
+	shlvl = getenv("SHLVL");
 	if (!shlvl)
 		mns->shlvl = 2;
 	mns->shlvl = ft_atoi(shlvl) + 1;
