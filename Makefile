@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/09 11:07:09 by caonguye         ###   ########.fr        #
+#    Updated: 2025/04/09 16:36:03 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,12 +54,14 @@ LEXER_C			:=	shell_token_gen.c		\
 PARSER_DIR		:= $(PARSING_SRC)/Parser
 
 PARSER_C		:=  prs_cmd_check.c			\
-					prs_extension.c
+					prs_extension.c			\
+					prs_list_check.c
 #	Env
 ENVIR_DIR		:= $(PARSING_SRC)/Environment
 
 ENVIR_C			:= 	env_gen.c				\
-					env_sorting.c
+					env_sorting.c			\
+					env_shlvl.c
 
 # Execution
 EXECUTION_SRC	:=	./Srcs/Execution
@@ -103,11 +105,11 @@ ECHO_C			:=	echo_call.c
 #Env
 ENV_DIR			:= 	$(BUILT_IN_DIR)/Env
 
-ENV_C			:=	env_call.c		\
+ENV_C			:=	env_call.c			\
 					env_standalone.c
 
 #Exit
-#ExXIT_DIR		:= 	$(BUILT_IN_DIR)/Exit
+EXIT_DIR		:= 	$(BUILT_IN_DIR)/Exit
 
 EXIT_C			:=	exit_call.c
 
@@ -126,7 +128,8 @@ PWD_C			:=	pwd_call.c
 #Unset
 UNSET_DIR		:= 	$(BUILT_IN_DIR)/Unset
 
-#UNSET_C			:=	unset_call.c
+UNSET_C			:=	unset_call.c
+
 #utils
 UTILS_DIR		:= 	Srcs/Execution/Env_utils
 

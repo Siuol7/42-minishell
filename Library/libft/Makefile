@@ -12,7 +12,7 @@ SRCS	=	./ft_isalpha.c		./ft_isdigit.c		./ft_isalnum.c		./ft_isascii.c			\
 			./ft_2d_size.c		./ft_free_2d_int.c	./ft_free_3d_int.c	./ft_char_cnt_2d.c		\
 			./ft_isallspace.c	./ft_is_dquote.c	./ft_substr_eli.c	./ft_sub_2d.c			\
 			./ft_rd_op.c		./ft_strjoin_free.c	./ft_wholespace.c	./ft_append.c			\
-			./ft_append.c
+			./ft_append.c		./ft_append_2d.c
 SRCS_BN	=	./ft_lstnew_bonus.c		./ft_lstadd_front_bonus.c	./ft_lstlen_bonus.c	\
 			./ft_lstlast_bonus.c	./ft_lstadd_back_bonus.c 	./ft_lstdelone_bonus.c 	\
 			./ft_lstclear_bonus.c 	./ft_lstiter_bonus.c		./ft_lstmap_bonus.c

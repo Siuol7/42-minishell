@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 14:45:20 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/01 15:09:29 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:37:32 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,5 @@ static void	env_shlvl_check(t_shell *mns)
 void	env_shlvl(t_shell *mns)
 {
 	env_shlvl_check(mns);
-	env_shlvl_gen(mns);
+	//env_shlvl_gen(mns);
 }

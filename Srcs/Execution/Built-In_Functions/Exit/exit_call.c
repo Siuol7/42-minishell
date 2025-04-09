@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:34:33 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 11:13:19 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/09 16:38:38 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ static void	exit_standalone(t_shell *mns)
 
 void	bi_exit(t_shell *mns, t_cmd *cmd)
 {
-	int	id;
-
-	id = token.id;
-	if (mns->cmd[id].size == 1)
+	if (cmd->arg_cnt == 1)
 		exit_standalone(mns);
 }
