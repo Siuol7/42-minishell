@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 04:02:14 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 21:03:12 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/10 22:12:00 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,5 @@ void	env_standalone(t_shell *mns);
 char	*resolve_logic_pwd(const char *old, const char *target);
 void	env_append(t_shell *mns, char *str);
 
-int		bi_unset(char **cmd_group, char ***env);
+int		bi_unset(t_shell *mns, t_cmd *cmd);
 #endif

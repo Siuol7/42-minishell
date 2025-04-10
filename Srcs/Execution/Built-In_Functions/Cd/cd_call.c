@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:28 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/10 21:16:12 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/10 22:02:06 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,11 @@ int	bi_cd(t_shell *mns, t_cmd *cmd)
 		return (perror("getcwd"), 1);
 	target = get_cd_target(mns, args);
 	if (!target)
-		return (free(oldpwd), 1);
+		return (update_status(mns, 1), free(oldpwd), 1);
 	if (!target)
-		return (free(oldpwd), 1);
+		return (update_status(mns, 1), free(oldpwd), 1);
 	if (chdir(target) != 0)
-		return (perror("cd"), free(oldpwd), 1);
+		return (perror("cd"), update_status(mns, 1), free(oldpwd), 1);
 	set_env_val(&mns->env, "OLDPWD", oldpwd);
 	update_pwd(mns, target);
 	return (free(oldpwd), 0);

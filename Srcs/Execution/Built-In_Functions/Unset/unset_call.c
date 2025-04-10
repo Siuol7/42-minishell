@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:36:23 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/10 20:18:46 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/10 22:11:53 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,23 +53,24 @@ static void	unset_env_var(char *key, char ***env)
 	}
 }
 
-int	bi_unset(char **cmd_group, char ***env)
+int	bi_unset(t_shell *mns, t_cmd *cmd)
 {
 	int		i;
+	int		error;
 
 	i = 1;
-	while (cmd_group[i])
+	error = 0;
+	while (cmd->cmd_arg[i])
 	{
-		if (!is_valid_identifier(cmd_group[i]))
+		if (!is_valid_identifier(cmd->cmd_arg[i]))
 		{
 			ft_printf_fd(2, "unset: `%s': not a valid identifier\n",
-				cmd_group[i]);
-			i++;
-			continue ;
+				cmd->cmd_arg[i]);
+			error = 1;
 		}
 		else
-			unset_env_var(cmd_group[i], env);
+			unset_env_var(cmd->cmd_arg[i], &mns->env);
 		i++;
 	}
-	return (0);
+	return (update_status(mns, error));
 }
