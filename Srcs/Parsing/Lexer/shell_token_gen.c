@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 20:38:13 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/10 10:48:25 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,17 @@
 // 	res[size] = '\0';
 // 	return (res);
 // }
+void	lx_cmd_group(t_shell *mns)
+{
+	int	i;
+
+	i = 0;
+	while (i < mns->group_cnt)
+	{
+		lx_cmd_group_gen(mns, mns->cmd_group[i].list, &mns->cmd_group[i]);
+		i++;
+	}
+}
 
 static void	lx_typize_token(t_shell *mns, t_token *list, char **str, int size)
 {

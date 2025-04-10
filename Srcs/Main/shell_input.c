@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 20:44:10 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/10 00:40:46 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	shell_input(t_shell	*mns)
 		if (mns->full_cmd_line[0])
 		{
 			shell_input_operate(mns);
+			mns->shell_err = 0;
 		}
 		shell_pre_input(mns);
 	}
