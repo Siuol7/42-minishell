@@ -1,26 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_call.c                                        :+:      :+:    :+:   */
+/*   ft_append_2d.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/23 03:34:33 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 19:46:01 by tripham          ###   ########.fr       */
+/*   Created: 2025/04/08 00:56:11 by caonguye          #+#    #+#             */
+/*   Updated: 2025/04/10 20:19:10 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-static void	exit_standalone(t_shell *mns)
+int	ft_append_2d(char ***s1, char *s2)
 {
-	printf("exit\n");
-	shell_clean(mns);
-	exit(0);
-}
+	int		i;
+	int		size;
+	char	**temp;
 
-void	bi_exit(t_shell *mns, t_cmd *cmd)
-{
-	if (cmd->arg_cnt == 1)
-		exit_standalone(mns);
+	i = -1;
+	size = ft_2d_len(*s1);
+	temp = malloc((size + 2) * sizeof(char *));
+	if (!temp)
+		return (0);
+	while (++i < size)
+		temp[i] = *s1[i];
+	temp[i] = ft_strdup(s2);
+	if (!temp[i])
+		return (0);
+	temp[i + 1] = NULL;
+	free(*s1);
+	*s1 = temp;
+	return (1);
 }

@@ -6,7 +6,7 @@
 #    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/09 00:02:20 by tripham          ###   ########.fr        #
+#    Updated: 2025/04/09 21:02:23 by tripham          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -101,15 +101,15 @@ ECHO_DIR		:= 	$(BUILT_IN_DIR)/Echo
 ECHO_C			:=	echo_call.c
 
 #Env
-#ENV_DIR			:= 	$(BUILT_IN_DIR)/Env
+ENV_DIR			:= 	$(BUILT_IN_DIR)/Env
 
-#ENV_C			:=	env_call.c		\
+ENV_C			:=	env_call.c		\
 					env_standalone.c
 
 #Exit
-#ExXIT_DIR		:= 	$(BUILT_IN_DIR)/Exit
+EXIT_DIR		:= 	$(BUILT_IN_DIR)/Exit
 
-#EXIT_C			:=	exit_call.c
+EXIT_C			:=	exit_call.c
 
 #Export
 #EXPORT_DIR		:= 	$(BUILT_IN_DIR)/Export
@@ -123,9 +123,9 @@ PWD_DIR			:= 	$(BUILT_IN_DIR)/Pwd
 PWD_C			:=	pwd_call.c
 
 #Unset
-#UNSET_DIR		:= 	$(BUILT_IN_DIR)/Unset
+UNSET_DIR		:= 	$(BUILT_IN_DIR)/Unset
 
-#UNSET_C			:=	unset_call.c
+UNSET_C			:=	unset_call.c
 #utils
 UTILS_DIR		:= 	Srcs/Execution/Env_utils
 
