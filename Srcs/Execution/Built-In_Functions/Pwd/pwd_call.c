@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:36:00 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/08 23:54:20 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/10 22:06:18 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,11 @@ void	bi_pwd(t_shell *mns, t_cmd *cmd)
 	{
 		ft_printf_fd(1, "%s\n", path);
 		free(path);
+		update_status(mns, 0);
 	}
 	else
+	{
 		perror("pwd");
+		update_status(mns, 1);
+	}
 }

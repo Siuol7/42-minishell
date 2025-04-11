@@ -6,9 +6,10 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/04 01:01:11 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/08 11:07:14 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/11 03:05:04 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #ifndef LIBFT_H
 # define LIBFT_H
@@ -78,6 +79,7 @@ size_t	ft_strlcat(char *dst, const char *src, size_t len);
 size_t	ft_strlen(const char *s);
 int		ft_sub_2d(char **org, char **des, int start, int len);
 char	**ft_split(char const *s, char c);
+int		ft_append_2d(char ***s1, char *s2);
 
 t_list	*ft_lstnew(void *content);
 void	ft_lstadd_front(t_list **lst, t_list *new);

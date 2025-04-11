@@ -6,9 +6,10 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/10 00:40:46 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/11 03:04:29 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "minishell.h"
 
@@ -46,11 +47,13 @@ void	shell_input(t_shell	*mns)
 {
 	while (1)
 	{
+		signals_initialize();
 		mns->full_cmd_line = readline("minishell$ ");
 		if (!mns->full_cmd_line)
 		{
 			printf("exit\n");
 			shell_clean(mns);
+			exit (0);
 		}
 		if (mns->full_cmd_line[0])
 		{

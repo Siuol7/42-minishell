@@ -6,9 +6,10 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/09 16:36:03 by caonguye         ###   ########.fr        #
+#    Updated: 2025/04/11 03:04:35 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
+
 
 NAME	:= minishell
 CC		:= gcc
@@ -105,7 +106,11 @@ ECHO_C			:=	echo_call.c
 #Env
 ENV_DIR			:= 	$(BUILT_IN_DIR)/Env
 
+<<<<<<< HEAD
 ENV_C			:=	env_call.c			\
+=======
+ENV_C			:=	env_call.c		\
+>>>>>>> main
 					env_standalone.c
 
 #Exit
@@ -127,9 +132,14 @@ PWD_C			:=	pwd_call.c
 
 #Unset
 UNSET_DIR		:= 	$(BUILT_IN_DIR)/Unset
+<<<<<<< HEAD
 
 UNSET_C			:=	unset_call.c
 
+=======
+
+UNSET_C			:=	unset_call.c
+>>>>>>> main
 #utils
 UTILS_DIR		:= 	Srcs/Execution/Env_utils
 

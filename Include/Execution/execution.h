@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 23:13:23 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/07 01:50:47 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/09 19:45:03 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,6 @@ char	*found_command_path(t_shell *mns, char *cmd);
 //void	exec_builtin(t_shell *mns, t_token token);
 void	exec_builtin(t_shell *mns, t_cmd *cmd);
 int		exec_cmd_check(char *cmd);
-
-void	exec_echo(t_shell *mns, t_token token);
-void	exec_cd(t_shell *mns, t_token token);
-void	exec_pwd(t_shell *mns, t_token token);
-void	exec_export(t_shell *mns, t_token token);
-void	exec_unset(t_shell *mns, t_token token);
-void	exec_env(t_shell *mns, t_token token);
-void	exec_exit(t_shell *mns, t_token token);
 
 // Handle_Error
 void	handle_execution_error(char *command_path, char **splitted_command);
