@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 01:22:16 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/11 20:29:35 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/11 21:02:21 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,5 @@ int		merge_sort(char **env, int left, int right);
 //EXPANSION
 void	exp_generate(t_shell *mns);
 void	exp_check_open(char c, char *open);
-char	*ep_getkey(t_shell *mns, char *str, int *i);
+char	*exp_getkey(t_shell *mns, char *str, int *i);
 #endif
