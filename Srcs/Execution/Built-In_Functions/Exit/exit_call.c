@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:34:33 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/11 20:51:56 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/11 21:22:07 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ void	bi_exit(t_shell *mns, t_cmd *cmd)
 	}
 	if (!is_numeric(cmd->cmd_arg[1]))
 	{
-		ft_printf_fd(STDERR_FILENO,
-			"minishell: exit: %s: numeric argument required\n", cmd->cmd_arg[1]);
+		ft_printf_fd(2, "minishell: exit: %s: numeric argument required\n",
+			cmd->cmd_arg[1]);
 		shell_clean (mns);
 		exit (2);
 	}
