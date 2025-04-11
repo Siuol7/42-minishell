@@ -6,23 +6,26 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 00:35:59 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/11 02:17:57 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/11 19:48:21 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	exp_check(char *str)
+static void	exp_check(t_shell *mns, char *str, int size)
 {
-	int	i;
-	int	size;
-	int	open;
+	int		i;
+	char	open;
+	char	*name;
+	char	*res;
 
 	i = 0;
-	size = ft_strlen(str);
+	res = "";
 	while (i < size)
 	{
-		exp_check_open(str[i], &open)
+		exp_check_open(str[i], &open);
+		if (str[i] == '$' && exp_validation(str, open, i + 1))
+
 	}
 }
 
