@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:40:48 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/05 20:07:35 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/11 21:00:14 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ typedef enum e_ast_type
 
 typedef struct s_ast
 {
-	t_ast_type		type;// NODE_CMD hoặc NODE_PIPE
-	t_token			*cmd_tokens;// Chứa list từ t_cmd
-	int				cmd_index;// Index của group (ví dụ: 0, 1, 2)
+	t_ast_type		type;
+	t_token			*cmd_tokens;
+	int				cmd_index;
 	struct s_ast	*left;
 	struct s_ast	*right;
 }	t_ast;
