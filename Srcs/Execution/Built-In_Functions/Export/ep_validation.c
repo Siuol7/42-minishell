@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 14:39:38 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/11 15:54:27 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:05:26 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,9 @@ int	ep_exist(t_shell *mns, char *str)
 	while (i < size)
 	{
 		if (!ft_strncmp(mns->env[i], str, len))
-			return (1);
+			return (i);
 	}
-	return (0);
+	return (-1);
 }
 
 int	ep_validation(char *str)

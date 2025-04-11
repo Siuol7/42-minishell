@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:00:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/11 15:02:30 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:05:41 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	ep_variable(t_shell *mns, t_cmd *cmd)
 {
 	int	i;
+	int	pos;
 
 	i = 1;
 	while (i < cmd->arg_cnt)
@@ -24,8 +25,9 @@ static void	ep_variable(t_shell *mns, t_cmd *cmd)
 			update_status(mns, 1);
 			return ;
 		}
-		if (ep_exist(mns, cmd->cmd_arg[i]))
-			ep_replace(mns, cmd->cmd_arg[i]);
+		pos = ep_exist(mns, cmd->cmd_arg[i]);
+		if (pos > - 1)
+			ep_replace(mns, cmd->cmd_arg[i], pos);
 		else
 			env_append(mns, cmd->cmd_arg[i]);
 		i++;

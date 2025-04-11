@@ -1,16 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ep_standalone.c                                    :+:      :+:    :+:   */
+/*   ep_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:22:21 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 23:04:15 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/11 16:06:43 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+void	ep_replace(t_shell *mns, char *str, int i)
+{
+	free (mns->env[i]);
+	mns->env[i] = ft_strdup(str);
+	if (!mns->env[i])
+		ft_bad_alloc(mns);
+}
 
 void	ep_standalone(t_shell *mns)
 {
