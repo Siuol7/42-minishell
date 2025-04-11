@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/11 15:57:20 by caonguye         ###   ########.fr        #
+#    Updated: 2025/04/11 20:25:21 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,6 +61,12 @@ ENVIR_DIR		:= $(PARSING_SRC)/Environment
 
 ENVIR_C			:= 	env_gen.c				\
 					env_sorting.c
+
+#Expansion
+EXPANSION_DIR	:= $(PARSING_SRC)/Expansion
+
+EXPANSION_C		:=  exp_generate.c			\
+					exp_utils.c
 
 # Execution
 EXECUTION_SRC	:=	./Srcs/Execution
@@ -136,6 +142,7 @@ SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${LEXER_DIR}/, 		${LEXER_C})				\
 					$(addprefix ${PARSER_DIR}/,		${PARSER_C})			\
 					$(addprefix ${ENVIR_DIR}/,		${ENVIR_C})				\
+					$(addprefix ${EXPANSION_DIR}/,	${EXPANSION_C})			\
 					$(addprefix ${AST_DIR}/,		${AST_C})				\
 					$(addprefix ${EXECUTE_DIR}/,	${EXECUTE_C})			\
 					$(addprefix ${SIGNAL_DIR}/,		${SIGNAL_C})			\

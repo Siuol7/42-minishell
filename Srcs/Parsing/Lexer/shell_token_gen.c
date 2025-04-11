@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/10 10:48:25 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/11 20:38:27 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,5 +143,6 @@ void	shell_token_gen(t_shell *mns, char *input, int i)
 	lx_token_listing(mns);
 	if (mns->shell_err == -3)
 		return ;
+	exp_generate(mns);
 	lx_cmd_group(mns);
 }
