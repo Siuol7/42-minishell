@@ -6,11 +6,28 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 14:39:38 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/07 11:02:01 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/11 15:54:27 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	ep_exist(t_shell *mns, char *str)
+{
+	int	i;
+	int	size;
+	int len;
+
+	i = 0;
+	size = ft_2d_len(mns->env);
+	len = ft_strichr(str, '=');
+	while (i < size)
+	{
+		if (!ft_strncmp(mns->env[i], str, len))
+			return (1);
+	}
+	return (0);
+}
 
 int	ep_validation(char *str)
 {

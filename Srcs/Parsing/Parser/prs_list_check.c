@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/09 15:39:01 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 20:39:57 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/11 14:43:49 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	prs_list_check(t_shell *mns)
 			{
 				printf("bash: syntax error near unexpected token '%s'\n",
 					mns->cmd_group[i].list[j].val);
-				mns->exitcode = 2;
+				update_status(mns, 2);
 				mns->shell_err = -3;
 				return (0);
 			}

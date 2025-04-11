@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 02:39:14 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/01 20:21:16 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/11 14:44:54 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ int	prs_cmd_check(t_shell *mns)
 			{
 				ft_printf_fd(2,
 					"bash: syntax error: unexpected token `newline'\n");
+				update_status(mns, 2);
 				return (0);
 			}
 			j++;
