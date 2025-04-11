@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:13:21 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/08 23:54:31 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/11 20:56:45 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	exec_cmd(t_shell *mns, t_cmd *cmd)
 
 	if (handle_redirection(cmd) == EXIT_FAILURE)
 	{
+		update_status (mns, 1);
 		dup2(tmp[0], STDIN_FILENO);
 		dup2(tmp[1], STDOUT_FILENO);
 		close(tmp[0]);

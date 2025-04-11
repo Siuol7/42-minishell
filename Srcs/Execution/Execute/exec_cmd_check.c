@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 01:44:07 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/10 22:11:28 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/11 20:55:17 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	exec_builtin(t_shell *mns, t_cmd *cmd)
 		bi_env(mns, cmd);
 	else if (!ft_strcmp(name, "unset"))
 		bi_unset(mns, cmd);
+	else if (!ft_strcmp(name, "exit"))
+		bi_exit(mns, cmd);
 }
 
 int	exec_cmd_check(char *cmd)
