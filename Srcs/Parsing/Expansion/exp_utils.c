@@ -6,17 +6,44 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:31:36 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/13 15:09:31 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 01:45:29 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
+char	*exp_new_strdup(const char *s)
+{
+	char	*res;
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	j = 0;
+	res = malloc(ft_strlen(s) + 1);
+	if (res == NULL)
+		return (NULL);
+	while (s[j])
+	{
+		if (ft_isallspace(s[j]))
+		{
+			res[i] = s[j];
+			j = lx_skip_space((char *)s, j);
+		}
+		else
+		{
+			res[i] = s[j];
+			j++;
+		}
+		i++;
+	}
+	res[i] = '\0';
+	return (res);
+}
+
 int	exp_validation(char *key)
 {
-	if (ft_strlen(key) == 0)
-		return (0);
-	else if (ft_isdigit(key[0]))
+	if (ft_isdigit(key[0]))
 		return (1);
 	return (2);
 }
@@ -30,7 +57,7 @@ char	*exp_getkey(t_shell *mns, char *str, int *i)
 	while (str[*i])
 	{
 		if (!ft_isalnum(str[*i]) && str[*i] != '_')
-			break;
+			break ;
 		(*i)++;
 	}
 	key = ft_substr(str, start, *i - start);

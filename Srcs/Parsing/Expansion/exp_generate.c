@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 00:35:59 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/13 19:38:14 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 01:44:34 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 static void	exp_subjoin(t_shell *mns, t_point p, char *str)
 {
-	char *temp;
+	char	*temp;
 
 	temp = ft_substr(str, p.start, p.end - p.start);
 	if (!temp)
@@ -23,7 +23,7 @@ static void	exp_subjoin(t_shell *mns, t_point p, char *str)
 		ft_bad_alloc(mns);
 }
 
-static void exp_check(t_shell *mns, char *str, int size, int i)
+static void	exp_check(t_shell *mns, char *str, int size, int i)
 {
 	t_point		p;
 	char		open;
@@ -33,7 +33,7 @@ static void exp_check(t_shell *mns, char *str, int size, int i)
 	open = 'e';
 	while (i < size)
 	{
-		exp_check_open(str[i], &open);;
+		exp_check_open(str[i], &open);
 		if (i + 1 < size && str[i] == '$' && str[i + 1] != ' ')
 		{
 			p.end = i;

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:22:21 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/11 16:06:43 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 01:48:41 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	ep_replace(t_shell *mns, char *str, int i)
 {
-	free (mns->env[i]);
+	free(mns->env[i]);
 	mns->env[i] = ft_strdup(str);
 	if (!mns->env[i])
 		ft_bad_alloc(mns);

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 09:41:54 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/13 20:23:34 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 01:42:59 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void	lx_rd_typize(t_shell *mns, t_token *list, char **str, t_point *p)
 		p->start += 2;
 	}
 	else if (p->start + 2 < p->end && lx_is_rd(str[p->start])
-			&& lx_is_rd(str[p->start + 1]))
+		&& lx_is_rd(str[p->start + 1]))
 	{
 		list[p->start].type = SIGN;
 		list[p->start + 1].type = SIGN_ERR;

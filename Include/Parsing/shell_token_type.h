@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 01:28:19 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/13 20:16:51 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 01:41:13 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 # define SHELL_TOKEN_TYPE_H
 # include "../Main/minishell.h"
-
-
 
 typedef enum s_type
 {

@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/13 21:31:00 by caonguye         ###   ########.fr        #
+#    Updated: 2025/04/14 01:52:48 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -61,7 +61,8 @@ PARSER_C		:=  prs_cmd_check.c			\
 ENVIR_DIR		:= $(PARSING_SRC)/Environment
 
 ENVIR_C			:= 	env_gen.c				\
-					env_sorting.c
+					env_sorting.c			\
+					env_shlvl.c
 
 #Expansion
 EXPANSION_DIR	:= $(PARSING_SRC)/Expansion

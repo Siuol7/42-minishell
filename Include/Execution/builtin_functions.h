@@ -6,13 +6,12 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 04:02:14 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/11 16:06:59 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 01:40:34 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BUILTIN_FUNCTIONS_H
-
-
+# define BUILTIN_FUNCTIONS_H
 # include "minishell.h"
 
 int		bi_cd(t_shell *mns, t_cmd *cmd);

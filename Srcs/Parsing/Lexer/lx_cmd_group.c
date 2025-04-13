@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:47:55 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/10 10:48:48 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 01:43:52 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ static void	lx_out_hd_cnt(t_token *list, t_cmd *group)
 	while (i < group->token_cnt)
 	{
 		if (list[i].type == RD_OUT || list[i].type == RD_APPEND
-				|| list[i].type == RD_RNW)
+			|| list[i].type == RD_RNW)
 			group->out_cnt++;
 		else if (list[i].type == RD_HEREDOC)
 			group->heredoc_cnt++;
@@ -30,7 +30,7 @@ static void	lx_out_hd_cnt(t_token *list, t_cmd *group)
 	}
 }
 
-static void	lx_in_file(t_shell  *mns, t_token *list, t_cmd *group, t_sort *id)
+static void	lx_in_file(t_shell *mns, t_token *list, t_cmd *group, t_sort *id)
 {
 	if (group->in.val)
 		free(group->in.val);
