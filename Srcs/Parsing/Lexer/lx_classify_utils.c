@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 09:41:54 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 20:56:08 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/13 20:23:34 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,29 +43,30 @@ t_type	lx_rd_type(char *str)
 		return (RD_RNW);
 }
 
-void	lx_rd_typize(t_token *list, char **str, int *id, int size)
+void	lx_rd_typize(t_shell *mns, t_token *list, char **str, t_point *p)
 {
-	if (*id + 1 < size && !lx_is_rd(str[*id + 1]))
+	if (p->start + 1 < p->end && !lx_is_rd(str[p->start + 1]))
 	{
-		list[*id].type = SIGN;
-		*id += 1;
-		list[*id].type = lx_rd_type(str[*id - 1]);
-		list[*id].val = ft_strdup(str[*id]);
+		list[p->start].type = SIGN;
+		p->start += 1;
+		list[p->start].type = lx_rd_type(str[p->start - 1]);
+		list[p->start].val = lx_qmarks_eli(mns, str[p->start], 0, 0);
 	}
-	else if (*id + 2 < size && !ft_strcmp(str[*id], "<<")
-		&& !ft_strcmp(str[*id + 1], "<") && str[*id + 2])
+	else if (p->start + 2 < p->end && !ft_strcmp(str[p->start], "<<")
+		&& !ft_strcmp(str[p->start + 1], "<") && str[p->start + 2])
 	{
-		list[*id].type = SIGN;
-		list[*id + 1].type = SIGN;
-		list[*id + 2].type = RD_HERESTR;
-		list[*id + 2].val = ft_strdup(str[*id + 2]);
-		*id += 2;
+		list[p->start].type = SIGN;
+		list[p->start + 1].type = SIGN;
+		list[p->start + 2].type = RD_HERESTR;
+		list[p->start + 2].val = lx_qmarks_eli(mns, str[p->start], 0, 0);
+		p->start += 2;
 	}
-	else if (*id + 2 < size && lx_is_rd(str[*id]) && lx_is_rd(str[*id + 1]))
+	else if (p->start + 2 < p->end && lx_is_rd(str[p->start])
+			&& lx_is_rd(str[p->start + 1]))
 	{
-		list[*id].type = SIGN;
-		list[*id + 1].type = SIGN_ERR;
-		list[*id + 1].val = ft_strdup(str[*id + 1]);
-		*id += 2;
+		list[p->start].type = SIGN;
+		list[p->start + 1].type = SIGN_ERR;
+		list[p->start + 1].val = lx_qmarks_eli(mns, str[p->start], 0, 0);
+		p->start += 2;
 	}
 }
