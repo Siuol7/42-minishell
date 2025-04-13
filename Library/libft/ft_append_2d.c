@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/08 00:56:11 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/11 12:31:15 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/13 21:58:23 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ int	ft_append_2d(char ***s1, char *s2)
 	if (!temp)
 		return (0);
 	while (++i < size)
-		temp[i] = *s1[i];
+		temp[i] = ft_strdup((*s1)[i]);
 	temp[i] = ft_strdup(s2);
 	if (!temp[i])
 		return (0);
 	temp[i + 1] = NULL;
-	free(*s1);
+	ft_free_2d((void **)(*s1));
 	*s1 = temp;
 	return (1);
 }

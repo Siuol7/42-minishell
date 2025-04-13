@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:55:24 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/13 20:24:08 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/13 20:29:14 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 
 //STRUCT FORWARD DECLARATION
 typedef struct s_shell	t_shell;
+typedef struct s_point	t_point;
 
 int				prs_cmd_check(t_shell *mns);
 int				lx_qmarks_cnt(char *str);

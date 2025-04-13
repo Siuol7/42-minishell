@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/13 19:50:47 by caonguye         ###   ########.fr        #
+#    Updated: 2025/04/13 21:31:00 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,9 +121,9 @@ EXIT_DIR		:= 	$(BUILT_IN_DIR)/Exit
 EXIT_C			:=	exit_call.c
 
 #Export
-#EXPORT_DIR		:= 	$(BUILT_IN_DIR)/Export
+EXPORT_DIR		:= 	$(BUILT_IN_DIR)/Export
 
-#EXPORT_C		:=	export_call.c	\
+EXPORT_C		:=	export_call.c	\
 					ep_export.c		\
 					ep_validation.c
 

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 14:39:38 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/11 16:05:26 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/13 22:15:20 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ int	ep_exist(t_shell *mns, char *str)
 	{
 		if (!ft_strncmp(mns->env[i], str, len))
 			return (i);
+		i++;
 	}
 	return (-1);
 }
@@ -40,15 +41,16 @@ int	ep_validation(char *str)
 	size = ft_strlen(str);
 	while (i < size && str[i] != '=' && err != 0)
 	{
-		if (i == 0 && (!ft_isalpha(str[i]) || str[i] != '_'))
+		if (i == 0 && !ft_isalpha(str[i]) && str[i] != '_')
 			err = 0;
-		else if (i > 0 && (!ft_isalnum(str[i]) || str[i] != '_'))
+		else if (i > 0 && !ft_isalnum(str[i]) && str[i] != '_')
 			err = 0;
 		i++;
 	}
-	if ((i < size && str[i - 1] == ' ') || err == 0)
+	if ((i < size && str[i - 1] == ' ') || err == 0
+			|| (i == 0 && str[i] == '='))
 	{
-		printf("bash: export: not a valid identifier");
+		printf("bash: export: '%s': not a valid identifier\n", str);
 		return (err);
 	}
 	return (1);

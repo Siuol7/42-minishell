@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 01:44:07 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/10 22:11:28 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/13 21:30:31 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	exec_builtin(t_shell *mns, t_cmd *cmd)
 		bi_pwd(mns, cmd);
 	else if (!ft_strcmp(name, "env"))
 		bi_env(mns, cmd);
+	else if (!ft_strcmp(name, "export"))
+		bi_export(mns, cmd);
 	else if (!ft_strcmp(name, "unset"))
 		bi_unset(mns, cmd);
 }

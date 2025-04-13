@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/13 19:21:41 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/13 21:27:56 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ static void	shell_input_operate(t_shell *mns)
 	}
 	else if (mns->shell_err == -3)
 		return ;
-	// else if (prs_cmd_check(mns))
-	// {
-	// 	heredoc_expand_all(mns);
-	// 	mns->ast = ast_init(mns->cmd_group, mns->group_cnt, 0);
-	// 	exec_ast(mns->ast, mns);
-	// }
+	else if (prs_cmd_check(mns))
+	{
+		heredoc_expand_all(mns);
+		mns->ast = ast_init(mns->cmd_group, mns->group_cnt, 0);
+		exec_ast(mns->ast, mns);
+	}
 	// printf("Group cnt %d\n", mns->group_cnt);
 	// for (int i = 0; i < mns->group_cnt; i++)
 	// {
