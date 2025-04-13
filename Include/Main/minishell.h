@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/10 11:15:40 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/13 12:25:14 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ typedef struct s_shell
 	int		exitcode;
 	int		shlvl;
 	char	*full_cmd_line;
-	char	**cmd_str; // 'ls-la'
+	char 	*post_expansion;
+	char	**cmd_str;
 	char	**env;
 	t_cmd	*cmd_group;
 	int		shell_err;

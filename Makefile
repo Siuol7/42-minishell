@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/11 20:25:21 by caonguye         ###   ########.fr        #
+#    Updated: 2025/04/11 21:54:03 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,8 @@ ENVIR_C			:= 	env_gen.c				\
 EXPANSION_DIR	:= $(PARSING_SRC)/Expansion
 
 EXPANSION_C		:=  exp_generate.c			\
-					exp_utils.c
+					exp_utils.c				\
+					exp_expand.c
 
 # Execution
 EXECUTION_SRC	:=	./Srcs/Execution

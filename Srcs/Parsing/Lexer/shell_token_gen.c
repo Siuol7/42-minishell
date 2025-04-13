@@ -6,61 +6,62 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/11 20:38:27 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/13 19:42:04 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// static int	lx_qmarks_cnt(char *str)
-// {
-// 	int		i;
-// 	int		cnt;
-// 	char	sign;
+static int	lx_qmarks_cnt(char *str)
+{
+	int		i;
+	int		cnt;
+	char	sign;
 
-// 	sign = 'e';
-// 	i = 0;
-// 	cnt = 0;
-// 	while (str[i])
-// 	{
-// 		if (ft_is_dquote(str[i]) && sign == 'e')
-// 			sign = str[i];
-// 		else if (str[i] == sign && sign != 'e')
-// 			sign = 'e';
-// 		else
-// 			cnt++;
-// 		i++;
-// 	}
-// 	return (cnt);
-// }
+	sign = 'e';
+	i = 0;
+	cnt = 0;
+	while (str[i])
+	{
+		if (ft_is_dquote(str[i]) && sign == 'e')
+			sign = str[i];
+		else if (str[i] == sign && sign != 'e')
+			sign = 'e';
+		else
+			cnt++;
+		i++;
+	}
+	return (cnt);
+}
 
-// static char	*lx_qmarks_eli(t_shell *mns, char *str, int i, int j)
-// {
-// 	int		size;
-// 	char	sign;
-// 	char	*res;
+static char	*lx_qmarks_eli(t_shell *mns, char *str, int i, int j)
+{
+	int		size;
+	char	sign;
+	char	*res;
 
-// 	sign = 'e';
-// 	size = lx_qmarks_cnt(str);
-// 	res = malloc(size + 1);
-// 	if (!res)
-// 		ft_bad_alloc(mns);
-// 	while (str[i] && j < size)
-// 	{
-// 		if (ft_is_dquote(str[i]) && sign == 'e')
-// 			sign = str[i];
-// 		else if (str[i] == sign && sign != 'e')
-// 			sign = 'e';
-// 		else
-// 		{
-// 			res[j] = str[i];
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	res[size] = '\0';
-// 	return (res);
-// }
+	sign = 'e';
+	size = lx_qmarks_cnt(str);
+	res = malloc(size + 1);
+	if (!res)
+		ft_bad_alloc(mns);
+	while (str[i] && j < size)
+	{
+		if (ft_is_dquote(str[i]) && sign == 'e')
+			sign = str[i];
+		else if (str[i] == sign && sign != 'e')
+			sign = 'e';
+		else
+		{
+			res[j] = str[i];
+			j++;
+		}
+		i++;
+	}
+	res[size] = '\0';
+	return (res);
+}
+
 void	lx_cmd_group(t_shell *mns)
 {
 	int	i;
@@ -140,9 +141,9 @@ void	shell_token_gen(t_shell *mns, char *input, int i)
 		if (!mns->cmd_group[i].token)
 			ft_bad_alloc(mns);
 	}
+	exp_generate(mns);
 	lx_token_listing(mns);
 	if (mns->shell_err == -3)
 		return ;
-	exp_generate(mns);
 	lx_cmd_group(mns);
 }

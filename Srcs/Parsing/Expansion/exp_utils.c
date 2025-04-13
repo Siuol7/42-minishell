@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:31:36 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/11 21:11:19 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/13 15:09:31 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ char	*exp_getkey(t_shell *mns, char *str, int *i)
 	int		start;
 	char	*key;
 
-	start = ++(*i);
+	start = ++*i;
 	while (str[*i])
 	{
 		if (!ft_isalnum(str[*i]) && str[*i] != '_')
