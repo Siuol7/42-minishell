@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:39:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/05 19:50:15 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/13 22:12:56 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	handle_rd_in(t_cmd *cmd)
 	return (EXIT_SUCCESS);
 }
 
-static int	handle_rd_heredoc(t_cmd *cmd)
+static int	handle_rd_out(t_cmd *cmd)
 {
 	int	fd;
 	int	i;
@@ -66,7 +66,7 @@ int	handle_redirection(t_cmd *cmd)
 {
 	if (handle_rd_in(cmd) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (handle_rd_heredoc(cmd) == EXIT_FAILURE)
+	if (handle_rd_out(cmd) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

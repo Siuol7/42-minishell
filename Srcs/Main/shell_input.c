@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 11:58:36 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 22:28:04 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ static void	shell_input_operate(t_shell *mns)
 	else if (prs_cmd_check(mns))
 	{
 		heredoc_expand_all(mns);
+		if (mns->ast)
+		{
+			ast_clean_all(mns->ast);
+			mns->ast = NULL;
+		}
 		mns->ast = ast_init(mns->cmd_group, mns->group_cnt, 0);
 		exec_ast(mns->ast, mns);
 	}

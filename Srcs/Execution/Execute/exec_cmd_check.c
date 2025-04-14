@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 01:44:07 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/13 21:30:31 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:42:02 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	exec_builtin(t_shell *mns, t_cmd *cmd)
 		bi_export(mns, cmd);
 	else if (!ft_strcmp(name, "unset"))
 		bi_unset(mns, cmd);
+	else if (!ft_strcmp(name, "exit"))
+		bi_exit(mns, cmd);
 }
 
 int	exec_cmd_check(char *cmd)
