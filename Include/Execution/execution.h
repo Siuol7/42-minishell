@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 23:13:23 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/14 19:17:13 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/14 23:14:58 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,6 @@ void	cleanup_heredoc_files(void);
 char	*get_env_val(t_shell *mns, char *key);
 int		set_env_val(char ***env, const char *key, const char *value);
 
+// ambiguous
+int		check_ambiguous_rd(t_shell *mns, t_cmd *cmd);
 #endif

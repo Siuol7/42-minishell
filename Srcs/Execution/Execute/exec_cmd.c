@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:13:21 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/14 18:09:33 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/14 23:16:00 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,9 @@ void	exec_non_builtin(t_shell *mns, t_cmd *cmd)
 void	exec_cmd(t_shell *mns, t_cmd *cmd)
 {
 	const int	tmp[2] = {dup(STDIN_FILENO), dup(STDOUT_FILENO)};
-
+	
+	if (!cmd->ambi)
+		check_ambiguous_rd(mns, cmd);
 	if (handle_redirection(cmd) == EXIT_FAILURE)
 	{
 		update_status (mns, 1);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_token_type.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 01:28:19 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 15:53:07 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 22:49:16 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef enum s_type
 	RD_HEREDOC,
 	RD_RNW,
 	RD_HERESTR,
-	RD_AMBI
+	RD_AMBI // $asdfsdfsdf
 }	t_type;
 
 typedef struct s_rd
@@ -51,7 +51,7 @@ typedef struct s_cmd
 	int		out_cnt;
 	int		heredoc_cnt;
 	char	*cmd;
-	char	*ambi;
+	char	*ambi; // if cl nay dell null -> in loi
 	char	**cmd_arg;
 	t_token	in;
 	t_token	*out;
