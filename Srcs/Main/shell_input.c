@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 16:42:32 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/14 17:10:47 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,22 +50,7 @@ void	shell_input(t_shell	*mns)
 	while (1)
 	{
 		signals_initialize();
-		// mns->full_cmd_line = readline("minishell$ ");
-		
-		//-------------------------------------------------------
-		// TESTER
-		//-------------------------------------------------------
-		if (!isatty(fileno(stdin)))
-			mns->full_cmd_line = readline("minishell$ ");
-		else
-		{
-			char *line;
-			line = get_next_line(fileno(stdin));
-			mns->full_cmd_line = ft_strtrim(line, "\n");
-			free(line);
-		}
-
-
+		mns->full_cmd_line = readline("minishell$ ");
 		if (!mns->full_cmd_line)
 		{
 			printf("exit\n");
@@ -79,18 +64,5 @@ void	shell_input(t_shell	*mns)
 			mns->shell_err = 0;
 		}
 		shell_pre_input(mns);
-	// 	signals_initialize();
-	// 	mns->full_cmd_line = readline("minishell$ ");
-	// 	if (!mns->full_cmd_line)
-	// 	{
-	// 		printf("exit\n");
-	// 		shell_clean(mns);
-	// 		exit (0);
-	// 	}
-	// 	if (mns->full_cmd_line[0])
-	// 	{
-	// 		shell_input_operate(mns);
-	// 	}
-	// 	shell_pre_input(mns);
-	// }
+	}
 }

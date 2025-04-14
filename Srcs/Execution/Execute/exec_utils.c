@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:06:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/13 23:51:36 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/14 17:09:53 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,46 +53,18 @@ char	*heredoc_tmp(char *limiter, int index)
 	signals_configure(SIGINT, handle_sigint_heredoc);
 	while (1)
 	{
-		// line = readline("> ");
-
-		//-------------------------------------------------------
-		// TESTER
-		//-------------------------------------------------------
-
-		if (isatty(fileno(stdin)))
-			line = readline("> ");
-		else
-		{
-			char *tmp = get_next_line(fileno(stdin));
-			line = ft_strtrim(tmp, "\n");
-			free(tmp);
-		}
-		
-		
+		line = readline("> ");
 		if (!line || !ft_strcmp(line, limiter))
 			break ;
 		ft_printf_fd(fd, line);
 		ft_printf_fd(fd, "\n");
 		free(line);
 	}
-	if (!line)
-	{
-		free(line);
-	}
-	}
-	// while (1)
-	// {
-	// 	line = readline("> ");
-	// 	if (!line || !ft_strcmp(line, limiter))
-	// 		break ;
-	// 	ft_printf_fd(fd, line);
-	// 	ft_printf_fd(fd, "\n");
-	// 	free(line);
-	// }
-	// free(line);
+	free(line);
 	close(fd);
 	signals_initialize();
 	return (filename);
+	
 }
 
 void	heredoc_expand_all(t_shell *mns)
