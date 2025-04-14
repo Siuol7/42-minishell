@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo_call.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:58 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 22:33:19 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/15 00:50:49 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@
 // 			// else if (arg[i] == 'a')
 // 			// 	ft_printf_fd(1, "\a");
 // 			// else if (arg[i] == 'b')
-// 			// 	ft_printf_fd(1, "\b"); 
+// 			// 	ft_printf_fd(1, "\b");
 // 			// else if (arg[i] == 'f')
 // 			// 	ft_printf_fd(1, "\f");
 // 			// else if (arg[i] == 'r')
@@ -103,10 +103,8 @@
 
 static void	printf_echo_arg(t_shell *mns, char *arg)
 {
-	if (arg[0] == '$' && arg[1] == '?' && arg[2] == '\0')
-		ft_printf_fd(1, "%d", mns->exitcode);
-	else
-		ft_printf_fd(1, "%s", arg);
+	ft_printf_fd(1, "%s", arg);
+	(void)mns;
 }
 
 static bool	is_n_flag(char *arg)
