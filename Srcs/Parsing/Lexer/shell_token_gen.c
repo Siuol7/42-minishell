@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 17:46:47 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 23:41:48 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	lx_cmd_group(t_shell *mns)
 	}
 }
 
-static void	lx_typize_token(t_shell *mns, t_token *list, char **str, int size)
+static void	lx_typize_token(t_token *list, char **str, int size)
 {
 	t_point	p;
 
@@ -45,7 +45,6 @@ static void	lx_typize_token(t_shell *mns, t_token *list, char **str, int size)
 			list[p.start].val = ft_strdup(str[p.start]);
 		}
 	}
-	(void)mns;
 }
 
 static void	lx_token_listing(t_shell *mns)
@@ -64,7 +63,7 @@ static void	lx_token_listing(t_shell *mns)
 	i = 0;
 	while (i < mns->group_cnt)
 	{
-		lx_typize_token(mns, mns->cmd_group[i].list, mns->cmd_group[i].token,
+		lx_typize_token(mns->cmd_group[i].list, mns->cmd_group[i].token,
 			mns->cmd_group[i].token_cnt);
 		i++;
 	}

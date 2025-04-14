@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exp_expand.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:56:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 17:41:12 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/14 23:36:31 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	exp_expand_digit(t_shell *mns, char **key, char *exp_sign)
 	free(exp_sign);
 }
 
-static void	exp_expand_org(t_shell *mns, char **key, char *exp_sign, t_token *t)
+static void	exp_expand_org(t_shell *mns, char **key, char *exp_sign)
 {
 	char	*str;
 
@@ -61,8 +61,6 @@ static void	exp_expand_org(t_shell *mns, char **key, char *exp_sign, t_token *t)
 	{
 		free(*key);
 		free(exp_sign);
-		if (3 < t->type && t->type < 10)
-			t->type = RD_AMBI;
 		return ;
 	}
 	str = ft_strdup(get_env_val(mns, *key));
@@ -81,8 +79,10 @@ static void	exp_expand_org(t_shell *mns, char **key, char *exp_sign, t_token *t)
 	free(exp_sign);
 }
 
-static void	exp_copy(t_shell *mns, char **key, char *exp_sign)
+static void	exp_copy(t_shell *mns, char **key, char *exp_sign, t_token *t)
 {
+	if (3 < t->type && t->type < 10)
+		t->type = RD_AMBI;
 	if (!ft_append(&mns->post_expansion, &exp_sign))
 	{
 		free(*key);
@@ -92,7 +92,7 @@ static void	exp_copy(t_shell *mns, char **key, char *exp_sign)
 		ft_bad_alloc(mns);
 }
 
-void	exp_expand(t_shell *mns, char **key, char open, t_token *token)
+void	exp_expand(t_shell *mns, char **key, char open, t_token *t)
 {
 	int		type;
 	char	*exp_sign;
@@ -104,8 +104,8 @@ void	exp_expand(t_shell *mns, char **key, char open, t_token *token)
 		free(*key);
 		ft_bad_alloc(mns);
 	}
-	if (open == '\'')
-		exp_copy(mns, key, exp_sign);
+	if (open == '\'' ||((open = 'e' && 3 < t->type && t->type < 10)))
+		exp_copy(mns, key, exp_sign, t);
 	else
 	{
 		if (type == 1)
@@ -113,7 +113,7 @@ void	exp_expand(t_shell *mns, char **key, char open, t_token *token)
 		else
 		{
 			if (open == '\"')
-				exp_expand_org(mns, key, exp_sign, token);
+				exp_expand_org(mns, key, exp_sign);
 			else
 				exp_expand_new(mns, key, exp_sign);
 		}

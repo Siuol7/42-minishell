@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_clean.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 22:24:43 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/14 23:16:38 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,11 @@ static void	free_cmd_group(t_cmd *group, int id)
 	if (group[id].heredoc)
 		ft_free_2d((void **)group[id].heredoc);
 	if (group[id].out)
-		free(group[id].out);
+		free_out(group, id);
 	if (group[id].in.val)
 		free(group[id].in.val);
+	if (group[id].ambi)
+		free(group[id].ambi);
 }
 
 static void	free_group(t_cmd *group, int size)
