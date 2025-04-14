@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:06:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/14 18:58:44 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/15 00:20:38 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,19 +47,14 @@ void	exec_error(t_shell *mns, char *cmd_path, char *ms1, char *ms2)
 	exit(update_status(mns, 126));
 }
 
-// void	cleanup_heredoc_files(void)
-// {
-// 	int		i;
-// 	char	*filename;
-// 	char	*idx;
-
-// 	i = 0;
-// 	while (i < 100)
-// 	{
-// 		idx = ft_itoa(i);
-// 		filename = ft_strjoin(".heredoc_tmp_", idx);
-// 		free(idx);
-// 		free(filename);
-// 		i++;
-// 	}
-// }
+int	check_ambiguous_rd(t_shell *mns, t_cmd *cmd)
+{
+	(void)mns;
+	if (cmd->ambi)
+	{
+		ft_printf_fd(2, "minishell: %s: ambiguous redirect\n", cmd->ambi);
+		update_status(mns, 1);
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
