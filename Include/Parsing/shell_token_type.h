@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 01:28:19 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 01:41:13 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 14:53:03 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,8 @@ typedef enum s_type
 	RD_APPEND,
 	RD_HEREDOC,
 	RD_RNW,
-	RD_HERESTR
+	RD_HERESTR,
+	RD_AMBI
 }	t_type;
 
 typedef struct s_rd

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 01:22:16 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 11:48:14 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 14:44:53 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ void	exp_generate(t_shell *mns);
 void	exp_check_open(char c, char *open);
 char	*exp_getkey(t_shell *mns, char *str, int *i);
 char	*exp_new_strdup(const char *s);
-void	exp_expand(t_shell *mns, char **key, char open);
+void	exp_expand(t_shell *mns, char **key, char open, t_token *token);
 
 #endif

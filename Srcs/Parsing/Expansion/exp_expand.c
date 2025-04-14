@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:56:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 01:37:11 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 14:54:56 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	exp_expand_digit(t_shell *mns, char **key, char *exp_sign)
 	free(exp_sign);
 }
 
-static void	exp_expand_org(t_shell *mns, char **key, char *exp_sign)
+static void	exp_expand_org(t_shell *mns, char **key, char *exp_sign, t_token *t)
 {
 	char	*str;
 
@@ -61,6 +61,8 @@ static void	exp_expand_org(t_shell *mns, char **key, char *exp_sign)
 	{
 		free(*key);
 		free(exp_sign);
+		if (3 < t->type && t->type < 10)
+			t->type = RD_AMBI;
 		return ;
 	}
 	str = ft_strdup(get_env_val(mns, *key));
@@ -90,7 +92,7 @@ static void	exp_copy(t_shell *mns, char **key, char *exp_sign)
 		ft_bad_alloc(mns);
 }
 
-void	exp_expand(t_shell *mns, char **key, char open)
+void	exp_expand(t_shell *mns, char **key, char open, t_token *token)
 {
 	int		type;
 	char	*exp_sign;
@@ -111,7 +113,7 @@ void	exp_expand(t_shell *mns, char **key, char open)
 		else
 		{
 			if (open == '\"')
-				exp_expand_org(mns, key, exp_sign);
+				exp_expand_org(mns, key, exp_sign, token);
 			else
 				exp_expand_new(mns, key, exp_sign);
 		}
