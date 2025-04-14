@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:47:55 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 01:43:52 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:29:44 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,11 @@ static void	lx_out_hd_cnt(t_token *list, t_cmd *group)
 			group->heredoc_cnt++;
 		else if (list[i].type == CMD || list[i].type == ARG)
 			group->arg_cnt++;
+		else if (list[i].type == RD_AMBI)
+		{
+			group->ambi_cnt++;
+			return ;
+		}
 		i++;
 	}
 }
@@ -34,21 +39,15 @@ static void	lx_in_file(t_shell *mns, t_token *list, t_cmd *group, t_sort *id)
 {
 	if (group->in.val)
 		free(group->in.val);
-	group->in.val = ft_strdup(list[id->id].val);
-	if (!group->in.val)
-		ft_bad_alloc(mns);
+	group->in.val = lx_qmarks_eli(mns, list[id->id].val, 0, 0);
 	group->in.type = list[id->id].type;
 	if (list[id->id].type == RD_HEREDOC)
-	{
-		group->heredoc[id->k++] = ft_strdup(list[id->id].val);
-		if (!group->heredoc[id->k - 1])
-			ft_bad_alloc(mns);
-	}
+		group->heredoc[id->k++] = lx_qmarks_eli(mns, list[id->id].val, 0, 0);
 }
 
-static void	lx_out_file(t_token *list, t_cmd *group, t_sort *id)
+static void	lx_out_file(t_shell *mns, t_token *list, t_cmd *group, t_sort *id)
 {
-	group->out[id->j].val = list[id->id].val;
+	group->out[id->j].val = lx_qmarks_eli(mns, list[id->id].val, 0, 0);
 	group->out[id->j++].type = list[id->id].type;
 }
 
@@ -59,20 +58,24 @@ static void	lx_group_copy(t_shell *mns, t_token *list, t_cmd *group, t_sort *id)
 		if (list[id->id].type == CMD)
 		{
 			group->cmd = list[id->id].val;
-			group->cmd_arg[id->i++] = list[id->id].val;
+			group->cmd_arg[id->i++] = lx_qmarks_eli(mns,
+					list[id->id].val, 0, 0);
 		}
 		else if (list[id->id].type == ARG)
-			group->cmd_arg[id->i++] = list[id->id].val;
+			group->cmd_arg[id->i++] = lx_qmarks_eli(mns,
+					list[id->id].val, 0, 0);
 		else if (list[id->id].type == RD_RNW)
 		{
 			lx_in_file(mns, list, group, id);
-			lx_out_file(list, group, id);
+			lx_out_file(mns, list, group, id);
 		}
 		else if (list[id->id].type == RD_IN || list[id->id].type == RD_HERESTR
 			|| list[id->id].type == RD_HEREDOC)
 			lx_in_file(mns, list, group, id);
 		else if (list[id->id].type == RD_OUT || list[id->id].type == RD_APPEND)
-			lx_out_file(list, group, id);
+			lx_out_file(mns, list, group, id);
+		else if (list[id->id].type == RD_AMBI && !group->ambi)
+			group->ambi = lx_qmarks_eli(mns, list[id->id].val, 0, 0);
 	}
 }
 
