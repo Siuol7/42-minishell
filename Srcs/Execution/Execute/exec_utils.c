@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:06:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/14 17:09:53 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/14 17:46:46 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void	heredoc_expand_all(t_shell *mns)
 			if (!tmpfile)
 			{
 				ft_printf_fd(STDERR_FILENO, "heredoc error\n");
-				mns->shell_err = 1;
+				mns->exitcode = 1;
 				return ;
 			}
 			free(mns->cmd_group[i].in.val);
