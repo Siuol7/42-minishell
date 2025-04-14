@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:34:33 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 17:53:45 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/14 22:31:43 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,14 @@ static int	is_numeric(const char *str)
 	return (1);
 }
 
+static void	printf_numeric_error(t_shell *mns, t_cmd *cmd)
+{
+	ft_printf_fd(2, "minishell: exit: %s: numeric argument required\n",
+		cmd->cmd_arg[1]);
+	shell_clean (mns);
+	exit (2);
+}
+
 void	bi_exit(t_shell *mns, t_cmd *cmd)
 {
 	long	code;
@@ -36,16 +44,13 @@ void	bi_exit(t_shell *mns, t_cmd *cmd)
 	if (cmd->arg_cnt == 1)
 	{
 		code = mns->exitcode;
-		shell_clean(mns);
 		env_shlvl_down(mns);
+		shell_clean(mns);
 		exit (code);
 	}
 	if (!is_numeric(cmd->cmd_arg[1]))
 	{
-		ft_printf_fd(2, "minishell: exit: %s: numeric argument required\n",
-			cmd->cmd_arg[1]);
-		shell_clean (mns);
-		exit (2);
+		printf_numeric_error(mns, cmd);
 	}
 	if (cmd->arg_cnt > 2)
 	{

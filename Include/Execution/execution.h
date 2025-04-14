@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 23:13:23 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/13 23:38:20 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/14 19:17:13 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	exec_cmd(t_shell *mns, t_cmd *cmd);
 int		handle_redirection(t_cmd *cmd);
 
 // handle_heredoc
-char	*heredoc_tmp(char *limiter, int index);
+char	*heredoc_tmp(t_shell *mns, char *limiter, int index);
 void	heredoc_expand_all(t_shell *mns);
 void	cleanup_heredoc_files(void);
 

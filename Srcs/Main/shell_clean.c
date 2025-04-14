@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 16:42:22 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/14 22:24:43 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,11 @@ void	shell_pre_input(t_shell *mns)
 {
 	if (!mns)
 		return ;
+	if (mns->ast)
+	{
+		ast_clean_all(mns->ast);
+		mns->ast = NULL;
+	}
 	if (mns->full_cmd_line)
 	{
 		free(mns->full_cmd_line);
@@ -84,7 +89,6 @@ void	shell_clean(t_shell *mns)
 {
 	if (!mns)
 		return ;
-	cleanup_heredoc_files();
 	if (mns->full_cmd_line)
 	{
 		free(mns->full_cmd_line);
@@ -95,15 +99,15 @@ void	shell_clean(t_shell *mns)
 		ft_free_2d((void **)mns->cmd_str);
 		mns->cmd_str = NULL;
 	}
-	if (mns->cmd_group)
-	{
-		free_group(mns->cmd_group, mns->group_cnt);
-		mns->cmd_group = NULL;
-	}
 	if (mns->ast)
 	{
 		ast_clean_all(mns->ast);
 		mns->ast = NULL;
+	}
+	if (mns->cmd_group)
+	{
+		free_group(mns->cmd_group, mns->group_cnt);
+		mns->cmd_group = NULL;
 	}
 	if (mns->env)
 		ft_free_2d((void **)mns->env);
