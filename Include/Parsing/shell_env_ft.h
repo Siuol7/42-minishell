@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 01:22:16 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 17:48:03 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 23:58:41 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,8 @@ void	env_shlvl_down(t_shell *mns);
 
 //EXPANSION
 int		exp_validation(char *key);
-void	exp_generate(t_shell *mns, int i);
+void	exp_generate(t_shell *mns, int i, int j);
+void	exp_group_generate(t_shell *mns);
 void	exp_check_open(char c, char *open);
 char	*exp_getkey(t_shell *mns, char *str, int *i);
 char	*exp_new_strdup(const char *s);

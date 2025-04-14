@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:47:55 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 16:29:44 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 23:26:20 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,11 +26,6 @@ static void	lx_out_hd_cnt(t_token *list, t_cmd *group)
 			group->heredoc_cnt++;
 		else if (list[i].type == CMD || list[i].type == ARG)
 			group->arg_cnt++;
-		else if (list[i].type == RD_AMBI)
-		{
-			group->ambi_cnt++;
-			return ;
-		}
 		i++;
 	}
 }
