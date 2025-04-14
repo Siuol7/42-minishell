@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 01:22:16 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/13 22:57:32 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 03:03:26 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,8 @@ typedef struct s_point
 
 char	**env_sorting(t_shell *mns);
 int		merge_sort(char **env, int left, int right);
+void	env_shlvl_gen(t_shell *mns);
+void	env_shlvl_check(t_shell *mns);
 
 //EXPANSION
 int		exp_validation(char *key);
