@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:34:33 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 11:48:42 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 11:53:55 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ static void	exit_standalone(t_shell *mns)
 	printf("exit\n");
 	env_shlvl_down(mns);
 	shell_clean(mns);
+	printf("WORK\n");
 	exit(0);
 }
 

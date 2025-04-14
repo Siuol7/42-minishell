@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 14:45:20 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 11:48:04 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 11:51:08 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ void	env_shlvl_down(t_shell *mns)
 	char	*shlvl;
 
 	shlvl = get_env_val(mns, "SHLVL");
-	if (shlvl == 1)
+	if (!ft_strcmp(shlvl, "1"))
 	{
 		mns->shlvl = 0;
-		unset_env_var("SHLVL", &mns->env)
+		unset_env_var("SHLVL", &mns->env);
 	}
 	else
 	{
