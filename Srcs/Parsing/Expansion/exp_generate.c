@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exp_generate copy.c                                :+:      :+:    :+:   */
+/*   exp_generate.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 00:35:59 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 14:44:22 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 17:47:39 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,12 +50,10 @@ static void	exp_check(t_shell *mns, t_token str, int size, int i)
 		exp_subjoin(mns, p, str.val);
 }
 
-void	exp_generate(t_shell *mns)
+void	exp_generate(t_shell *mns, int i)
 {
-	int	i;
 	int	j;
 
-	i = -1;
 	while (++i < mns->group_cnt)
 	{
 		j = -1;
@@ -64,6 +62,8 @@ void	exp_generate(t_shell *mns)
 			mns->post_expansion = ft_strdup("");
 			if (!mns->post_expansion)
 				ft_bad_alloc(mns);
+			if (mns->cmd_group[i].list[j].type == SIGN)
+				continue ;
 			exp_check(mns, mns->cmd_group[i].list[j],
 				ft_strlen(mns->cmd_group[i].list[j].val), 0);
 			free(mns->cmd_group[i].list[j].val);
