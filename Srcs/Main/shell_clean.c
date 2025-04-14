@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 23:16:38 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/15 00:01:23 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	free_cmd_group(t_cmd *group, int id)
 	if (group[id].list)
 		free_list(group[id].list, group[id].token_cnt);
 	if (group[id].cmd_arg)
-		free(group[id].cmd_arg);
+		ft_free_2d((void **)group[id].cmd_arg);
 	if (group[id].token)
 		ft_free_2d((void **)group[id].token);
 	if (group[id].heredoc)

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:56:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 23:36:31 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/15 00:01:46 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	exp_expand(t_shell *mns, char **key, char open, t_token *t)
 		free(*key);
 		ft_bad_alloc(mns);
 	}
-	if (open == '\'' ||((open = 'e' && 3 < t->type && t->type < 10)))
+	if (open == '\'' || ((open == 'e' && 3 < t->type && t->type < 10)))
 		exp_copy(mns, key, exp_sign, t);
 	else
 	{
