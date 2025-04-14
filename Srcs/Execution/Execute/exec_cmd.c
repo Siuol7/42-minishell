@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:13:21 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/08 23:54:31 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/14 03:23:10 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,14 @@ void	exec_non_builtin(t_shell *mns, t_cmd *cmd)
 		command_path = found_command_path(mns, cmd->cmd_arg[0]);
 		if (!command_path)
 			exit(127);
+		if (!ft_strcmp(cmd->cmd, "./minishell"))
+			env_shlvl_up(mns);
 		execve(command_path, cmd->cmd_arg, mns->env);
 		handle_execution_error(command_path, cmd->cmd_arg);
 		exit (1);
 	}
 	else
-	{
 		wait_update(mns, pid);
-	}
 }
 
 void	exec_cmd(t_shell *mns, t_cmd *cmd)

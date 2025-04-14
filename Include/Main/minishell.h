@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/03 20:15:47 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/14 11:55:53 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ typedef struct s_shell
 	int		exitcode;
 	int		shlvl;
 	char	*full_cmd_line;
-	char	**cmd_str; // 'ls-la'
+	char	*post_expansion;
+	char	**cmd_str;
 	char	**env;
-	t_list	**list; // 'la -la' 
 	t_cmd	*cmd_group;
 	int		shell_err;
 	t_ast	*ast;
@@ -48,10 +48,9 @@ void	shell_env_gen(t_shell *mns, char **env);
 
 //PARSING
 void	shell_input(t_shell	*mns);
-void	shell_token_gen(t_shell *mns, char *input);
+void	shell_token_gen(t_shell *mns, char *input, int i);
 
 //ERROR HANDLING
 void	ft_bad_alloc(t_shell *mns);
-void	shell_err(t_shell *mns);
 
 #endif

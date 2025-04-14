@@ -1,28 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   exit_call.c                                        :+:      :+:    :+:   */
+/*   prs_list_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/23 03:34:33 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 11:57:39 by caonguye         ###   ########.fr       */
+/*   Created: 2025/04/09 15:39:01 by caonguye          #+#    #+#             */
+/*   Updated: 2025/04/13 13:42:02 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	exit_standalone(t_shell *mns)
+int	prs_list_check(t_shell *mns)
 {
-	printf("exit\n");
-	env_shlvl_down(mns);
-	shell_clean(mns);
-	printf("WORK\n");
-	exit(0);
-}
+	int	i;
+	int	j;
 
-void	bi_exit(t_shell *mns, t_cmd *cmd)
-{
-	if (cmd->arg_cnt == 1)
-		exit_standalone(mns);
+	i = 0;
+	while (i < mns->group_cnt)
+	{
+		j = 0;
+		while (j < mns->cmd_group[i].token_cnt)
+		{
+			if (mns->cmd_group[i].list[j].type == SIGN_ERR)
+			{
+				printf("bash: syntax error near unexpected token '%s'\n",
+					mns->cmd_group[i].list[j].val);
+				update_status(mns, 2);
+				mns->shell_err = -3;
+				return (0);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }

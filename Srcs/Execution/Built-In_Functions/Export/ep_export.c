@@ -1,39 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prs_cmd_check.c                                    :+:      :+:    :+:   */
+/*   ep_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 02:39:14 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/11 14:44:54 by caonguye         ###   ########.fr       */
+/*   Created: 2025/03/23 03:22:21 by caonguye          #+#    #+#             */
+/*   Updated: 2025/04/14 02:54:03 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	prs_cmd_check(t_shell *mns)
+void	ep_replace(t_shell *mns, char *str, int i)
 {
-	int	i;
-	int	j;
+	if (mns->env[i])
+		free(mns->env[i]);
+	mns->env[i] = ft_strdup(str);
+	if (!mns->env[i])
+		ft_bad_alloc(mns);
+}
+
+void	ep_standalone(t_shell *mns)
+{
+	int		size;
+	int		i;
+	char	**sorted_env;
 
 	i = 0;
-	while (i < mns->group_cnt)
+	size = ft_2d_len(mns->env);
+	sorted_env = env_sorting(mns);
+	if (!sorted_env)
+		ft_bad_alloc(mns);
+	while (i < size)
 	{
-		j = 0;
-		while (j < mns->cmd_group[i].token_cnt)
-		{
-			if (mns->cmd_group[i].list[j].type == SIGN
-				&& j == mns->cmd_group[i].token_cnt -1)
-			{
-				ft_printf_fd(2,
-					"bash: syntax error: unexpected token `newline'\n");
-				update_status(mns, 2);
-				return (0);
-			}
-			j++;
-		}
+		printf("declare -x %s\n", sorted_env[i]);
 		i++;
 	}
-	return (1);
+	ft_free_2d((void **)sorted_env);
 }

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 01:59:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/03 11:11:06 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/08 00:55:20 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ static void	prs_extra_arg(t_shell *mns, char c)
 		temp = new;
 		new = ft_strjoin("\n", new);
 		free(temp);
-		mns->full_cmd_line = ft_strjoin_free(mns->full_cmd_line, new);
-		free(new);
+		if (!ft_append(&mns->full_cmd_line, &new))
+			ft_bad_alloc(mns);
 		if (c_cnt % 2 == 0)
 			break ;
 	}
@@ -56,9 +56,7 @@ static int	prs_extra_cmd(t_shell *mns)
 	if (!new)
 		ft_bad_alloc(mns);
 	free(temp);
-	mns->full_cmd_line = ft_strjoin_free(mns->full_cmd_line, new);
-	free(new);
-	if (!mns->full_cmd_line)
+	if (!ft_append(&mns->full_cmd_line, &new))
 		ft_bad_alloc(mns);
 	return (1);
 }
