@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/13 20:30:16 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 16:07:48 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,16 +33,16 @@ static void	lx_typize_token(t_shell *mns, t_token *list, char **str, int size)
 	while (++p.start < size)
 	{
 		if (lx_is_rd(str[p.start]))
-			lx_rd_typize(mns, list, str, &p);
+			lx_rd_typize(list, str, &p);
 		else if (p.start == 0)
 		{
 			list[p.start].type = CMD;
-			list[p.start].val = lx_qmarks_eli(mns, str[p.start], 0, 0);
+			list[p.start].val = ft_strdup(str[p.start]);
 		}
 		else
 		{
 			list[p.start].type = ARG;
-			list[p.start].val = lx_qmarks_eli(mns, str[p.start], 0, 0);
+			list[p.start].val = ft_strdup(str[p.start]);
 		}
 	}
 	(void)mns;
@@ -92,9 +92,9 @@ void	shell_token_gen(t_shell *mns, char *input, int i)
 		if (!mns->cmd_group[i].token)
 			ft_bad_alloc(mns);
 	}
-	exp_generate(mns);
 	lx_token_listing(mns);
 	if (mns->shell_err == -3)
 		return ;
+	exp_generate(mns);
 	lx_cmd_group(mns);
 }
