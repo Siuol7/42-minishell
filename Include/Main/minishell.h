@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/13 21:27:40 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/14 16:41:41 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,9 @@ typedef struct s_shell
 	int		exitcode;
 	int		shlvl;
 	char	*full_cmd_line;
+	char	*post_expansion;
 	char	**cmd_str;
 	char	**env;
-	t_list	**list;
 	t_cmd	*cmd_group;
 	int		shell_err;
 	t_ast	*ast;
@@ -49,10 +49,9 @@ void	shell_env_gen(t_shell *mns, char **env);
 
 //PARSING
 void	shell_input(t_shell	*mns);
-void	shell_token_gen(t_shell *mns, char *input);
+void	shell_token_gen(t_shell *mns, char *input, int i);
 
 //ERROR HANDLING
 void	ft_bad_alloc(t_shell *mns);
-void	shell_err(t_shell *mns);
 
 #endif

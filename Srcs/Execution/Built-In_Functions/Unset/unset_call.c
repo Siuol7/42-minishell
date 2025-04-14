@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   unset_call.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:36:23 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/10 22:11:53 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/14 11:46:29 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	is_valid_identifier(char *key)
 	return (1);
 }
 
-static void	unset_env_var(char *key, char ***env)
+void	unset_env_var(char *key, char ***env)
 {
 	int		j;
 	size_t	keylen;

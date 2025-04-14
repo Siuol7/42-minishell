@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/13 23:40:21 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/14 16:42:22 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,11 @@ static void	free_list(t_token *list, int size)
 	while (i < size)
 	{
 		if (list[i].type != SIGN && list[i].val)
+		{
 			free(list[i].val);
+			if (list[i].type == SIGN_ERR)
+				break ;
+		}
 		i++;
 	}
 	free(list);

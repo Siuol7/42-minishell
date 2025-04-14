@@ -1,32 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ep_standalone.c                                    :+:      :+:    :+:   */
+/*   ft_append.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/23 03:22:21 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/23 23:04:15 by caonguye         ###   ########.fr       */
+/*   Created: 2025/04/07 11:13:21 by caonguye          #+#    #+#             */
+/*   Updated: 2025/04/11 23:25:46 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-void	ep_standalone(t_shell *mns)
+int	ft_append(char **s1, char **s2)
 {
-	int		size;
-	int		i;
-	char	**sorted_env;
-
-	i = 0;
-	size = ft_2d_len(mns->env);
-	sorted_env = env_sorting(mns);
-	if (!sorted_env)
-		ft_bad_alloc(mns);
-	while (i < size)
-	{
-		printf("declare -x %s\n", sorted_env[i]);
-		i++;
-	}
-	ft_free_2d((void **)sorted_env);
+	*s1 = ft_strjoin_free(*s1, *s2);
+	free(*s2);
+	if (!(*s1))
+		return (0);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 01:44:07 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/11 20:55:17 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/14 16:42:02 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	exec_builtin(t_shell *mns, t_cmd *cmd)
 		bi_pwd(mns, cmd);
 	else if (!ft_strcmp(name, "env"))
 		bi_env(mns, cmd);
+	else if (!ft_strcmp(name, "export"))
+		bi_export(mns, cmd);
 	else if (!ft_strcmp(name, "unset"))
 		bi_unset(mns, cmd);
 	else if (!ft_strcmp(name, "exit"))

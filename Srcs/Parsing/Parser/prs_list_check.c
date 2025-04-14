@@ -1,20 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   bad_allocation.c                                   :+:      :+:    :+:   */
+/*   prs_list_check.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/15 16:30:41 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/13 21:51:49 by caonguye         ###   ########.fr       */
+/*   Created: 2025/04/09 15:39:01 by caonguye          #+#    #+#             */
+/*   Updated: 2025/04/13 13:42:02 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_bad_alloc(t_shell *mns)
+int	prs_list_check(t_shell *mns)
 {
-	printf("minishell: bad allocation\n");
-	shell_clean(mns);
-	exit(EXIT_FAILURE);
+	int	i;
+	int	j;
+
+	i = 0;
+	while (i < mns->group_cnt)
+	{
+		j = 0;
+		while (j < mns->cmd_group[i].token_cnt)
+		{
+			if (mns->cmd_group[i].list[j].type == SIGN_ERR)
+			{
+				printf("bash: syntax error near unexpected token '%s'\n",
+					mns->cmd_group[i].list[j].val);
+				update_status(mns, 2);
+				mns->shell_err = -3;
+				return (0);
+			}
+			j++;
+		}
+		i++;
+	}
+	return (1);
 }

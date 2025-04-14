@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_token_type.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 01:28:19 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/01 20:21:57 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/14 01:41:13 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,13 @@ typedef enum s_type
 	CMD,
 	ARG,
 	SIGN,
+	SIGN_ERR,
 	RD_IN,
 	RD_OUT,
 	RD_APPEND,
 	RD_HEREDOC,
-	RD_RNW
+	RD_RNW,
+	RD_HERESTR
 }	t_type;
 
 typedef struct s_rd
