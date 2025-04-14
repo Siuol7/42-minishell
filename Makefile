@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
+#    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/14 18:59:51 by tripham          ###   ########.fr        #
+#    Updated: 2025/04/14 23:16:13 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,8 @@ MAIN_C			:=	main.c					\
 					shell_input.c			\
 					shell_init.c			\
 					bad_allocation.c		\
-					shell_clean.c
+					shell_clean.c			\
+					shell_clean_utils.c
 
 # PARSING
 PARSING_SRC		:=	./Srcs/Parsing
@@ -166,7 +167,7 @@ SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${PWD_DIR}/,		${PWD_C})			\
 					$(addprefix ${UTILS_DIR}/,		${UTILS_C})	  		\
 					$(addprefix ${GNL_DIR}/,		${GNL_SRC})
-					
+
 OBJS           :=	${SRCS:.c=.o}
 
 all:    ${LIBFT} ${PRINTF} ${GNL} ${NAME}
