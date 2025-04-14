@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:34:33 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/11 21:22:07 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/13 23:24:12 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	bi_exit(t_shell *mns, t_cmd *cmd)
 {
 	long	code;
 
-	printf("exit\n");
 	if (cmd->arg_cnt == 1)
 	{
+		code = mns->exitcode;
 		shell_clean(mns);
-		exit (mns->exitcode);
+		exit (code);
 	}
 	if (!is_numeric(cmd->cmd_arg[1]))
 	{

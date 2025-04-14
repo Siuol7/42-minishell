@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/04 15:56:44 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/13 23:40:21 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	shell_clean(t_shell *mns)
 {
 	if (!mns)
 		return ;
+	cleanup_heredoc_files();
 	if (mns->full_cmd_line)
 	{
 		free(mns->full_cmd_line);

@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/11 21:00:27 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/13 21:27:40 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 # include "../Execution/ast.h"
 # include "../Execution/execution.h"
 # include "../Execution/builtin_functions.h"
-
+// Get next line
+# include "../../Library/get_next_line/get_next_line.h"
 typedef struct s_shell
 {
 	int		group_cnt;

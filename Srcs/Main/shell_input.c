@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/09 20:37:15 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/13 23:51:05 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,19 @@ static void	shell_input_operate(t_shell *mns)
 		mns->ast = ast_init(mns->cmd_group, mns->group_cnt, 0);
 		exec_ast(mns->ast, mns);
 	}
+	// printf("Group cnt %d\n", mns->group_cnt);
+	// for (int i = 0; i < mns->group_cnt; i++)
+	// {
+	// 	printf("Group %d : %s\n", i, mns->cmd_str[i]);
+	// 	printf("CMD %s\n", mns->cmd_group[i].cmd);
+	// 	for (int j = 0; j < mns->cmd_group[i].arg_cnt; j++)
+	// 		printf("CMD ARG %d : %s\n", j, mns->cmd_group[i].cmd_arg[j]);
+	// 	printf("File in %s type %d\n", mns->cmd_group[i].in.val, mns->cmd_group[i].in.type);
+	// 	for (int m = 0; m < mns->cmd_group[i].out_cnt; m++)
+	// 		printf("File out %s type %d\n", mns->cmd_group[i].out[m].val, mns->cmd_group[i].out[m].type);
+	// 	for (int n = 0; n < mns->cmd_group[i].heredoc_cnt; n++)
+	// 		printf("HEREDOC %d is  %s\n", n, mns->cmd_group[i].heredoc[n]);
+	// }
 }
 
 void	shell_input(t_shell	*mns)
@@ -32,7 +45,22 @@ void	shell_input(t_shell	*mns)
 	while (1)
 	{
 		signals_initialize();
-		mns->full_cmd_line = readline("minishell$ ");
+		// mns->full_cmd_line = readline("minishell$ ");
+		
+		//-------------------------------------------------------
+		// TESTER
+		//-------------------------------------------------------
+		if (!isatty(fileno(stdin)))
+			mns->full_cmd_line = readline("minishell$ ");
+		else
+		{
+			char *line;
+			line = get_next_line(fileno(stdin));
+			mns->full_cmd_line = ft_strtrim(line, "\n");
+			free(line);
+		}
+
+
 		if (!mns->full_cmd_line)
 		{
 			printf("exit\n");
@@ -44,7 +72,20 @@ void	shell_input(t_shell	*mns)
 			shell_input_operate(mns);
 		}
 		shell_pre_input(mns);
-	}
+	// 	signals_initialize();
+	// 	mns->full_cmd_line = readline("minishell$ ");
+	// 	if (!mns->full_cmd_line)
+	// 	{
+	// 		printf("exit\n");
+	// 		shell_clean(mns);
+	// 		exit (0);
+	// 	}
+	// 	if (mns->full_cmd_line[0])
+	// 	{
+	// 		shell_input_operate(mns);
+	// 	}
+	// 	shell_pre_input(mns);
+	// }
 }
 // else if (prs_cmd_check(mns))
 // 	{

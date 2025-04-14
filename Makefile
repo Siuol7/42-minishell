@@ -6,7 +6,7 @@
 #    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/11 20:52:11 by tripham          ###   ########.fr        #
+#    Updated: 2025/04/13 21:41:29 by tripham          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,9 +22,15 @@ LIBFT			:= $(LIBFT_DIR)/libft.a
 FT_PRINTF_DIR	:= ./Library/ft_printf_fd
 PRINTF			:= $(FT_PRINTF_DIR)/libftprintf.a
 
+GNL_DIR			:= ./Library/get_next_line
+
 HEADER			:= ./Include/Main
 
-INCLUDE			:= -I $(LIBFT_DIR) -I $(FT_PRINTF_DIR) -I $(HEADER)
+INCLUDE			:= -I $(LIBFT_DIR) -I $(FT_PRINTF_DIR) -I $(GNL_DIR) -I $(HEADER)
+
+#GNL
+GNL_SRC			:= get_next_line.c	\
+					get_next_line_utils.c
 
 #MAIN
 MAIN_SRC		:=	./Srcs/Main
@@ -145,11 +151,12 @@ SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${EXIT_DIR}/,		${EXIT_C})				\
 					$(addprefix ${UNSET_DIR}/,		${UNSET_C})				\
 					$(addprefix ${PWD_DIR}/,		${PWD_C})			\
-					$(addprefix ${UTILS_DIR}/,		${UTILS_C})
-
+					$(addprefix ${UTILS_DIR}/,		${UTILS_C})	  		\
+					$(addprefix ${GNL_DIR}/,		${GNL_SRC})
+					
 OBJS           :=	${SRCS:.c=.o}
 
-all:    ${LIBFT} ${PRINTF} ${NAME}
+all:    ${LIBFT} ${PRINTF} ${GNL} ${NAME}
 
 %.o:%.c
 		@${CC} ${FLAG} ${INCLUDE} -o $@ -c $<
@@ -169,7 +176,7 @@ ${NAME}	:	${OBJS} ${LIBFT} ${PRINTF}
 			printf "\b \b"; sleep 0.3; \
 		done; \
 		printf "\033[0m\n"
-		@${CC} ${OBJS} ${LIBFT} ${PRINTF} ${FLAG} ${LFLAG} -o ${NAME}
+		@${CC} ${OBJS} ${LIBFT} ${PRINTF} ${GNL} ${FLAG} ${LFLAG} -o ${NAME}
 
 ${LIBFT}	:
 		@$(MAKE) -s -C ${LIBFT_DIR}
