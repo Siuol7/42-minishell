@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 14:39:38 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/13 22:15:20 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 11:57:08 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	ep_exist(t_shell *mns, char *str)
 {
 	int	i;
 	int	size;
-	int len;
+	int	len;
 
 	i = 0;
 	size = ft_2d_len(mns->env);
@@ -48,7 +48,7 @@ int	ep_validation(char *str)
 		i++;
 	}
 	if ((i < size && str[i - 1] == ' ') || err == 0
-			|| (i == 0 && str[i] == '='))
+		|| (i == 0 && str[i] == '='))
 	{
 		printf("bash: export: '%s': not a valid identifier\n", str);
 		return (err);

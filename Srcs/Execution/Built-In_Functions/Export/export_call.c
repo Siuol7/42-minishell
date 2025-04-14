@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:00:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/13 21:40:39 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 11:57:24 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static void	ep_variable(t_shell *mns, t_cmd *cmd)
 			return ;
 		}
 		pos = ep_exist(mns, cmd->cmd_arg[i]);
-		if (pos > - 1)
+		if (pos > -1)
 			ep_replace(mns, cmd->cmd_arg[i], pos);
 		else
 			env_append(mns, cmd->cmd_arg[i]);

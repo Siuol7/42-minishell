@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 04:02:14 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 11:47:01 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 11:56:02 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ void	env_append(t_shell *mns, char *str);
 char	*resolve_logic_pwd(const char *old, const char *target);
 void	env_append(t_shell *mns, char *str);
 
-
 void	unset_env_var(char *key, char ***env);
+
 #endif
