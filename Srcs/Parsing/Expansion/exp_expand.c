@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:56:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/15 00:01:46 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/15 00:44:31 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@ static void	exp_expand_new(t_shell *mns, char **key, char *exp_sign)
 {
 	char	*str;
 
-	if (!get_env_val(mns, *key))
+	if (ft_strcmp(*key, "?") && !get_env_val(mns, *key))
 	{
 		free(*key);
 		free(exp_sign);
 		return ;
 	}
-	str = exp_new_strdup(get_env_val(mns, *key));
+	if (!ft_strcmp(*key, "?"))
+		str = ft_itoa(mns->exitcode);
+	else
+		str = exp_new_strdup(get_env_val(mns, *key));
 	if (!str)
 		ft_bad_alloc(mns);
 	if (str && ft_strlen(str) > 0)
@@ -57,13 +60,16 @@ static void	exp_expand_org(t_shell *mns, char **key, char *exp_sign)
 {
 	char	*str;
 
-	if (!get_env_val(mns, *key))
+	if (ft_strcmp(*key, "?") && !get_env_val(mns, *key))
 	{
 		free(*key);
 		free(exp_sign);
 		return ;
 	}
-	str = ft_strdup(get_env_val(mns, *key));
+	if (!ft_strcmp(*key, "?"))
+		str = ft_itoa(mns->exitcode);
+	else
+		str = ft_strdup(get_env_val(mns, *key));
 	if (!str)
 		ft_bad_alloc(mns);
 	if (str && ft_strlen(str) > 0)

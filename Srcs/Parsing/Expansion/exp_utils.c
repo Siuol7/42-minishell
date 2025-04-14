@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exp_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:31:36 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 17:36:42 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/15 00:37:02 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,12 @@ char	*exp_getkey(t_shell *mns, char *str, int *i)
 	start = ++*i;
 	while (str[*i])
 	{
-		if (!ft_isalnum(str[*i]) && str[*i] != '_')
+		if ((!ft_isalnum(str[*i]) && str[*i] != '_') || str[*i] == '?')
 			break ;
 		(*i)++;
 	}
+	if (str[*i] == '?')
+		(*i)++;
 	key = ft_substr(str, start, *i - start);
 	if (!key)
 		ft_bad_alloc(mns);
