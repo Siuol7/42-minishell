@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/13 21:27:56 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/14 11:49:31 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	shell_input(t_shell	*mns)
 		if (!mns->full_cmd_line)
 		{
 			printf("exit\n");
+			env_shlvl_down(mns);
 			shell_clean(mns);
 			exit (0);
 		}
