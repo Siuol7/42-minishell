@@ -11,3 +11,11 @@
 	// 	for (int n = 0; n < mns->cmd_group[i].heredoc_cnt; n++)
 	// 		printf("HEREDOC %d is  %s\n", n, mns->cmd_group[i].heredoc[n]);
 	// }
+
+
+
+	error
+Test  17: ❌ echo "$" 
+mini output = ()
+bash output = ($)
+

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
+#    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/14 23:16:13 by caonguye         ###   ########.fr        #
+#    Updated: 2025/04/15 22:43:19 by tripham          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,7 +63,8 @@ PARSER_DIR		:= $(PARSING_SRC)/Parser
 
 PARSER_C		:=  prs_cmd_check.c			\
 					prs_extension.c			\
-					prs_list_check.c
+					prs_list_check.c		\
+					prs_utils.c			
 #	Env
 ENVIR_DIR		:= $(PARSING_SRC)/Environment
 
@@ -226,3 +227,5 @@ fclean   : clean
 re    : fclean all
 
 .PHONY: all clean fclean re
+
+
