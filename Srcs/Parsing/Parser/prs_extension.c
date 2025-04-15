@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prs_extension.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 01:59:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/08 00:55:20 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/15 22:54:28 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,27 +40,6 @@ static void	prs_extra_arg(t_shell *mns, char c)
 	}
 }
 
-static int	prs_extra_cmd(t_shell *mns)
-{
-	char	*new;
-	char	*temp;
-
-	while (1)
-	{
-		new = readline("> ");
-		if (new[0])
-			break ;
-	}
-	temp = new;
-	new = ft_strjoin(" ", new);
-	if (!new)
-		ft_bad_alloc(mns);
-	free(temp);
-	if (!ft_append(&mns->full_cmd_line, &new))
-		ft_bad_alloc(mns);
-	return (1);
-}
-
 static int	prs_check(t_shell *mns, int i, int alpha, int pipe)
 {
 	int	size;
@@ -68,21 +47,21 @@ static int	prs_check(t_shell *mns, int i, int alpha, int pipe)
 	size = ft_strlen(mns->full_cmd_line);
 	while (i < size)
 	{
-		if (!ft_isallspace(mns->full_cmd_line[i]))
+		if (ft_is_dquote(mns->full_cmd_line[i]))
+			lx_skip_dquote(mns->full_cmd_line, &i);
+		if (!ft_isallspace(mns->full_cmd_line[i])
+			&& mns->full_cmd_line[i] != '|')
 		{
 			alpha = 1;
 			pipe = 0;
 		}
-		if (alpha == 1 && mns->full_cmd_line[i] == '|')
+		else if (alpha == 1 && mns->full_cmd_line[i] == '|')
 		{
-			if (i + 1 < size && mns->full_cmd_line[i + 1] == '|')
-			{
-				mns->shell_err = -2;
-				return (0);
-			}
 			alpha = 0;
 			pipe = 1;
 		}
+		else if (alpha == 0 && mns->full_cmd_line[i] == '|' )
+			return (-2);
 		i++;
 	}
 	if (pipe == 1 && alpha == 0)
@@ -115,9 +94,28 @@ static int	prs_arg_check(t_shell *mns)
 
 void	prs_extra_check(t_shell *mns)
 {
+	int		flag;
+	char	*temp;
+
+	temp = ft_strdup(" |");
 	while (1)
 	{
-		if (!prs_check(mns, 0, 0, 0) && !prs_arg_check(mns))
+		flag = prs_check(mns, 0, 0, 0);
+		if (!flag && !prs_arg_check(mns))
+		{
+			free(temp);
 			break ;
+		}
+		if (flag == -2)
+		{
+			mns->shell_err = -3;
+			free(temp);
+			return ;
+		}
+		if (flag == -1)
+		{
+			ft_append(&mns->full_cmd_line, &temp);
+			return ;
+		}
 	}
 }

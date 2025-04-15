@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ep_validation.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 14:39:38 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 11:57:08 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/15 20:33:46 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	ep_exist(t_shell *mns, char *str)
 	return (-1);
 }
 
-int	ep_validation(char *str)
+int	ep_validation(t_shell *mns, char *str)
 {
 	int	i;
 	int	size;
@@ -51,6 +51,7 @@ int	ep_validation(char *str)
 		|| (i == 0 && str[i] == '='))
 	{
 		printf("bash: export: '%s': not a valid identifier\n", str);
+		update_status(mns, 1);
 		return (err);
 	}
 	return (1);

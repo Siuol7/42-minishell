@@ -6,11 +6,21 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:28 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/10 22:02:06 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/15 23:00:38 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int	for_home(char *target)
+{
+	if (!target)
+	{
+		ft_printf_fd(2, "cd: HOME not set\n");
+		return (1);
+	}
+	return (0);
+}
 
 static char	*get_cd_target(t_shell *mns, char **args)
 {
@@ -19,11 +29,7 @@ static char	*get_cd_target(t_shell *mns, char **args)
 	if (!args[1] || !ft_strcmp(args[1], "~"))
 	{
 		target = get_env_val(mns, "HOME");
-		if (!target)
-		{
-			ft_printf_fd(2, "cd: HOME not set\n");
-			return (NULL);
-		}
+		for_home(target);
 	}
 	else if (!ft_strcmp(args[1], "-"))
 	{
@@ -34,6 +40,11 @@ static char	*get_cd_target(t_shell *mns, char **args)
 			return (NULL);
 		}
 		printf("%s\n", target);
+	}
+	else if (args[2] != NULL)
+	{
+		printf("bash: cd: too many arguments\n");
+		return (NULL);
 	}
 	else
 		target = args[1];

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_token_ft.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:55:24 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 16:07:31 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/15 22:42:52 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,5 @@ void			lx_cmd_group_gen(t_shell *mns, t_token *list, t_cmd *group);
 char			**lx_token_split(t_shell *mns, char *input, int i);
 char			**lx_group_split(t_shell *mns, char *input);
 char			*lx_qmarks_eli(t_shell *mns, char *str, int i, int j);
+int				prs_extra_cmd(t_shell *mns);
 #endif
