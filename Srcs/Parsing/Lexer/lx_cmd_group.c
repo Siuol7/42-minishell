@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lx_cmd_group.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:47:55 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/16 22:10:53 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/16 23:09:43 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,11 @@ static void	lx_out_hd_cnt(t_token *list, t_cmd *group)
 	i = 0;
 	while (i < group->token_cnt)
 	{
-		if (list[i].type == RD_OUT || list[i].type == RD_APPEND
-			|| list[i].type == RD_RNW)
+		if (list[i].type == RD_OUT || list[i].type == RD_APPEND)
 			group->out_cnt++;
 		else if (list[i].type == RD_HEREDOC)
 			group->heredoc_cnt++;
-		else if (list[i].type == CMD || list[i].type == ARG)
+		else if (list[i].type == ARG)
 			group->arg_cnt++;
 		i++;
 	}
@@ -55,13 +54,7 @@ static void	lx_group_copy(t_shell *mns, t_token *list, t_cmd *group, t_sort *id)
 			group->cmd_arg[id->i++] = lx_qmarks_eli(mns,
 					list[id->id].val, 0, 0);
 		}
-		else if (list[id->id].type == RD_RNW)
-		{
-			lx_in_file(mns, list, group, id);
-			lx_out_file(mns, list, group, id);
-		}
-		else if (list[id->id].type == RD_IN || list[id->id].type == RD_HERESTR
-			|| list[id->id].type == RD_HEREDOC)
+		else if (list[id->id].type == RD_IN || list[id->id].type == RD_HEREDOC)
 			lx_in_file(mns, list, group, id);
 		else if (list[id->id].type == RD_OUT || list[id->id].type == RD_APPEND)
 			lx_out_file(mns, list, group, id);
