@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:58:07 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/14 22:35:49 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/16 17:49:04 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,6 @@ void	heredoc_expand_all(t_shell *mns)
 		if (mns->cmd_group[i].in.type == RD_HEREDOC)
 		{
 			tmpfile = heredoc_tmp(mns, mns->cmd_group[i].in.val, i);
-			printf("reach here %s\n", mns->cmd_group[i].in.val);
 			if (!tmpfile)
 			{
 				ft_printf_fd(STDERR_FILENO, "heredoc error\n");

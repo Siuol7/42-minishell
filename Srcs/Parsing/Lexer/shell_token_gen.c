@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/15 16:31:46 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/16 22:10:07 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,6 @@ static void	lx_typize_token(t_token *list, char **str, int size)
 	{
 		if (lx_is_rd(str[p.start]))
 			lx_rd_typize(list, str, &p);
-		else if (p.start == 0)
-		{
-			list[p.start].type = CMD;
-			list[p.start].val = ft_strdup(str[p.start]);
-		}
 		else
 		{
 			list[p.start].type = ARG;
