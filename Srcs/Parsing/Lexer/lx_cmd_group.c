@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:47:55 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/15 20:13:11 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/16 17:57:50 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,15 +50,17 @@ static void	lx_group_copy(t_shell *mns, t_token *list, t_cmd *group, t_sort *id)
 {
 	while (++id->id < group->token_cnt)
 	{
-		if (list[id->id].type == CMD)
+		// if (list[id->id].type == CMD)
+		// {
+		// 	group->cmd = list[id->id].val;
+		// 	group->cmd_arg[id->i++] = lx_qmarks_eli(mns,
+		// 			list[id->id].val, 0, 0);
+		// }
+		if (list[id->id].type == ARG)
 		{
-			group->cmd = list[id->id].val;
-			group->cmd_arg[id->i++] = lx_qmarks_eli(mns,
+				group->cmd_arg[id->i++] = lx_qmarks_eli(mns,
 					list[id->id].val, 0, 0);
 		}
-		else if (list[id->id].type == ARG)
-			group->cmd_arg[id->i++] = lx_qmarks_eli(mns,
-					list[id->id].val, 0, 0);
 		else if (list[id->id].type == RD_RNW)
 		{
 			lx_in_file(mns, list, group, id);
