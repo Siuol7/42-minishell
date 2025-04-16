@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:13:21 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/16 18:47:38 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/16 20:05:56 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ void	exec_non_builtin(t_shell *mns, t_cmd *cmd)
 			env_shlvl_up(mns);
 		execve(command_path, cmd->cmd_arg, mns->env);
 		handle_execution_error(command_path, cmd->cmd_arg);
-		fprintf(stderr, "errno = %d\n", errno);
 		exit (1);
 	}
 	else
