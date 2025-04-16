@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:46:16 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/16 19:33:20 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/16 22:11:54 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	handle_execution_error(char *command_path, char **splitted_command)
 	ft_printf_fd(2, "minishell: %s: %s\n", *splitted_command, strerror(errno));
 	if (command_path)
 		free(command_path);
-	//ft_free_2d((void **)splitted_command);
 	exit(126);
 }
 

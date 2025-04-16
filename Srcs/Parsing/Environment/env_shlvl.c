@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 14:45:20 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/16 20:27:04 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/16 22:09:49 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	env_shlvl_gen(t_shell *mns)
 {
-	int	pos;
-	char *shlvl;
+	int		pos;
+	char	*shlvl;
 
 	shlvl = ft_itoa(mns->shlvl);
 	pos = ep_exist(mns, "SHLVL=");

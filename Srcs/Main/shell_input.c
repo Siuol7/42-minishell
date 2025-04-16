@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/16 19:50:21 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/16 22:11:20 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,69 +46,69 @@ static void	shell_input_operate(t_shell *mns)
 		execute_part(mns);
 }
 
-// void	shell_input(t_shell	*mns)
-// {
-// 	while (1)
-// 	{
-// 		signals_initialize();
-// 		mns->full_cmd_line = readline("minishell$ ");
-// 		if (!mns->full_cmd_line)
-// 		{
-// 			printf("exit\n");
-// 			env_shlvl_down(mns);
-// 			shell_clean(mns);
-// 			exit (0);
-// 		}
-// 		if (mns->full_cmd_line[0])
-// 		{
-// 			shell_input_operate(mns);
-// 			mns->shell_err = 0;
-// 		}
-// 		shell_pre_input(mns);
-// 	}
-// }
-
-void	shell_input(t_shell *mns)
+void	shell_input(t_shell	*mns)
 {
 	while (1)
 	{
-		char	*line = NULL;
-
 		signals_initialize();
-
-		if (isatty(fileno(stdin)))
+		mns->full_cmd_line = readline("minishell$ ");
+		if (!mns->full_cmd_line)
 		{
-			line = readline("minishell$ ");
-			if (!line)
-			{
-				printf("exit\n");
-				env_shlvl_down(mns);
-				shell_clean(mns);
-				exit(0);
-			}
+			printf("exit\n");
+			env_shlvl_down(mns);
+			shell_clean(mns);
+			exit (0);
 		}
-		else
-		{
-			line = get_next_line(fileno(stdin));
-			if (!line)
-			{
-				env_shlvl_down(mns);
-				shell_clean(mns);
-				exit(0);
-			}
-			char *trimmed = ft_strtrim(line, "\n");
-			free(line);
-			line = trimmed;
-		}
-
-		mns->full_cmd_line = line;
-
-		if (line[0])
+		if (mns->full_cmd_line[0])
 		{
 			shell_input_operate(mns);
 			mns->shell_err = 0;
 		}
-
 		shell_pre_input(mns);
 	}
 }
+
+// void	shell_input(t_shell *mns)
+// {
+// 	while (1)
+// 	{
+// 		char	*line = NULL;
+
+// 		signals_initialize();
+
+// 		if (isatty(fileno(stdin)))
+// 		{
+// 			line = readline("minishell$ ");
+// 			if (!line)
+// 			{
+// 				printf("exit\n");
+// 				env_shlvl_down(mns);
+// 				shell_clean(mns);
+// 				exit(0);
+// 			}
+// 		}
+// 		else
+// 		{
+// 			line = get_next_line(fileno(stdin));
+// 			if (!line)
+// 			{
+// 				env_shlvl_down(mns);
+// 				shell_clean(mns);
+// 				exit(0);
+// 			}
+// 			char *trimmed = ft_strtrim(line, "\n");
+// 			free(line);
+// 			line = trimmed;
+// 		}
+
+// 		mns->full_cmd_line = line;
+
+// 		if (line[0])
+// 		{
+// 			shell_input_operate(mns);
+// 			mns->shell_err = 0;
+// 		}
+
+// 		shell_pre_input(mns);
+// 	}
+// }

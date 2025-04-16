@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:22:21 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/16 20:20:27 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/16 22:11:44 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	ep_replace(t_shell *mns, char *str, int i)
 {
 	if (mns->env[i])
 		free(mns->env[i]);
-	// mns->env[i] = ft_strdup(str);
 	mns->env[i] = str;
 	if (!mns->env[i])
 		ft_bad_alloc(mns);
