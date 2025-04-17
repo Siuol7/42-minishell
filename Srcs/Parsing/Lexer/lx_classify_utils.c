@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 09:41:54 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/16 23:09:05 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/17 09:56:47 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,24 +39,26 @@ t_type	lx_rd_type(char *str)
 		return (RD_HEREDOC);
 }
 
-void	lx_rd_typize(t_token *list, char **str, t_point *p)
+void lx_rd_typize(t_token *list, char **str, t_point *p)
 {
-	if (!lx_is_rd(str[p->start]))
+    if (p->start + 2 < p->end && lx_is_rd(str[p->start]) && lx_is_rd(str[p->start + 1]))
+    {
+        list[p->start].type = SIGN;
+        list[p->start + 1].type = SIGN_ERR;
+        list[p->start + 1].val = ft_strdup(str[p->start]);
+        p->start += 2;
+    }
+    else if (lx_is_rd(str[p->start]))
     {
         list[p->start].type = SIGN;
         p->start += 1;
-        if (p->start < p->end && !lx_is_rd(str[p->start]))
+        if (p->start < p->end)
         {
-            list[p->start].type = lx_rd_type(str[p->start - 1]);
-            list[p->start].val = ft_strdup(str[p->start]);
+            if (!lx_is_rd(str[p->start]))
+            {
+                list[p->start].type = lx_rd_type(str[p->start - 1]);
+                list[p->start].val = ft_strdup(str[p->start]);
+            }
         }
     }
-	else if (p->start + 2 < p->end && lx_is_rd(str[p->start])
-		&& lx_is_rd(str[p->start + 1]))
-	{
-		list[p->start].type = SIGN;
-		list[p->start + 1].type = SIGN_ERR;
-		list[p->start + 1].val = ft_strdup(str[p->start]);
-		p->start += 2;
-	}
 }

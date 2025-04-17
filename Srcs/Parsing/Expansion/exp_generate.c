@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 00:35:59 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/16 23:06:27 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/17 09:45:12 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void	exp_generate(t_shell *mns, int i, int j)
 		mns->post_expansion = ft_strdup("");
 		if (!mns->post_expansion)
 			ft_bad_alloc(mns);
-		if (mns->cmd_group[i].list[j].type == SIGN)
+		if (mns->cmd_group[i].list[j].type == SIGN
+			|| mns->cmd_group[i].list[j].type == SIGN_ERR)
 		{
 			free(mns->post_expansion);
 			mns->post_expansion = NULL;
