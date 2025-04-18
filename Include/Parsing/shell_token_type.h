@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_token_type.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 01:28:19 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/15 18:14:47 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/17 10:01:51 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 
 typedef enum s_type
 {
-	CMD,
 	ARG,
 	SIGN,
 	SIGN_ERR,
@@ -25,8 +24,6 @@ typedef enum s_type
 	RD_OUT,
 	RD_APPEND,
 	RD_HEREDOC,
-	RD_RNW,
-	RD_HERESTR,
 	RD_AMBI
 }	t_type;
 
@@ -45,12 +42,13 @@ typedef struct s_cmd
 {
 	int		token_cnt;
 	int		ambi_cnt;
+	int		final_cnt;
 	char	**token;
 	t_token	*list;
+	t_token	*final;
 	int		arg_cnt;
 	int		out_cnt;
 	int		heredoc_cnt;
-	char	*cmd;
 	char	*ambi;
 	char	**cmd_arg;
 	t_token	in;

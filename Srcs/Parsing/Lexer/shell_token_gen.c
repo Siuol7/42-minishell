@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_token_gen.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/16 22:10:07 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/18 13:00:51 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	lx_cmd_group(t_shell *mns)
 	i = 0;
 	while (i < mns->group_cnt)
 	{
-		lx_cmd_group_gen(mns, mns->cmd_group[i].list, &mns->cmd_group[i]);
+		lx_cmd_group_gen(mns, mns->cmd_group[i].final, &mns->cmd_group[i]);
 		i++;
 	}
 }
@@ -90,5 +90,6 @@ void	shell_token_gen(t_shell *mns, char *input, int i)
 	if (mns->shell_err == -3)
 		return ;
 	exp_group_generate(mns);
+	prs_final(mns);
 	lx_cmd_group(mns);
 }

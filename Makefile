@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
+#    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/16 00:21:58 by tripham          ###   ########.fr        #
+#    Updated: 2025/04/17 10:34:08 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -64,7 +64,9 @@ PARSER_DIR		:= $(PARSING_SRC)/Parser
 PARSER_C		:=  prs_cmd_check.c			\
 					prs_extension.c			\
 					prs_list_check.c		\
-					prs_utils.c			
+					prs_utils.c				\
+					prs_final.c				\
+					prs_split_allspace.c
 #	Env
 ENVIR_DIR		:= $(PARSING_SRC)/Environment
 
