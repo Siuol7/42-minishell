@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/17 10:34:08 by caonguye         ###   ########.fr        #
+#    Updated: 2025/04/18 18:37:16 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,8 @@ PARSER_C		:=  prs_cmd_check.c			\
 					prs_list_check.c		\
 					prs_utils.c				\
 					prs_final.c				\
-					prs_split_allspace.c
+					prs_split_allspace.c	\
+					prs_split_utils.c
 #	Env
 ENVIR_DIR		:= $(PARSING_SRC)/Environment
 

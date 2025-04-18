@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 00:23:02 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 14:33:50 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/18 19:23:21 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,11 +27,11 @@ static int	prs_val_count(char *input)
 	while (input[i])
 	{
 		if (ft_isallspace(input[i]))
-			i = lx_skip_space(input, i);
+			i = prs_skip_space(input, i);
 		else
 		{
 			cnt++;
-			i = lx_skip_word(input, i);
+			i = prs_skip_word(input, i);
 		}
 	}
 	return (cnt);
@@ -80,9 +80,9 @@ void	prs_final(t_shell *mns)
 	int	k;
 
 	i = -1;
-	k = 0;
 	while (++i < mns->group_cnt)
 	{
+		k = 0;
 		prs_final_count(&mns->cmd_group[i], mns->cmd_group[i].list);
 		mns->cmd_group[i].final = malloc(mns->cmd_group[i].final_cnt
 				* sizeof(t_token));

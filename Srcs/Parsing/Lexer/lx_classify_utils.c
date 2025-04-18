@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 09:41:54 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 14:27:42 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:03:01 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ t_type	lx_rd_type(char *str)
 
 void	lx_rd_typize(t_token *list, char **str, t_point *p)
 {
-	if (p->start + 2 < p->end
+	if (p->start + 1 < p->end
 		&& lx_is_rd(str[p->start]) && lx_is_rd(str[p->start + 1]))
 	{
 		list[p->start].type = SIGN;
