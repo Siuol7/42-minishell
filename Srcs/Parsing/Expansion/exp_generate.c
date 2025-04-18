@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 00:35:59 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/17 09:45:12 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/18 14:20:13 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	exp_check(t_shell *mns, t_token *str, int size, int i)
 	{
 		exp_check_open(str->val[i], &open);
 		if (i + 1 < size && str->val[i] == '$' && (ft_isalnum(str->val[i + 1])
-			|| str->val[i + 1] == '_' || str->val[i + 1] == '?'))
+				|| str->val[i + 1] == '_' || str->val[i + 1] == '?'))
 		{
 			p.end = i;
 			exp_subjoin(mns, p, str->val);

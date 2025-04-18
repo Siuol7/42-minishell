@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_token_ft.h                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:55:24 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/15 22:42:52 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/18 12:26:14 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,4 +40,6 @@ char			**lx_token_split(t_shell *mns, char *input, int i);
 char			**lx_group_split(t_shell *mns, char *input);
 char			*lx_qmarks_eli(t_shell *mns, char *str, int i, int j);
 int				prs_extra_cmd(t_shell *mns);
+void			prs_final(t_shell *mns);
+char			**prs_split_allspace(char *input);
 #endif
