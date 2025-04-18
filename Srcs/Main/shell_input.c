@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   shell_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
 /*   Updated: 2025/04/18 19:30:23 by tripham          ###   ########.fr       */

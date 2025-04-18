@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ep_validation.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 14:39:38 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/15 20:33:46 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/18 11:33:31 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	ep_exist(t_shell *mns, char *str)
 	len = ft_strichr(str, '=');
 	while (i < size)
 	{
-		if (!ft_strncmp(mns->env[i], str, len))
+		if (len > -1 && !ft_strncmp(mns->env[i], str, len))
 			return (i);
 		i++;
 	}
