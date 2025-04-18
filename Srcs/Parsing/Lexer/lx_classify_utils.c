@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lx_classify_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 09:41:54 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 16:07:13 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/18 17:05:33 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

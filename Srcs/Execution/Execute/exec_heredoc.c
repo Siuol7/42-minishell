@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:58:07 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/16 17:49:04 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/18 18:31:40 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,11 @@ static int	print_heredoc(int fd, char *limiter)
 	{
 		line = readline("> ");
 		if (!line)
-			return (1);
+		{
+			ft_printf_fd(STDERR_FILENO, "minishell: warning: here-document "
+				"delimited by end-of-file (wanted `%s')\n", limiter);
+			return (0);
+		}
 		if (!line || !ft_strcmp(line, limiter))
 			break ;
 		ft_printf_fd (fd, "%s\n", line);
