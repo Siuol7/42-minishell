@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/16 22:11:20 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/17 23:12:50 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static void	shell_input_operate(t_shell *mns)
 
 void	shell_input(t_shell	*mns)
 {
+	int	exit_code;
+
 	while (1)
 	{
 		signals_initialize();
@@ -56,8 +58,9 @@ void	shell_input(t_shell	*mns)
 		{
 			printf("exit\n");
 			env_shlvl_down(mns);
+			exit_code = mns->exitcode;
 			shell_clean(mns);
-			exit (0);
+			exit (exit_code);
 		}
 		if (mns->full_cmd_line[0])
 		{
@@ -70,6 +73,8 @@ void	shell_input(t_shell	*mns)
 
 // void	shell_input(t_shell *mns)
 // {
+// 	int exit_code;
+
 // 	while (1)
 // 	{
 // 		char	*line = NULL;
@@ -83,8 +88,9 @@ void	shell_input(t_shell	*mns)
 // 			{
 // 				printf("exit\n");
 // 				env_shlvl_down(mns);
+// 				exit_code = mns->exitcode;
 // 				shell_clean(mns);
-// 				exit(0);
+// 				exit(exit_code);
 // 			}
 // 		}
 // 		else
@@ -93,8 +99,9 @@ void	shell_input(t_shell	*mns)
 // 			if (!line)
 // 			{
 // 				env_shlvl_down(mns);
+// 				exit_code = mns->exitcode;
 // 				shell_clean(mns);
-// 				exit(0);
+// 				exit(exit_code);
 // 			}
 // 			char *trimmed = ft_strtrim(line, "\n");
 // 			free(line);

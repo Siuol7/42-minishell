@@ -19,3 +19,16 @@ Test  17: ❌ echo "$"
 mini output = ()
 bash output = ($)
 
+echo \$USER 
+
+echo \\$USER
+
+echo \\\$USER
+
+echo \\\\$USER
+
+echo \\\\\$USER
+
+echo \\\\\\\\\$USER
+
+echo \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\$USER \$PATH \\$PWD
