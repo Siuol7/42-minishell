@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 19:21:36 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/18 20:36:24 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	shell_input_operate(t_shell *mns)
 	add_history(mns->full_cmd_line);
 	if (mns->shell_err == -3)
 	{
-		printf("minishell: syntax error near unexpected token `|'\n");
+		printf("bash: syntax error near unexpected token `|'\n");
 		mns->exitcode = 2;
 		return ;
 	}

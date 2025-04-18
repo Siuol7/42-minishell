@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_utils.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:06:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/17 22:55:52 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/18 20:36:22 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	check_ambiguous_rd(t_shell *mns, t_cmd *cmd)
 	(void)mns;
 	if (cmd->ambi)
 	{
-		ft_printf_fd(2, "minishell: %s: ambiguous redirect\n", cmd->ambi);
+		ft_printf_fd(2, "bash: %s: ambiguous redirect\n", cmd->ambi);
 		update_status(mns, 1);
 		return (EXIT_FAILURE);
 	}

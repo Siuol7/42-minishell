@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exit_call.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:34:33 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 22:31:43 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/18 20:36:13 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	is_numeric(const char *str)
 
 static void	printf_numeric_error(t_shell *mns, t_cmd *cmd)
 {
-	ft_printf_fd(2, "minishell: exit: %s: numeric argument required\n",
+	ft_printf_fd(2, "bash: exit: %s: numeric argument required\n",
 		cmd->cmd_arg[1]);
 	shell_clean (mns);
 	exit (2);
@@ -54,7 +54,7 @@ void	bi_exit(t_shell *mns, t_cmd *cmd)
 	}
 	if (cmd->arg_cnt > 2)
 	{
-		ft_printf_fd(STDERR_FILENO, "minishell: exit: too many arguments\n");
+		ft_printf_fd(STDERR_FILENO, "bash: exit: too many arguments\n");
 		update_status(mns, 1);
 		return ;
 	}
