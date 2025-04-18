@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_check_error.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:43:20 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/11 20:59:13 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/18 20:36:16 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static int	is_special_cmd_error(t_shell *mns, char *cmd)
 	if (!ft_strcmp(cmd, "."))
 	{
 		ft_printf_fd(STDERR_FILENO,
-			"minishell: .: filename argument required\n"
+			"bash: .: filename argument required\n"
 			".: usage: . filename [arguments]\n");
 		update_status(mns, 2);
 		return (1);

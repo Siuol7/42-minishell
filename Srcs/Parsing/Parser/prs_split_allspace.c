@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 10:08:52 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 14:19:14 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:35:40 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,11 @@ static int	prs_wordcnt(char	*input)
 	while (input[i])
 	{
 		if (ft_isallspace(input[i]))
-			i = lx_skip_space(input, i);
-		else if (ft_rd_op(input, i))
-		{
-			cnt++;
-			i += ft_rd_op(input, i);
-		}
+			i = prs_skip_space(input, i);
 		else
 		{
 			cnt++;
-			i = lx_skip_word(input, i);
+			i = prs_skip_word(input, i);
 		}
 	}
 	return (cnt);
@@ -45,10 +40,10 @@ static char	**prs_splitting(char *in, char **res, int i, int lim)
 	while (in[start] && i < lim)
 	{
 		if (ft_isallspace(in[start]))
-			start = lx_skip_space(in, start);
+			start = prs_skip_space(in, start);
 		else
 		{
-			if (!lx_split_word(in, res, &start, &i))
+			if (!prs_split_word(in, res, &start, &i))
 				return (NULL);
 		}
 	}

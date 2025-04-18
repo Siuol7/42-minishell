@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:13:21 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/18 19:31:54 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/18 20:36:17 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	exec_non_builtin(t_shell *mns, t_cmd *cmd)
 	pid = fork();
 	if (pid == -1)
 	{
-		perror("minishell: fork failed");
+		perror("bash: fork failed");
 		exit (EXIT_FAILURE);
 	}
 	if (pid == 0)

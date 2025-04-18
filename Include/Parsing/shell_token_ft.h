@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:55:24 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 12:26:14 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/18 18:36:39 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,4 +42,9 @@ char			*lx_qmarks_eli(t_shell *mns, char *str, int i, int j);
 int				prs_extra_cmd(t_shell *mns);
 void			prs_final(t_shell *mns);
 char			**prs_split_allspace(char *input);
+int				prs_split_word(char *in, char **res, int *start, int *i);
+int				prs_skip_word(char *input, int index);
+int				prs_skip_dquote(char *input, int *index);
+int				prs_skip_space(char *input, int index);
+
 #endif

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/15 00:01:23 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/18 19:59:39 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,8 @@ static void	free_cmd_group(t_cmd *group, int id)
 		free(group[id].in.val);
 	if (group[id].ambi)
 		free(group[id].ambi);
+	if (group[id].final)
+		free_list(group[id].final, group[id].final_cnt);
 }
 
 static void	free_group(t_cmd *group, int size)

@@ -6,11 +6,26 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 14:39:38 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 11:33:31 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/19 01:48:02 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+int	ep_option(t_shell *mns, char *str, int err, int size)
+{
+	if (size < 2)
+		ft_printf_fd(2, "bash: export: '%s': not a valid identifier\n", str);
+	else
+	{
+		ft_printf_fd(2, "bash: export: '%c%c': not a valid identifier\n",
+			str[0], str[1]);
+		ft_printf_fd(2,
+			"export: usage: export [-fn] [name[=value] ...] or export -p\n");
+	}
+	update_status(mns, 2);
+	return (err);
+}
 
 int	ep_exist(t_shell *mns, char *str)
 {
@@ -30,27 +45,27 @@ int	ep_exist(t_shell *mns, char *str)
 	return (-1);
 }
 
-int	ep_validation(t_shell *mns, char *str)
+int	ep_validation(t_shell *mns, char *str, int i, int size)
 {
-	int	i;
-	int	size;
 	int	err;
 
-	i = 0;
 	err = 1;
-	size = ft_strlen(str);
 	while (i < size && str[i] != '=' && err != 0)
 	{
+		if (str[0] == '-')
+			return (ep_option(mns, str, err, size));
 		if (i == 0 && !ft_isalpha(str[i]) && str[i] != '_')
 			err = 0;
 		else if (i > 0 && !ft_isalnum(str[i]) && str[i] != '_')
 			err = 0;
 		i++;
 	}
+	if (i < size && str[i - 1] == '+')
+		return (2);
 	if ((i < size && str[i - 1] == ' ') || err == 0
 		|| (i == 0 && str[i] == '='))
 	{
-		printf("bash: export: '%s': not a valid identifier\n", str);
+		ft_printf_fd(2, "bash: export: '%s': not a valid identifier\n", str);
 		update_status(mns, 1);
 		return (err);
 	}
