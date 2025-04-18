@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:28 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/15 23:00:38 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/18 12:26:24 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,10 @@ static void	update_pwd(t_shell *mns, char *target)
 	char	cwd[PATH_MAX];
 
 	if (getcwd(cwd, sizeof(cwd)))
+	{
+		printf("cwd after cd: [%s]\n", cwd);
 		set_env_val(&mns->env, "PWD", cwd);
+	}
 	else
 	{
 		ft_printf_fd(2, "cd: error retrieving current directory:");
@@ -91,6 +94,7 @@ int	bi_cd(t_shell *mns, t_cmd *cmd)
 		return (update_status(mns, 1), free(oldpwd), 1);
 	if (!target)
 		return (update_status(mns, 1), free(oldpwd), 1);
+	printf("cd target = [%s]\n", target);
 	if (chdir(target) != 0)
 		return (perror("cd"), update_status(mns, 1), free(oldpwd), 1);
 	set_env_val(&mns->env, "OLDPWD", oldpwd);
