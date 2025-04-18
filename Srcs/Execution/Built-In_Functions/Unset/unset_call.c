@@ -6,29 +6,11 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:36:23 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 21:29:03 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/18 22:15:24 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-// static int	is_valid_identifier(char *key)
-// {
-// 	int	i;
-
-// 	if (!key || !*key)
-// 		return (1);
-// 	if (!key || !(ft_isalpha(key[0]) || key[0] == '_'))
-// 		return (0);
-// 	i = 1;
-// 	while (key[i])
-// 	{
-// 		if (!(ft_isalnum(key[i]) || key[i] == '_'))
-// 			return (0);
-// 		i++;
-// 	}
-// 	return (1);
-// }
 
 void	unset_env_var(char *key, char ***env)
 {
@@ -64,7 +46,15 @@ int	bi_unset(t_shell *mns, t_cmd *cmd)
 	error = 0;
 	while (cmd->cmd_arg[i])
 	{
-		unset_env_var(cmd->cmd_arg[i], &mns->env);
+		if (cmd->cmd_arg[i][0] == '-')
+		{
+			// ft_printf_fd(2, "bash: unset: %c%c: invalid option\n",
+			// 	cmd->cmd_arg[i][0], cmd->cmd_arg[i][1]);
+			// printf("unset: usage: unset [-f] [-v] [name ...]\n");
+			error = 2;
+		}
+		else
+			unset_env_var(cmd->cmd_arg[i], &mns->env);
 		i++;
 	}
 	return (update_status(mns, error));

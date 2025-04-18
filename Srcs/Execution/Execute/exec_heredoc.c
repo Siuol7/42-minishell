@@ -6,11 +6,38 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:58:07 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/18 20:06:52 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/19 01:51:43 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static int exp_hd_check(char *limiter)
+{
+	int	quote;
+	int dquote_count;
+	int quote_count;
+
+	quote_count = 0;
+	dquote_count = 0;
+	quote = 0;
+	if (!limiter)
+		return (0);
+	while (limiter[quote])
+	{
+		if (limiter[quote] == '\'')
+			quote_count++;
+		else if (limiter[quote] == '\"')
+			dquote_count++;
+		quote++;
+	}
+	if (quote_count % 2 != 0 || dquote_count % 2 != 0)
+	{
+		//update_status(mns, 2);
+		return (1);
+	}
+	return (0);
+}
 
 static char	*heredoc_filename(int index)
 {
@@ -34,6 +61,7 @@ static char	*heredoc_filename(int index)
 	return (filename);
 }
 
+
 static int	print_heredoc(int fd, char *limiter)
 {
 	char	*line;
@@ -49,6 +77,7 @@ static int	print_heredoc(int fd, char *limiter)
 		}
 		if (!line || !ft_strcmp(line, limiter))
 			break ;
+		// if limiter = 1; -> exp_hd_gen(line) ->
 		ft_printf_fd (fd, "%s\n", line);
 		free(line);
 	}
@@ -60,7 +89,9 @@ char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
 {
 	char	*filename;
 	int		fd;
+	int 	is_exp;
 
+	is_exp = 0;
 	filename = heredoc_filename(index);
 	if (filename == NULL)
 		return (perror("heredoc_tmp failed"), NULL);
@@ -68,7 +99,19 @@ char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
 	if (fd < 0)
 		return (perror("open failed"), free(filename), NULL);
 	signals_configure(SIGINT, handle_sigint_heredoc);
-	if (print_heredoc(fd, limiter))
+	is_exp = exp_hd_check(limiter);
+	printf("is_exp = %d\n", is_exp);
+	if	(is_exp == 1)
+	{
+		printf("bash: unxpected EOF while looking for matching `'`\n");
+		mns->exitcode = 1;
+		unlink(filename);
+		free(filename);
+		close(fd);
+		signals_initialize();
+		return (NULL);
+	}
+	if (print_heredoc(fd, limiter)) 
 	{
 		mns->exitcode = 1;
 		unlink(filename);
