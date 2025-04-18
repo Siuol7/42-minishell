@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:28 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/17 22:28:58 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/18 12:26:24 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ static void	update_pwd(t_shell *mns, char *target)
 	{
 		printf("cwd after cd: [%s]\n", cwd);
 		set_env_val(&mns->env, "PWD", cwd);
-	}	
+	}
 	else
 	{
 		ft_printf_fd(2, "cd: error retrieving current directory:");

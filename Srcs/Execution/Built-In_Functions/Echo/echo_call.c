@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:58 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/17 21:53:00 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/18 12:26:36 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static char	*expand_titled(t_shell *mns, char *arg)
 		return (expanded);
 	}
 	return (arg);
-}	
+}
 
 static void	printf_echo_arg(t_shell *mns, char *arg)
 {
