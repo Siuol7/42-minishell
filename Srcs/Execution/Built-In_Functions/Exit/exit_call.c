@@ -6,31 +6,15 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:34:33 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 22:31:43 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/18 21:28:52 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	is_numeric(const char *str)
-{
-	int	i;
-
-	i = 0;
-	if (str[i] == '-' || str[i] == '+')
-		i++;
-	while (str[i])
-	{
-		if (!ft_isdigit(str[i]))
-			return (0);
-		i++;
-	}
-	return (1);
-}
-
 static void	printf_numeric_error(t_shell *mns, t_cmd *cmd)
 {
-	ft_printf_fd(2, "minishell: exit: %s: numeric argument required\n",
+	ft_printf_fd(2, "bash: exit: %s: numeric argument required\n",
 		cmd->cmd_arg[1]);
 	shell_clean (mns);
 	exit (2);
@@ -39,28 +23,28 @@ static void	printf_numeric_error(t_shell *mns, t_cmd *cmd)
 void	bi_exit(t_shell *mns, t_cmd *cmd)
 {
 	long	code;
+	int		exit_code;
 
-	printf("exit\n");
+	if (isatty(STDIN_FILENO))
+		ft_printf_fd(STDERR_FILENO, "exit\n");
 	if (cmd->arg_cnt == 1)
 	{
-		code = mns->exitcode;
+		exit_code = mns->exitcode;
 		env_shlvl_down(mns);
 		shell_clean(mns);
-		exit (code);
+		exit (exit_code);
 	}
-	if (!is_numeric(cmd->cmd_arg[1]))
-	{
+	if (!ft_atol_safe(cmd->cmd_arg[1], &code))
 		printf_numeric_error(mns, cmd);
-	}
 	if (cmd->arg_cnt > 2)
 	{
-		ft_printf_fd(STDERR_FILENO, "minishell: exit: too many arguments\n");
+		ft_printf_fd(STDERR_FILENO, "bash: exit: too many arguments\n");
 		update_status(mns, 1);
 		return ;
 	}
-	code = ft_atoi(cmd->cmd_arg[1]);
-	update_status(mns, (unsigned char)code);
+	exit_code = (unsigned char)code;
+	update_status(mns, exit_code);
 	env_shlvl_down(mns);
 	shell_clean(mns);
-	exit ((unsigned char)code);
+	exit (exit_code);
 }
