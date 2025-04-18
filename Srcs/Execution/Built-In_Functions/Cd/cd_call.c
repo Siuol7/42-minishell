@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:28 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 14:34:37 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/18 21:29:25 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ static char	*get_cd_target(t_shell *mns, char **args)
 	}
 	else if (args[2] != NULL)
 	{
-		printf("bash: cd: too many arguments\n");
-		return (NULL);
+		ft_printf_fd(2, "bash: cd: too many arguments\n");
+		return (update_status(mns, 1), NULL);
 	}
 	else
 		target = args[1];

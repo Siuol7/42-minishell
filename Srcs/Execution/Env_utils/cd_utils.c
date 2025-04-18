@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 04:39:28 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/18 17:56:51 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/19 01:39:21 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,16 +74,19 @@ int	set_env_val(char ***env, const char *key, const char *value)
 	return (cpy_add_env(env, env_var, i));
 }
 
-char *get_env_val(t_shell *mns, char *key)
+char	*get_env_val(t_shell *mns, char *key)
 {
-    int i = 0;
-    if (!mns || !mns->env || !key || !key[0])
-        return (NULL);
-    while (mns->env[i])
-    {
-        if (mns->env[i][0] && ft_strncmp(mns->env[i], key, ft_strlen(key)) == 0 && mns->env[i][ft_strlen(key)] == '=')
-            return (mns->env[i] + ft_strlen(key) + 1);
-        i++;
-    }
-    return (NULL);
+	int	i;
+
+	i = 0;
+	if (!mns || !mns->env || !key || !key[0])
+		return (NULL);
+	while (mns->env[i])
+	{
+		if (mns->env[i][0] && ft_strncmp(mns->env[i],
+			key, ft_strlen(key)) == 0 && mns->env[i][ft_strlen(key)] == '=')
+			return (mns->env[i] + ft_strlen(key) + 1);
+		i++;
+	}
+	return (NULL);
 }

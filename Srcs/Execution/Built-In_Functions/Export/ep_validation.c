@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 14:39:38 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 21:30:29 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/19 01:48:02 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int	ep_validation(t_shell *mns, char *str, int i, int size)
 		i++;
 	}
 	if (i < size && str[i - 1] == '+')
+		return (2);
 	if ((i < size && str[i - 1] == ' ') || err == 0
 		|| (i == 0 && str[i] == '='))
 	{

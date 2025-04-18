@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_functions.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 04:02:14 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/15 20:29:58 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/18 21:42:57 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int		bi_unset(t_shell *mns, t_cmd *cmd);
 
 //EXPORT
 void	ep_standalone(t_shell *mns);
-int		ep_validation(t_shell *mns, char *str);
+int		ep_validation(t_shell *mns, char *str, int i, int size);
 int		ep_exist(t_shell *mns, char *str);
 void	ep_replace(t_shell *mns, char *str, int i);
 

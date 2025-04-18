@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:23:09 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 21:23:54 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/19 01:36:44 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ void	bi_env(t_shell *mns, t_cmd *cmd)
 		env_standalone(mns);
 	else if (cmd->arg_cnt > 1)
 	{
-		ft_printf_fd(2, "env: '%s': No such file or directory\n", cmd->cmd_arg[1]);
+		ft_printf_fd(2, "env: '%s': No such file or directory\n",
+			cmd->cmd_arg[1]);
 		update_status(mns, 127);
 	}
 }
