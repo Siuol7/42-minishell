@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 01:05:56 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/20 01:21:12 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ static void	shell_input_operate(t_shell *mns)
 // void	shell_input(t_shell	*mns)
 // {
 // 	int	exit_code;
+
 // 	while (1)
 // 	{
 // 		signals_initialize();
