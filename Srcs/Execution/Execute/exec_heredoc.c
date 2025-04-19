@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:58:07 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/19 18:01:43 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/19 19:42:58 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,12 @@ static int	print_heredoc(int fd, char *limiter, int is_exp)
 		{
 			ft_printf_fd(STDERR_FILENO, "bash: warning: here-document "
 				"delimited by end-of-file (wanted `%s')\n", limiter);
-			return (0);
+			return (1);
 		}
 		if (!line || !ft_strcmp(line, limiter))
 			break ;
-		if (is_exp == 0)
-			exp_hd_gen(&line);
+		// if (is_exp == 0)
+		// 	exp_hd_gen(&line);
 		ft_printf_fd (fd, "%s\n", line);
 		free(line);
 	}

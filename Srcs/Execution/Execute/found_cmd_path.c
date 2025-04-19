@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:44:37 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/16 18:51:03 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/19 19:57:09 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,10 @@ char	*found_command_path(t_shell *mns, char *cmd)
 	command_path = get_command_path(envp_paths, cmd);
 	ft_free_3d((void ***)&envp_paths);
 	if (!command_path)
+	{
+		printf("reach 2\n");
 		ft_printf_fd(STDERR_FILENO, "%s: command not found\n", cmd);
+	}
 	else if (access(command_path, X_OK) != 0)
 		exec_error(mns, NULL, cmd, "Permission denied");
 	return (command_path);

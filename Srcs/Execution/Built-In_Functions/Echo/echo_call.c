@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:58 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 19:31:14 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/19 18:10:50 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	printf_echo_arg(t_shell *mns, char *arg)
 	char	*expanded;
 
 	expanded = expand_titled(mns, arg);
-	ft_printf_fd(1, "%s", expanded);
+	ft_printf_fd(0, "%s", expanded);
 	if (expanded != arg)
 		free(expanded);
 }

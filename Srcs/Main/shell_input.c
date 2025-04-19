@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/19 14:59:20 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/19 19:59:15 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,20 @@
 
 static void	execute_part(t_shell *mns)
 {
+	char	*target;
+
 	heredoc_expand_all(mns);
 	if (mns->ast)
 	{
 		ast_clean_all(mns->ast);
 		mns->ast = NULL;
+	}
+	if (!ft_strcmp(mns->cmd_group->cmd_arg[0], "~"))
+	{
+		target = get_env_val(mns, "HOME");
+		ft_printf_fd(2, "bash: %s: Is a directory\n", target);
+		update_status(mns, 126);
+		return ;
 	}
 	mns->ast = ast_init(mns->cmd_group, mns->group_cnt, 0);
 	exec_ast(mns->ast, mns);
