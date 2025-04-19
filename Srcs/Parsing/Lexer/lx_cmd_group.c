@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lx_cmd_group.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:47:55 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/19 01:51:54 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/19 02:11:15 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static void	lx_in_file(t_shell *mns, t_token *final, t_cmd *group, t_sort *id)
 {
 	if (group->in.val)
 		free(group->in.val);
-	group->in.val = lx_qmarks_eli(mns, final[id->id].val, 0, 0);
+	group->in.val = ft_strdup(final[id->id].val);
 	group->in.type = final[id->id].type;
 	if (final[id->id].type == RD_HEREDOC)
 	{

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_rd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:39:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/18 20:36:21 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/19 03:59:00 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	handle_rd_in(t_cmd *cmd)
 		if (fd < 0)
 		{
 			if (cmd->in.type == RD_HEREDOC)
-				perror("heredoc temp");
+				return (EXIT_FAILURE);
 			else
 				perror(cmd->in.val);
 			return (EXIT_FAILURE);
