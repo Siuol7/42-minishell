@@ -6,13 +6,13 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 10:08:52 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 18:35:40 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/19 03:56:01 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	prs_wordcnt(char	*input)
+static int	prs_wordcnt(char *input)
 {
 	int	i;
 	int	cnt;

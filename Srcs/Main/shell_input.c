@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/19 19:59:15 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/20 01:03:57 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,14 @@ static void	shell_input_operate(t_shell *mns)
 	add_history(mns->full_cmd_line);
 	if (mns->shell_err == -3)
 	{
-		printf("bash: syntax error near unexpected token `|'\n");
+		ft_printf_fd(2, "bash: syntax error near unexpected token `|'\n");
 		mns->exitcode = 2;
 		return ;
 	}
 	shell_token_gen(mns, mns->full_cmd_line, -1);
 	if (mns->shell_err == -2)
 	{
-		printf("bash: Not supporting '||' type\n");
+		ft_printf_fd(2, "bash: Not supporting '||' type\n");
 		update_status(mns, 2);
 	}
 	else if (mns->shell_err == -3)
@@ -55,30 +55,29 @@ static void	shell_input_operate(t_shell *mns)
 		execute_part(mns);
 }
 
-void	shell_input(t_shell	*mns)
-{
-	int	exit_code;
-
-	while (1)
-	{
-		signals_initialize();
-		mns->full_cmd_line = readline("minishell$ ");
-		if (!mns->full_cmd_line)
-		{
-			printf("exit\n");
-			env_shlvl_down(mns);
-			exit_code = mns->exitcode;
-			shell_clean(mns);
-			exit (exit_code);
-		}
-		if (mns->full_cmd_line[0])
-		{
-			shell_input_operate(mns);
-			mns->shell_err = 0;
-		}
-		shell_pre_input(mns);
-	}
-}
+// void	shell_input(t_shell	*mns)
+// {
+// 	int	exit_code;
+// 	while (1)
+// 	{
+// 		signals_initialize();
+// 		mns->full_cmd_line = readline("minishell$ ");
+// 		if (!mns->full_cmd_line)
+// 		{
+// 			printf("exit\n");
+// 			env_shlvl_down(mns);
+// 			exit_code = mns->exitcode;
+// 			shell_clean(mns);
+// 			exit (exit_code);
+// 		}
+// 		if (mns->full_cmd_line[0])
+// 		{
+// 			shell_input_operate(mns);
+// 			mns->shell_err = 0;
+// 		}
+// 		shell_pre_input(mns);
+// 	}
+// }
 
 // void	shell_input(t_shell *mns)
 // {

@@ -6,25 +6,36 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 14:39:38 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/19 01:48:02 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/19 14:46:21 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	ep_option(t_shell *mns, char *str, int err, int size)
+int	ep_option(t_shell *mns, char *str, int err)
 {
-	if (size < 2)
-		ft_printf_fd(2, "bash: export: '%s': not a valid identifier\n", str);
-	else
-	{
-		ft_printf_fd(2, "bash: export: '%c%c': not a valid identifier\n",
-			str[0], str[1]);
-		ft_printf_fd(2,
-			"export: usage: export [-fn] [name[=value] ...] or export -p\n");
-	}
+	ft_printf_fd(2, "bash: export: '%c%c': not a valid identifier\n",
+		str[0], str[1]);
+	ft_printf_fd(2,
+		"export: usage: export [-fn] [name[=value] ...] or export -p\n");
 	update_status(mns, 2);
 	return (err);
+}
+
+int	ep_check_exist(t_shell *mns, char *str, char ***res)
+{
+	int		i;
+	char	*temp;
+
+	temp = ft_strjoin(str, "=");
+	if (!temp)
+	{
+		ft_free_3d((void ***)res);
+		ft_bad_alloc(mns);
+	}
+	i = ep_exist(mns, temp);
+	free(temp);
+	return (i);
 }
 
 int	ep_exist(t_shell *mns, char *str)
@@ -50,22 +61,19 @@ int	ep_validation(t_shell *mns, char *str, int i, int size)
 	int	err;
 
 	err = 1;
-	while (i < size && str[i] != '=' && err != 0)
+	while (i < size && err != 0)
 	{
 		if (str[0] == '-')
-			return (ep_option(mns, str, err, size));
+			return (ep_option(mns, str, err));
 		if (i == 0 && !ft_isalpha(str[i]) && str[i] != '_')
 			err = 0;
 		else if (i > 0 && !ft_isalnum(str[i]) && str[i] != '_')
 			err = 0;
 		i++;
 	}
-	if (i < size && str[i - 1] == '+')
-		return (2);
-	if ((i < size && str[i - 1] == ' ') || err == 0
-		|| (i == 0 && str[i] == '='))
+	if ((err == 0 || (i == 0 && str[i] == '=')))
 	{
-		ft_printf_fd(2, "bash: export: '%s': not a valid identifier\n", str);
+		ft_printf_fd(2, "bash: export: `%s': not a valid identifier\n", str);
 		update_status(mns, 1);
 		return (err);
 	}

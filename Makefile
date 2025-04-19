@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
+#    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/19 14:47:52 by tripham          ###   ########.fr        #
+#    Updated: 2025/04/19 15:54:55 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -140,7 +140,8 @@ EXPORT_DIR		:= 	$(BUILT_IN_DIR)/Export
 
 EXPORT_C		:=	export_call.c	\
 					ep_export.c		\
-					ep_validation.c
+					ep_validation.c	\
+					ep_split.c
 
 #Pwd
 PWD_DIR			:= 	$(BUILT_IN_DIR)/Pwd
