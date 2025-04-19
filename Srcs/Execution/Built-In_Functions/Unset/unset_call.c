@@ -6,11 +6,25 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:36:23 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/19 23:51:41 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 00:59:22 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static	void	rm_env(int j, char ***env)
+{
+	int	i;
+
+	i = j;
+	free((*env)[i]);
+	while ((*env)[i])
+	{
+		(*env)[i] = (*env)[i + 1];
+		i++;
+	}
+	(*env)[i] = NULL;
+}
 
 void	unset_env_var(char *key, char ***env)
 {
@@ -31,13 +45,7 @@ void	unset_env_var(char *key, char ***env)
 		if (ft_strncmp((*env)[j], key, keylen) == 0
 			&& (*env)[j][keylen] == '=')
 		{
-			free((*env)[j]);
-			while ((*env)[j])
-			{
-				(*env)[j] = (*env)[j + 1];
-				j++;
-			}
-			(*env)[j] = NULL;
+			rm_env(j, env);
 			break ;
 		}
 		j++;
