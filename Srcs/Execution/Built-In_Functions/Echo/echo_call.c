@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo_call.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:58 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 19:31:14 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/19 18:33:05 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	bi_echo(t_shell *mns, t_cmd *cmd)
 	int		i;
 	bool	newline;
 
-	(void)mns;
 	i = 1;
 	newline = true;
 	while (cmd->cmd_arg[i] && is_n_flag(cmd->cmd_arg[i]))
@@ -80,5 +79,6 @@ int	bi_echo(t_shell *mns, t_cmd *cmd)
 	}
 	if (newline)
 		ft_printf_fd(1, "\n");
-	return (0);
+	update_status(mns, 0);
+	return (EXIT_SUCCESS);
 }

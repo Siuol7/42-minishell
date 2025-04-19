@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:00:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/19 14:36:00 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/19 23:48:47 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ static void	ep_add(t_shell *mns, char *str, int pos)
 	char	*temp;
 
 	temp = ft_strdup(str + 2);
-	printf("HERE pos %d str %s\n", pos, mns->env[pos]);
 	if (!str || !str[0])
 	{
 		free(temp);

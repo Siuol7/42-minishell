@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 03:53:09 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/19 13:25:31 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 00:12:44 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ static int	ep_end(char *input, int i, int size)
 	while (i < size && input[i])
 	{
 		if ((i + 1 < size && input[i] == '+' && input[i + 1] == '=')
-			||  (i < size && input[i] == '='))
-			break;
+			|| (i < size && input[i] == '='))
+			break ;
 		else
 			i++;
 	}
@@ -30,7 +30,7 @@ char	**ep_split(t_shell *mns, char *input)
 	int		start;
 	int		end;
 	int		i;
-	char 	**res;
+	char	**res;
 
 	i = 0;
 	start = 0;

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:36:23 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 22:25:28 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/19 23:51:41 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,18 @@ void	unset_env_var(char *key, char ***env)
 {
 	int		j;
 	size_t	keylen;
+	char	*safe;
 
 	j = 0;
 	while ((*env)[j])
 	{
-		keylen = ft_strchr((*env)[j], '=') - (*env)[j];
+		safe = ft_strchr((*env)[j], '=');
+		if (!safe)
+		{
+			j++;
+			continue ;
+		}
+		keylen = safe - (*env)[j];
 		if (ft_strncmp((*env)[j], key, keylen) == 0
 			&& (*env)[j][keylen] == '=')
 		{

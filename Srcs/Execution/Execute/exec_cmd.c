@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:13:21 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/18 20:36:17 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/19 23:50:40 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	exec_non_builtin(t_shell *mns, t_cmd *cmd)
 void	exec_cmd(t_shell *mns, t_cmd *cmd)
 {
 	const int	tmp[2] = {dup(STDIN_FILENO), dup(STDOUT_FILENO)};
+	char		*target;
 
 	if (cmd->ambi && check_ambiguous_rd(mns, cmd))
 		return ;
@@ -56,6 +57,12 @@ void	exec_cmd(t_shell *mns, t_cmd *cmd)
 		update_status(mns, 1);
 	else if (!cmd->cmd_arg || !cmd->cmd_arg[0])
 		update_status(mns, 0);
+	else if (!ft_strcmp(cmd->cmd_arg[0], "~"))
+	{
+		target = get_env_val(mns, "HOME");
+		ft_printf_fd(2, "bash: %s: Is a directory\n", target);
+		update_status(mns, 126);
+	}
 	else if (exec_cmd_check(cmd->cmd_arg[0]))
 		exec_builtin(mns, cmd);
 	else

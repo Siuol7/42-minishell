@@ -6,38 +6,17 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:58:07 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/18 21:42:20 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/19 23:51:02 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*heredoc_filename(int index)
-{
-	char	*filename;
-	char	*index_str;
-
-	index_str = ft_itoa(index);
-	if (index_str == NULL)
-	{
-		perror("heredoc_filename failed");
-		return (NULL);
-	}
-	filename = ft_strjoin(".heredoc_tmp_", index_str);
-	if (filename == NULL)
-	{
-		free(index_str);
-		perror("heredoc_filename failed");
-		return (NULL);
-	}
-	free(index_str);
-	return (filename);
-}
-
-static int	print_heredoc(int fd, char *limiter)
+static int	print_heredoc(int fd, char *limiter, int is_exp)
 {
 	char	*line;
 
+	(void)is_exp;
 	while (1)
 	{
 		line = readline("> ");
@@ -45,10 +24,12 @@ static int	print_heredoc(int fd, char *limiter)
 		{
 			ft_printf_fd(STDERR_FILENO, "bash: warning: here-document "
 				"delimited by end-of-file (wanted `%s')\n", limiter);
-			return (0);
+			return (1);
 		}
 		if (!line || !ft_strcmp(line, limiter))
 			break ;
+		if (is_exp == 0)
+			exp_hd_gen(&line);
 		ft_printf_fd (fd, "%s\n", line);
 		free(line);
 	}
@@ -60,6 +41,7 @@ char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
 {
 	char	*filename;
 	int		fd;
+	int		is_exp;
 
 	filename = heredoc_filename(index);
 	if (filename == NULL)
@@ -68,7 +50,8 @@ char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
 	if (fd < 0)
 		return (perror("open failed"), free(filename), NULL);
 	signals_configure(SIGINT, handle_sigint_heredoc);
-	if (print_heredoc(fd, limiter))
+	is_exp = exp_check_quotes(mns, &limiter);
+	if (print_heredoc(fd, limiter, is_exp))
 	{
 		mns->exitcode = 1;
 		unlink(filename);
@@ -82,6 +65,14 @@ char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
 	return (filename);
 }
 
+static void	printf_wrong_eof(char *limiter)
+{
+	ft_printf_fd(2, "bash: ");
+	ft_printf_fd(2,
+		"unxpected EOF while looking for matching `%c'\n",
+		which_quote(limiter));
+}
+
 void	heredoc_expand_all(t_shell *mns)
 {
 	int		i;
@@ -90,13 +81,17 @@ void	heredoc_expand_all(t_shell *mns)
 	i = 0;
 	while (i < mns->group_cnt)
 	{
+		if (exp_hd_check_nl(mns->cmd_group[i].in.val) == 1)
+		{
+			printf_wrong_eof(mns->cmd_group[i].in.val);
+			return ;
+		}
 		if (mns->cmd_group[i].in.type == RD_HEREDOC)
 		{
 			tmpfile = heredoc_tmp(mns, mns->cmd_group[i].in.val, i);
 			if (!tmpfile)
 			{
 				ft_printf_fd(STDERR_FILENO, "heredoc error\n");
-				mns->exitcode = 1;
 				return ;
 			}
 			free(mns->cmd_group[i].in.val);
@@ -105,3 +100,4 @@ void	heredoc_expand_all(t_shell *mns)
 		i++;
 	}
 }
+// chua cap nhat exit_code
