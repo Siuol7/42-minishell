@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:47:55 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/19 01:51:54 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/19 02:07:02 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	lx_in_file(t_shell *mns, t_token *final, t_cmd *group, t_sort *id)
 	group->in.type = final[id->id].type;
 	if (final[id->id].type == RD_HEREDOC)
 	{
-		group->heredoc[id->k] = ft_strdup(final[id->id].val);
+		group->heredoc[id->k] = lx_qmarks_eli(mns, final[id->id].val, 0, 0);
 		if (!group->heredoc[id->k++])
 			ft_bad_alloc(mns);
 	}

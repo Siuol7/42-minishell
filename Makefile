@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/18 18:37:16 by caonguye         ###   ########.fr        #
+#    Updated: 2025/04/19 04:58:24 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -139,7 +139,8 @@ EXPORT_DIR		:= 	$(BUILT_IN_DIR)/Export
 
 EXPORT_C		:=	export_call.c	\
 					ep_export.c		\
-					ep_validation.c
+					ep_validation.c	\
+					ep_split.c
 
 #Pwd
 PWD_DIR			:= 	$(BUILT_IN_DIR)/Pwd

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prs_extension.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 01:59:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/17 21:57:31 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/19 04:24:52 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ void	prs_extra_check(t_shell *mns)
 	temp = ft_strdup(" |");
 	while (1)
 	{
+		prs_arg_check(mns);
 		flag = prs_check(mns, 0, 0, 0);
 		if (!flag && !prs_arg_check(mns))
 		{

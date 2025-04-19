@@ -6,11 +6,13 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/07 11:13:21 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/11 23:25:46 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/19 14:34:34 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
+
 
 int	ft_append(char **s1, char **s2)
 {
