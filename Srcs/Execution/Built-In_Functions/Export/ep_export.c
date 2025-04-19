@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ep_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:22:21 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/16 22:11:44 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/18 17:33:49 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,14 @@
 
 void	ep_replace(t_shell *mns, char *str, int i)
 {
+	if (!mns->env || !mns->env[0] || !str)
+		ft_bad_alloc(mns);
 	if (mns->env[i])
 		free(mns->env[i]);
-	mns->env[i] = str;
+	if (!str[0])
+		mns->env[i] = ft_strdup("");
+	else
+		mns->env[i] = ft_strdup(str);
 	if (!mns->env[i])
 		ft_bad_alloc(mns);
 }

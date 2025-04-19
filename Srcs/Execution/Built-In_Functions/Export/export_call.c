@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:00:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/15 20:33:55 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/19 02:01:38 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,13 @@ static void	ep_variable(t_shell *mns, t_cmd *cmd)
 	i = 1;
 	while (i < cmd->arg_cnt)
 	{
-		if (!ep_validation(mns, cmd->cmd_arg[i]))
+		if (!ep_validation(mns, cmd->cmd_arg[i], 0,
+				ft_strlen(cmd->cmd_arg[i])))
 			return ;
 		pos = ep_exist(mns, cmd->cmd_arg[i]);
+		// if (ep_validation(mns, cmd->cmd_arg[i], 0,
+		// 		ft_strlen(cmd->cmd_arg[i])) == 2)
+		// 	// ep_add(mns, cmd->cmd_arg[i], pos);
 		if (pos > -1)
 			ep_replace(mns, cmd->cmd_arg[i], pos);
 		else

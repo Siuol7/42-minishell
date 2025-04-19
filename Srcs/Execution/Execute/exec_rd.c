@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:39:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/15 00:18:54 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/19 03:59:00 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ static int	handle_rd_in(t_cmd *cmd)
 		if (fd < 0)
 		{
 			if (cmd->in.type == RD_HEREDOC)
-				perror("heredoc temp");
+				return (EXIT_FAILURE);
 			else
 				perror(cmd->in.val);
 			return (EXIT_FAILURE);
@@ -52,7 +52,7 @@ static int	handle_rd_out(t_cmd *cmd)
 		}
 		if (fd < 0)
 		{
-			ft_printf_fd(STDERR_FILENO, "minishell: %s\n", strerror(errno));
+			ft_printf_fd(STDERR_FILENO, "bash: %s\n", strerror(errno));
 			return (EXIT_FAILURE);
 		}
 		dup2(fd, STDOUT_FILENO);

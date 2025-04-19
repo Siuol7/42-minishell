@@ -6,35 +6,60 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:58:07 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/19 01:51:43 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/19 04:41:07 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int exp_hd_check(char *limiter)
+static int	exp_check_quotes(t_shell *mns, char **limiter)
 {
-	int	quote;
-	int dquote_count;
-	int quote_count;
+	int i;
+	char *temp;
 
-	quote_count = 0;
-	dquote_count = 0;
-	quote = 0;
+	i = 0;
+	while (*limiter[i])
+	{
+		if (*limiter[i] == '\'' || *limiter[i] == '\"')
+		{
+			temp = lx_qmarks_eli(mns, *limiter, 0 , 0);
+			free(*limiter);
+			*limiter = temp;
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
+static int exp_hd_check_nl(char *limiter)
+{
+	int i;
+
+	i = 0;
 	if (!limiter)
 		return (0);
-	while (limiter[quote])
+	while (limiter[i])
 	{
-		if (limiter[quote] == '\'')
-			quote_count++;
-		else if (limiter[quote] == '\"')
-			dquote_count++;
-		quote++;
+		if (limiter[i] == '\n')
+			return (1);
+		i++;
 	}
-	if (quote_count % 2 != 0 || dquote_count % 2 != 0)
+	return (0);
+}
+
+static char which_quote(char *str)
+{
+	int i;
+
+	i = 0;
+	while (str[i])
 	{
-		//update_status(mns, 2);
-		return (1);
+		if (str[i] == '\'')
+			return ('\'');
+		else if (str[i] == '\"')
+			return ('\"');
+		i++;
 	}
 	return (0);
 }
@@ -62,22 +87,24 @@ static char	*heredoc_filename(int index)
 }
 
 
-static int	print_heredoc(int fd, char *limiter)
+static int	print_heredoc(int fd, char *limiter, int is_exp)
 {
 	char	*line;
 
+	(void)is_exp;
 	while (1)
 	{
 		line = readline("> ");
 		if (!line)
 		{
-			ft_printf_fd(STDERR_FILENO, "minishell: warning: here-document "
+			ft_printf_fd(STDERR_FILENO, "bash: warning: here-document "
 				"delimited by end-of-file (wanted `%s')\n", limiter);
 			return (0);
 		}
 		if (!line || !ft_strcmp(line, limiter))
 			break ;
-		// if limiter = 1; -> exp_hd_gen(line) ->
+		// if (is_exp == 0)
+		// 	exp_hd_gen(&line);
 		ft_printf_fd (fd, "%s\n", line);
 		free(line);
 	}
@@ -91,7 +118,6 @@ char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
 	int		fd;
 	int 	is_exp;
 
-	is_exp = 0;
 	filename = heredoc_filename(index);
 	if (filename == NULL)
 		return (perror("heredoc_tmp failed"), NULL);
@@ -99,19 +125,8 @@ char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
 	if (fd < 0)
 		return (perror("open failed"), free(filename), NULL);
 	signals_configure(SIGINT, handle_sigint_heredoc);
-	is_exp = exp_hd_check(limiter);
-	printf("is_exp = %d\n", is_exp);
-	if	(is_exp == 1)
-	{
-		printf("bash: unxpected EOF while looking for matching `'`\n");
-		mns->exitcode = 1;
-		unlink(filename);
-		free(filename);
-		close(fd);
-		signals_initialize();
-		return (NULL);
-	}
-	if (print_heredoc(fd, limiter)) 
+	is_exp = exp_check_quotes(mns, &limiter);
+	if (print_heredoc(fd, limiter, is_exp))
 	{
 		mns->exitcode = 1;
 		unlink(filename);
@@ -129,10 +144,16 @@ void	heredoc_expand_all(t_shell *mns)
 {
 	int		i;
 	char	*tmpfile;
-
+	char	c;
 	i = 0;
 	while (i < mns->group_cnt)
 	{
+		if (exp_hd_check_nl(mns->cmd_group[i].in.val) == 1)
+		{
+			c = which_quote(mns->cmd_group[i].in.val);
+			ft_printf_fd(2, "bash: unxpected EOF while looking for matching `%c'\n", c);
+			return ;
+		}
 		if (mns->cmd_group[i].in.type == RD_HEREDOC)
 		{
 			tmpfile = heredoc_tmp(mns, mns->cmd_group[i].in.val, i);

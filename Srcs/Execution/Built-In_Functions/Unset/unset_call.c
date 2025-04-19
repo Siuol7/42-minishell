@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:36:23 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 22:15:24 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/19 01:57:08 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,13 +48,12 @@ int	bi_unset(t_shell *mns, t_cmd *cmd)
 	{
 		if (cmd->cmd_arg[i][0] == '-')
 		{
-			// ft_printf_fd(2, "bash: unset: %c%c: invalid option\n",
-			// 	cmd->cmd_arg[i][0], cmd->cmd_arg[i][1]);
-			// printf("unset: usage: unset [-f] [-v] [name ...]\n");
+			ft_printf_fd(2, "bash: unset: %c%c: invalid option\n",
+				cmd->cmd_arg[i][0], cmd->cmd_arg[i][1]);
+			ft_printf_fd(2, "unset: usage: unset [-f] [-v] [-n] [name ...]\n");
 			error = 2;
 		}
-		else
-			unset_env_var(cmd->cmd_arg[i], &mns->env);
+		unset_env_var(cmd->cmd_arg[i], &mns->env);
 		i++;
 	}
 	return (update_status(mns, error));

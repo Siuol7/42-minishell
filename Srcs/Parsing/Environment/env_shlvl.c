@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_shlvl.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 14:45:20 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/16 22:09:49 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/18 20:10:42 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,19 @@ void	env_shlvl_gen(t_shell *mns)
 {
 	int		pos;
 	char	*shlvl;
+	char	*new;
 
 	shlvl = ft_itoa(mns->shlvl);
 	pos = ep_exist(mns, "SHLVL=");
+	new = ft_strjoin("SHLVL", shlvl);
+	if (!new)
+		ft_bad_alloc(mns);
 	if (pos != -1)
-		ep_replace(mns, ft_strjoin("SHLVL=", shlvl), pos);
+		ep_replace(mns, new, pos);
 	else
-		env_append(mns, ft_strjoin("SHLVL=", shlvl));
+		env_append(mns, new);
 	free(shlvl);
+	free(new);
 }
 
 void	env_shlvl_up(t_shell *mns)
