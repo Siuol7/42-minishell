@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 14:45:27 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/19 15:19:27 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/19 17:37:37 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	exp_check_quotes(t_shell *mns, char **limiter)
 {
 	char	c;
-	char	temp;
+	char	*temp;
 
 	if (!limiter || !*limiter)
 		return (0);
