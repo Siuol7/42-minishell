@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 00:15:49 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 01:15:07 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,29 +46,30 @@ static void	shell_input_operate(t_shell *mns)
 		execute_part(mns);
 }
 
-// void	shell_input(t_shell	*mns)
-// {
-// 	int	exit_code;
-// 	while (1)
-// 	{
-// 		signals_initialize();
-// 		mns->full_cmd_line = readline("minishell$ ");
-// 		if (!mns->full_cmd_line)
-// 		{
-// 			printf("exit\n");
-// 			env_shlvl_down(mns);
-// 			exit_code = mns->exitcode;
-// 			shell_clean(mns);
-// 			exit (exit_code);
-// 		}
-// 		if (mns->full_cmd_line[0])
-// 		{
-// 			shell_input_operate(mns);
-// 			mns->shell_err = 0;
-// 		}
-// 		shell_pre_input(mns);
-// 	}
-// }
+void	shell_input(t_shell	*mns)
+{
+	int	exit_code;
+
+	while (1)
+	{
+		signals_initialize();
+		mns->full_cmd_line = readline("minishell$ ");
+		if (!mns->full_cmd_line)
+		{
+			printf("exit\n");
+			env_shlvl_down(mns);
+			exit_code = mns->exitcode;
+			shell_clean(mns);
+			exit (exit_code);
+		}
+		if (mns->full_cmd_line[0])
+		{
+			shell_input_operate(mns);
+			mns->shell_err = 0;
+		}
+		shell_pre_input(mns);
+	}
+}
 
 // void	shell_input(t_shell *mns)
 // {
