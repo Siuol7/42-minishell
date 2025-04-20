@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:27:01 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 22:39:29 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 22:49:18 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,5 +14,5 @@
 
 char	*hd_expansion_gen(t_shell *mns, char **line)
 {
-	z
+	
 }
