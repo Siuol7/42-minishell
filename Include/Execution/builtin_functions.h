@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 04:02:14 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/19 14:22:28 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 06:15:30 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ int		ep_exist(t_shell *mns, char *str);
 int		ep_check_exist(t_shell *mns, char *str, char ***res);
 void	ep_replace(t_shell *mns, char *str, int i);
 char	**ep_split(t_shell *mns, char *input);
+int		ep_pre_validation(t_shell *mns, char **var);
 
 //ENV
 void	env_standalone(t_shell *mns);
@@ -37,5 +38,6 @@ char	*resolve_logic_pwd(const char *old, const char *target);
 void	env_append(t_shell *mns, char *str);
 
 void	unset_env_var(char *key, char ***env);
+char	*expand_titled(t_shell *mns, char *arg);
 
 #endif

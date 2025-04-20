@@ -6,43 +6,58 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:00:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 00:59:29 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 08:36:40 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	ep_add(t_shell *mns, char *str, int pos)
+static void	ep_add(t_shell *mns, char *name, char *str, int pos)
 {
-	char	*temp;
+	char	*temp1;
+	char	*temp2;
 
-	temp = ft_strdup(str + 2);
-	if (!str || !str[0])
+	if (pos > -1)
 	{
-		free(temp);
-		return ;
+		if (!str || !str[0])
+			return ;
+		temp2 = ft_strdup(str + 2);
+		if (!ft_append(&mns->env[pos], &temp2))
+			ft_bad_alloc(mns);
 	}
-	if (!ft_append(&mns->env[pos], &temp))
-		ft_bad_alloc(mns);
+	else
+	{
+		if (!str || !str[0])
+			return ;
+		temp1 = ft_strdup(name);
+		temp2 = ft_strdup(str + 1);
+		if (!ft_append(&temp1, &temp2))
+			ft_bad_alloc(mns);
+		env_append(mns, temp1);
+		free(temp1);
+	}
 }
 
-static void	ep_variable(t_shell *mns, t_cmd *cmd)
+static void	ep_variable(t_shell *mns, t_cmd *cmd, int i)
 {
-	int		i;
 	int		pos;
 	char	**temp;
 
-	i = 1;
 	while (i < cmd->arg_cnt)
 	{
 		temp = ep_split(mns, cmd->cmd_arg[i]);
 		if (!temp)
 			ft_bad_alloc(mns);
-		if (!ep_validation(mns, temp[0], 0, ft_strlen(temp[0])))
+		if (!ep_pre_validation(mns, temp))
 			return ;
+		if (!temp[1] || !temp[1][0])
+		{
+			ft_free_2d((void **)temp);
+			return;
+		}
 		pos = ep_check_exist(mns, temp[0], &temp);
-		if (temp[1][0] == '+' && pos > -1)
-			ep_add(mns, temp[1], pos);
+		if (temp[1][0] == '+')
+			ep_add(mns, temp[0], temp[1], pos);
 		else if (pos > -1)
 			ep_replace(mns, cmd->cmd_arg[i], pos);
 		else
@@ -57,5 +72,5 @@ void	bi_export(t_shell *mns, t_cmd *cmd)
 	if (cmd->arg_cnt == 1)
 		ep_standalone(mns);
 	else if (cmd->arg_cnt > 1)
-		ep_variable(mns, cmd);
+		ep_variable(mns, cmd, 1);
 }

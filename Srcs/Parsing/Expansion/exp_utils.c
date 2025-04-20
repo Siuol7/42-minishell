@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:31:36 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/15 00:37:02 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 14:42:00 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,42 @@ int	exp_validation(char *key)
 	return (2);
 }
 
-char	*exp_getkey(t_shell *mns, char *str, int *i)
+static char	*exp_string(t_shell *mns, char *str, int *i)
+{
+	int		start;
+	char	op;
+	char	*key;
+
+	op = str[*i];
+	start = *i;
+	++*i;
+	while (str[*i])
+	{
+		if (str[*i] == op)
+		{
+			op = 'e';
+			(*i)++;
+			break;
+		}
+		(*i)++;
+	}
+	if (op == 'e')
+		key = ft_substr(str, start, *i - start);
+	else
+		key = ft_substr(str, start, *i - start);
+	if (!key)
+		ft_bad_alloc(mns);
+	return (key);
+}
+
+char	*exp_getkey(t_shell *mns, char *str, int *i, char open)
 {
 	int		start;
 	char	*key;
 
 	start = ++*i;
+	if (ft_is_dquote(str[*i]) && open == 'e')
+		return (exp_string(mns, str, i));
 	while (str[*i])
 	{
 		if ((!ft_isalnum(str[*i]) && str[*i] != '_') || str[*i] == '?')

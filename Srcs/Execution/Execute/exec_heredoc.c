@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:58:07 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/20 01:14:47 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 02:12:15 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ static int	print_heredoc(int fd, char *limiter, int is_exp)
 		}
 		if (!line || !ft_strcmp(line, limiter))
 			break ;
-		if (is_exp == 0)
-			exp_hd_gen(&line);
+		// if (is_exp == 0)
+		// 	exp_hd_gen(&line);
 		ft_printf_fd (fd, "%s\n", line);
 		free(line);
 	}
