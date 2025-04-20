@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 11:31:36 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 14:42:00 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 21:58:15 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ static char	*exp_string(t_shell *mns, char *str, int *i)
 		{
 			op = 'e';
 			(*i)++;
-			break;
+			break ;
 		}
 		(*i)++;
 	}

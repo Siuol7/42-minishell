@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/29 14:45:20 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 15:26:00 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 17:39:42 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	env_shlvl_gen(t_shell *mns)
 
 	shlvl = ft_itoa(mns->shlvl);
 	pos = ep_exist(mns, "SHLVL=");
-	new = ft_strjoin("SHLVL", shlvl);
+	new = ft_strjoin("SHLVL=", shlvl);
 	if (!new)
 		ft_bad_alloc(mns);
 	if (pos != -1)

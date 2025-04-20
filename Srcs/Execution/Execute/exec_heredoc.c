@@ -6,13 +6,13 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:58:07 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/20 02:12:15 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 21:55:35 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	print_heredoc(int fd, char *limiter, int is_exp)
+static int	print_heredoc(t_shell *mns, int fd, char *limiter, int is_exp)
 {
 	char	*line;
 
@@ -28,8 +28,8 @@ static int	print_heredoc(int fd, char *limiter, int is_exp)
 		}
 		if (!line || !ft_strcmp(line, limiter))
 			break ;
-		// if (is_exp == 0)
-		// 	exp_hd_gen(&line);
+		if (is_exp == 0)
+			hd_expansion_gen(mns, &line);
 		ft_printf_fd (fd, "%s\n", line);
 		free(line);
 	}
@@ -51,7 +51,7 @@ char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
 		return (perror("open failed"), free(filename), NULL);
 	signals_configure(SIGINT, handle_sigint_heredoc);
 	is_exp = exp_check_quotes(mns, &limiter);
-	if (print_heredoc(fd, limiter, is_exp))
+	if (print_heredoc(mns, fd, limiter, is_exp))
 	{
 		mns->exitcode = 1;
 		unlink(filename);

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 00:35:59 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 14:25:29 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 22:00:29 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static int	exp_condition(t_token *str, int size, int i, char open)
 {
 	if ((i + 1 < size && str->val[i] == '$' && (ft_isalnum(str->val[i + 1])
-	|| str->val[i + 1] == '_' || str->val[i + 1] == '?'))
-	||	(i + 1 < size && str->val[i] == '$'
-		&& ft_is_dquote(str->val[i + 1]) && open =='e'))
-			return (1);
+				|| str->val[i + 1] == '_' || str->val[i + 1] == '?'))
+		|| (i + 1 < size && str->val[i] == '$'
+			&& ft_is_dquote(str->val[i + 1]) && open == 'e'))
+		return (1);
 	return (0);
 }
 

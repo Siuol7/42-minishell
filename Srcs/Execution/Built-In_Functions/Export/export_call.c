@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:00:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 08:36:40 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 21:57:16 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	ep_variable(t_shell *mns, t_cmd *cmd, int i)
 		if (!temp[1] || !temp[1][0])
 		{
 			ft_free_2d((void **)temp);
-			return;
+			return ;
 		}
 		pos = ep_check_exist(mns, temp[0], &temp);
 		if (temp[1][0] == '+')
@@ -70,7 +70,7 @@ static void	ep_variable(t_shell *mns, t_cmd *cmd, int i)
 void	bi_export(t_shell *mns, t_cmd *cmd)
 {
 	if (cmd->arg_cnt == 1)
-		ep_standalone(mns);
+		ep_standalone(mns, -1, -1, ft_2d_len(mns->env));
 	else if (cmd->arg_cnt > 1)
 		ep_variable(mns, cmd, 1);
 }

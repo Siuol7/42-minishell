@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 00:23:02 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 16:53:29 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 21:57:54 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,8 +84,8 @@ void	prs_final(t_shell *mns, int i, int j, int k)
 				* sizeof(t_token));
 		if (!mns->cmd_group[i].final)
 			ft_bad_alloc(mns);
-		ft_bzero(mns->cmd_group[i].final
-			, mns->cmd_group[i].final_cnt * sizeof(t_token));
+		ft_bzero(mns->cmd_group[i].final,
+			mns->cmd_group[i].final_cnt * sizeof(t_token));
 		j = -1;
 		while (++j < mns->cmd_group[i].token_cnt)
 		{
