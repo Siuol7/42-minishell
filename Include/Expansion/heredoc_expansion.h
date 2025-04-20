@@ -1,18 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hd_expansion_gen.c                                 :+:      :+:    :+:   */
+/*   heredoc_expansion.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 21:27:01 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 22:39:29 by caonguye         ###   ########.fr       */
+/*   Created: 2025/04/20 22:11:28 by caonguye          #+#    #+#             */
+/*   Updated: 2025/04/20 22:14:59 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#ifndef HEREDOC_EXPANSION_H
+
+# define HEREDOC_EXPANSION_H
+
 #include "minishell.h"
 
-char	*hd_expansion_gen(t_shell *mns, char **line)
-{
-	z
-}
+typedef struct s_shell	t_shell;
+
+char	*hd_expansion_gen(t_shell *mns, char **line);
+
+
+#endif

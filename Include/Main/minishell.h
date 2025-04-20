@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 23:53:42 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 22:13:45 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@
 # include "../Execution/ast.h"
 # include "../Execution/execution.h"
 # include "../Execution/builtin_functions.h"
+# include "../Expansion/heredoc_expansion.h"
+# include "../Expansion/unstring_expansion.h"
 // Get next line
 # include "../../Library/get_next_line/get_next_line.h"
 

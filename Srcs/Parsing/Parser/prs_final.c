@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 00:23:02 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 21:57:54 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 22:45:44 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ void	prs_final(t_shell *mns, int i, int j, int k)
 		ft_bzero(mns->cmd_group[i].final,
 			mns->cmd_group[i].final_cnt * sizeof(t_token));
 		j = -1;
-		while (++j < mns->cmd_group[i].token_cnt)
+		while (++j < mns->cmd_group[i].token_cnt
+			&& k < mns->cmd_group[i].final_cnt)
 		{
 			if (mns->cmd_group[i].list[j].type != SIGN)
 				prs_final_split(mns, &mns->cmd_group[i],
