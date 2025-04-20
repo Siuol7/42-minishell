@@ -6,8 +6,10 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 21:27:01 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 22:00:44 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 22:08:57 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+char	*hd_expansion_gen()
