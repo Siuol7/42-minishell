@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_env_ft.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 01:22:16 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/15 22:15:30 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/20 08:03:05 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,9 @@ int		exp_validation(char *key);
 void	exp_generate(t_shell *mns, int i, int j);
 void	exp_group_generate(t_shell *mns);
 void	exp_check_open(char c, char *open);
-char	*exp_getkey(t_shell *mns, char *str, int *i);
+char	*exp_getkey(t_shell *mns, char *str, int *i, char open);
 char	*exp_new_strdup(const char *s);
 void	exp_expand(t_shell *mns, char **key, char open, t_token *token);
+void	exp_type(t_shell *mns, char **key, char open, t_token *t);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/19 15:54:55 by caonguye         ###   ########.fr        #
+#    Updated: 2025/04/20 08:03:31 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,7 +80,8 @@ EXPANSION_DIR	:= $(PARSING_SRC)/Expansion
 
 EXPANSION_C		:=  exp_generate.c			\
 					exp_utils.c				\
-					exp_expand.c
+					exp_expand.c			\
+					exp_type.c
 
 # Execution
 EXECUTION_SRC	:=	./Srcs/Execution

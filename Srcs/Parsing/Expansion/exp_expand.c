@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:56:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 14:20:31 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 14:22:41 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	exp_expand_digit(t_shell *mns, char **key, char *exp_sign)
 {
 	char	*temp;
 
-	temp = *key + 1;
+	temp = ft_strdup(*key + 1);
 	if (!ft_append(&mns->post_expansion, &temp))
 	{
 		free(*key);

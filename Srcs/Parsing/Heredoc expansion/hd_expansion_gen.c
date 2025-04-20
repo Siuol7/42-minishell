@@ -1,21 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   shell_init.c                                       :+:      :+:    :+:   */
+/*   hd_expansion_gen.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/10 01:30:39 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 20:42:28 by caonguye         ###   ########.fr       */
+/*   Created: 2025/04/20 21:27:01 by caonguye          #+#    #+#             */
+/*   Updated: 2025/04/20 22:00:44 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int	shell_init(t_shell *mns, char **env)
-{
-	ft_memset(mns, 0, sizeof(t_shell));
-	shell_env_gen(mns, env);
-	env_shlvl_up(mns);
-	return (1);
-}
