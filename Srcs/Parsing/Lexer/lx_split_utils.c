@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:17:55 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 23:15:27 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 04:25:02 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ int	lx_skip_dquote(char *input, int *index)
 	}
 	return (*index);
 }
-
 
 int	lx_skip_word(char *input, int index)
 {
