@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:28 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 00:19:22 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 05:08:47 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,15 @@ static void	update_pwd(t_shell *mns, char *target)
 	}
 }
 
+static void	bi_cd_helper(t_shell *mns, char *oldpwd, char *target, char *expanded)
+{
+	set_env_val(&mns->env, "OLDPWD", oldpwd);
+	update_pwd(mns, target);
+	update_status(mns, 0);
+	if (expanded != target)
+		free(expanded);
+}
+
 int	bi_cd(t_shell *mns, t_cmd *cmd)
 {
 	char	*oldpwd;
@@ -98,10 +107,38 @@ int	bi_cd(t_shell *mns, t_cmd *cmd)
 			free(expanded);
 		return (update_status(mns, 1), free(oldpwd), 1);
 	}
-	set_env_val(&mns->env, "OLDPWD", oldpwd);
-	update_pwd(mns, target);
-	update_status(mns, 0);
-	if (expanded != target)
-		free(expanded);
+	bi_cd_helper(mns, oldpwd, target, expanded);
 	return (free(oldpwd), 0);
 }
+
+// int	bi_cd(t_shell *mns, t_cmd *cmd)
+// {
+// 	char	*oldpwd;
+// 	char	*target;
+// 	char	**args;
+// 	char	*expanded;
+
+// 	args = cmd->cmd_arg;
+// 	oldpwd = getcwd(NULL, 0);
+// 	if (!oldpwd)
+// 		oldpwd = ft_strdup(get_env_val(mns, "PWD"));
+// 	if (!oldpwd)
+// 		return (perror("getcwd"), 1);
+// 	target = get_cd_target(mns, args);
+// 	if (!target)
+// 		return (update_status(mns, 1), free(oldpwd), 1);
+// 	expanded = expand_titled(mns, target);
+// 	if (chdir(expanded) != 0)
+// 	{
+// 		ft_printf_fd(2, "bash: cd: %s: No such file or directory\n", expanded);
+// 		if (expanded != target)
+// 			free(expanded);
+// 		return (update_status(mns, 1), free(oldpwd), 1);
+// 	}
+// 	set_env_val(&mns->env, "OLDPWD", oldpwd);
+// 	update_pwd(mns, target);
+// 	update_status(mns, 0);
+// 	if (expanded != target)
+// 		free(expanded);
+// 	return (free(oldpwd), 0);
+// }

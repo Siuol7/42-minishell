@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:06:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/21 04:23:16 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 13:38:05 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,6 @@ void	exec_error(t_shell *mns, char *cmd_path, char *ms1, char *ms2)
 
 int	check_ambiguous_rd(t_shell *mns, t_cmd *cmd)
 {
-	(void)mns;
 	if (cmd->ambi)
 	{
 		ft_printf_fd(2, "bash: %s: ambiguous redirect\n", cmd->ambi);

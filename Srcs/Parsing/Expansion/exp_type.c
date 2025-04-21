@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 07:58:40 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 04:18:03 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 13:41:20 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 int	exp_rd_check(t_shell *mns, t_token *t, char *key, char open)
 {
-	if ((open == 'e' || open == '\"')
-		&& SIGN_ERR < t->type && t->type < RD_AMBI
-		&& !get_env_val(mns, key))
+	if (t->type == RD_HEREDOC)
 		return (1);
+	else if ((open == 'e' || open == '\"')
+		&& SIGN_ERR < t->type && t->type < RD_AMBI && t->type != RD_HEREDOC
+		&& (!get_env_val(mns, key) || ft_strlen(get_env_val(mns, key)) == 0))
+	{
+		t->type = RD_AMBI;
+		return (1);
+	}
 	return (0);
 }
 
@@ -25,7 +30,7 @@ static void	exp_unstring(t_shell *mns, char **key)
 {
 	char	*str;
 
-	str = lx_qmarks_eli(mns, *key, 0, 0);
+	str = ft_strdup(*key);
 	if (!str)
 	{
 		free(*key);

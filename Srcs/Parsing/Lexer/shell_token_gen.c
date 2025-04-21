@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 17:04:46 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:01:30 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	lx_cmd_group(t_shell *mns)
 	}
 }
 
-static void	lx_typize_token(t_token *list, char **str, int size)
+static void	lx_typize_token(t_shell *mns, t_token *list, char **str, int size)
 {
 	t_point	p;
 
@@ -33,11 +33,13 @@ static void	lx_typize_token(t_token *list, char **str, int size)
 	while (++p.start < size)
 	{
 		if (lx_is_rd(str[p.start]))
-			lx_rd_typize(list, str, &p);
+			lx_rd_typize(mns, list, str, &p);
 		else
 		{
 			list[p.start].type = ARG;
 			list[p.start].val = ft_strdup(str[p.start]);
+			if (!list[p.start].val)
+				ft_bad_alloc(mns);
 		}
 	}
 }
@@ -53,12 +55,14 @@ static void	lx_token_listing(t_shell *mns)
 				* sizeof(t_token));
 		if (!mns->cmd_group[i].list)
 			ft_bad_alloc(mns);
+		ft_bzero(mns->cmd_group[i].list,
+			mns->cmd_group[i].token_cnt * sizeof(t_token));
 		i++;
 	}
 	i = 0;
 	while (i < mns->group_cnt)
 	{
-		lx_typize_token(mns->cmd_group[i].list, mns->cmd_group[i].token,
+		lx_typize_token(mns, mns->cmd_group[i].list, mns->cmd_group[i].token,
 			mns->cmd_group[i].token_cnt);
 		i++;
 	}

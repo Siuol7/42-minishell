@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:58:07 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/21 04:37:41 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:12:15 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	print_heredoc(t_shell *mns, int fd, char *limiter, int is_exp)
 				"delimited by end-of-file (wanted `%s')\n", limiter);
 			return (1);
 		}
-		if (!line || !ft_strcmp(line, limiter))
+		if (!line ||(limiter && !ft_strcmp(line, limiter)))
 			break ;
 		if (is_exp == 0)
 			hd_expansion_gen(mns, &line);
@@ -36,6 +36,15 @@ static int	print_heredoc(t_shell *mns, int fd, char *limiter, int is_exp)
 	return (0);
 }
 
+static void	printf_hd_helper(t_shell *mns, char *filename, char *lim_copy, int fd)
+{
+	mns->exitcode = 1;
+	unlink(filename);
+	free(filename);
+	free(lim_copy);
+	close(fd);
+	signals_initialize();
+}
 char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
 {
 	char	*filename;
@@ -54,12 +63,7 @@ char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
 	is_exp = exp_check_quotes(mns, &lim_copy);
 	if (print_heredoc(mns, fd, lim_copy, is_exp))
 	{
-		mns->exitcode = 1;
-		unlink(filename);
-		free(filename);
-		free(lim_copy);
-		close(fd);
-		signals_initialize();
+		printf_hd_helper(mns, filename, lim_copy, fd);
 		return (NULL);
 	}
 	close(fd);
