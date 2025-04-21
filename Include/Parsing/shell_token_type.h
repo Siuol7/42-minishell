@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 01:28:19 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 16:56:18 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 16:58:36 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ typedef struct s_cmd
 	int		heredoc_cnt;
 	char	*ambi;
 	char	**cmd_arg;
-	t_token	in;
+	t_token	*in;
 	t_token	*out;
 	char	**heredoc;
 }	t_cmd;

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:28 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 14:39:29 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:22:40 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,8 @@ static void	update_pwd(t_shell *mns, char *target)
 	}
 }
 
-static void	bi_cd_helper(t_shell *mns, char *oldpwd, char *target, char *expanded)
+static void	bi_cd_helper(t_shell *mns, char *oldpwd,
+	char *target, char *expanded)
 {
 	set_env_val(&mns->env, "OLDPWD", oldpwd);
 	update_pwd(mns, target);
