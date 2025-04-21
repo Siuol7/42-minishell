@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:28 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 04:19:10 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 00:19:22 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static char	*get_cd_target(t_shell *mns, char **args)
 			return (ft_printf_fd(2, "cd: OLDPWD not set\n"), NULL);
 		printf("%s\n", target);
 	}
-	else if (args[2] != NULL)
+	else if (args[1] && args[2] != NULL)
 	{
 		ft_printf_fd(STDERR_FILENO, "bash: cd: too many arguments\n");
 		return (update_status(mns, 1), NULL);

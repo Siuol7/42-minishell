@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 19:06:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/18 20:36:22 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 04:23:16 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ void	exec_error(t_shell *mns, char *cmd_path, char *ms1, char *ms2)
 	if (cmd_path)
 		free(cmd_path);
 	shell_clean(mns);
-	exit(update_status(mns, 126));
+	exit(126);
 }
 
 int	check_ambiguous_rd(t_shell *mns, t_cmd *cmd)
