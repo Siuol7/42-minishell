@@ -6,11 +6,38 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:39:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/21 15:51:58 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/21 19:46:43 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+// static int	handle_rd_in(t_cmd *cmd)
+// {
+// 	int	fd;
+// 	int	i;
+	
+// 	i = 0;
+// 	while (i < cmd->in_cnt)
+// 	{
+// 		if (cmd->in[i].type == RD_IN || cmd->in[i].type == RD_HEREDOC)
+// 		{
+// 			fd = open(cmd->in[i].val, O_RDONLY);
+// 			if (fd < 0)
+// 			{
+// 				if (cmd->in[i].type == RD_HEREDOC)
+// 					return (EXIT_FAILURE);
+// 				else if (cmd->in[i].type == RD_IN)
+// 					perror(cmd->in[i].val);
+// 				return (EXIT_FAILURE);
+// 			}
+// 			dup2(fd, STDIN_FILENO);
+// 			close(fd);
+// 		}
+// 		i++;
+// 	}
+// 	return (EXIT_SUCCESS);
+// }
 
 static int	handle_rd_in(t_cmd *cmd)
 {
@@ -30,7 +57,7 @@ static int	handle_rd_in(t_cmd *cmd)
 		dup2(fd, STDIN_FILENO);
 		close(fd);
 	}
-	return (EXIT_SUCCESS);
+	return (EXIT_SUCCESS); 
 }
 
 static int	handle_rd_out(t_cmd *cmd)

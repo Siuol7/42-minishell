@@ -6,30 +6,23 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 14:45:27 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/21 04:39:54 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/21 19:32:19 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static char	*elim_quotes(t_shell *mns, char *limiter)
-{
-	if (!limiter)
-		return (NULL);
-	if (limiter[0] == '\'' || limiter [0] == '\"')
-		return (lx_qmarks_eli(mns, (char *)limiter, 0, 0));
-	return (ft_strdup(limiter));
-}
-
 int	exp_check_quotes(t_shell *mns, char **limiter)
 {
+	char	c;
 	char	*temp;
 
 	if (!limiter || !*limiter)
 		return (0);
-	temp = elim_quotes(mns, *limiter);
-	if (temp != *limiter)
+	c = **limiter;
+	if (c == '\'' || c == '\"')
 	{
+		temp = lx_qmarks_eli(mns, *limiter, 0, 0);
 		free(*limiter);
 		*limiter = temp;
 		return (1);

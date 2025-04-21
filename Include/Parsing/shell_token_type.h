@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_token_type.h                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/01 01:28:19 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 16:56:18 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 19:45:39 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

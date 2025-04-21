@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:58:07 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/21 05:03:24 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/21 19:46:30 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,23 @@ static int	print_heredoc(t_shell *mns, int fd, char *limiter, int is_exp)
 				"delimited by end-of-file (wanted `%s')\n", limiter);
 			return (1);
 		}
-		if (!line || !ft_strcmp(line, limiter))
+		if (!line || (limiter && !ft_strcmp(line, limiter)))
 			break ;
 		if (is_exp == 0)
 			hd_expansion_gen(mns, &line);
+		printf("EXPAND %d AFTER expand%s\n", is_exp, line);
 		ft_printf_fd (fd, "%s\n", line);
 		free(line);
 	}
 	free(line);
 	return (0);
 }
-static void	printf_hd_helper(t_shell *mns, char *filename, char *lim_copy, int fd)
+
+static void	printf_hd_helper(t_shell *mns, char *name, char *lim_copy, int fd)
 {
 	mns->exitcode = 1;
-	unlink(filename);
-	free(filename);
+	unlink(name);
+	free(name);
 	free(lim_copy);
 	close(fd);
 	signals_initialize();
@@ -79,26 +81,53 @@ static void	printf_wrong_eof(char *limiter)
 		which_quote(limiter));
 }
 
+// static void	replace_val(t_cmd *cmd, int heredoc_id, char *tmpfile)
+// {
+// 	int	i;
+// 	int	count;
+
+// 	i = 0;
+// 	count = 0;
+// 	while (i < cmd->in_cnt)
+// 	{
+// 		if (cmd->in[i].type == RD_HEREDOC)
+// 		{
+// 			if (count == heredoc_id)
+// 			{
+// 				free(cmd->in[i].val);
+// 				cmd->in[i].val = tmpfile;
+// 				return ;
+// 			}
+// 		}
+// 	}
+// }
+
 void	heredoc_expand_all(t_shell *mns)
 {
 	int		i;
+	int		j;
 	char	*tmpfile;
+	t_cmd	*cmd;
 
 	i = 0;
+	j = 0;
 	while (i < mns->group_cnt)
 	{
-		if (exp_hd_check_nl(mns->cmd_group[i].in.val) == 1)
+		j = 0;
+		cmd = &mns->cmd_group[i];
+		while (j < cmd->heredoc_cnt)
 		{
-			printf_wrong_eof(mns->cmd_group[i].in.val);
-			return ;
-		}
-		if (mns->cmd_group[i].in.type == RD_HEREDOC)
-		{
-			tmpfile = heredoc_tmp(mns, mns->cmd_group[i].in.val, i);
+			if (exp_hd_check_nl(cmd->heredoc[j]))
+			{
+				printf_wrong_eof(cmd->heredoc[j]);
+				return ;
+			}
+			tmpfile = heredoc_tmp(mns, cmd->heredoc[j], i + j);
 			if (!tmpfile)
 				return ;
-			free(mns->cmd_group[i].in.val);
-			mns->cmd_group[i].in.val = tmpfile;
+			// replace_val(cmd, j, tmpfile);
+			cmd->in.val = tmpfile;
+			j++;
 		}
 		i++;
 	}

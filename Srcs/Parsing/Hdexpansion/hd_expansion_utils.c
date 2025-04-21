@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 00:26:51 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 04:13:20 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 13:46:48 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,7 @@ void	hd_expand(t_shell *mns, char **temp, char **key)
 	char	*str;
 
 	if (ft_strcmp(*key, "?") && !get_env_val(mns, *key))
-	{
-		free(*key);
-		return ;
-	}
+		return (free(*key));
 	if (!ft_strcmp(*key, "?"))
 		str = ft_itoa(mns->exitcode);
 	else

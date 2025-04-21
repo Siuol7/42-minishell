@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:13:21 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/21 13:18:45 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/21 19:45:59 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ void	exec_cmd(t_shell *mns, t_cmd *cmd)
 	dup2(tmp[1], STDOUT_FILENO);
 	close(tmp[0]);
 	close(tmp[1]);
+	// if (cmd->in[cmd->in_cnt - 1].type == RD_HEREDOC)
+	// 	unlink(cmd->in[cmd->in_cnt -1].val);
 	if (cmd->in.type == RD_HEREDOC)
 		unlink(cmd->in.val);
 }

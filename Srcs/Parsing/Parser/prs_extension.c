@@ -6,17 +6,18 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 01:59:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 15:57:43 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/21 19:13:05 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void prs_exit(t_shell *mns, char c)
+static void	prs_exit(t_shell *mns, char c)
 {
-	ft_printf_fd(2, "bash: unexpected EOF while looking for matching `%c'", c);
+	ft_printf_fd(2,
+		"bash: unexpected EOF while looking for matching `%c'\n", c);
 	shell_clean(mns);
-	exit (2);
+	exit(2);
 }
 
 static void	prs_extra_arg(t_shell *mns, char c, int c_cnt)

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:56:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 03:42:52 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:26:36 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,7 @@ static void	exp_expand_new(t_shell *mns, char **key, char *exp_sign)
 	char	*str;
 
 	if (ft_strcmp(*key, "?") && !get_env_val(mns, *key))
-	{
-		free(*key);
-		free(exp_sign);
-		return ;
-	}
+		return (free(*key), free(exp_sign));
 	if (!ft_strcmp(*key, "?"))
 		str = ft_itoa(mns->exitcode);
 	else
@@ -37,8 +33,9 @@ static void	exp_expand_new(t_shell *mns, char **key, char *exp_sign)
 			ft_bad_alloc(mns);
 		}
 	}
-	free(*key);
-	free(exp_sign);
+	else
+		free(str);
+	return (free(*key), free(exp_sign));
 }
 
 static void	exp_expand_digit(t_shell *mns, char **key, char *exp_sign)
@@ -85,10 +82,8 @@ static void	exp_expand_org(t_shell *mns, char **key, char *exp_sign)
 	free(exp_sign);
 }
 
-static void	exp_copy(t_shell *mns, char **key, char *exp_sign, t_token *t)
+static void	exp_copy(t_shell *mns, char **key, char *exp_sign)
 {
-	if (3 < t->type && t->type < 10)
-		t->type = RD_AMBI;
 	if (!ft_append(&mns->post_expansion, &exp_sign))
 	{
 		free(*key);
@@ -111,7 +106,7 @@ void	exp_expand(t_shell *mns, char **key, char open, t_token *t)
 		ft_bad_alloc(mns);
 	}
 	if (open == '\'' || exp_rd_check(mns, t, *key, open))
-		exp_copy(mns, key, exp_sign, t);
+		exp_copy(mns, key, exp_sign);
 	else
 	{
 		if (type == 1)

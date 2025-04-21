@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/13 19:49:26 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/13 20:19:39 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 13:05:29 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*lx_qmarks_eli(t_shell *mns, char *str, int i, int j)
 	res = malloc(size + 1);
 	if (!res)
 		ft_bad_alloc(mns);
-	while (str[i] && j < size)
+	while (str[i])
 	{
 		if (ft_is_dquote(str[i]) && sign == 'e')
 			sign = str[i];

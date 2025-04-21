@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:28 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 04:59:05 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/21 19:14:57 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*get_cd_target(t_shell *mns, char **args)
 	char	*target;
 
 	if ((!args[1] || !ft_strcmp(args[1], "~")
-		|| !ft_strcmp(args[1], "--")) && !args[2])
+			|| !ft_strcmp(args[1], "--")) && !args[2])
 	{
 		target = get_env_val(mns, "HOME");
 		for_home(target);
