@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:28 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 00:19:22 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:22:40 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static char	*get_cd_target(t_shell *mns, char **args)
 	char	*target;
 
 	if ((!args[1] || !ft_strcmp(args[1], "~")
-		|| !ft_strcmp(args[1], "--")) && !args[2])
+			|| !ft_strcmp(args[1], "--")) && !args[2])
 	{
 		target = get_env_val(mns, "HOME");
 		for_home(target);
@@ -74,6 +74,16 @@ static void	update_pwd(t_shell *mns, char *target)
 	}
 }
 
+static void	bi_cd_helper(t_shell *mns, char *oldpwd,
+	char *target, char *expanded)
+{
+	set_env_val(&mns->env, "OLDPWD", oldpwd);
+	update_pwd(mns, target);
+	update_status(mns, 0);
+	if (expanded != target)
+		free(expanded);
+}
+
 int	bi_cd(t_shell *mns, t_cmd *cmd)
 {
 	char	*oldpwd;
@@ -98,10 +108,6 @@ int	bi_cd(t_shell *mns, t_cmd *cmd)
 			free(expanded);
 		return (update_status(mns, 1), free(oldpwd), 1);
 	}
-	set_env_val(&mns->env, "OLDPWD", oldpwd);
-	update_pwd(mns, target);
-	update_status(mns, 0);
-	if (expanded != target)
-		free(expanded);
+	bi_cd_helper(mns, oldpwd, target, expanded);
 	return (free(oldpwd), 0);
 }

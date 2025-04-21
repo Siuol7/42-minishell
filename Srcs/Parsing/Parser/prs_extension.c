@@ -6,24 +6,32 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 01:59:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 23:09:49 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 17:22:10 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void	prs_extra_arg(t_shell *mns, char c)
+static void	prs_exit(t_shell *mns, char c)
+{
+	ft_printf_fd(2,
+		"bash: unexpected EOF while looking for matching `%c'\n", c);
+	shell_clean(mns);
+	exit(2);
+}
+
+static void	prs_extra_arg(t_shell *mns, char c, int c_cnt)
 {
 	int		i;
-	int		c_cnt;
 	char	*new;
 	char	*temp;
 
-	c_cnt = 1;
 	while (1)
 	{
 		new = readline("> ");
 		i = 0;
+		if (!new)
+			prs_exit(mns, c);
 		while (new[i])
 		{
 			if (new[i] == c)
@@ -88,7 +96,7 @@ static int	prs_arg_check(t_shell *mns)
 		i++;
 	}
 	if (open != 'e')
-		prs_extra_arg(mns, open);
+		prs_extra_arg(mns, open, 1);
 	return (0);
 }
 

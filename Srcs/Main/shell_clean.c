@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 19:59:39 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 12:02:09 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,8 @@ static void	free_list(t_token *list, int size)
 	i = 0;
 	while (i < size)
 	{
-		if (list[i].type != SIGN && list[i].val)
-		{
+		if (list[i].val)
 			free(list[i].val);
-			if (list[i].type == SIGN_ERR)
-				break ;
-		}
 		i++;
 	}
 	free(list);
