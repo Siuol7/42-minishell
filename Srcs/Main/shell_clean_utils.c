@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 23:08:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/14 23:53:35 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 21:07:26 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,17 @@ void	free_out(t_cmd *group, int id)
 		i++;
 	}
 	free(group[id].out);
+}
+
+void	free_in(t_cmd *group, int id)
+{
+	int	i;
+
+	i = 0;
+	while (i < group[id].in_cnt)
+	{
+		free(group[id].in[i].val);
+		i++;
+	}
+	free(group[id].in);
 }

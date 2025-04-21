@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:47:55 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/19 15:54:50 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 00:11:21 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@ static void	lx_out_hd_cnt(t_token *final, t_cmd *group)
 	{
 		if (final[i].type == RD_OUT || final[i].type == RD_APPEND)
 			group->out_cnt++;
-		else if (final[i].type == RD_HEREDOC)
-			group->heredoc_cnt++;
+		else if (final[i].type == RD_IN || final[i].type == RD_HEREDOC)
+		{
+			if (final[i].type == RD_HEREDOC)
+				group->heredoc_cnt++;
+			group->in_cnt++;
+		}
 		else if (final[i].type == ARG)
 			group->arg_cnt++;
 		i++;
@@ -31,13 +35,11 @@ static void	lx_out_hd_cnt(t_token *final, t_cmd *group)
 
 static void	lx_in_file(t_shell *mns, t_token *final, t_cmd *group, t_sort *id)
 {
-	if (group->in.val)
-		free(group->in.val);
-	group->in.val = ft_strdup(final[id->id].val);
-	group->in.type = final[id->id].type;
+	group->in[id->ls].val = lx_qmarks_eli(mns, final[id->id].val, 0, 0);
+	group->in[id->ls++].type = final[id->id].type;
 	if (final[id->id].type == RD_HEREDOC)
 	{
-		group->heredoc[id->k] = lx_qmarks_eli(mns, final[id->id].val, 0, 0);
+		group->heredoc[id->k] = ft_strdup(final[id->id].val);
 		if (!group->heredoc[id->k++])
 			ft_bad_alloc(mns);
 	}
@@ -84,6 +86,9 @@ void	lx_cmd_group_gen(t_shell *mns, t_token *final, t_cmd *group)
 		ft_bad_alloc(mns);
 	group->cmd_arg = malloc((group->arg_cnt + 1) * sizeof(char *));
 	if (!group->cmd_arg)
+		ft_bad_alloc(mns);
+	group->in = malloc(group->in_cnt * sizeof(t_token));
+	if (!group->in)
 		ft_bad_alloc(mns);
 	lx_group_copy(mns, final, group, &id);
 	group->heredoc[group->heredoc_cnt] = NULL;

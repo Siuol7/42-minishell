@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 12:02:09 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 00:10:57 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,8 @@ static void	free_cmd_group(t_cmd *group, int id)
 		ft_free_2d((void **)group[id].heredoc);
 	if (group[id].out)
 		free_out(group, id);
-	if (group[id].in.val)
-		free(group[id].in.val);
+	if (group[id].in)
+		free_in(group, id);
 	if (group[id].ambi)
 		free(group[id].ambi);
 	if (group[id].final)

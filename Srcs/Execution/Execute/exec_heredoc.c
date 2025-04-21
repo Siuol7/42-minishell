@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:58:07 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/21 14:41:21 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 00:30:25 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ static void	printf_hd_helper(t_shell *mns, char *name, char *lim_copy, int fd)
 	close(fd);
 	signals_initialize();
 }
-
 char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
 {
 	char	*filename;
@@ -54,6 +53,8 @@ char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
 	int		is_exp;
 
 	lim_copy = ft_strdup(limiter);
+	if (!lim_copy)
+		return (NULL);
 	filename = heredoc_filename(index);
 	if (filename == NULL)
 		return (perror("heredoc_tmp failed"), NULL);
@@ -62,6 +63,12 @@ char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
 		return (perror("open failed"), free(filename), NULL);
 	signals_configure(SIGINT, handle_sigint_heredoc);
 	is_exp = exp_check_quotes(mns, &lim_copy);
+	if (!lim_copy)
+	{
+		free(filename);
+		close(fd);
+		return (NULL);
+	}
 	if (print_heredoc(mns, fd, lim_copy, is_exp))
 	{
 		printf_hd_helper(mns, filename, lim_copy, fd);
@@ -83,26 +90,29 @@ static void	printf_wrong_eof(char *limiter)
 
 void	heredoc_expand_all(t_shell *mns)
 {
-	int		i;
+	int		i, j;
 	char	*tmpfile;
+	t_cmd	*cmd;
 
 	i = 0;
 	while (i < mns->group_cnt)
 	{
-		if (exp_hd_check_nl(mns->cmd_group[i].in.val) == 1)
+		cmd = &mns->cmd_group[i];
+		j = 0;
+		while (j < cmd->heredoc_cnt)
 		{
-			printf_wrong_eof(mns->cmd_group[i].in.val);
-			return ;
-		}
-		if (mns->cmd_group[i].in.type == RD_HEREDOC)
-		{
-			tmpfile = heredoc_tmp(mns, mns->cmd_group[i].in.val, i);
+			if (exp_hd_check_nl(cmd->heredoc[j]))
+			{
+				printf_wrong_eof(cmd->heredoc[j]);
+				return ;
+			}
+			tmpfile = heredoc_tmp(mns, cmd->heredoc[j],  i * 100 + j);
 			if (!tmpfile)
 				return ;
-			free(mns->cmd_group[i].in.val);
-			mns->cmd_group[i].in.val = tmpfile;
+			free(cmd->heredoc[j]);
+			cmd->heredoc[j] = tmpfile;
+			j++;
 		}
 		i++;
 	}
 }
-// chua cap nhat exit_code

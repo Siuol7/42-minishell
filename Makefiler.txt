@@ -1,0 +1,9 @@
+42_minishell_tester
+Include
+Library
+Makefile
+Makefiler.txt
+out
+Srcs
+test.sh
+whatever

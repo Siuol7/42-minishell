@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 14:45:27 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/20 00:59:19 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 01:00:54 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@ int	exp_check_quotes(t_shell *mns, char **limiter)
 	if (!limiter || !*limiter)
 		return (0);
 	c = **limiter;
+	temp = lx_qmarks_eli(mns, *limiter, 0, 0);
+	free(*limiter);
+	*limiter = temp;
 	if (c == '\'' || c == '\"')
-	{
-		temp = lx_qmarks_eli(mns, *limiter, 0, 0);
-		free(*limiter);
-		*limiter = temp;
 		return (1);
-	}
 	return (0);
 }
 
@@ -82,4 +80,38 @@ char	*heredoc_filename(int index)
 	}
 	free(index_str);
 	return (filename);
+}
+
+static int	get_cmd_group_index(t_shell *mns, t_cmd *cmd)
+{
+	int	i = 0;
+
+	while (i < mns->group_cnt)
+	{
+		if (&mns->cmd_group[i] == cmd)
+			return (i);
+		i++;
+	}
+	return (-1);
+}
+
+void clean_heredoc_files(t_shell *mns, t_cmd *cmd)
+{
+	int		i;
+	char	*file_name;
+	int		group_index;
+
+	group_index = get_cmd_group_index(mns, cmd);
+	if (group_index == -1)
+		return ;
+	i = 0;
+	while (i < cmd->heredoc_cnt)
+	{
+		file_name = heredoc_filename(group_index * 100 + i);
+		unlink(file_name);
+		free(file_name);
+		free(cmd->heredoc[i]);
+		cmd->heredoc[i] = NULL;
+		i++;
+	}
 }

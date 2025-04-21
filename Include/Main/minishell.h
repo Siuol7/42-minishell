@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 22:13:45 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 21:08:08 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ void	shell_pre_input(t_shell *mns);
 int		shell_implement(char **env);
 void	shell_clean(t_shell *mns);
 void	free_out(t_cmd *group, int id);
+void	free_in(t_cmd *group, int id);
 void	shell_env_gen(t_shell *mns, char **env);
 
 //PARSING
