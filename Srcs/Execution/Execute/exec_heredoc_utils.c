@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 14:45:27 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/21 19:32:19 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/21 21:21:11 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,4 +82,33 @@ char	*heredoc_filename(int index)
 	}
 	free(index_str);
 	return (filename);
+}
+
+void clean_heredoc_files(t_shell *mns, t_cmd *cmd)
+{
+	int		i;
+	int		heredoc_id;
+	char	*file_name;
+	int		group_index;
+
+	group_index = get_cmd_group_index(mns, cmd);
+	if (group_index == -1)
+		return ;
+
+	i = 0;
+	heredoc_id = 0;
+	while (i < cmd->in_cnt)
+	{
+		if (cmd->in[i].type == RD_HEREDOC)
+		{
+			file_name = heredoc_filename(group_index * 100 + heredoc_id);
+			if (file_name)
+			{
+				unlink(file_name);
+				free(file_name);
+			}
+			heredoc_id++;
+		}
+		i++;
+	}
 }

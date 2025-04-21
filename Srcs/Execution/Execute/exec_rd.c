@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:39:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/21 19:46:43 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/21 21:03:51 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@
 // 			fd = open(cmd->in[i].val, O_RDONLY);
 // 			if (fd < 0)
 // 			{
-// 				if (cmd->in[i].type == RD_HEREDOC)
-// 					return (EXIT_FAILURE);
+// 				if (cmd->in[cmd->in_cnt -i].type == RD_HEREDOC)
+// 					return (1);
 // 				else if (cmd->in[i].type == RD_IN)
 // 					perror(cmd->in[i].val);
 // 				return (EXIT_FAILURE);
@@ -49,7 +49,7 @@ static int	handle_rd_in(t_cmd *cmd)
 		if (fd < 0)
 		{
 			if (cmd->in.type == RD_HEREDOC)
-				return (EXIT_FAILURE);
+				return (1);
 			else
 				perror(cmd->in.val);
 			return (EXIT_FAILURE);

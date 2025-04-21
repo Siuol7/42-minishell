@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 23:13:23 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/21 16:24:38 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/21 21:22:38 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ int		exp_check_quotes(t_shell *mns, char **limiter);
 int		exp_hd_check_nl(char *limiter);
 char	which_quote(char *str);
 char	*heredoc_filename(int index);
+void	clean_heredoc_files(t_shell *mns, t_cmd *cmd);
 // builtin utils
 char	*get_env_val(t_shell *mns, char *key);
 int		set_env_val(char ***env, const char *key, const char *value);

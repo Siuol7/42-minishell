@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:58:07 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/21 19:46:30 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/21 21:16:04 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ static int	print_heredoc(t_shell *mns, int fd, char *limiter, int is_exp)
 			break ;
 		if (is_exp == 0)
 			hd_expansion_gen(mns, &line);
-		printf("EXPAND %d AFTER expand%s\n", is_exp, line);
 		ft_printf_fd (fd, "%s\n", line);
 		free(line);
 	}
@@ -81,26 +80,27 @@ static void	printf_wrong_eof(char *limiter)
 		which_quote(limiter));
 }
 
-// static void	replace_val(t_cmd *cmd, int heredoc_id, char *tmpfile)
-// {
-// 	int	i;
-// 	int	count;
+static void	replace_val(t_cmd *cmd, int heredoc_id, char *tmpfile)
+{
+	int	i;
+	int	count;
 
-// 	i = 0;
-// 	count = 0;
-// 	while (i < cmd->in_cnt)
-// 	{
-// 		if (cmd->in[i].type == RD_HEREDOC)
-// 		{
-// 			if (count == heredoc_id)
-// 			{
-// 				free(cmd->in[i].val);
-// 				cmd->in[i].val = tmpfile;
-// 				return ;
-// 			}
-// 		}
-// 	}
-// }
+	i = 0;
+	count = 0;
+	while (i < cmd->in_cnt)
+	{
+		if (cmd->in[i].type == RD_HEREDOC)
+		{
+			if (count == heredoc_id)
+			{
+				free(cmd->in[i].val);
+				cmd->in[i].val = tmpfile;
+				return ;
+			}
+		}
+		i++;
+	}
+}
 
 void	heredoc_expand_all(t_shell *mns)
 {
@@ -122,11 +122,12 @@ void	heredoc_expand_all(t_shell *mns)
 				printf_wrong_eof(cmd->heredoc[j]);
 				return ;
 			}
-			tmpfile = heredoc_tmp(mns, cmd->heredoc[j], i + j);
+			tmpfile = heredoc_tmp(mns, cmd->heredoc[j], i * 100 + j);
 			if (!tmpfile)
 				return ;
-			// replace_val(cmd, j, tmpfile);
-			cmd->in.val = tmpfile;
+			replace_val(cmd, j, tmpfile);
+			// free(cmd->in.val);
+			// cmd->in.val = tmpfile;
 			j++;
 		}
 		i++;
