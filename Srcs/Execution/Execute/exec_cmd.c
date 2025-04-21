@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:13:21 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/20 01:03:43 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/20 23:19:58 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ void	exec_non_builtin(t_shell *mns, t_cmd *cmd)
 		command_path = found_command_path(mns, cmd->cmd_arg[0]);
 		if (!command_path)
 			exit(127);
-		if (!ft_strcmp(cmd->cmd_arg[0], "./minishell"))
-			env_shlvl_up(mns);
 		execve(command_path, cmd->cmd_arg, mns->env);
 		handle_execution_error(command_path, cmd->cmd_arg);
 		exit (1);
@@ -71,6 +69,8 @@ void	exec_cmd(t_shell *mns, t_cmd *cmd)
 	dup2(tmp[1], STDOUT_FILENO);
 	close(tmp[0]);
 	close(tmp[1]);
+	if (cmd->in.type == RD_HEREDOC)
+		unlink(cmd->in.val);
 }
 
 // void	exec_cmd(t_shell *mns, t_cmd *cmd)

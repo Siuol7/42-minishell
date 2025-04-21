@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   builtin_functions.h                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 04:02:14 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/19 14:22:28 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 22:09:47 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,13 @@ void	bi_pwd(t_shell *mns, t_cmd *cmd);
 int		bi_unset(t_shell *mns, t_cmd *cmd);
 
 //EXPORT
-void	ep_standalone(t_shell *mns);
+void	ep_standalone(t_shell *mns, int i, int j, int size);
 int		ep_validation(t_shell *mns, char *str, int i, int size);
 int		ep_exist(t_shell *mns, char *str);
 int		ep_check_exist(t_shell *mns, char *str, char ***res);
 void	ep_replace(t_shell *mns, char *str, int i);
 char	**ep_split(t_shell *mns, char *input);
+int		ep_pre_validation(t_shell *mns, char **var);
 
 //ENV
 void	env_standalone(t_shell *mns);
@@ -37,5 +38,6 @@ char	*resolve_logic_pwd(const char *old, const char *target);
 void	env_append(t_shell *mns, char *str);
 
 void	unset_env_var(char *key, char ***env);
+char	*expand_titled(t_shell *mns, char *arg);
 
 #endif

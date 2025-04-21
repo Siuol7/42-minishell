@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exp_expand.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:56:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 14:20:31 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 03:29:07 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ static void	exp_expand_digit(t_shell *mns, char **key, char *exp_sign)
 {
 	char	*temp;
 
-	temp = *key + 1;
+	temp = ft_strdup(*key + 1);
 	if (!ft_append(&mns->post_expansion, &temp))
 	{
 		free(*key);
@@ -110,8 +110,8 @@ void	exp_expand(t_shell *mns, char **key, char open, t_token *t)
 		free(*key);
 		ft_bad_alloc(mns);
 	}
-	if (open == '\''
-		|| ((open == 'e' && SIGN_ERR < t->type && t->type < RD_AMBI)))
+	if (open == '\'')
+		// || ((open == 'e' && SIGN_ERR < t->type && t->type < RD_AMBI)))
 		exp_copy(mns, key, exp_sign, t);
 	else
 	{

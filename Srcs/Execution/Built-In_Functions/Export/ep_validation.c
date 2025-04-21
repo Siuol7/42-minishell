@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/06 14:39:38 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/19 14:46:21 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 21:57:24 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	ep_exist(t_shell *mns, char *str)
 	len = ft_strichr(str, '=');
 	while (i < size)
 	{
-		if (len > -1 && !ft_strncmp(mns->env[i], str, len))
+		if (len > -1 && !ft_strncmp(mns->env[i], str, len + 1))
 			return (i);
 		i++;
 	}
@@ -64,7 +64,7 @@ int	ep_validation(t_shell *mns, char *str, int i, int size)
 	while (i < size && err != 0)
 	{
 		if (str[0] == '-')
-			return (ep_option(mns, str, err));
+			return (ep_option(mns, str, 0));
 		if (i == 0 && !ft_isalpha(str[i]) && str[i] != '_')
 			err = 0;
 		else if (i > 0 && !ft_isalnum(str[i]) && str[i] != '_')
@@ -78,4 +78,24 @@ int	ep_validation(t_shell *mns, char *str, int i, int size)
 		return (err);
 	}
 	return (1);
+}
+
+int	ep_pre_validation(t_shell *mns, char **var)
+{
+	int	check;
+
+	if ((!var[0] || !var[0][0]) && var[1])
+	{
+		check = ep_validation(mns, var[1], 0, ft_strlen(var[1]));
+		if (!check)
+			ft_free_2d((void **)var);
+		return (check);
+	}
+	else
+	{
+		check = ep_validation(mns, var[0], 0, ft_strlen(var[0]));
+		if (!check)
+			ft_free_2d((void **)var);
+		return (check);
+	}
 }

@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:58:02 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/15 19:16:21 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/20 23:08:01 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,9 +49,9 @@ t_ast	*ast_init(t_cmd *cmd_group, int group_cnt, int base_index)
 	if (group_cnt == 0)
 		return (NULL);
 	if (group_cnt == 1)
-		return (create_ast_node_cmd(cmd_group[0].list, base_index));
+		return (create_ast_node_cmd(cmd_group[0].final, base_index));
 	pipe_node = create_ast_node_pipe();
-	pipe_node->left = create_ast_node_cmd(cmd_group[0].list, base_index);
+	pipe_node->left = create_ast_node_cmd(cmd_group[0].final, base_index);
 	pipe_node->right = ast_init(cmd_group + 1, group_cnt - 1, base_index + 1);
 	return (pipe_node);
 }

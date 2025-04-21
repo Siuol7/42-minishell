@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/10 11:17:55 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 14:24:58 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 20:50:51 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	lx_skip_dquote(char *input, int *index)
 	while (input[*index])
 	{
 		if (input[*index] != c)
+		{
 			(*index)++;
+			break ;
+		}
 		else
 			break ;
 	}

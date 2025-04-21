@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   prs_cmd_check.c                                    :+:      :+:    :+:   */
+/*   exp_type.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/03/26 02:39:14 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 04:08:31 by caonguye         ###   ########.fr       */
+/*   Created: 2025/04/20 07:58:40 by caonguye          #+#    #+#             */
+/*   Updated: 2025/04/20 08:17:07 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	prs_cmd_check(t_shell *mns)
+static void	exp_unstring(t_shell *mns, char **key)
 {
-	int	i;
-	int	j;
+	char	*str;
 
-	i = 0;
-	while (i < mns->group_cnt)
+	str = lx_qmarks_eli(mns, *key, 0, 0);
+	if (!str)
 	{
-		j = 0;
-		while (j < mns->cmd_group[i].token_cnt)
-		{
-			if (mns->cmd_group[i].list[j].type == SIGN
-				&& j == mns->cmd_group[i].token_cnt -1)
-			{
-				ft_printf_fd(2,
-					"bash: syntax error: unexpected token `newline'\n");
-				update_status(mns, 2);
-				return (0);
-			}
-			j++;
-		}
-		i++;
+		free(*key);
+		ft_bad_alloc(mns);
 	}
-	return (1);
+	if (str && ft_strlen(str) > 0)
+	{
+		if (!ft_append(&mns->post_expansion, &str))
+		{
+			free(*key);
+			ft_bad_alloc(mns);
+		}
+	}
+	free(*key);
+}
+
+void	exp_type(t_shell *mns, char **key, char open, t_token *t)
+{
+	if (ft_is_dquote(key[0][0]))
+		exp_unstring(mns, key);
+	else
+		exp_expand(mns, key, open, t);
 }

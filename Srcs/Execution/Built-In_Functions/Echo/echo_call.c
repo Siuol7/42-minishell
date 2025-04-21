@@ -6,31 +6,11 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:58 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 01:03:35 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/20 22:08:11 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-static char	*expand_titled(t_shell *mns, char *arg)
-{
-	char	*home;
-	char	*expanded;
-
-	if (!arg || arg[0] != '~')
-		return (arg);
-	if (arg[1] == '\0' || arg[1] == '/')
-	{
-		home = get_env_val(mns, "HOME");
-		if (!home)
-			return (arg);
-		expanded = ft_strjoin(home, arg + 1);
-		if (!expanded)
-			return (arg);
-		return (expanded);
-	}
-	return (arg);
-}
 
 static void	printf_echo_arg(t_shell *mns, char *arg)
 {

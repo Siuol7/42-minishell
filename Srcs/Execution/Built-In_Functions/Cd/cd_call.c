@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:28 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/18 21:29:25 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/21 04:21:08 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static int	for_home(char *target)
 {
 	if (!target)
 	{
-		ft_printf_fd(2, "cd: HOME not set\n");
+		ft_printf_fd(STDERR_FILENO, "cd: HOME not set\n");
 		return (1);
 	}
 	return (0);
@@ -26,24 +26,21 @@ static char	*get_cd_target(t_shell *mns, char **args)
 {
 	char	*target;
 
-	if (!args[1] || !ft_strcmp(args[1], "~"))
+	if (!args[1] || (args[1] && (!ft_strcmp(args[1], "~") || !ft_strcmp(args[1], "--")) && !args[2]))	
 	{
 		target = get_env_val(mns, "HOME");
 		for_home(target);
 	}
-	else if (!ft_strcmp(args[1], "-"))
+	else if (args[1] && (!ft_strcmp(args[1], "-")) && !args[2])
 	{
 		target = get_env_val(mns, "OLDPWD");
 		if (!target)
-		{
-			ft_printf_fd(2, "cd: OLDPWD not set\n");
-			return (NULL);
-		}
+			return (ft_printf_fd(2, "cd: OLDPWD not set\n"), NULL);
 		printf("%s\n", target);
 	}
-	else if (args[2] != NULL)
+	else if (args[1] && args[2] != NULL)
 	{
-		ft_printf_fd(2, "bash: cd: too many arguments\n");
+		ft_printf_fd(STDERR_FILENO, "bash: cd: too many arguments\n");
 		return (update_status(mns, 1), NULL);
 	}
 	else
@@ -76,11 +73,20 @@ static void	update_pwd(t_shell *mns, char *target)
 	}
 }
 
+// static int	expanded_error(t_shell *mns, char *expanded, char *target, char *oldpwd)
+// {
+// 	ft_printf_fd(2, "bash: cd: %s: No such file or directory\n", expanded);
+// 		if (expanded != target)
+// 			free(expanded);
+// 		return (update_status(mns, 1), free(oldpwd), 1);
+// }
+
 int	bi_cd(t_shell *mns, t_cmd *cmd)
 {
 	char	*oldpwd;
 	char	*target;
 	char	**args;
+	char	*expanded;
 
 	args = cmd->cmd_arg;
 	oldpwd = getcwd(NULL, 0);
@@ -91,12 +97,19 @@ int	bi_cd(t_shell *mns, t_cmd *cmd)
 	target = get_cd_target(mns, args);
 	if (!target)
 		return (update_status(mns, 1), free(oldpwd), 1);
-	if (chdir(target) != 0)
+	expanded = expand_titled(mns, target);
+	if (chdir(expanded) != 0)
 	{
-		ft_printf_fd(2, "bash: cd: %s: No such file or directory\n", target);
+		ft_printf_fd(2, "bash: cd: %s: No such file or directory\n", expanded);
+		if (expanded != target)
+			free(expanded);
 		return (update_status(mns, 1), free(oldpwd), 1);
+		
 	}
 	set_env_val(&mns->env, "OLDPWD", oldpwd);
 	update_pwd(mns, target);
+	update_status(mns, 0);
+	if (expanded != target)
+		free(expanded);
 	return (free(oldpwd), 0);
 }

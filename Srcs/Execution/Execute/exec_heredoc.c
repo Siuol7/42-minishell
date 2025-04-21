@@ -6,16 +6,17 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:58:07 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/20 01:20:29 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/21 04:34:28 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	print_heredoc(int fd, char *limiter, int is_exp)
+static int	print_heredoc(t_shell *mns, int fd, char *limiter, int is_exp)
 {
 	char	*line;
 
+	(void)mns;
 	(void)is_exp;
 	while (1)
 	{
@@ -29,7 +30,7 @@ static int	print_heredoc(int fd, char *limiter, int is_exp)
 		if (!line || !ft_strcmp(line, limiter))
 			break ;
 		// if (is_exp == 0)
-		// 	exp_hd_gen(&line);
+		// 	hd_expansion_gen(mns, &line);
 		ft_printf_fd (fd, "%s\n", line);
 		free(line);
 	}
@@ -51,7 +52,8 @@ char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
 		return (perror("open failed"), free(filename), NULL);
 	signals_configure(SIGINT, handle_sigint_heredoc);
 	is_exp = exp_check_quotes(mns, &limiter);
-	if (print_heredoc(fd, limiter, is_exp))
+	printf("limiter: %s\n", limiter);
+	if (print_heredoc(mns, fd, limiter, is_exp))
 	{
 		mns->exitcode = 1;
 		unlink(filename);
@@ -91,7 +93,7 @@ void	heredoc_expand_all(t_shell *mns)
 			tmpfile = heredoc_tmp(mns, mns->cmd_group[i].in.val, i);
 			if (!tmpfile)
 			{
-				ft_printf_fd(STDERR_FILENO, "heredoc error\n");
+				//ft_printf_fd(STDERR_FILENO, "heredoc error\n");
 				return ;
 			}
 			free(mns->cmd_group[i].in.val);

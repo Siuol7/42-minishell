@@ -6,11 +6,12 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 02:23:32 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/19 14:32:52 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/20 17:56:44 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {

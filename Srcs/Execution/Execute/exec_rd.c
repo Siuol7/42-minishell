@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:39:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/19 03:59:00 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/20 23:31:55 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ static int	handle_rd_in(t_cmd *cmd)
 				return (EXIT_FAILURE);
 			else
 				perror(cmd->in.val);
+			close (fd);
 			return (EXIT_FAILURE);
 		}
 		dup2(fd, STDIN_FILENO);
