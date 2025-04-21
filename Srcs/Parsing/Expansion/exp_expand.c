@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exp_expand.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:56:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 03:29:07 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/21 03:42:52 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,8 +110,7 @@ void	exp_expand(t_shell *mns, char **key, char open, t_token *t)
 		free(*key);
 		ft_bad_alloc(mns);
 	}
-	if (open == '\'')
-		// || ((open == 'e' && SIGN_ERR < t->type && t->type < RD_AMBI)))
+	if (open == '\'' || exp_rd_check(mns, t, *key, open))
 		exp_copy(mns, key, exp_sign, t);
 	else
 	{

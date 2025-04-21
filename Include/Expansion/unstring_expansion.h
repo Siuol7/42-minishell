@@ -1,13 +1,13 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hd_expansion_gen.c                                 :+:      :+:    :+:   */
+/*   unstring_expansion.h                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/04/20 21:27:01 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 22:11:03 by tripham          ###   ########.fr       */
+/*   Created: 2025/04/20 22:11:00 by caonguye          #+#    #+#             */
+/*   Updated: 2025/04/20 22:11:05 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "minishell.h"
+#include "minishell.h"

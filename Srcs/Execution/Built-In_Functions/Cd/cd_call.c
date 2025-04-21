@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_call.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:28 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 04:21:08 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/21 00:19:22 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,13 @@ static char	*get_cd_target(t_shell *mns, char **args)
 {
 	char	*target;
 
-	if (!args[1] || (args[1] && (!ft_strcmp(args[1], "~") || !ft_strcmp(args[1], "--")) && !args[2]))	
+	if ((!args[1] || !ft_strcmp(args[1], "~")
+		|| !ft_strcmp(args[1], "--")) && !args[2])
 	{
 		target = get_env_val(mns, "HOME");
 		for_home(target);
 	}
-	else if (args[1] && (!ft_strcmp(args[1], "-")) && !args[2])
+	else if ((!ft_strcmp(args[1], "-")) && !args[2])
 	{
 		target = get_env_val(mns, "OLDPWD");
 		if (!target)
@@ -73,14 +74,6 @@ static void	update_pwd(t_shell *mns, char *target)
 	}
 }
 
-// static int	expanded_error(t_shell *mns, char *expanded, char *target, char *oldpwd)
-// {
-// 	ft_printf_fd(2, "bash: cd: %s: No such file or directory\n", expanded);
-// 		if (expanded != target)
-// 			free(expanded);
-// 		return (update_status(mns, 1), free(oldpwd), 1);
-// }
-
 int	bi_cd(t_shell *mns, t_cmd *cmd)
 {
 	char	*oldpwd;
@@ -104,7 +97,6 @@ int	bi_cd(t_shell *mns, t_cmd *cmd)
 		if (expanded != target)
 			free(expanded);
 		return (update_status(mns, 1), free(oldpwd), 1);
-		
 	}
 	set_env_val(&mns->env, "OLDPWD", oldpwd);
 	update_pwd(mns, target);

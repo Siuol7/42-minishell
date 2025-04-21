@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 00:35:59 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 22:00:29 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 00:24:49 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ static void	exp_subjoin(t_shell *mns, t_point p, char *str)
 
 	temp = ft_substr(str, p.start, p.end - p.start);
 	if (!temp)
+	{
+		free(mns->post_expansion);
 		ft_bad_alloc(mns);
+	}
 	if (!ft_append(&mns->post_expansion, &temp))
 		ft_bad_alloc(mns);
 }

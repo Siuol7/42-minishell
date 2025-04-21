@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/20 08:03:31 by caonguye         ###   ########.fr        #
+#    Updated: 2025/04/21 03:55:30 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,6 +82,12 @@ EXPANSION_C		:=  exp_generate.c			\
 					exp_utils.c				\
 					exp_expand.c			\
 					exp_type.c
+
+#Heredoc Expansion
+HD_EXP_DIR		:= $(PARSING_SRC)/Hdexpansion
+
+HD_EXP_C		:=	hd_expansion_gen.c		\
+					hd_expansion_utils.c
 
 # Execution
 EXECUTION_SRC	:=	./Srcs/Execution
@@ -162,6 +168,7 @@ SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${PARSER_DIR}/,		${PARSER_C})			\
 					$(addprefix ${ENVIR_DIR}/,		${ENVIR_C})				\
 					$(addprefix ${EXPANSION_DIR}/,	${EXPANSION_C})			\
+					$(addprefix ${HD_EXP_DIR}/,		${HD_EXP_C})			\
 					$(addprefix ${AST_DIR}/,		${AST_C})				\
 					$(addprefix ${EXECUTE_DIR}/,	${EXECUTE_C})			\
 					$(addprefix ${SIGNAL_DIR}/,		${SIGNAL_C})			\
@@ -171,8 +178,8 @@ SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${EXPORT_DIR}/,		${EXPORT_C})			\
 					$(addprefix ${EXIT_DIR}/,		${EXIT_C})				\
 					$(addprefix ${UNSET_DIR}/,		${UNSET_C})				\
-					$(addprefix ${PWD_DIR}/,		${PWD_C})			\
-					$(addprefix ${UTILS_DIR}/,		${UTILS_C})	  		\
+					$(addprefix ${PWD_DIR}/,		${PWD_C})				\
+					$(addprefix ${UTILS_DIR}/,		${UTILS_C})	  			\
 					$(addprefix ${GNL_DIR}/,		${GNL_SRC})
 
 OBJS           :=	${SRCS:.c=.o}
