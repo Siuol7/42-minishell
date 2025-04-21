@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 23:13:23 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/19 14:47:24 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/21 16:24:38 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int		signals_initialize(void);
 int		signals_configure(int signal_val, void (*handler)(int));
 
 int		update_status(t_shell *mns, int new_status);
+void	print_fault(t_shell *mns);
 void	wait_update(t_shell *mns, pid_t pid);
 char	*found_command_path(t_shell *mns, char *cmd);
 //Builtin functions

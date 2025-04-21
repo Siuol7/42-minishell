@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd_call.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:28 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 00:19:22 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 04:59:05 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,14 @@ static void	update_pwd(t_shell *mns, char *target)
 		}
 	}
 }
+static void	bi_cd_helper(t_shell *mns, char *oldpwd, char *target, char *expanded)
+{
+	set_env_val(&mns->env, "OLDPWD", oldpwd);
+	update_pwd(mns, target);
+	update_status(mns, 0);
+	if (expanded != target)
+		free(expanded);
+}
 
 int	bi_cd(t_shell *mns, t_cmd *cmd)
 {
@@ -98,10 +106,6 @@ int	bi_cd(t_shell *mns, t_cmd *cmd)
 			free(expanded);
 		return (update_status(mns, 1), free(oldpwd), 1);
 	}
-	set_env_val(&mns->env, "OLDPWD", oldpwd);
-	update_pwd(mns, target);
-	update_status(mns, 0);
-	if (expanded != target)
-		free(expanded);
+	bi_cd_helper(mns, oldpwd, target, expanded);
 	return (free(oldpwd), 0);
 }

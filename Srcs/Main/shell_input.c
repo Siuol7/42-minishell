@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_input.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 03:46:03 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 16:25:19 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	shell_input_operate(t_shell *mns)
 		return ;
 	else if (prs_cmd_check(mns))
 		execute_part(mns);
+	print_fault(mns);
 }
 
 // void	shell_input(t_shell	*mns)
