@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:58:07 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/21 14:12:15 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/21 14:41:21 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ static int	print_heredoc(t_shell *mns, int fd, char *limiter, int is_exp)
 				"delimited by end-of-file (wanted `%s')\n", limiter);
 			return (1);
 		}
-		if (!line ||(limiter && !ft_strcmp(line, limiter)))
+		if (!line || (limiter && !ft_strcmp(line, limiter)))
 			break ;
 		if (is_exp == 0)
 			hd_expansion_gen(mns, &line);
@@ -36,15 +36,16 @@ static int	print_heredoc(t_shell *mns, int fd, char *limiter, int is_exp)
 	return (0);
 }
 
-static void	printf_hd_helper(t_shell *mns, char *filename, char *lim_copy, int fd)
+static void	printf_hd_helper(t_shell *mns, char *name, char *lim_copy, int fd)
 {
 	mns->exitcode = 1;
-	unlink(filename);
-	free(filename);
+	unlink(name);
+	free(name);
 	free(lim_copy);
 	close(fd);
 	signals_initialize();
 }
+
 char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
 {
 	char	*filename;
