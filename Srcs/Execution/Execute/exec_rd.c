@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:39:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/22 11:39:22 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 11:43:16 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	handle_rd_in(t_shell *mns, int *fd, int i, t_token *in)
 {
 	if (in[i].type == RD_AMBI)
-		check_ambiguous_rd(mns, in[i].val);
+		return (check_ambiguous_rd(mns, in[i].val));
 	if (*fd != -1)
 		close (*fd);
 	*fd = open(in[i].val, O_RDONLY);

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:13:21 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/22 03:40:01 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 11:44:02 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,8 +49,6 @@ void	exec_cmd(t_shell *mns, t_cmd *cmd)
 	const int	tmp[2] = {dup(STDIN_FILENO), dup(STDOUT_FILENO)};
 	char		*target;
 
-	if (cmd->ambi && check_ambiguous_rd(mns, cmd))
-		return ;
 	if (handle_redirection(mns, cmd) == EXIT_FAILURE)
 	{
 		update_status(mns, 1);
