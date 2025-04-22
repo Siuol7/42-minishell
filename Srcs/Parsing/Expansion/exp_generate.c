@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 00:35:59 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 04:59:55 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:14:46 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	exp_check(t_shell *mns, t_token *str, int size, int i)
 			exp_subjoin(mns, p, str->val);
 			key = exp_getkey(mns, str->val, &i, open);
 			p.start = i;
-			exp_type(mns, &key, open, str);
+			exp_type(mns, &key, open);
 		}
 		else
 			i++;
@@ -79,9 +79,8 @@ void	exp_generate(t_shell *mns, int i, int j)
 		}
 		exp_check(mns, &mns->cmd_group[i].list[j],
 			ft_strlen(mns->cmd_group[i].list[j].val), 0);
-		free(mns->cmd_group[i].list[j].val);
-		mns->cmd_group[i].list[j].val = ft_strdup(mns->post_expansion);
-		if (!mns->cmd_group[i].list[j].val)
+		mns->cmd_group[i].list[j].exp = ft_strdup(mns->post_expansion);
+		if (!mns->cmd_group[i].list[j].exp)
 		{
 			free(mns->post_expansion);
 			ft_bad_alloc(mns);
@@ -94,11 +93,24 @@ void	exp_generate(t_shell *mns, int i, int j)
 void	exp_group_generate(t_shell *mns)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	while (i < mns->group_cnt)
 	{
 		exp_generate(mns, i, -1);
 		i++;
+	}
+	i = -1;
+	while (++i < mns->group_cnt)
+	{
+		j = -1;
+		while (++j < mns->cmd_group[i].token_cnt)
+		{
+			if (mns->cmd_group[i].list[j].type > SIGN_ERR
+				&& mns->cmd_group[i].list[j].type > SIGN_ERR
+				&& !mns->cmd_group[i].list[j].exp[0])
+				mns->cmd_group[i].list[j].type = RD_AMBI;
+		}
 	}
 }

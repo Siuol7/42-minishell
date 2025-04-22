@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:55:24 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 11:55:30 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 11:30:07 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,6 @@ int				prs_split_word(char *in, char **res, int *start, int *i);
 int				prs_skip_word(char *input, int index);
 int				prs_skip_dquote(char *input, int *index);
 int				prs_skip_space(char *input, int index);
+void			prs_rd_ambi(t_shell *mns, t_cmd *gr, t_token *lst, int *k);
 
 #endif

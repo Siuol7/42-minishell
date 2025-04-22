@@ -6,7 +6,7 @@
 #    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/21 03:55:30 by caonguye         ###   ########.fr        #
+#    Updated: 2025/04/22 22:44:35 by caonguye         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -116,7 +116,8 @@ EXECUTE_C		:=	exec_ast.c			\
 					exec_rd.c			\
 					exec_check_error.c 	\
 					exec_heredoc.c		\
-					exec_heredoc_utils.c
+					exec_heredoc_utils.c\
+					exec_hd_clean_all.c
 
 # Built In Functions
 BUILT_IN_DIR	:= $(EXECUTION_SRC)/Built-In_Functions

@@ -6,25 +6,25 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 07:58:40 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 13:41:20 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 11:21:20 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	exp_rd_check(t_shell *mns, t_token *t, char *key, char open)
-{
-	if (t->type == RD_HEREDOC)
-		return (1);
-	else if ((open == 'e' || open == '\"')
-		&& SIGN_ERR < t->type && t->type < RD_AMBI && t->type != RD_HEREDOC
-		&& (!get_env_val(mns, key) || ft_strlen(get_env_val(mns, key)) == 0))
-	{
-		t->type = RD_AMBI;
-		return (1);
-	}
-	return (0);
-}
+// int	exp_rd_check(t_shell *mns, t_token *t, char *key, char open)
+// {
+// 	if (t->type == RD_HEREDOC)
+// 		return (1);
+// 	else if ((open == 'e' || open == '\"')
+// 		&& SIGN_ERR < t->type && t->type < RD_AMBI && t->type != RD_HEREDOC
+// 		&& (!get_env_val(mns, key) || ft_strlen(get_env_val(mns, key)) == 0))
+// 	{
+// 		t->type = RD_AMBI;
+// 		return (1);
+// 	}
+// 	return (0);
+// }
 
 static void	exp_unstring(t_shell *mns, char **key)
 {
@@ -44,13 +44,14 @@ static void	exp_unstring(t_shell *mns, char **key)
 			ft_bad_alloc(mns);
 		}
 	}
+	hd_expansion_gen(mns, &mns->post_expansion);
 	free(*key);
 }
 
-void	exp_type(t_shell *mns, char **key, char open, t_token *t)
+void	exp_type(t_shell *mns, char **key, char open)
 {
 	if (ft_is_dquote(key[0][0]))
 		exp_unstring(mns, key);
 	else
-		exp_expand(mns, key, open, t);
+		exp_expand(mns, key, open);
 }

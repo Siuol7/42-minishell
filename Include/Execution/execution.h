@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 23:13:23 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/19 14:47:24 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/22 22:24:43 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef EXECUTION_H
 # define EXECUTION_H
 
-# include <sys/stat.h> 
+# include <sys/stat.h>
 
 typedef struct s_shell	t_shell;
 
@@ -53,7 +53,7 @@ void	exec_non_builtin(t_shell *mns, t_cmd *cmd);
 void	exec_cmd(t_shell *mns, t_cmd *cmd);
 
 // Redirect
-int		handle_redirection(t_cmd *cmd);
+int		handle_redirection(t_shell*mns, t_cmd *cmd);
 
 // handle_heredoc
 char	*heredoc_tmp(t_shell *mns, char *limiter, int index);
@@ -62,10 +62,11 @@ int		exp_check_quotes(t_shell *mns, char **limiter);
 int		exp_hd_check_nl(char *limiter);
 char	which_quote(char *str);
 char	*heredoc_filename(int index);
+void	clean_heredoc_files(t_shell *mns, t_cmd *cmd);
 // builtin utils
 char	*get_env_val(t_shell *mns, char *key);
 int		set_env_val(char ***env, const char *key, const char *value);
 
 // ambiguous
-int		check_ambiguous_rd(t_shell *mns, t_cmd *cmd);
+int		check_ambiguous_rd(t_shell *mns, char *str, int *fd);
 #endif

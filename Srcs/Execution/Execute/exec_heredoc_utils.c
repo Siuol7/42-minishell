@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 14:45:27 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/20 00:59:19 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:43:52 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@ int	exp_check_quotes(t_shell *mns, char **limiter)
 	if (!limiter || !*limiter)
 		return (0);
 	c = **limiter;
+	temp = lx_qmarks_eli(mns, *limiter, 0, 0);
+	free(*limiter);
+	*limiter = temp;
 	if (c == '\'' || c == '\"')
-	{
-		temp = lx_qmarks_eli(mns, *limiter, 0, 0);
-		free(*limiter);
-		*limiter = temp;
 		return (1);
-	}
 	return (0);
 }
 
