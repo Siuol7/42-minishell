@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:58:07 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/22 00:30:25 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:42:52 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static int	print_heredoc(t_shell *mns, int fd, char *limiter, int is_exp)
 {
 	char	*line;
 
+	signals_configure(SIGINT, handle_sigint_heredoc);
 	while (1)
 	{
 		line = readline("> ");
@@ -23,9 +24,9 @@ static int	print_heredoc(t_shell *mns, int fd, char *limiter, int is_exp)
 		{
 			ft_printf_fd(STDERR_FILENO, "bash: warning: here-document "
 				"delimited by end-of-file (wanted `%s')\n", limiter);
-			return (1);
+			return (0);
 		}
-		if (!line || (limiter && !ft_strcmp(line, limiter)))
+		if (limiter && !ft_strcmp(line, limiter))
 			break ;
 		if (is_exp == 0)
 			hd_expansion_gen(mns, &line);
@@ -39,12 +40,12 @@ static int	print_heredoc(t_shell *mns, int fd, char *limiter, int is_exp)
 static void	printf_hd_helper(t_shell *mns, char *name, char *lim_copy, int fd)
 {
 	mns->exitcode = 1;
-	unlink(name);
 	free(name);
 	free(lim_copy);
 	close(fd);
 	signals_initialize();
 }
+
 char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
 {
 	char	*filename;
@@ -64,20 +65,14 @@ char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
 	signals_configure(SIGINT, handle_sigint_heredoc);
 	is_exp = exp_check_quotes(mns, &lim_copy);
 	if (!lim_copy)
-	{
-		free(filename);
-		close(fd);
-		return (NULL);
-	}
+		return (free(filename), close(fd), NULL);
 	if (print_heredoc(mns, fd, lim_copy, is_exp))
 	{
 		printf_hd_helper(mns, filename, lim_copy, fd);
 		return (NULL);
 	}
 	close(fd);
-	free(lim_copy);
-	signals_initialize();
-	return (filename);
+	return (free(lim_copy), signals_initialize(), filename);
 }
 
 static void	printf_wrong_eof(char *limiter)
@@ -90,7 +85,8 @@ static void	printf_wrong_eof(char *limiter)
 
 void	heredoc_expand_all(t_shell *mns)
 {
-	int		i, j;
+	int		i;
+	int		j;
 	char	*tmpfile;
 	t_cmd	*cmd;
 
@@ -102,11 +98,8 @@ void	heredoc_expand_all(t_shell *mns)
 		while (j < cmd->heredoc_cnt)
 		{
 			if (exp_hd_check_nl(cmd->heredoc[j]))
-			{
-				printf_wrong_eof(cmd->heredoc[j]);
-				return ;
-			}
-			tmpfile = heredoc_tmp(mns, cmd->heredoc[j],  i * 100 + j);
+				return (printf_wrong_eof(cmd->heredoc[j]));
+			tmpfile = heredoc_tmp(mns, cmd->heredoc[j], i * 100 + j);
 			if (!tmpfile)
 				return ;
 			free(cmd->heredoc[j]);

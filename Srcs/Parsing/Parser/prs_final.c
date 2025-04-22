@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 00:23:02 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/22 11:33:48 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:15:25 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ static void	prs_final_split(t_shell *mns, t_cmd *gr, t_token *lst, int *k)
 		ft_bad_alloc(mns);
 	while (i < ft_2d_len(res))
 	{
-
 		if (lst->exp && lst->exp[0])
 		{
 			gr->final[*k].val = ft_strdup(res[i]);

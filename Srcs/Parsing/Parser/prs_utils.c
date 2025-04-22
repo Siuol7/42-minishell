@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/15 22:42:09 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/22 11:29:14 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:16:20 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	prs_rd_ambi(t_shell *mns, t_cmd *gr, t_token *lst, int *k)
 	gr->final[*k].val = ft_strdup(lst->val);
 	if (!gr->final[*k].val)
 		ft_bad_alloc(mns);
-	gr->final[*k].type =lst->type;
+	gr->final[*k].type = lst->type;
 	(*k)++;
 }
 

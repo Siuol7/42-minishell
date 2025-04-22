@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 00:35:59 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/22 11:32:55 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:14:46 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,4 @@ void	exp_group_generate(t_shell *mns)
 				mns->cmd_group[i].list[j].type = RD_AMBI;
 		}
 	}
-
 }

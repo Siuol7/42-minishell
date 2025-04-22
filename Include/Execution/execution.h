@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 23:13:23 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/22 11:38:06 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:24:43 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,5 +68,5 @@ char	*get_env_val(t_shell *mns, char *key);
 int		set_env_val(char ***env, const char *key, const char *value);
 
 // ambiguous
-int		check_ambiguous_rd(t_shell *mns, char *str);
+int		check_ambiguous_rd(t_shell *mns, char *str, int *fd);
 #endif

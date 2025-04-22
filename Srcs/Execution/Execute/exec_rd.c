@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:39:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/22 11:43:16 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:26:22 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	handle_rd_in(t_shell *mns, int *fd, int i, t_token *in)
 {
 	if (in[i].type == RD_AMBI)
-		return (check_ambiguous_rd(mns, in[i].val));
+		return (check_ambiguous_rd(mns, in[i].val, fd));
 	if (*fd != -1)
 		close (*fd);
 	*fd = open(in[i].val, O_RDONLY);
@@ -23,6 +23,8 @@ static int	handle_rd_in(t_shell *mns, int *fd, int i, t_token *in)
 	{
 		ft_printf_fd(2,
 			"bash: %s: No such file or directory\n", in[i].val);
+		clean_heredoc_files(mns, mns->cmd_group);
+		update_status(mns, 1);
 		return (EXIT_FAILURE);
 	}
 	return (EXIT_SUCCESS);
