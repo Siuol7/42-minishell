@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/15 14:47:55 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/22 00:11:21 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 11:41:21 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@ static void	lx_out_hd_cnt(t_token *final, t_cmd *group)
 	{
 		if (final[i].type == RD_OUT || final[i].type == RD_APPEND)
 			group->out_cnt++;
-		else if (final[i].type == RD_IN || final[i].type == RD_HEREDOC)
+		else if (final[i].type == RD_IN || final[i].type == RD_HEREDOC
+			|| final[i].type == RD_AMBI)
 		{
 			if (final[i].type == RD_HEREDOC)
 				group->heredoc_cnt++;
@@ -61,13 +62,12 @@ static void	lx_group_copy(t_shell *mns, t_token *final, t_cmd *gr, t_sort *id)
 					final[id->id].val, 0, 0);
 		}
 		else if (final[id->id].type == RD_IN
-			|| final[id->id].type == RD_HEREDOC)
+			|| final[id->id].type == RD_HEREDOC
+			|| final[id->id].type == RD_AMBI)
 			lx_in_file(mns, final, gr, id);
 		else if (final[id->id].type == RD_OUT
 			|| final[id->id].type == RD_APPEND)
 			lx_out_file(mns, final, gr, id);
-		else if (final[id->id].type == RD_AMBI && !gr->ambi)
-			gr->ambi = lx_qmarks_eli(mns, final[id->id].val, 0, 0);
 	}
 }
 

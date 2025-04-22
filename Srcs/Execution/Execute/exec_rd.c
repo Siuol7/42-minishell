@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:39:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/22 03:40:47 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 11:39:22 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 static int	handle_rd_in(t_shell *mns, int *fd, int i, t_token *in)
 {
-	(void)mns;
+	if (in[i].type == RD_AMBI)
+		check_ambiguous_rd(mns, in[i].val);
 	if (*fd != -1)
 		close (*fd);
 	*fd = open(in[i].val, O_RDONLY);
@@ -43,10 +44,9 @@ static int	handle_infile(t_shell *mns, t_cmd *cmd, int i, int j)
 	int	fd;
 
 	fd = -1;
-	(void)mns;
 	while (++i < cmd->in_cnt)
 	{
-		if (cmd->in[i].type == RD_IN)
+		if (cmd->in[i].type == RD_IN || cmd->in[i].type == RD_AMBI)
 		{
 			if (handle_rd_in(mns, &fd, i, cmd->in))
 				return (EXIT_FAILURE);
