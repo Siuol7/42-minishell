@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 00:23:02 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 22:45:44 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 10:56:37 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ static void	prs_final_split(t_shell *mns, t_cmd *gr, t_token *lst, int *k)
 			if (!gr->final[*k].val)
 				ft_bad_alloc(mns);
 			gr->final[*k].type = lst->type;
-			i++;
 			(*k)++;
 		}
+		i++;
 	}
 	ft_free_2d((void **)res);
 }

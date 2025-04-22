@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:13:21 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/22 01:00:48 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 03:40:01 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	exec_cmd(t_shell *mns, t_cmd *cmd)
 
 	if (cmd->ambi && check_ambiguous_rd(mns, cmd))
 		return ;
-	if (handle_redirection(cmd) == EXIT_FAILURE)
+	if (handle_redirection(mns, cmd) == EXIT_FAILURE)
 	{
 		update_status(mns, 1);
 		return ;

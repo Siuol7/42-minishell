@@ -6,76 +6,55 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/26 18:39:39 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/22 01:04:09 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 03:40:47 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-// static int	handle_rd_in(t_cmd *cmd)
-// {
-// 	int	fd;
-// 	int	i;
+static int	handle_rd_in(t_shell *mns, int *fd, int i, t_token *in)
+{
+	(void)mns;
+	if (*fd != -1)
+		close (*fd);
+	*fd = open(in[i].val, O_RDONLY);
+	if (*fd < 0)
+	{
+		ft_printf_fd(2,
+			"bash: %s: No such file or directory\n", in[i].val);
+		return (EXIT_FAILURE);
+	}
+	return (EXIT_SUCCESS);
+}
 
-// 	i = 0;
-// 	fd = -1;
-// 	while (i < cmd->in_cnt)
-// 	{
-// 		if (cmd->in[i].type == RD_IN || cmd->in[i].type == RD_HEREDOC)
-// 		{
-// 			if (fd != -1)
-// 				close(fd);
-// 			fd = open(cmd->in[i].val, O_RDONLY);
-// 			if (fd < 0)
-// 			{
-// 				if (cmd->in[i].type == RD_IN)
-// 					ft_printf_fd(2, "bash: %s: No such file or directory\n", cmd->in[i].val);
-// 				return (EXIT_FAILURE);
-// 			}
-// 		}
-// 		i++;
-// 	}
-// 	if (fd != -1)
-// 	{
-// 		dup2(fd, STDIN_FILENO);
-// 		close(fd);
-// 	}
-// 	return (EXIT_SUCCESS);
-// }
+static int	handle_rd_hd(int *fd, int *j, char **hd)
+{
+	if (*fd != -1)
+		close (*fd);
+	*fd = open(hd[*j], O_RDONLY);
+	if (*fd < 0)
+		return (EXIT_FAILURE);
+	(*j)++;
+	return (EXIT_SUCCESS);
+}
 
-static int	handle_rd_in(t_cmd *cmd)
+static int	handle_infile(t_shell *mns, t_cmd *cmd, int i, int j)
 {
 	int	fd;
-	int	i;
-	int	j;
 
-	i = -1;
 	fd = -1;
-	j = 0;
+	(void)mns;
 	while (++i < cmd->in_cnt)
 	{
 		if (cmd->in[i].type == RD_IN)
 		{
-			if (fd != -1)
-				close (fd);
-			fd = open(cmd->in[i].val, O_RDONLY);
-			if (fd < 0)
-			{
-				ft_printf_fd(2, "bash: %s: No such file or directory\n", cmd->in[i].val);
+			if (handle_rd_in(mns, &fd, i, cmd->in))
 				return (EXIT_FAILURE);
-			}
 		}
 		else
 		{
-			if (fd != -1)
-				close (fd);
-			fd = open(cmd->heredoc[j], O_RDONLY);
-			if (fd < 0)
-			{
-				// perror("heredoc failed\n");
+			if (handle_rd_hd(&fd, &j, cmd->heredoc))
 				return (EXIT_FAILURE);
-			}
-			j++;
 		}
 	}
 	if (fd != -1)
@@ -86,7 +65,7 @@ static int	handle_rd_in(t_cmd *cmd)
 	return (EXIT_SUCCESS);
 }
 
-static int	handle_rd_out(t_cmd *cmd)
+static int	handle_outfile(t_cmd *cmd)
 {
 	int	fd;
 	int	i;
@@ -115,11 +94,11 @@ static int	handle_rd_out(t_cmd *cmd)
 	return (EXIT_SUCCESS);
 }
 
-int	handle_redirection(t_cmd *cmd)
+int	handle_redirection(t_shell *mns, t_cmd *cmd)
 {
-	if (handle_rd_in(cmd) == EXIT_FAILURE)
+	if (handle_infile(mns, cmd, -1, 0) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
-	if (handle_rd_out(cmd) == EXIT_FAILURE)
+	if (handle_outfile(cmd) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }

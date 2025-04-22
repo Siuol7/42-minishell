@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/20 07:58:40 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/22 01:40:05 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 10:59:18 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	exp_unstring(t_shell *mns, char **key)
 			ft_bad_alloc(mns);
 		}
 	}
+	hd_expansion_gen(mns, &mns->post_expansion);
 	free(*key);
 }
 
