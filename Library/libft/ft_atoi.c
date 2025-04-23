@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 04:28:47 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/14 10:50:41 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/23 11:09:29 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,19 +40,3 @@ int	ft_atoi(const char *nptr)
 	}
 	return ((int)(res * sign));
 }
-// #include <stdio.h>
-
-// int	main(void)
-// {
-// 	printf("Original : %s || New : %d\n", "  ++123abc", ft_atoi("  ++123abc"));
-// 	printf("Original : %s || New : %d\n", "  +123abc", ft_atoi("  +123abc"));
-// 	printf("Original : %s || New : %d\n", "  +-123abc", ft_atoi("  +-123abc"));
-// 	printf("Original : %s || New : %d\n", "  --123abc", ft_atoi("  --123abc"));
-// 	printf("Original : %s || New : %d\n", "  -123abc", ft_atoi("  -123abc"));
-// 	printf("Original : %s || New : %d\n", "  123abc", ft_atoi("  123abc"));
-// 	printf("Original : %s || New : %d\n", "", ft_atoi(""));
-// 	printf("Original : %s || New : %d\n", " ", ft_atoi(" "));
-// 	printf("Original : %s || New : %d\n", "  ++", ft_atoi("  ++"));
-// 	printf("Original : %s || New : %d\n", "  abc", ft_atoi("  abc"));
-// 	return (0);
-// }

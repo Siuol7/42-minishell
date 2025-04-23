@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 22:03:10 by caonguye          #+#    #+#             */
-/*   Updated: 2024/12/18 19:48:06 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/23 11:10:01 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,3 @@ void	ft_lstiter(t_list *lst, void (*f)(void*))
 		lst = lst->next;
 	}
 }
-// #include <stdio.h>
-
-// int	main()
-// {
-// 	char	x[5] = "abcd";
-// 	char	y[8] = "abcde  ";
-// 	t_list *head = NULL;
-// 	t_list *node1 = ft_lstnew((void *)x);
-// 	t_list	*node2 = ft_lstnew((void *)y);
-
-// 	ft_lstadd_front(&head, node1);
-// 	ft_lstadd_front(&head,node2);
-// 	ft_lstiter(head, (void *)printf);
-// 	return(0);
-// }
