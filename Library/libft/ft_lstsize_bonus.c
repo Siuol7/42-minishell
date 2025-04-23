@@ -24,18 +24,3 @@ int	ft_lstlen(t_list *lst)
 	}
 	return (len);
 }
-// #include <stdio.h>
-
-// int	main()
-// {
-// 	char	x[5] = "abcd";
-// 	char	y[6] = "abcde";
-// 	t_list *head = NULL;
-// 	t_list *node1 = ft_lstnew((void *)x);
-// 	t_list	*node2 = ft_lstnew((void *)y);
-
-// 	ft_lstadd_front(&head, node1);
-// 	ft_lstadd_front(&head,node2);
-// 	printf("%d\n", ft_lstlen(head));
-// 	return(0);
-// }

@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 00:35:59 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/22 22:14:46 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/23 11:03:30 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ static void	exp_check(t_shell *mns, t_token *str, int size, int i)
 			exp_subjoin(mns, p, str->val);
 			key = exp_getkey(mns, str->val, &i, open);
 			p.start = i;
-			exp_type(mns, &key, open);
+			exp_type(mns, &key, open, str);
 		}
 		else
 			i++;
@@ -109,7 +109,8 @@ void	exp_group_generate(t_shell *mns)
 		{
 			if (mns->cmd_group[i].list[j].type > SIGN_ERR
 				&& mns->cmd_group[i].list[j].type > SIGN_ERR
-				&& !mns->cmd_group[i].list[j].exp[0])
+				&& (!mns->cmd_group[i].list[j].exp[0]
+					|| ft_wholespace(mns->cmd_group[i].list[j].exp)))
 				mns->cmd_group[i].list[j].type = RD_AMBI;
 		}
 	}

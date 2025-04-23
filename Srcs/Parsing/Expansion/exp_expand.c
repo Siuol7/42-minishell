@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:56:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/22 11:21:09 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 23:12:02 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ static void	exp_copy(t_shell *mns, char **key, char *exp_sign)
 		ft_bad_alloc(mns);
 }
 
-void	exp_expand(t_shell *mns, char **key, char open)
+void	exp_expand(t_shell *mns, char **key, char open, t_token *t)
 {
 	int		type;
 	char	*exp_sign;
@@ -105,7 +105,7 @@ void	exp_expand(t_shell *mns, char **key, char open)
 		free(*key);
 		ft_bad_alloc(mns);
 	}
-	if (open == '\'')
+	if (open == '\'' || t->type == RD_HEREDOC)
 		exp_copy(mns, key, exp_sign);
 	else
 	{
