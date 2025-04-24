@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/27 01:59:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/23 02:16:12 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/24 03:41:34 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,8 +55,6 @@ static int	prs_check(t_shell *mns, int i, int alpha, int pipe)
 	size = ft_strlen(mns->full_cmd_line);
 	while (i < size)
 	{
-		if (ft_is_dquote(mns->full_cmd_line[i]))
-			lx_skip_dquote(mns->full_cmd_line, &i);
 		if (!ft_isallspace(mns->full_cmd_line[i])
 			&& mns->full_cmd_line[i] != '|')
 		{

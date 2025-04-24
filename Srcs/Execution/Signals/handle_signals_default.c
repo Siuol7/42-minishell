@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_signals_default.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 21:09:32 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/23 03:12:03 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/24 03:10:32 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,5 +37,6 @@ void	handle_sigint_heredoc(int signal_val)
 	rl_on_new_line();
 	rl_replace_line("", 0);
 	rl_done = 1;
+	
 	signals_exit_configure(NULL);
 }
