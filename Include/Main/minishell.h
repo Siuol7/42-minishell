@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/22 21:44:59 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/24 11:13:40 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ typedef struct s_shell
 	int		group_cnt;
 	int		exitcode;
 	int		shlvl;
+	int		signal;
 	char	*full_cmd_line;
 	char	*post_expansion;
 	char	**cmd_str;
@@ -41,7 +42,6 @@ typedef struct s_shell
 	t_cmd	*cmd_group;
 	int		shell_err;
 	t_ast	*ast;
-	// int		has_valid_stdin;
 }	t_shell;
 
 //OPERATION

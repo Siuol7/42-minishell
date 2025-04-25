@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:22:21 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 21:56:44 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/24 10:42:33 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,31 +26,43 @@ void	ep_replace(t_shell *mns, char *str, int i)
 		ft_bad_alloc(mns);
 }
 
-void	ep_standalone(t_shell *mns, int i, int j, int size)
+static void	ep_print(char *env, int pos, int len)
 {
-	int		pos;
-	int		len;
-	char	**sorted_env;
+	int	j;
 
-	size = ft_2d_len(mns->env);
-	sorted_env = env_sorting(mns);
-	if (!sorted_env)
-		ft_bad_alloc(mns);
-	while (++i < size)
+	if (pos == -1)
+		printf("declare -x %s\n", env);
+	else
 	{
-		if (sorted_env[i][0] == '_')
-			continue ;
-		pos = ft_strichr(sorted_env[i], '=');
-		len = ft_strlen(sorted_env[i]);
 		printf("declare -x ");
 		j = -1;
 		while (++j < len)
 		{
 			if (j == pos + 1)
 				printf("\"");
-			printf("%c", sorted_env[i][j]);
+			printf("%c", env[j]);
 		}
 		printf("\"\n");
+	}
+}
+
+void	ep_standalone(t_shell *mns, int i, int size)
+{
+	int		pos;
+	int		len;
+	char	**sorted_env;
+
+	sorted_env = env_sorting(mns);
+	if (!sorted_env)
+		ft_bad_alloc(mns);
+	while (++i < size)
+	{
+		printf("HERE");
+		if (sorted_env[i][0] == '_')
+			continue ;
+		pos = ft_strichr(sorted_env[i], '=');
+		len = ft_strlen(sorted_env[i]);
+		ep_print(sorted_env[i], pos, len);
 	}
 	ft_free_2d((void **)sorted_env);
 }

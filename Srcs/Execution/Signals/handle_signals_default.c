@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_signals_default.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/19 21:09:32 by tripham           #+#    #+#             */
-/*   Updated: 2025/03/23 03:12:03 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/24 11:04:30 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

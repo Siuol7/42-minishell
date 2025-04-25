@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:58:07 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/22 22:42:52 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/24 11:24:42 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ static int	print_heredoc(t_shell *mns, int fd, char *limiter, int is_exp)
 
 static void	printf_hd_helper(t_shell *mns, char *name, char *lim_copy, int fd)
 {
-	mns->exitcode = 1;
+	(void)mns;
 	free(name);
 	free(lim_copy);
 	close(fd);
