@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/23 11:09:09 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/26 03:06:36 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,19 +28,10 @@ static void	shell_input_operate(t_shell *mns)
 {
 	prs_extra_check(mns);
 	add_history(mns->full_cmd_line);
-	if (mns->shell_err == -3)
-	{
-		ft_printf_fd(2, "bash: syntax error near unexpected token `|'\n");
-		mns->exitcode = 2;
-		return ;
-	}
-	shell_token_gen(mns, mns->full_cmd_line, -1);
 	if (mns->shell_err == -2)
-	{
-		ft_printf_fd(2, "bash: Not supporting '||' type\n");
-		update_status(mns, 2);
-	}
-	else if (mns->shell_err == -3)
+		return ;
+	shell_token_gen(mns, mns->full_cmd_line, -1);
+	if (mns->shell_err == -3)
 		return ;
 	else if (prs_cmd_check(mns))
 		execute_part(mns);
