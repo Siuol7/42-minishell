@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 13:55:24 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/22 11:30:07 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/26 02:31:55 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int				lx_split_group(char *in, char **res, int *start, int *i);
 t_type			lx_rd_type(char *str);
 void			lx_rd_typize(t_shell *mns, t_token *list,
 					char **str, t_point *p);
-void			prs_extra_check(t_shell *mns);
+int				prs_extra_check(t_shell *mns);
 int				prs_list_check(t_shell *mns);
 void			lx_cmd_group(t_shell *mns);
 void			lx_cmd_group_gen(t_shell *mns, t_token *list, t_cmd *group);

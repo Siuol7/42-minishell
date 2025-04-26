@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:45:13 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 12:01:30 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/26 00:47:15 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,11 +73,7 @@ void	shell_token_gen(t_shell *mns, char *input, int i)
 {
 	mns->cmd_str = lx_group_split(mns, input);
 	if (!mns->cmd_str)
-	{
-		if (mns->shell_err == -2)
-			return ;
 		ft_bad_alloc(mns);
-	}
 	mns->cmd_group = malloc(mns->group_cnt * sizeof(t_cmd));
 	if (!mns->cmd_group)
 		ft_bad_alloc(mns);

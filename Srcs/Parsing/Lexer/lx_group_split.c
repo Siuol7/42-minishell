@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lx_group_split.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/30 23:27:08 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/17 22:07:12 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/26 00:47:06 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ static int	lx_groupcnt(char *input)
 			cnt++;
 			i++;
 		}
-		else if (i + 1 < size && input[i] == '|' && input[i] == input[i + 1])
-			return (-1);
 		else
 			i++;
 	}
@@ -57,11 +55,6 @@ char	**lx_group_split(t_shell *mns, char *input)
 	char	**res;
 
 	groupcnt = lx_groupcnt(input);
-	if (groupcnt == -1)
-	{
-		mns->shell_err = -2;
-		return (NULL);
-	}
 	final = (char **)malloc((groupcnt + 1) * sizeof (char *));
 	res = final;
 	if (!lx_splitting(input, res, groupcnt))
