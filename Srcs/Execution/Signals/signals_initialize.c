@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   signals_initialize.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 06:51:24 by tripham           #+#    #+#             */
 /*   Updated: 2025/04/26 02:07:16 by tripham          ###   ########.fr       */

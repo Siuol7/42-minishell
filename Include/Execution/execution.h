@@ -3,7 +3,7 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 23:13:23 by tripham           #+#    #+#             */
 /*   Updated: 2025/04/26 19:55:15 by tripham          ###   ########.fr       */
@@ -76,5 +76,4 @@ int		set_env_val(char ***env, const char *key, const char *value);
 
 // ambiguous
 int		check_ambiguous_rd(t_shell *mns, char *str, int *fd);
-
 #endif
