@@ -3,9 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_ast.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/18 18:27:56 by tripham           #+#    #+#             */
+
 /*   Updated: 2025/04/26 19:42:06 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
@@ -100,7 +101,9 @@ void	exec_ast(t_ast *node, t_shell *mns)
 	int		pipe_fd[2];
 	pid_t	left_pid;
 	pid_t	right_pid;
+	int		i;
 
+	i = 0;
 	if (!node)
 		return ;
 	if (node->type == NODE_CMD)
