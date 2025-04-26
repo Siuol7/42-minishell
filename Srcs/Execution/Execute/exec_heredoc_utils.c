@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/19 14:45:27 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/21 21:21:11 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/26 19:55:04 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,45 +20,11 @@ int	exp_check_quotes(t_shell *mns, char **limiter)
 	if (!limiter || !*limiter)
 		return (0);
 	c = **limiter;
+	temp = lx_qmarks_eli(mns, *limiter, 0, 0);
+	free(*limiter);
+	*limiter = temp;
 	if (c == '\'' || c == '\"')
-	{
-		temp = lx_qmarks_eli(mns, *limiter, 0, 0);
-		free(*limiter);
-		*limiter = temp;
 		return (1);
-	}
-	return (0);
-}
-
-int	exp_hd_check_nl(char *limiter)
-{
-	int	i;
-
-	i = 0;
-	if (!limiter)
-		return (0);
-	while (limiter[i])
-	{
-		if (limiter[i] == '\n')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
-char	which_quote(char *str)
-{
-	int	i;
-
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] == '\'')
-			return ('\'');
-		else if (str[i] == '\"')
-			return ('\"');
-		i++;
-	}
 	return (0);
 }
 
@@ -84,30 +50,57 @@ char	*heredoc_filename(int index)
 	return (filename);
 }
 
-void clean_heredoc_files(t_shell *mns, t_cmd *cmd)
+char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
+{
+	char	*fi_na;
+	char	*lim_copy;
+	int		fd;
+	int		is_exp;
+	int		status;
+
+	if (prepare_lim_copy(&lim_copy, limiter))
+		return (NULL);
+	if (prepare_fi_na(&fi_na, index))
+		return (free(lim_copy), NULL);
+	fd = open(fi_na, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	if (fd < 0)
+		return (perror("open failed"), free(fi_na), NULL);
+	is_exp = exp_check_quotes(mns, &lim_copy);
+	if (!lim_copy)
+		return (free(fi_na), close(fd), NULL);
+	status = print_heredoc(mns, fd, lim_copy, is_exp);
+	if (status == 1)
+		return (status_one(mns, fi_na, lim_copy, fd));
+	else if (status == 0)
+		return (status_zero(mns, fi_na, lim_copy, fd));
+	else if (status == -2)
+		return (status_minus_two(mns, fi_na, lim_copy, fd));
+	return (free(lim_copy), fi_na);
+}
+
+void	heredoc_expand_all(t_shell *mns)
 {
 	int		i;
-	int		heredoc_id;
-	char	*file_name;
-	int		group_index;
-
-	group_index = get_cmd_group_index(mns, cmd);
-	if (group_index == -1)
-		return ;
+	int		j;
+	char	*tmpfile;
+	t_cmd	*cmd;
 
 	i = 0;
-	heredoc_id = 0;
-	while (i < cmd->in_cnt)
+	while (i < mns->group_cnt)
 	{
-		if (cmd->in[i].type == RD_HEREDOC)
+		cmd = &mns->cmd_group[i];
+		j = 0;
+		while (j < cmd->heredoc_cnt)
 		{
-			file_name = heredoc_filename(group_index * 100 + heredoc_id);
-			if (file_name)
+			tmpfile = heredoc_tmp(mns, cmd->heredoc[j], i * 100 + j);
+			if (!tmpfile)
 			{
-				unlink(file_name);
-				free(file_name);
+				mns->heredoc_failed = 1;
+				return ;
 			}
-			heredoc_id++;
+			free(cmd->heredoc[j]);
+			cmd->heredoc[j] = tmpfile;
+			j++;
 		}
 		i++;
 	}

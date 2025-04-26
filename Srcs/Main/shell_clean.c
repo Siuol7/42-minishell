@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   shell_clean.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/11 12:24:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 21:24:44 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/22 11:50:12 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ static void	free_list(t_token *list, int size)
 	{
 		if (list[i].val)
 			free(list[i].val);
+		if (list[i].exp)
+			free(list[i].exp);
 		i++;
 	}
 	free(list);
@@ -38,8 +40,8 @@ static void	free_cmd_group(t_cmd *group, int id)
 		ft_free_2d((void **)group[id].heredoc);
 	if (group[id].out)
 		free_out(group, id);
-	if (group[id].in.val)
-		free(group[id].in.val);
+	if (group[id].in)
+		free_in(group, id);
 	if (group[id].ambi)
 		free(group[id].ambi);
 	if (group[id].final)

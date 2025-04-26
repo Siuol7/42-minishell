@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo_call.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:33:58 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 22:08:11 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/20 03:48:44 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	printf_echo_arg(t_shell *mns, char *arg)
 	char	*expanded;
 
 	expanded = expand_titled(mns, arg);
-	ft_printf_fd(0, "%s", expanded);
+	ft_printf_fd(1, "%s", expanded);
 	if (expanded != arg)
 		free(expanded);
 }

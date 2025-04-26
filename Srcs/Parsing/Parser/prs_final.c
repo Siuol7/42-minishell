@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/17 00:23:02 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 22:45:44 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 22:15:25 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,10 @@ static void	prs_final_count(t_cmd *group, t_token *list)
 	i = 0;
 	while (i < group->token_cnt)
 	{
-		if (list[i].type != SIGN)
-			group->final_cnt += prs_val_count(list[i].val);
+		if (list[i].type == RD_AMBI)
+			group->final_cnt++;
+		else if (list[i].type != SIGN)
+			group->final_cnt += prs_val_count(list[i].exp);
 		i++;
 	}
 }
@@ -56,20 +58,20 @@ static void	prs_final_split(t_shell *mns, t_cmd *gr, t_token *lst, int *k)
 	char	**res;
 
 	i = 0;
-	res = prs_split_allspace(lst->val);
+	res = prs_split_allspace(lst->exp);
 	if (!res)
 		ft_bad_alloc(mns);
 	while (i < ft_2d_len(res))
 	{
-		if (lst->val && lst->val[0])
+		if (lst->exp && lst->exp[0])
 		{
 			gr->final[*k].val = ft_strdup(res[i]);
 			if (!gr->final[*k].val)
 				ft_bad_alloc(mns);
 			gr->final[*k].type = lst->type;
-			i++;
 			(*k)++;
 		}
+		i++;
 	}
 	ft_free_2d((void **)res);
 }
@@ -90,7 +92,10 @@ void	prs_final(t_shell *mns, int i, int j, int k)
 		while (++j < mns->cmd_group[i].token_cnt
 			&& k < mns->cmd_group[i].final_cnt)
 		{
-			if (mns->cmd_group[i].list[j].type != SIGN)
+			if (mns->cmd_group[i].list[j].type == RD_AMBI)
+				prs_rd_ambi(mns, &mns->cmd_group[i],
+					&mns->cmd_group[i].list[j], &k);
+			else if (mns->cmd_group[i].list[j].type != SIGN)
 				prs_final_split(mns, &mns->cmd_group[i],
 					&mns->cmd_group[i].list[j], &k);
 			else

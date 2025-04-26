@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/03 17:29:41 by caonguye          #+#    #+#             */
-/*   Updated: 2025/03/13 01:47:20 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/23 11:10:20 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,3 @@ t_list	*ft_lstnew(void *content)
 	new->next = NULL;
 	return (new);
 }
-// #include <stdio.h>
-// int	main()
-// {
-// 	char	string[5]= "abcd";
-// 	int	x = 4;
-// 	t_list *test1 = ft_lstnew((void *)string);
-// 	t_list *test2 = ft_lstnew((void *)&x);
-// 	printf("%s\n", (char *)test1->content);
-// 	printf("%d\n", *(int *)test2->content);
-// 	return(0);
-// }

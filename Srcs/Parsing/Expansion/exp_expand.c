@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/11 20:56:48 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 12:26:36 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/22 23:12:02 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ void	exp_expand(t_shell *mns, char **key, char open, t_token *t)
 		free(*key);
 		ft_bad_alloc(mns);
 	}
-	if (open == '\'' || exp_rd_check(mns, t, *key, open))
+	if (open == '\'' || t->type == RD_HEREDOC)
 		exp_copy(mns, key, exp_sign);
 	else
 	{

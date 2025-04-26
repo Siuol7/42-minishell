@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:26:37 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/20 22:13:45 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/26 18:29:29 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,13 @@
 # include "../Execution/builtin_functions.h"
 # include "../Expansion/heredoc_expansion.h"
 # include "../Expansion/unstring_expansion.h"
-// Get next line
-# include "../../Library/get_next_line/get_next_line.h"
 
 typedef struct s_shell
 {
 	int		group_cnt;
 	int		exitcode;
 	int		shlvl;
+	int		signal;
 	char	*full_cmd_line;
 	char	*post_expansion;
 	char	**cmd_str;
@@ -41,6 +40,9 @@ typedef struct s_shell
 	t_cmd	*cmd_group;
 	int		shell_err;
 	t_ast	*ast;
+	int		std_fd[2];
+	bool	is_pipe;
+	int		heredoc_failed;
 }	t_shell;
 
 //OPERATION
@@ -49,6 +51,7 @@ void	shell_pre_input(t_shell *mns);
 int		shell_implement(char **env);
 void	shell_clean(t_shell *mns);
 void	free_out(t_cmd *group, int id);
+void	free_in(t_cmd *group, int id);
 void	shell_env_gen(t_shell *mns, char **env);
 
 //PARSING

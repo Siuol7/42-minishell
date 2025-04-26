@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   found_cmd_path.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 16:44:37 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/21 13:22:42 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/19 20:03:36 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,9 +99,7 @@ char	*found_command_path(t_shell *mns, char *cmd)
 	command_path = get_command_path(envp_paths, cmd);
 	ft_free_3d((void ***)&envp_paths);
 	if (!command_path)
-	{
 		ft_printf_fd(STDERR_FILENO, "%s: command not found\n", cmd);
-	}
 	else if (access(command_path, X_OK) != 0)
 		exec_error(mns, NULL, cmd, "Permission denied");
 	return (command_path);

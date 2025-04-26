@@ -6,131 +6,61 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/14 18:58:07 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/21 21:16:04 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/26 19:57:25 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	print_heredoc(t_shell *mns, int fd, char *limiter, int is_exp)
+char	*status_one(t_shell *mns, char *fi_na, char *lim_copy, int fd)
 {
-	char	*line;
+	free(lim_copy);
+	close(fd);
+	update_status(mns, 1);
+	signals_initialize();
+	return (fi_na);
+}
 
-	while (1)
+char	*status_zero(t_shell *mns, char *fi_na, char *lim_copy, int fd)
+{
+	mns->exitcode = 1;
+	free(fi_na);
+	free(lim_copy);
+	signals_initialize();
+	close(fd);
+	return (NULL);
+}
+
+char	*status_minus_two(t_shell *mns, char *fi_na, char *lim_copy, int fd)
+{
+	int	i;
+
+	i = 0;
+	hd_abort(2);
+	while (i < mns->group_cnt)
 	{
-		line = readline("> ");
-		if (!line)
-		{
-			ft_printf_fd(STDERR_FILENO, "bash: warning: here-document "
-				"delimited by end-of-file (wanted `%s')\n", limiter);
-			return (1);
-		}
-		if (!line || (limiter && !ft_strcmp(line, limiter)))
-			break ;
-		if (is_exp == 0)
-			hd_expansion_gen(mns, &line);
-		ft_printf_fd (fd, "%s\n", line);
-		free(line);
+		clean_heredoc_files(mns, &mns->cmd_group[i]);
+		i++;
 	}
-	free(line);
+	free(fi_na);
+	free(lim_copy);
+	close(fd);
+	signals_initialize();
+	return (NULL);
+}
+
+int	prepare_lim_copy(char **lim_copy, char *limiter)
+{
+	*lim_copy = ft_strdup(limiter);
+	if (!*lim_copy)
+		return (1);
 	return (0);
 }
 
-static void	printf_hd_helper(t_shell *mns, char *name, char *lim_copy, int fd)
+int	prepare_fi_na(char **fi_na, int index)
 {
-	mns->exitcode = 1;
-	unlink(name);
-	free(name);
-	free(lim_copy);
-	close(fd);
-	signals_initialize();
+	*fi_na = heredoc_filename(index);
+	if (!*fi_na)
+		return (1);
+	return (0);
 }
-char	*heredoc_tmp(t_shell *mns, char *limiter, int index)
-{
-	char	*filename;
-	char	*lim_copy;
-	int		fd;
-	int		is_exp;
-
-	lim_copy = ft_strdup(limiter);
-	filename = heredoc_filename(index);
-	if (filename == NULL)
-		return (perror("heredoc_tmp failed"), NULL);
-	fd = open(filename, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	if (fd < 0)
-		return (perror("open failed"), free(filename), NULL);
-	signals_configure(SIGINT, handle_sigint_heredoc);
-	is_exp = exp_check_quotes(mns, &lim_copy);
-	if (print_heredoc(mns, fd, lim_copy, is_exp))
-	{
-		printf_hd_helper(mns, filename, lim_copy, fd);
-		return (NULL);
-	}
-	close(fd);
-	free(lim_copy);
-	signals_initialize();
-	return (filename);
-}
-
-static void	printf_wrong_eof(char *limiter)
-{
-	ft_printf_fd(2, "bash: ");
-	ft_printf_fd(2,
-		"unxpected EOF while looking for matching `%c'\n",
-		which_quote(limiter));
-}
-
-static void	replace_val(t_cmd *cmd, int heredoc_id, char *tmpfile)
-{
-	int	i;
-	int	count;
-
-	i = 0;
-	count = 0;
-	while (i < cmd->in_cnt)
-	{
-		if (cmd->in[i].type == RD_HEREDOC)
-		{
-			if (count == heredoc_id)
-			{
-				free(cmd->in[i].val);
-				cmd->in[i].val = tmpfile;
-				return ;
-			}
-		}
-		i++;
-	}
-}
-
-void	heredoc_expand_all(t_shell *mns)
-{
-	int		i;
-	int		j;
-	char	*tmpfile;
-	t_cmd	*cmd;
-
-	i = 0;
-	j = 0;
-	while (i < mns->group_cnt)
-	{
-		j = 0;
-		cmd = &mns->cmd_group[i];
-		while (j < cmd->heredoc_cnt)
-		{
-			if (exp_hd_check_nl(cmd->heredoc[j]))
-			{
-				printf_wrong_eof(cmd->heredoc[j]);
-				return ;
-			}
-			tmpfile = heredoc_tmp(mns, cmd->heredoc[j], i * 100 + j);
-			if (!tmpfile)
-				return ;
-			replace_val(cmd, j, tmpfile);
-			// free(cmd->in.val);
-			// cmd->in.val = tmpfile;
-			j++;
-		}
-		i++;
-	}
-}
-// chua cap nhat exit_code

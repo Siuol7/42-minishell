@@ -3,20 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   exec_handle_error.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:46:16 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/18 20:36:18 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/26 17:24:52 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	handle_execution_error(char *command_path, char **splitted_command)
+void	handle_execution_error(t_shell *mns, char *command_path,
+		char **splitted_command)
 {
 	ft_printf_fd(2, "bash: %s: %s\n", *splitted_command, strerror(errno));
 	if (command_path)
 		free(command_path);
+	shell_clean(mns);
 	exit(126);
 }
 
@@ -40,40 +42,3 @@ void	handle_fork_error(int *pipe)
 	perror("bash: fork\n");
 	exit (1);
 }
-
-// int	check_error(t_shell *mns, char *cmd)
-// {
-// 	if (!cmd || !cmd[0])
-// 	{
-// 		ft_printf_fd(STDERR_FILENO, "command '%s' not found\n", cmd);
-// 		update_status(mns, 127);
-// 		return (EXIT_FAILURE);
-// 	}
-// 	else if (!ft_strcmp(cmd, "."))
-// 	{
-// 		ft_printf_fd(STDERR_FILENO,
-// 			"bash: .: filename argument required\n"
-// 			".: usage: . filename [arguments]\n");
-// 		update_status(mns, 2);
-// 		return (EXIT_FAILURE);
-// 	}
-// 	else if (!ft_strcmp(cmd, ".."))
-// 	{
-// 		ft_printf_fd(STDERR_FILENO, "%s: command not found\n", cmd);
-// 		update_status(mns, 127);
-// 		return (EXIT_FAILURE);
-// 	}
-// 	else if (access(cmd, F_OK) != 0)
-// 	{
-// 		ft_printf_fd(STDERR_FILENO, "%s: No such file or directory\n", cmd);
-// 		update_status(mns, 127);
-// 		return (EXIT_FAILURE);
-// 	}
-// 	else if (access(cmd, X_OK) != 0)
-// 	{
-// 		ft_printf_fd(STDERR_FILENO, "%s: Permission denied\n", cmd);
-// 		update_status(mns, 126);
-// 		return (EXIT_FAILURE);
-// 	}
-// 	return (EXIT_SUCCESS);
-// }
