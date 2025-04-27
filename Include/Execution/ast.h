@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/12 17:40:48 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/15 19:16:49 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/26 17:32:36 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,8 @@ typedef struct s_ast
 }	t_ast;
 
 // AST
-void	ast_free_node(t_ast *node);
-int		find_priority(t_token *token, int size);
-
-t_ast	*create_ast_node_cmd(t_token *tokens, int index);
+t_ast	*create_ast_node_cmd(t_shell *mns, t_token *tokens, int index);
 t_ast	*create_ast_node_pipe(void);
-t_ast	*ast_init(t_cmd *cmd_group, int group_cnt, int base_index);
+t_ast	*ast_init(t_shell *mns, t_cmd *cmd_group,
+			int group_cnt, int base_index);
 #endif

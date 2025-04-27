@@ -6,11 +6,12 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/21 06:51:24 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/24 11:16:17 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/26 02:07:16 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+#include <readline/readline.h> 
 
 int	signals_configure(int signal_val, void (*handler)(int))
 {
@@ -33,6 +34,16 @@ int	signals_initialize(void)
 		|| signals_configure(SIGQUIT, SIG_IGN) == EXIT_FAILURE)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
+}
+
+void	handle_sigint(int signal_val)
+{
+	(void)signal_val;
+	ft_printf_fd(STDOUT_FILENO, "\n");
+	rl_on_new_line();
+	rl_replace_line("", 0);
+	rl_redisplay();
+	signals_exit_configure(NULL);
 }
 
 void	signals_exit_configure(t_shell *mns)

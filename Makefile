@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+         #
+#    By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/03/08 11:57:46 by caonguye          #+#    #+#              #
-#    Updated: 2025/04/22 22:44:35 by caonguye         ###   ########.fr        #
+#    Updated: 2025/04/26 19:10:51 by tripham          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,15 +22,9 @@ LIBFT			:= $(LIBFT_DIR)/libft.a
 FT_PRINTF_DIR	:= ./Library/ft_printf_fd
 PRINTF			:= $(FT_PRINTF_DIR)/libftprintf.a
 
-GNL_DIR			:= ./Library/get_next_line
-
 HEADER			:= ./Include/Main
 
-INCLUDE			:= -I $(LIBFT_DIR) -I $(FT_PRINTF_DIR) -I $(GNL_DIR) -I $(HEADER)
-
-#GNL
-GNL_SRC			:= get_next_line.c	\
-					get_next_line_utils.c
+INCLUDE			:= -I $(LIBFT_DIR) -I $(FT_PRINTF_DIR) -I $(HEADER)
 
 #MAIN
 MAIN_SRC		:=	./Srcs/Main
@@ -102,7 +96,8 @@ AST_C			:=	ast_init.c				\
 SIGNAL_DIR		:=	$(EXECUTION_SRC)/Signals
 
 SIGNAL_C		:=	handle_signals_default.c	\
-					signals_initialize.c
+					signals_initialize.c		\
+					hd_signal.c
 
 # Execute
 EXECUTE_DIR		:=	$(EXECUTION_SRC)/Execute
@@ -113,11 +108,13 @@ EXECUTE_C		:=	exec_ast.c			\
 					found_cmd_path.c	\
 					exec_handle_error.c	\
 					exec_cmd.c			\
+					exec_cmd_2.c		\
 					exec_rd.c			\
 					exec_check_error.c 	\
 					exec_heredoc.c		\
 					exec_heredoc_utils.c\
-					exec_hd_clean_all.c
+					exec_hd_clean_all.c	\
+					exec_print_heredoc.c
 
 # Built In Functions
 BUILT_IN_DIR	:= $(EXECUTION_SRC)/Built-In_Functions
@@ -180,12 +177,11 @@ SRCS			:= 	$(addprefix ${MAIN_SRC}/,		${MAIN_C})				\
 					$(addprefix ${EXIT_DIR}/,		${EXIT_C})				\
 					$(addprefix ${UNSET_DIR}/,		${UNSET_C})				\
 					$(addprefix ${PWD_DIR}/,		${PWD_C})				\
-					$(addprefix ${UTILS_DIR}/,		${UTILS_C})	  			\
-					$(addprefix ${GNL_DIR}/,		${GNL_SRC})
+					$(addprefix ${UTILS_DIR}/,		${UTILS_C})	  			
 
 OBJS           :=	${SRCS:.c=.o}
 
-all:    ${LIBFT} ${PRINTF} ${GNL} ${NAME}
+all:    ${LIBFT} ${PRINTF} ${NAME}
 
 %.o:%.c
 		@${CC} ${FLAG} ${INCLUDE} -o $@ -c $<
@@ -205,7 +201,7 @@ ${NAME}	:	${OBJS} ${LIBFT} ${PRINTF}
 			printf "\b \b"; sleep 0.3; \
 		done; \
 		printf "\033[0m\n"
-		@${CC} ${OBJS} ${LIBFT} ${PRINTF} ${GNL} ${FLAG} ${LFLAG} -o ${NAME}
+		@${CC} ${OBJS} ${LIBFT} ${PRINTF} ${FLAG} ${LFLAG} -o ${NAME}
 
 ${LIBFT}	:
 		@$(MAKE) -s -C ${LIBFT_DIR}
