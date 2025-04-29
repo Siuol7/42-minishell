@@ -12,7 +12,7 @@
 
 NAME	:= minishell
 CC		:= gcc
-FLAG	:= -Wall -Werror -Wextra -g -O3
+FLAG	:= -Wall -Wextra -Werror -g -O3
 LFLAG	:=	-lreadline
 
 

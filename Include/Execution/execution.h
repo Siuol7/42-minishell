@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   execution.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/08 23:13:23 by tripham           #+#    #+#             */
-/*   Updated: 2025/04/26 19:55:15 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/29 02:56:03 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		update_status(t_shell *mns, int new_status);
 void	wait_update(t_shell *mns, pid_t pid);
 char	*found_command_path(t_shell *mns, char *cmd);
 //Builtin functions
-void	exec_builtin(t_shell *mns, t_cmd *cmd);
+void	exec_builtin(t_shell *mns, t_cmd *cmd, const int *tmp);
 int		exec_cmd_check(char *cmd);
 
 // Handle_Error
@@ -49,10 +49,11 @@ void	exec_error(t_shell *mns, char *cmd_path, char *ms1, char *ms2);
 
 // Execution
 void	exec_cmd(t_shell *mns, t_cmd *cmd);
-void	setup_fd(t_shell *mns);
 void	exec_non_builtin_child(t_shell *mns, t_cmd *cmd, const int	*tmp);
 void	exec_non_builtin(t_shell *mns, t_cmd *cmd, const int *tmp);
 void	exec_builtin_child(t_shell *mns, t_cmd *cmd, const int	*tmp);
+void	close_wait_clean_hd(t_shell *mns, int *pipe_fd,
+			pid_t left_pid, pid_t right_pid);
 
 // Redirect
 int		handle_redirection(t_shell*mns, t_cmd *cmd);
@@ -76,4 +77,5 @@ int		set_env_val(char ***env, const char *key, const char *value);
 
 // ambiguous
 int		check_ambiguous_rd(t_shell *mns, char *str, int *fd);
+
 #endif

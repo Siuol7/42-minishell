@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hd_expansion_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/21 00:26:51 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/21 13:46:48 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/29 02:33:38 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
