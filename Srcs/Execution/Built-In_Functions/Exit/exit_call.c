@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:34:33 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/27 16:56:55 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/29 02:38:41 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	printf_numeric_error(t_shell *mns, t_cmd *cmd, const int *tmp)
 {
+	(void)tmp;
 	ft_printf_fd(2, "bash: exit: %s: numeric argument required\n",
 		cmd->cmd_arg[1]);
 	close(tmp[0]);
@@ -22,18 +23,26 @@ static void	printf_numeric_error(t_shell *mns, t_cmd *cmd, const int *tmp)
 	exit (2);
 }
 
+static void	exit_helper(t_shell *mns, const int *tmp)
+{
+	env_shlvl_down(mns);
+	close(tmp[0]);
+	close(tmp[1]);
+	shell_clean(mns);
+}
+
 void	bi_exit(t_shell *mns, t_cmd *cmd, const int *tmp)
 {
 	long	code;
 	int		exit_code;
 
+	(void)tmp;
 	if (isatty(STDIN_FILENO) && !mns->is_pipe)
 		ft_printf_fd(STDERR_FILENO, "exit\n");
 	if (cmd->arg_cnt == 1)
 	{
 		exit_code = mns->exitcode;
-		env_shlvl_down(mns);
-		shell_clean(mns);
+		exit_helper(mns, tmp);
 		exit (exit_code);
 	}
 	if (!ft_atol_safe(cmd->cmd_arg[1], &code))
@@ -46,9 +55,6 @@ void	bi_exit(t_shell *mns, t_cmd *cmd, const int *tmp)
 	}
 	exit_code = (unsigned char)code;
 	update_status(mns, exit_code);
-	env_shlvl_down(mns);
-	close(tmp[0]);
-	close(tmp[1]);
-	shell_clean(mns);
+	exit_helper(mns, tmp);
 	exit (exit_code);
 }

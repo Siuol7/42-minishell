@@ -6,7 +6,7 @@
 /*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/07 10:58:30 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/27 20:33:29 by tripham          ###   ########.fr       */
+/*   Updated: 2025/04/29 02:35:08 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,9 @@ static void	shell_input_operate(t_shell *mns)
 	if (mns->shell_err == -3)
 		return ;
 	else if (prs_cmd_check(mns))
+	{
 		execute_part(mns);
+	}
 	mns->std_fd[0] = -2;
 	mns->std_fd[1] = -2;
 }
