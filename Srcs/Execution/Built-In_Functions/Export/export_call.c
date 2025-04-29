@@ -6,7 +6,7 @@
 /*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:00:53 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/25 11:39:23 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/29 14:55:50 by caonguye         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,16 +49,19 @@ static void	ep_variable(t_shell *mns, t_cmd *cmd, int i)
 		if (!temp)
 			ft_bad_alloc(mns);
 		if (!ep_pre_validation(mns, temp))
-			return ;
-		pos = ep_check_exist(mns, temp[0], &temp);
-		if (temp [1] && temp[1][0] && temp[1][0] == '+')
-			ep_add(mns, temp[0], temp[1], pos);
-		else if (pos > -1)
-			ep_replace(mns, cmd->cmd_arg[i], pos);
+			i++;
 		else
-			env_append(mns, cmd->cmd_arg[i]);
-		i++;
-		ft_free_2d((void **)temp);
+		{
+			pos = ep_check_exist(mns, temp[0], &temp);
+			if (temp [1] && temp[1][0] && temp[1][0] == '+')
+				ep_add(mns, temp[0], temp[1], pos);
+			else if (pos > -1)
+				ep_replace(mns, cmd->cmd_arg[i], pos);
+			else
+				env_append(mns, cmd->cmd_arg[i]);
+			i++;
+			ft_free_2d((void **)temp);
+		}
 	}
 }
 
