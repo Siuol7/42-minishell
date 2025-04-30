@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ep_export.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: caonguye <caonguye@student.hive.fi>        +#+  +:+       +#+        */
+/*   By: tripham <tripham@student.hive.fi>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/03/23 03:22:21 by caonguye          #+#    #+#             */
-/*   Updated: 2025/04/24 10:42:33 by caonguye         ###   ########.fr       */
+/*   Updated: 2025/04/29 15:03:55 by tripham          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ static void	ep_print(char *env, int pos, int len)
 				printf("\"");
 			printf("%c", env[j]);
 		}
+		if (env[j - 1] == '=')
+			printf("\"");
 		printf("\"\n");
 	}
 }
@@ -57,7 +59,7 @@ void	ep_standalone(t_shell *mns, int i, int size)
 		ft_bad_alloc(mns);
 	while (++i < size)
 	{
-		if (sorted_env[i][0] == '_')
+		if (sorted_env[i][0] == '_' && sorted_env[i][1] == '=')
 			continue ;
 		pos = ft_strichr(sorted_env[i], '=');
 		len = ft_strlen(sorted_env[i]);
