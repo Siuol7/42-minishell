@@ -59,3 +59,7 @@ make         # build the magic
 
 # Fire it up
 ./minishell
+
+| ***Execute & Makefile tutorial*** |
+|-----------|
+| <img src="assets/minishell.gif" width="600"/> |
