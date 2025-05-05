@@ -59,6 +59,7 @@ make         # build the magic
 
 # Fire it up
 ./minishell
+```
 
 | ***Execute & Makefile tutorial*** |
 |-----------|
