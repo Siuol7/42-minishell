@@ -63,4 +63,4 @@ make         # build the magic
 
 | ***Execute & Makefile tutorial*** |
 |-----------|
-| <img src="assets/minishell.gif" width="600"/> |
+| <img src="https://github.com/Siuol7/Project-Overview/blob/main/assets/minishell.gif" width="600"/> |
