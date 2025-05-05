@@ -64,3 +64,5 @@ make         # build the magic
 | ***Execute & Makefile tutorial*** |
 |-----------|
 | <img src="https://github.com/Siuol7/Project-Overview/blob/main/assets/minishell.gif" width="600"/> |
+
+*We used Git Project to track our workflows and Norminette CI for consistency.
