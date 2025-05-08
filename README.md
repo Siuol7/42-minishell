@@ -4,8 +4,8 @@
 
 ## ✍️ Authors
 
-- **Cao Tan** – Parsing part handler ([GitHub](https://github.com/Siuol7))
-- **Triet Pham** – Execution part handler([GitHub](https://github.com/hihi-louis))
+- **Cao Tan** – Parsing handler ([GitHub](https://github.com/Siuol7))
+- **Triet Pham** – Execution handler([GitHub](https://github.com/hihi-louis))
 
 ## 🎯 Overview
 
@@ -48,6 +48,12 @@ AST create -> Execute from Leftnode -> Handle Signal and Exitcode -> Clean Up
 5. **Execute**:
    - Traverse left subtree first, then right based on `|` outcomes.
    - Internally handle built-ins; summon external programs with `execve` when needed.
+
+##  Lessons learn:
+1. Process Management
+2. Signals Handling
+3. Bash Behaviours
+4. Strings manipulation
 
 ## 📦 Installation & Launch
 
